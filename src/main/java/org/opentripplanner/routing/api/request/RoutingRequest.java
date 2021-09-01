@@ -1003,6 +1003,10 @@ public class RoutingRequest implements AutoCloseable, Cloneable, Serializable {
                     streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK));
                     streetRequest.bikeParkAndRide = true;
                     break;
+                case PARK_TO_BIKE:
+                    streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK));
+                    streetRequest.bikeParkAndRide = true;
+                    break;
                 case BIKE_RENTAL:
                     streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK));
                     streetRequest.bikeRental = true;
