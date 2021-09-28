@@ -96,9 +96,7 @@ public class QualifiedModeSet implements Serializable {
             List<QualifiedMode> filteredModesWithoutWalk = filteredModes.stream()
                     .filter(Predicate.not(m -> m.mode == ApiRequestMode.WALK))
                     .collect(Collectors.toList());
-            if (filteredModesWithoutWalk.size() > 1) {
-                throw new IllegalStateException("Multiple non-walk modes provided " + filteredModesWithoutWalk);
-            } else if (filteredModesWithoutWalk.isEmpty()) {
+            if (filteredModesWithoutWalk.isEmpty()) {
                 requestMode = filteredModes.get(0);
             } else {
                 requestMode = filteredModesWithoutWalk.get(0);
@@ -122,10 +120,10 @@ public class QualifiedModeSet implements Serializable {
                         egressMode = StreetMode.BIKE_RENTAL;
                         directMode = StreetMode.BIKE_RENTAL;
                     } else if (requestMode.qualifiers.contains(Qualifier.PARK)) {
-                        accessMode = StreetMode.BIKE_TO_PARK;
+                        accessMode = StreetMode.WALK;
                         transferMode = StreetMode.WALK;
                         egressMode = StreetMode.WALK;
-                        directMode = StreetMode.BIKE_TO_PARK;
+                        directMode = StreetMode.BIKE_TO_PARK;                     
                     } else {
                         accessMode = StreetMode.BIKE;
                         transferMode = StreetMode.BIKE;
@@ -165,6 +163,20 @@ public class QualifiedModeSet implements Serializable {
         }
 
         // These modes are set last in order to take precedence over other modes
+        for (QualifiedMode qMode : qModes) {
+            if (qMode.mode.equals(ApiRequestMode.BICYCLE) && requestMode.qualifiers.contains(Qualifier.PARK)) {
+                if (qMode.qualifiers.contains(Qualifier.DROPOFF)) {
+                    accessMode = StreetMode.BIKE_TO_PARK;
+                } else if (qMode.qualifiers.contains(Qualifier.PICKUP)) {
+                    egressMode = StreetMode.PARK_TO_BIKE;
+                }
+                // For backward compatibility with BICYCLE_PARKING without DROPOFF or PICKUP modifier.
+                if (accessMode == StreetMode.WALK && egressMode == StreetMode.WALK) {
+                    accessMode = StreetMode.BIKE_TO_PARK;
+                }
+            }
+        }
+
         for (QualifiedMode qMode : qModes) {
             if (qMode.mode.equals(ApiRequestMode.FLEX)) {
                 if (qMode.qualifiers.contains(Qualifier.ACCESS)) {

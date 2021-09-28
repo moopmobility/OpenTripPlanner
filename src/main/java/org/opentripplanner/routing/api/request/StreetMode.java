@@ -29,7 +29,7 @@ public enum StreetMode {
    *
    * Direct mode and egress mode only.
    */
-  PARK_TO_BIKE(true, false, true, true, true, false),
+  PARK_TO_BIKE(false, false, true, true, true, false),
 
   /**
    * Walk to a bike rental point, bike to a bike rental drop-off point, and walk the rest of the

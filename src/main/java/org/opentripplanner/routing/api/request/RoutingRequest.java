@@ -647,6 +647,7 @@ public class RoutingRequest implements AutoCloseable, Cloneable, Serializable {
     */
     public boolean bikeRental = false;
     public boolean bikeParkAndRide = false;
+    public boolean bikeRideAndPark = false;
     public boolean parkAndRide  = false;
     public boolean carPickup = false;
 
@@ -1005,7 +1006,7 @@ public class RoutingRequest implements AutoCloseable, Cloneable, Serializable {
                     break;
                 case PARK_TO_BIKE:
                     streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK));
-                    streetRequest.bikeParkAndRide = true;
+                    streetRequest.bikeRideAndPark = true;
                     break;
                 case BIKE_RENTAL:
                     streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK));

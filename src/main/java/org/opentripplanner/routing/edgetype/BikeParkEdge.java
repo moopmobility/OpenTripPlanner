@@ -6,7 +6,7 @@ import org.opentripplanner.routing.core.StateEditor;
 import org.opentripplanner.routing.core.TraverseMode;
 import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.vertextype.BikeParkVertex;
-
+import org.slf4j.LoggerFactory;
 import org.locationtech.jts.geom.LineString;
 import java.util.Locale;
 
@@ -27,6 +27,7 @@ import java.util.Locale;
  * @author GoAbout
  */
 public class BikeParkEdge extends Edge {
+    private static org.slf4j.Logger LOG = LoggerFactory.getLogger(BikeParkEdge.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -37,16 +38,25 @@ public class BikeParkEdge extends Edge {
     @Override
     public State traverse(State s0) {
         RoutingRequest options = s0.getOptions();
-        if (!options.bikeParkAndRide) {
-            return null;
+        
+        if (options.bikeParkAndRide) {
+            if (options.arriveBy) {
+                return traverseUnpark(s0);
+            } else {
+                return traversePark(s0);
+            }
         }
 
-        if (options.arriveBy) {
-            return traverseUnpark(s0);
-        } else {
-            return traversePark(s0);
+        if (options.bikeRideAndPark) {
+            if (options.arriveBy) {
+                return traversePark(s0);
+            } else {
+                return traverseUnpark(s0);
+            }
         }
+        return null;
     }
+    
 
     protected State traverseUnpark(State s0) {
         RoutingRequest options = s0.getOptions();
@@ -54,6 +64,7 @@ public class BikeParkEdge extends Edge {
          * To unpark a bike, we need to be walking, and be allowed to bike.
          */
         if (s0.getNonTransitMode() != TraverseMode.WALK || !options.streetSubRequestModes.getBicycle()) {
+            LOG.info("return null traverseUnpark");
             return null;
         }
 

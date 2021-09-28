@@ -318,7 +318,9 @@ otp.config.modes = {
     //TRANSLATORS: Travel by: mode of transport (Used in selection in Travel Options widgets)
     "CAR_DROPOFF,TRANSIT"      : _tr('Kiss and Ride (Car Dropoff)'),
     //TRANSLATORS: Travel by: mode of transport (Used in selection in Travel Options widgets)
-    "BICYCLE_PARK,TRANSIT"     : _tr('Bike and Ride'),
+    "BICYCLE_PARK_DROPOFF,TRANSIT"                           : _tr('First mile Bike and Ride'),
+    "BICYCLE_PARK_PICKUP,TRANSIT"                          : _tr('Last mile Bike and Ride'),
+    "BICYCLE_PARK_PICKUP,BICYCLE_PARK_DROPOFF,TRANSIT"      : _tr('First and Last mile Bike and Ride'),
     //uncomment only if bike rental exists in a map
     // TODO: remove this hack, and provide code that allows the mode array to be configured with different transit modes.
     //       (note that we've been broken for awhile here, since many agencies don't have a 'Train' mode either...this needs attention)
