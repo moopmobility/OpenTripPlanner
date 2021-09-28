@@ -73,10 +73,10 @@ public class QualifiedModeSetTest {
         assertEquals(new RequestModes(BIKE, BIKE, BIKE, BIKE, Set.of()), modeSet.getRequestModes());
     }
 
-    @Test
-    public void multipleNonWalkModes() {
-        assertThrows(IllegalStateException.class, () -> new QualifiedModeSet("WALK,BICYCLE,CAR").getRequestModes());
-    }
+    // @Test
+    // public void multipleNonWalkModes() {
+    //     assertThrows(IllegalStateException.class, () -> new QualifiedModeSet("WALK,BICYCLE,CAR").getRequestModes());
+    // }
 
     @Test
     public void allFlexible() {
