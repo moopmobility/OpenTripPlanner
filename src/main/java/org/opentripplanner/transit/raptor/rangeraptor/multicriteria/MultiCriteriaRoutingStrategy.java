@@ -89,7 +89,7 @@ public final class MultiCriteriaRoutingStrategy<T extends RaptorTripSchedule>
     final T trip = boarding.getTrip();
     final int boardTime = boarding.getTime();
 
-    if (prevArrival.arrivedByAccess()) {
+    if (prevArrival.arrivalMayBeTimeShifted()) {
       // TODO: What if access is FLEX with rides, should not FLEX transfersSlack be taken
       //       into account as well?
       int latestArrivalTime = boardTime - slackProvider.boardSlack(trip.pattern().slackIndex());

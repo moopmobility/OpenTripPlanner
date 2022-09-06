@@ -35,6 +35,11 @@ public final class AccessStopArrival<T extends RaptorTripSchedule> extends Abstr
   }
 
   @Override
+  public boolean arrivalMayBeTimeShifted() {
+    return true;
+  }
+
+  @Override
   public AbstractStopArrival<T> timeShiftNewArrivalTime(int newRequestedArrivalTime) {
     int newArrivalTime = access.latestArrivalTime(newRequestedArrivalTime);
 

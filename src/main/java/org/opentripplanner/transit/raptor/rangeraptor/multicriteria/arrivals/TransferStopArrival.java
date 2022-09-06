@@ -29,6 +29,31 @@ public final class TransferStopArrival<T extends RaptorTripSchedule>
   }
 
   @Override
+  public boolean arrivalMayBeTimeShifted() {
+    return previous().arrivalMayBeTimeShifted();
+  }
+
+  @Override
+  public AbstractStopArrival<T> timeShiftNewArrivalTime(int newRequestedArrivalTime) {
+    int newPreviousArrivalTime = newRequestedArrivalTime - transfer.durationInSeconds();
+    var previousTimeShifted = previous().timeShiftNewArrivalTime(newPreviousArrivalTime);
+    if (previousTimeShifted == previous()) {
+      return this;
+    }
+
+    int newDepartureTime = transfer.earliestDepartureTime(previousTimeShifted.arrivalTime());
+    if (newDepartureTime == RaptorTransfer.UNAVAILABLE) {
+      return this;
+    }
+
+    return new TransferStopArrival<>(
+      previousTimeShifted,
+      transfer,
+      newDepartureTime + transfer.durationInSeconds()
+    );
+  }
+
+  @Override
   public TransitArrival<T> mostRecentTransitArrival() {
     return previous().mostRecentTransitArrival();
   }

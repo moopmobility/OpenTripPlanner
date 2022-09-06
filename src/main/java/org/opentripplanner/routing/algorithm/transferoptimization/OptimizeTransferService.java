@@ -10,7 +10,6 @@ import org.opentripplanner.routing.algorithm.transferoptimization.model.Transfer
 import org.opentripplanner.routing.algorithm.transferoptimization.services.OptimizePathDomainService;
 import org.opentripplanner.transit.raptor.api.path.Path;
 import org.opentripplanner.transit.raptor.api.transit.RaptorTripSchedule;
-import org.opentripplanner.util.logging.ThrottleLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class OptimizeTransferService<T extends RaptorTripSchedule> {
 
   private static final Logger LOG = LoggerFactory.getLogger(OptimizeTransferService.class);
-  private static final Logger OPTIMIZATION_FAILED_LOG = ThrottleLogger.throttle(LOG);
+  private static final Logger OPTIMIZATION_FAILED_LOG = LOG; //ThrottleLogger.throttle(LOG);
 
   private final OptimizePathDomainService<T> optimizePathDomainService;
   private final MinSafeTransferTimeCalculator<T> minSafeTransferTimeCalculator;

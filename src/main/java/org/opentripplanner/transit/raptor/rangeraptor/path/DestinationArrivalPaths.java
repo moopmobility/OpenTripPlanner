@@ -2,8 +2,10 @@ package org.opentripplanner.transit.raptor.rangeraptor.path;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import javax.annotation.Nullable;
 import org.opentripplanner.transit.raptor.api.path.Path;
+import org.opentripplanner.transit.raptor.api.path.PathLeg;
 import org.opentripplanner.transit.raptor.api.transit.CostCalculator;
 import org.opentripplanner.transit.raptor.api.transit.RaptorStopNameResolver;
 import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
@@ -18,7 +20,6 @@ import org.opentripplanner.transit.raptor.rangeraptor.transit.TransitCalculator;
 import org.opentripplanner.transit.raptor.util.paretoset.ParetoComparator;
 import org.opentripplanner.transit.raptor.util.paretoset.ParetoSet;
 import org.opentripplanner.util.lang.OtpNumberFormat;
-import org.opentripplanner.util.logging.ThrottleLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ import org.slf4j.LoggerFactory;
 public class DestinationArrivalPaths<T extends RaptorTripSchedule> {
 
   private static final Logger LOG = LoggerFactory.getLogger(DestinationArrivalPaths.class);
-  private static final Logger LOG_MISS_MATCH = ThrottleLogger.throttle(LOG);
+  private static final Logger LOG_MISS_MATCH = LOG; //ThrottleLogger.throttle(LOG);
 
   private final ParetoSet<Path<T>> paths;
   private final TransitCalculator<T> transitCalculator;
@@ -204,8 +205,9 @@ public class DestinationArrivalPaths<T extends RaptorTripSchedule> {
     if (path.generalizedCost() != destArrival.cost()) {
       // TODO - Bug: Cost mismatch stop-arrivals and paths #3623
       LOG_MISS_MATCH.warn(
-        "Cost mismatch - Mapper: {}, stop-arrivals: {}, path: {}",
-        OtpNumberFormat.formatCost(path.generalizedCost()),
+        "Cost mismatch of {} - Mapper: {}, stop-arrivals: {}, path: {}",
+        OtpNumberFormat.formatCost(path.generalizedCost() - destArrival.cost()),
+        pathCostAsString(path),
         raptorCostsAsString(destArrival),
         path.toStringDetailed(stopNameResolver)
       );
@@ -213,18 +215,50 @@ public class DestinationArrivalPaths<T extends RaptorTripSchedule> {
   }
 
   /**
-   * Return the cost of all stop arrivals including the destination in reverse order:
-   * <p>
-   * {@code $1200 $950 $600} (Egress, bus, and access arrival)
+   * Return the cost of all path legs.
    */
-  private String raptorCostsAsString(DestinationArrival<T> destArrival) {
-    var arrivalCosts = new ArrayList<String>();
-    ArrivalView<?> it = destArrival;
+  private String pathCostAsString(Path<T> path) {
+    var pathCosts = new ArrayList<String>();
+    var it = (PathLeg<T>) path.accessLeg();
     while (it != null) {
-      arrivalCosts.add(OtpNumberFormat.formatCost(it.cost()));
-      it = it.previous();
+      pathCosts.add(OtpNumberFormat.formatCost(it.generalizedCost()));
+      it = it.isEgressLeg() ? null : it.nextLeg();
     }
     // Remove decimals if zero
-    return String.join(" ", arrivalCosts).replaceAll("\\.00", "");
+    return (
+      "%s (%s)".formatted(
+          OtpNumberFormat.formatCost(path.generalizedCost()),
+          String.join(" ", pathCosts)
+        )
+    ).replaceAll("\\.00", "");
+  }
+
+  /**
+   * Return the cost of all stop arrivals.
+   */
+  private String raptorCostsAsString(DestinationArrival<T> destArrival) {
+    var arrivals = new ArrayList<ArrivalView<?>>();
+    ArrivalView<?> it = destArrival;
+    while (it != null) {
+      arrivals.add(it);
+      it = it.previous();
+    }
+
+    Collections.reverse(arrivals);
+
+    int previous = 0;
+    var arrivalCosts = new ArrayList<String>();
+    for (var arrival : arrivals) {
+      arrivalCosts.add(OtpNumberFormat.formatCost(arrival.cost() - previous));
+      previous = arrival.cost();
+    }
+
+    // Remove decimals if zero
+    return (
+      "%s (%s)".formatted(
+          OtpNumberFormat.formatCost(destArrival.cost()),
+          String.join(" ", arrivalCosts)
+        )
+    ).replaceAll("\\.00", "");
   }
 }

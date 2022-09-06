@@ -114,6 +114,10 @@ public abstract class AbstractStopArrival<T extends RaptorTripSchedule> implemen
     return travelDuration;
   }
 
+  public boolean arrivalMayBeTimeShifted() {
+    return false;
+  }
+
   public AbstractStopArrival<T> timeShiftNewArrivalTime(int newArrivalTime) {
     throw new UnsupportedOperationException("No accessEgress for transfer stop arrival");
   }
