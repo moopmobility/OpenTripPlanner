@@ -9,6 +9,7 @@ import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.routing.edgetype.VehicleRentalEdge;
 import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.graph.Vertex;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vertextype.VehicleRentalPlaceVertex;
 import org.opentripplanner.util.lang.ToStringBuilder;
 
@@ -178,16 +179,19 @@ public class State implements Cloneable {
    */
   public boolean isFinal() {
     // When drive-to-transit is enabled, we need to check whether the car has been parked (or whether it has been picked up in reverse).
-    boolean parkAndRide = stateData.opt.parkAndRide;
+    boolean parkVehicle = stateData.opt.parkAndRide == VehicleParkingMode.PARK_VEHICLE;
+    boolean unparkVehicle = stateData.opt.parkAndRide == VehicleParkingMode.UNPARK_VEHICLE;
     boolean vehicleRentingOk;
     boolean vehicleParkAndRideOk;
     if (stateData.opt.arriveBy) {
       vehicleRentingOk = !stateData.opt.vehicleRental || !isRentingVehicle();
-      vehicleParkAndRideOk = !parkAndRide || !isVehicleParked();
+      vehicleParkAndRideOk =
+        (!parkVehicle || !isVehicleParked()) && (!unparkVehicle || isVehicleParked());
     } else {
       vehicleRentingOk =
         !stateData.opt.vehicleRental || (vehicleRentalNotStarted() || vehicleRentalIsFinished());
-      vehicleParkAndRideOk = !parkAndRide || isVehicleParked();
+      vehicleParkAndRideOk =
+        (!parkVehicle || isVehicleParked()) && (!unparkVehicle || !isVehicleParked());
     }
     return vehicleRentingOk && vehicleParkAndRideOk;
   }

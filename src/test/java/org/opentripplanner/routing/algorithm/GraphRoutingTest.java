@@ -35,6 +35,7 @@ import org.opentripplanner.routing.spt.GraphPath;
 import org.opentripplanner.routing.vehicle_parking.VehicleParking;
 import org.opentripplanner.routing.vehicle_parking.VehicleParking.VehicleParkingEntranceCreator;
 import org.opentripplanner.routing.vehicle_parking.VehicleParkingHelper;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vehicle_rental.RentalVehicleType;
 import org.opentripplanner.routing.vehicle_rental.VehicleRentalPlace;
 import org.opentripplanner.routing.vehicle_rental.VehicleRentalStation;
@@ -96,7 +97,7 @@ public abstract class GraphRoutingTest {
   ) {
     RoutingRequest request = new RoutingRequest(traverseModeSet);
     RoutingContext rctx = new RoutingContext(request, graph, from, to);
-    request.parkAndRide = true;
+    request.parkAndRide = VehicleParkingMode.PARK_VEHICLE;
 
     return AStarBuilder.oneToOne().setContext(rctx).getShortestPathTree().getPath(to);
   }

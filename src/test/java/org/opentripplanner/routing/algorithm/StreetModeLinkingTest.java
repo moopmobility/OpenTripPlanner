@@ -16,6 +16,7 @@ import org.opentripplanner.routing.core.RoutingContext;
 import org.opentripplanner.routing.core.TemporaryVerticesContainer;
 import org.opentripplanner.routing.edgetype.StreetTraversalPermission;
 import org.opentripplanner.routing.graph.Graph;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.transit.model._data.TransitModelForTest;
 import org.opentripplanner.transit.service.TransitModel;
 
@@ -104,7 +105,7 @@ public class StreetModeLinkingTest extends GraphRoutingTest {
       return (RoutingRequest rr) -> {
         rr.from = new GenericLocation(latitude, longitude);
         rr.to = new GenericLocation(latitude, longitude);
-        rr.parkAndRide = true;
+        rr.parkAndRide = VehicleParkingMode.PARK_VEHICLE;
       };
     };
 

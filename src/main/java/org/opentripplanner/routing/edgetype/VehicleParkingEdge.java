@@ -7,6 +7,7 @@ import org.opentripplanner.routing.core.StateEditor;
 import org.opentripplanner.routing.core.TraverseMode;
 import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.vehicle_parking.VehicleParking;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vertextype.VehicleParkingEntranceVertex;
 import org.opentripplanner.transit.model.basic.I18NString;
 
@@ -49,11 +50,11 @@ public class VehicleParkingEdge extends Edge {
   public State traverse(State s0) {
     RoutingRequest options = s0.getOptions();
 
-    if (!options.parkAndRide) {
+    if (!options.isParkAndRide()) {
       return null;
     }
 
-    if (options.arriveBy) {
+    if (options.arriveBy == (options.parkAndRide == VehicleParkingMode.PARK_VEHICLE)) {
       return traverseUnPark(s0);
     } else {
       return traversePark(s0);

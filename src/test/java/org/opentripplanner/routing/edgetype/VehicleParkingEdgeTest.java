@@ -13,6 +13,7 @@ import org.opentripplanner.routing.core.TraverseMode;
 import org.opentripplanner.routing.core.TraverseModeSet;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.vehicle_parking.VehicleParking;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vehicle_parking.VehicleParkingSpaces;
 import org.opentripplanner.routing.vertextype.VehicleParkingEntranceVertex;
 import org.opentripplanner.transit.model._data.TransitModelForTest;
@@ -181,7 +182,7 @@ class VehicleParkingEdgeTest extends GraphRoutingTest {
     vehicleParkingEdge = new VehicleParkingEdge(vertex);
 
     RoutingRequest routingRequest = new RoutingRequest();
-    routingRequest.parkAndRide = true;
+    routingRequest.parkAndRide = VehicleParkingMode.PARK_VEHICLE;
     routingRequest.useVehicleParkingAvailabilityInformation = realtime;
     routingRequest.streetSubRequestModes = new TraverseModeSet(TraverseMode.WALK, parkingMode);
     routingContext = new RoutingContext(routingRequest, graph, vertex, vertex);

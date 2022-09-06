@@ -6,6 +6,7 @@ import org.opentripplanner.routing.api.request.RequestModes;
 import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.routing.api.request.StreetMode;
 import org.opentripplanner.routing.api.request.TransferOptimizationRequest;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.standalone.config.sandbox.DataOverlayParametersMapper;
 import org.opentripplanner.transit.model.basic.TransitMode;
 import org.slf4j.Logger;
@@ -108,7 +109,7 @@ public class RoutingRequestMapper {
     request.bicycleOptimizeType = c.asEnum("optimize", dft.bicycleOptimizeType);
     request.otherThanPreferredRoutesPenalty =
       c.asInt("otherThanPreferredRoutesPenalty", dft.otherThanPreferredRoutesPenalty);
-    request.parkAndRide = c.asBoolean("parkAndRide", dft.parkAndRide);
+    request.parkAndRide = c.asEnum("parkAndRide", VehicleParkingMode.NONE);
     request.pathComparator = c.asText("pathComparator", dft.pathComparator);
     request.searchWindow = c.asDuration("searchWindow", dft.searchWindow);
     request.requiredVehicleParkingTags =

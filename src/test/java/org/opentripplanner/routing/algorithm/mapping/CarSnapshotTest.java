@@ -61,13 +61,26 @@ public class CarSnapshotTest extends SnapshotTestBase {
 
   @DisplayName("Direct CAR_TO_PARK")
   @Test
-  public void directCarPark() {
+  public void directCarToPark() {
     RoutingRequest request = createTestRequest(2009, 10, 21, 16, 10, 0);
 
     request.modes =
       RequestModes.of().withDirectMode(StreetMode.CAR_TO_PARK).clearTransitModes().build();
     request.from = p1;
     request.to = p2;
+
+    expectArriveByToMatchDepartAtAndSnapshot(request);
+  }
+
+  @DisplayName("Direct CAR_FROM_PARK")
+  @Test
+  public void directCarFromPark() {
+    RoutingRequest request = createTestRequest(2009, 10, 21, 16, 10, 0);
+
+    request.modes =
+      RequestModes.of().withDirectMode(StreetMode.CAR_FROM_PARK).clearTransitModes().build();
+    request.from = p2;
+    request.to = p1;
 
     expectArriveByToMatchDepartAtAndSnapshot(request);
   }

@@ -43,6 +43,7 @@ import org.opentripplanner.routing.impl.DurationComparator;
 import org.opentripplanner.routing.impl.PathComparator;
 import org.opentripplanner.routing.spt.DominanceFunction;
 import org.opentripplanner.routing.spt.GraphPath;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vehicle_rental.RentalVehicleType.FormFactor;
 import org.opentripplanner.routing.vehicle_rental.VehicleRentalStation;
 import org.opentripplanner.transit.model.basic.TransitMode;
@@ -631,7 +632,7 @@ public class RoutingRequest implements Cloneable, Serializable {
       This is a temporary solution, as it only covers parking and rental at the beginning of the trip.
     */
   public boolean vehicleRental = false;
-  public boolean parkAndRide = false;
+  public VehicleParkingMode parkAndRide = VehicleParkingMode.NONE;
   public boolean carPickup = false;
   public Set<FormFactor> allowedRentalFormFactors = new HashSet<>();
   /**
@@ -1089,54 +1090,58 @@ public class RoutingRequest implements Cloneable, Serializable {
 
     if (streetMode != null) {
       switch (streetMode) {
-        case WALK:
-        case FLEXIBLE:
-          streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.WALK));
-          break;
-        case BIKE:
-          streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.BICYCLE));
-          break;
-        case BIKE_TO_PARK:
+        case WALK, FLEXIBLE -> streetRequest.setStreetSubRequestModes(
+          new TraverseModeSet(TraverseMode.WALK)
+        );
+        case BIKE -> streetRequest.setStreetSubRequestModes(
+          new TraverseModeSet(TraverseMode.BICYCLE)
+        );
+        case BIKE_TO_PARK, BIKE_FROM_PARK -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK)
           );
-          streetRequest.parkAndRide = true;
-          break;
-        case BIKE_RENTAL:
+          streetRequest.parkAndRide =
+            streetMode == StreetMode.BIKE_TO_PARK
+              ? VehicleParkingMode.PARK_VEHICLE
+              : VehicleParkingMode.UNPARK_VEHICLE;
+        }
+        case BIKE_RENTAL -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK)
           );
           streetRequest.vehicleRental = true;
           streetRequest.allowedRentalFormFactors.add(FormFactor.BICYCLE);
-          break;
-        case SCOOTER_RENTAL:
+        }
+        case SCOOTER_RENTAL -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.BICYCLE, TraverseMode.WALK)
           );
           streetRequest.vehicleRental = true;
           streetRequest.allowedRentalFormFactors.add(FormFactor.SCOOTER);
-          break;
-        case CAR:
-          streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.CAR));
-          break;
-        case CAR_TO_PARK:
+        }
+        case CAR -> streetRequest.setStreetSubRequestModes(new TraverseModeSet(TraverseMode.CAR));
+        case CAR_TO_PARK, CAR_FROM_PARK -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.CAR, TraverseMode.WALK)
           );
-          streetRequest.parkAndRide = true;
-          break;
-        case CAR_PICKUP:
+          streetRequest.parkAndRide =
+            streetMode == StreetMode.CAR_TO_PARK
+              ? VehicleParkingMode.PARK_VEHICLE
+              : VehicleParkingMode.UNPARK_VEHICLE;
+        }
+        case CAR_PICKUP -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.CAR, TraverseMode.WALK)
           );
           streetRequest.carPickup = true;
-          break;
-        case CAR_RENTAL:
+        }
+        case CAR_RENTAL -> {
           streetRequest.setStreetSubRequestModes(
             new TraverseModeSet(TraverseMode.CAR, TraverseMode.WALK)
           );
           streetRequest.vehicleRental = true;
           streetRequest.allowedRentalFormFactors.add(FormFactor.CAR);
+        }
       }
     }
 
@@ -1343,6 +1348,10 @@ public class RoutingRequest implements Cloneable, Serializable {
       return new DurationComparator();
     }
     return new PathComparator(compareStartTimes);
+  }
+
+  public boolean isParkAndRide() {
+    return parkAndRide != VehicleParkingMode.NONE;
   }
 
   /**

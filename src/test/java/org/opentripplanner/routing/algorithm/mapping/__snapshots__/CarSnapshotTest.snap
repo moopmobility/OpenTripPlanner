@@ -1,4 +1,4 @@
-org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
+org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarFromPark=[
   [
     {
       "arrivedAtDestinationWithRentedBicycle": false,
@@ -16,22 +16,22 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "agencyTimeZoneOffset": -25200000,
           "arrivalDelay": 0,
           "departureDelay": 0,
-          "distance": 181.36,
-          "endTime": "2009-10-21T16:10:44-07:00",
+          "distance": 184.06,
+          "endTime": "2009-10-21T16:12:29-07:00",
           "from": {
             "departure": "2009-10-21T16:10:00-07:00",
-            "lat": 45.53261,
-            "lon": -122.70075,
-            "name": "NW Pettygrove Ave. & NW 24th Ave. (P1)",
+            "lat": 45.53046,
+            "lon": -122.70067,
+            "name": "NW Marshall St. & NW 24th Ave. (P2)",
             "vertexType": "NORMAL"
           },
-          "generalizedCost": 61,
+          "generalizedCost": 285,
           "interlineWithPreviousLeg": false,
           "legGeometry": {
             "length": 5,
-            "points": "ya|tGv~{kV??nCEB|Dn@@"
+            "points": "it{tGf~{kVC?mCDBfEo@A"
           },
-          "mode": "CAR",
+          "mode": "WALK",
           "pathway": false,
           "realTime": false,
           "rentedBike": false,
@@ -39,27 +39,14 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
-              "absoluteDirection": "WEST",
-              "area": false,
-              "bogusName": false,
-              "distance": 0.72,
-              "elevation": "",
-              "lat": 45.5326129,
-              "lon": -122.7007501,
-              "relativeDirection": "DEPART",
-              "stayOn": false,
-              "streetName": "Northwest Pettygrove Street",
-              "walkingBike": false
-            },
-            {
-              "absoluteDirection": "SOUTH",
+              "absoluteDirection": "NORTH",
               "area": false,
               "bogusName": false,
               "distance": 80.22,
               "elevation": "",
-              "lat": 45.5326127,
-              "lon": -122.7007593,
-              "relativeDirection": "LEFT",
+              "lat": 45.5304599,
+              "lon": -122.7006772,
+              "relativeDirection": "DEPART",
               "stayOn": false,
               "streetName": "Northwest 24th Avenue",
               "walkingBike": false
@@ -68,38 +55,38 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
               "absoluteDirection": "WEST",
               "area": false,
               "bogusName": false,
-              "distance": 74.04,
+              "distance": 77.46,
               "elevation": "",
-              "lat": 45.5318916,
-              "lon": -122.7007283,
-              "relativeDirection": "RIGHT",
+              "lat": 45.531181,
+              "lon": -122.7007063,
+              "relativeDirection": "LEFT",
               "stayOn": false,
-              "streetName": "Northwest Overton Street",
+              "streetName": "Northwest Northrup Street",
               "walkingBike": false
             },
             {
-              "absoluteDirection": "SOUTH",
+              "absoluteDirection": "NORTH",
               "area": false,
               "bogusName": true,
               "distance": 26.38,
               "elevation": "",
-              "lat": 45.5318763,
-              "lon": -122.7016786,
-              "relativeDirection": "LEFT",
+              "lat": 45.5311647,
+              "lon": -122.7017004,
+              "relativeDirection": "RIGHT",
               "stayOn": false,
-              "streetName": "service road",
+              "streetName": "path",
               "walkingBike": false
             }
           ],
           "to": {
-            "arrival": "2009-10-21T16:10:44-07:00",
-            "departure": "2009-10-21T16:10:44-07:00",
-            "lat": 45.5316391,
-            "lon": -122.7016859,
-            "name": "P+R (#2)",
+            "arrival": "2009-10-21T16:12:29-07:00",
+            "departure": "2009-10-21T16:12:29-07:00",
+            "lat": 45.5314019,
+            "lon": -122.7016931,
+            "name": "P+R (#1)",
             "vehicleParking": {
-              "entranceId": "OSM:OSMWay/-102488/osm:node:-102438",
-              "entranceName": "P+R (#2)",
+              "entranceId": "OSM:OSMWay/-102488/osm:node:-102437",
+              "entranceName": "P+R (#1)",
               "hasAnyCarPlaces": true,
               "hasBicyclePlaces": false,
               "hasCarPlaces": true,
@@ -120,17 +107,17 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "agencyTimeZoneOffset": -25200000,
           "arrivalDelay": 0,
           "departureDelay": 0,
-          "distance": 184.06,
+          "distance": 181.36,
           "endTime": "2009-10-21T16:14:13-07:00",
           "from": {
-            "arrival": "2009-10-21T16:10:44-07:00",
-            "departure": "2009-10-21T16:10:44-07:00",
-            "lat": 45.5314019,
-            "lon": -122.7016931,
-            "name": "P+R (#1)",
+            "arrival": "2009-10-21T16:12:29-07:00",
+            "departure": "2009-10-21T16:12:29-07:00",
+            "lat": 45.5316391,
+            "lon": -122.7016859,
+            "name": "P+R (#2)",
             "vehicleParking": {
-              "entranceId": "OSM:OSMWay/-102488/osm:node:-102437",
-              "entranceName": "P+R (#1)",
+              "entranceId": "OSM:OSMWay/-102488/osm:node:-102438",
+              "entranceName": "P+R (#2)",
               "hasAnyCarPlaces": true,
               "hasBicyclePlaces": false,
               "hasCarPlaces": true,
@@ -144,64 +131,77 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
             },
             "vertexType": "BIKEPARK"
           },
-          "generalizedCost": 285,
+          "generalizedCost": 61,
           "interlineWithPreviousLeg": false,
           "legGeometry": {
             "length": 5,
-            "points": "gz{tGrd|kVn@@CgElCEB?"
+            "points": "u{{tGpd|kVo@AC}DoCD??"
           },
-          "mode": "WALK",
+          "mode": "CAR",
           "pathway": false,
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T16:10:44-07:00",
+          "startTime": "2009-10-21T16:12:29-07:00",
           "steps": [
             {
-              "absoluteDirection": "SOUTH",
+              "absoluteDirection": "NORTH",
               "area": false,
               "bogusName": true,
               "distance": 26.38,
               "elevation": "",
-              "lat": 45.5314019,
-              "lon": -122.7016931,
+              "lat": 45.5316391,
+              "lon": -122.7016859,
               "relativeDirection": "CONTINUE",
               "stayOn": false,
-              "streetName": "path",
+              "streetName": "service road",
               "walkingBike": false
             },
             {
               "absoluteDirection": "EAST",
               "area": false,
               "bogusName": false,
-              "distance": 77.46,
+              "distance": 74.04,
               "elevation": "",
-              "lat": 45.5311647,
-              "lon": -122.7017004,
-              "relativeDirection": "LEFT",
+              "lat": 45.5318763,
+              "lon": -122.7016786,
+              "relativeDirection": "RIGHT",
               "stayOn": false,
-              "streetName": "Northwest Northrup Street",
+              "streetName": "Northwest Overton Street",
               "walkingBike": false
             },
             {
-              "absoluteDirection": "SOUTH",
+              "absoluteDirection": "NORTH",
               "area": false,
               "bogusName": false,
               "distance": 80.22,
               "elevation": "",
-              "lat": 45.531181,
-              "lon": -122.7007063,
-              "relativeDirection": "RIGHT",
+              "lat": 45.5318916,
+              "lon": -122.7007283,
+              "relativeDirection": "LEFT",
               "stayOn": false,
               "streetName": "Northwest 24th Avenue",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "EAST",
+              "area": false,
+              "bogusName": false,
+              "distance": 0.72,
+              "elevation": "",
+              "lat": 45.5326127,
+              "lon": -122.7007593,
+              "relativeDirection": "RIGHT",
+              "stayOn": false,
+              "streetName": "Northwest Pettygrove Street",
               "walkingBike": false
             }
           ],
           "to": {
             "arrival": "2009-10-21T16:14:13-07:00",
-            "lat": 45.53046,
-            "lon": -122.70067,
-            "name": "NW Marshall St. & NW 24th Ave. (P2)",
+            "lat": 45.53261,
+            "lon": -122.70075,
+            "name": "NW Pettygrove Ave. & NW 24th Ave. (P1)",
             "vertexType": "NORMAL"
           },
           "transitLeg": false,
@@ -697,6 +697,229 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
       "walkDistance": 240.19,
       "walkLimitExceeded": false,
       "walkTime": 49
+    }
+  ]
+]
+
+
+org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarToPark=[
+  [
+    {
+      "arrivedAtDestinationWithRentedBicycle": false,
+      "duration": 253,
+      "elevationGained": 0.0,
+      "elevationLost": 0.0,
+      "endTime": "2009-10-21T16:14:13-07:00",
+      "fare": {
+        "details": { },
+        "fare": { }
+      },
+      "generalizedCost": 467,
+      "legs": [
+        {
+          "agencyTimeZoneOffset": -25200000,
+          "arrivalDelay": 0,
+          "departureDelay": 0,
+          "distance": 181.36,
+          "endTime": "2009-10-21T16:10:44-07:00",
+          "from": {
+            "departure": "2009-10-21T16:10:00-07:00",
+            "lat": 45.53261,
+            "lon": -122.70075,
+            "name": "NW Pettygrove Ave. & NW 24th Ave. (P1)",
+            "vertexType": "NORMAL"
+          },
+          "generalizedCost": 61,
+          "interlineWithPreviousLeg": false,
+          "legGeometry": {
+            "length": 5,
+            "points": "ya|tGv~{kV??nCEB|Dn@@"
+          },
+          "mode": "CAR",
+          "pathway": false,
+          "realTime": false,
+          "rentedBike": false,
+          "route": "",
+          "startTime": "2009-10-21T16:10:00-07:00",
+          "steps": [
+            {
+              "absoluteDirection": "WEST",
+              "area": false,
+              "bogusName": false,
+              "distance": 0.72,
+              "elevation": "",
+              "lat": 45.5326129,
+              "lon": -122.7007501,
+              "relativeDirection": "DEPART",
+              "stayOn": false,
+              "streetName": "Northwest Pettygrove Street",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "SOUTH",
+              "area": false,
+              "bogusName": false,
+              "distance": 80.22,
+              "elevation": "",
+              "lat": 45.5326127,
+              "lon": -122.7007593,
+              "relativeDirection": "LEFT",
+              "stayOn": false,
+              "streetName": "Northwest 24th Avenue",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "WEST",
+              "area": false,
+              "bogusName": false,
+              "distance": 74.04,
+              "elevation": "",
+              "lat": 45.5318916,
+              "lon": -122.7007283,
+              "relativeDirection": "RIGHT",
+              "stayOn": false,
+              "streetName": "Northwest Overton Street",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "SOUTH",
+              "area": false,
+              "bogusName": true,
+              "distance": 26.38,
+              "elevation": "",
+              "lat": 45.5318763,
+              "lon": -122.7016786,
+              "relativeDirection": "LEFT",
+              "stayOn": false,
+              "streetName": "service road",
+              "walkingBike": false
+            }
+          ],
+          "to": {
+            "arrival": "2009-10-21T16:10:44-07:00",
+            "departure": "2009-10-21T16:10:44-07:00",
+            "lat": 45.5316391,
+            "lon": -122.7016859,
+            "name": "P+R (#2)",
+            "vehicleParking": {
+              "entranceId": "OSM:OSMWay/-102488/osm:node:-102438",
+              "entranceName": "P+R (#2)",
+              "hasAnyCarPlaces": true,
+              "hasBicyclePlaces": false,
+              "hasCarPlaces": true,
+              "hasWheelchairAccessibleCarPlaces": false,
+              "id": "OSM:OSMWay/-102488",
+              "name": "P+R",
+              "realtime": false,
+              "tags": [
+                "osm:amenity=parking"
+              ]
+            },
+            "vertexType": "BIKEPARK"
+          },
+          "transitLeg": false,
+          "walkingBike": false
+        },
+        {
+          "agencyTimeZoneOffset": -25200000,
+          "arrivalDelay": 0,
+          "departureDelay": 0,
+          "distance": 184.06,
+          "endTime": "2009-10-21T16:14:13-07:00",
+          "from": {
+            "arrival": "2009-10-21T16:10:44-07:00",
+            "departure": "2009-10-21T16:10:44-07:00",
+            "lat": 45.5314019,
+            "lon": -122.7016931,
+            "name": "P+R (#1)",
+            "vehicleParking": {
+              "entranceId": "OSM:OSMWay/-102488/osm:node:-102437",
+              "entranceName": "P+R (#1)",
+              "hasAnyCarPlaces": true,
+              "hasBicyclePlaces": false,
+              "hasCarPlaces": true,
+              "hasWheelchairAccessibleCarPlaces": false,
+              "id": "OSM:OSMWay/-102488",
+              "name": "P+R",
+              "realtime": false,
+              "tags": [
+                "osm:amenity=parking"
+              ]
+            },
+            "vertexType": "BIKEPARK"
+          },
+          "generalizedCost": 285,
+          "interlineWithPreviousLeg": false,
+          "legGeometry": {
+            "length": 5,
+            "points": "gz{tGrd|kVn@@CgElCEB?"
+          },
+          "mode": "WALK",
+          "pathway": false,
+          "realTime": false,
+          "rentedBike": false,
+          "route": "",
+          "startTime": "2009-10-21T16:10:44-07:00",
+          "steps": [
+            {
+              "absoluteDirection": "SOUTH",
+              "area": false,
+              "bogusName": true,
+              "distance": 26.38,
+              "elevation": "",
+              "lat": 45.5314019,
+              "lon": -122.7016931,
+              "relativeDirection": "CONTINUE",
+              "stayOn": false,
+              "streetName": "path",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "EAST",
+              "area": false,
+              "bogusName": false,
+              "distance": 77.46,
+              "elevation": "",
+              "lat": 45.5311647,
+              "lon": -122.7017004,
+              "relativeDirection": "LEFT",
+              "stayOn": false,
+              "streetName": "Northwest Northrup Street",
+              "walkingBike": false
+            },
+            {
+              "absoluteDirection": "SOUTH",
+              "area": false,
+              "bogusName": false,
+              "distance": 80.22,
+              "elevation": "",
+              "lat": 45.531181,
+              "lon": -122.7007063,
+              "relativeDirection": "RIGHT",
+              "stayOn": false,
+              "streetName": "Northwest 24th Avenue",
+              "walkingBike": false
+            }
+          ],
+          "to": {
+            "arrival": "2009-10-21T16:14:13-07:00",
+            "lat": 45.53046,
+            "lon": -122.70067,
+            "name": "NW Marshall St. & NW 24th Ave. (P2)",
+            "vertexType": "NORMAL"
+          },
+          "transitLeg": false,
+          "walkingBike": false
+        }
+      ],
+      "startTime": "2009-10-21T16:10:00-07:00",
+      "tooSloped": false,
+      "transfers": 0,
+      "transitTime": 0,
+      "waitingTime": 0,
+      "walkDistance": 365.42,
+      "walkLimitExceeded": false,
+      "walkTime": 253
     }
   ]
 ]

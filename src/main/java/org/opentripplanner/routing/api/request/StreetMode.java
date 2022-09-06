@@ -20,6 +20,14 @@ public enum StreetMode {
    * Direct mode and access mode only.
    */
   BIKE_TO_PARK(true, false, false, true, true, false),
+
+  /**
+   * End trip with bike from parking to final destination.
+   *
+   * Direct mode and egress mode only.
+   */
+  BIKE_FROM_PARK(false, false, true, true, true, false),
+
   /**
    * Walk to a bike rental point, bike to a bike rental drop-off point, and walk the rest of the
    * way. This can include bike rental at fixed locations or free-floating services.
@@ -42,6 +50,12 @@ public enum StreetMode {
    * Direct mode and access mode only.
    */
   CAR_TO_PARK(true, false, false, true, false, true),
+  /**
+   * Start by walking to a parking area, and drive the rest of the way.
+   * <p>
+   * Direct mode and egress mode only.
+   */
+  CAR_FROM_PARK(false, false, true, true, false, true),
   /**
    * Walk to a pickup point along the road, drive to a drop-off point along the road, and walk the
    * rest of the way. This can include various taxi-services or kiss & ride.

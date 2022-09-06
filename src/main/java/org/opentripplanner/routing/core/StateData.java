@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import org.opentripplanner.routing.api.request.RoutingRequest;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vehicle_rental.RentalVehicleType.FormFactor;
 
 /**
@@ -148,9 +149,10 @@ public class StateData implements Cloneable {
     // If the itinerary is to begin with a car that is parked for transit the initial state is
     //   - In arriveBy searches is with the car already "parked" and in WALK mode
     //   - In departAt searches, we are in CAR mode and "unparked".
-    else if (options.parkAndRide) {
+    else if (options.isParkAndRide()) {
       var parkAndRideStateData = proto.clone();
-      parkAndRideStateData.vehicleParked = options.arriveBy;
+      parkAndRideStateData.vehicleParked =
+        options.arriveBy == (options.parkAndRide == VehicleParkingMode.PARK_VEHICLE);
       parkAndRideStateData.currentMode =
         parkAndRideStateData.vehicleParked
           ? TraverseMode.WALK

@@ -99,6 +99,16 @@ public class QualifiedModeSet implements Serializable {
             mBuilder.withEgressMode(StreetMode.WALK);
             mBuilder.withDirectMode(StreetMode.BIKE_TO_PARK);
             mBuilder.withTransferMode(StreetMode.WALK);
+
+            if (requestMode.qualifiers.contains(Qualifier.PICKUP)) {
+              mBuilder.withAccessMode(StreetMode.WALK);
+              mBuilder.withEgressMode(StreetMode.BIKE_FROM_PARK);
+              mBuilder.withDirectMode(StreetMode.BIKE_FROM_PARK);
+            }
+            if (requestMode.qualifiers.contains(Qualifier.DROPOFF)) {
+              mBuilder.withAccessMode(StreetMode.BIKE_TO_PARK);
+              mBuilder.withDirectMode(StreetMode.BIKE_TO_PARK);
+            }
           } else {
             mBuilder.withAllStreetModes(StreetMode.BIKE);
           }
@@ -116,9 +126,19 @@ public class QualifiedModeSet implements Serializable {
             mBuilder.withAllStreetModes(StreetMode.CAR_RENTAL);
           } else if (requestMode.qualifiers.contains(Qualifier.PARK)) {
             mBuilder.withAccessMode(StreetMode.CAR_TO_PARK);
-            mBuilder.withTransferMode(StreetMode.WALK);
             mBuilder.withEgressMode(StreetMode.WALK);
             mBuilder.withDirectMode(StreetMode.CAR_TO_PARK);
+            mBuilder.withTransferMode(StreetMode.WALK);
+
+            if (requestMode.qualifiers.contains(Qualifier.PICKUP)) {
+              mBuilder.withAccessMode(StreetMode.WALK);
+              mBuilder.withEgressMode(StreetMode.CAR_FROM_PARK);
+              mBuilder.withDirectMode(StreetMode.CAR_FROM_PARK);
+            }
+            if (requestMode.qualifiers.contains(Qualifier.DROPOFF)) {
+              mBuilder.withAccessMode(StreetMode.CAR_TO_PARK);
+              mBuilder.withDirectMode(StreetMode.CAR_TO_PARK);
+            }
           } else if (requestMode.qualifiers.contains(Qualifier.PICKUP)) {
             mBuilder.withAccessMode(StreetMode.WALK);
             mBuilder.withTransferMode(StreetMode.WALK);

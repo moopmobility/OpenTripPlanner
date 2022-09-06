@@ -28,6 +28,7 @@ import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.graph.Vertex;
 import org.opentripplanner.routing.location.TemporaryStreetLocation;
+import org.opentripplanner.routing.vehicle_parking.VehicleParkingMode;
 import org.opentripplanner.routing.vertextype.StreetVertex;
 import org.opentripplanner.routing.vertextype.TransitStopVertex;
 import org.opentripplanner.transit.model.basic.I18NString;
@@ -400,9 +401,12 @@ public class StreetVertexIndex {
     if (options != null) {
       TraverseModeSet modes = options.streetSubRequestModes;
       // for park and ride we will start in car mode and walk to the end vertex
-      boolean parkAndRideDepart = modes.getCar() && options.parkAndRide && !endVertex;
+      boolean parkAndRide =
+        modes.getCar() && options.parkAndRide == VehicleParkingMode.PARK_VEHICLE && !endVertex;
+      boolean rideAndPark =
+        modes.getCar() && options.parkAndRide == VehicleParkingMode.UNPARK_VEHICLE && endVertex;
       boolean onlyCarAvailable = modes.getCar() && !(modes.getWalk() || modes.getBicycle());
-      if (onlyCarAvailable || parkAndRideDepart) {
+      if (onlyCarAvailable || parkAndRide || rideAndPark) {
         nonTransitMode = TraverseMode.CAR;
       }
     }
