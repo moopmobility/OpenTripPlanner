@@ -5,6 +5,7 @@ import static graphql.Assert.assertTrue;
 import gnu.trove.set.hash.TIntHashSet;
 import java.io.File;
 import java.net.URISyntaxException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -38,7 +39,7 @@ public abstract class FlexTest {
     secondsSinceMidnight,
     new TIntHashSet()
   );
-  static final FlexParameters params = new FlexParameters(300);
+  static final FlexParameters params = new FlexParameters(8, 1.0, 300, Duration.ofMinutes(45));
 
   static TestOtpModel buildFlexGraph(String fileName) {
     File file = null;

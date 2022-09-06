@@ -69,7 +69,7 @@ public class FlexLocationsToStreetEdgesMapper implements GraphBuilderModule {
 
         streetVertex.areaStops.add(areaStop);
       }
-      // Keep lambda! A method-ref would cause incorrect class and line number to be logged
+      //noinspection Convert2MethodRef - A method-ref would cause incorrect class and line number to be logged
       progress.step(m -> LOG.info(m));
     }
     LOG.info(progress.completeMessage());

@@ -1,8 +1,8 @@
 package org.opentripplanner.ext.flex.flexpathcalculator;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import org.opentripplanner.ext.flex.FlexParameters;
 import org.opentripplanner.routing.algorithm.astar.AStarBuilder;
 import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.routing.core.RoutingContext;
@@ -29,15 +29,15 @@ import org.opentripplanner.routing.spt.ShortestPathTree;
  */
 public class StreetFlexPathCalculator implements FlexPathCalculator {
 
-  private static final Duration MAX_FLEX_TRIP_DURATION = Duration.ofMinutes(45);
-
   private final Graph graph;
   private final Map<Vertex, ShortestPathTree> cache = new HashMap<>();
   private final boolean reverseDirection;
+  private final FlexParameters config;
 
-  public StreetFlexPathCalculator(Graph graph, boolean reverseDirection) {
+  public StreetFlexPathCalculator(Graph graph, boolean reverseDirection, FlexParameters config) {
     this.graph = graph;
     this.reverseDirection = reverseDirection;
+    this.config = config;
   }
 
   @Override
@@ -61,7 +61,7 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
     }
 
     int distance = (int) path.getDistanceMeters();
-    int duration = path.getDuration();
+    int duration = (int) Math.round(path.getDuration() * config.getStreetTimeFactor());
 
     // computing the linestring from the graph path is a surprisingly expensive operation
     // so we delay it until it's actually needed. since most flex paths are never shown to the user
@@ -72,6 +72,9 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
   private ShortestPathTree routeToMany(Vertex vertex) {
     RoutingRequest routingRequest = new RoutingRequest(TraverseMode.CAR);
     routingRequest.arriveBy = reverseDirection;
+    routingRequest.maxCarSpeed = config.getMaxVehicleSpeed();
+    routingRequest.flexParameters = config;
+
     RoutingContext rctx;
     if (reverseDirection) {
       rctx = new RoutingContext(routingRequest, graph, null, vertex);
@@ -80,7 +83,7 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
     }
 
     return AStarBuilder
-      .allDirectionsMaxDuration(MAX_FLEX_TRIP_DURATION)
+      .allDirectionsMaxDuration(config.getMaxTripDuration())
       .setDominanceFunction(new DominanceFunction.EarliestArrival())
       .setContext(rctx)
       .getShortestPathTree();

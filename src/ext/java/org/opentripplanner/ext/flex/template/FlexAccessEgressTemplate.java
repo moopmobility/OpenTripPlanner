@@ -96,7 +96,9 @@ public abstract class FlexAccessEgressTemplate {
     else {
       return getTransfersFromTransferStop(transitService)
         .stream()
-        .filter(pathTransfer -> pathTransfer.getDistanceMeters() <= flexParams.maxTransferMeters)
+        .filter(pathTransfer ->
+          pathTransfer.getDistanceMeters() <= flexParams.getMaxTransferMeters()
+        )
         .filter(transfer -> getFinalStop(transfer) != null)
         .map(transfer -> {
           List<Edge> edges = getTransferEdges(transfer);

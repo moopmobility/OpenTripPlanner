@@ -1,10 +1,26 @@
 package org.opentripplanner.ext.flex;
 
-public class FlexParameters {
+import java.time.Duration;
 
-  public final double maxTransferMeters;
+public record FlexParameters(
+  double maxVehicleSpeed,
+  double streetTimeFactor,
+  double maxTransferMeters,
+  Duration maxTripDuration
+) {
+  public double getMaxVehicleSpeed() {
+    return maxVehicleSpeed;
+  }
 
-  public FlexParameters(double maxTransferMeters) {
-    this.maxTransferMeters = maxTransferMeters;
+  public double getStreetTimeFactor() {
+    return streetTimeFactor;
+  }
+
+  public double getMaxTransferMeters() {
+    return maxTransferMeters;
+  }
+
+  public Duration getMaxTripDuration() {
+    return maxTripDuration;
   }
 }

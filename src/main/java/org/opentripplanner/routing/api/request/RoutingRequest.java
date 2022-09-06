@@ -26,6 +26,7 @@ import org.locationtech.jts.geom.Envelope;
 import org.opentripplanner.api.common.LocationStringParser;
 import org.opentripplanner.common.geometry.SphericalDistanceLibrary;
 import org.opentripplanner.ext.dataoverlay.api.DataOverlayParameters;
+import org.opentripplanner.ext.flex.FlexParameters;
 import org.opentripplanner.model.GenericLocation;
 import org.opentripplanner.model.plan.SortOrder;
 import org.opentripplanner.model.plan.pagecursor.PageCursor;
@@ -678,6 +679,8 @@ public class RoutingRequest implements Cloneable, Serializable {
    * Set of options to use with Raptor. These are available here for testing purposes.
    */
   public RaptorOptions raptorOptions = new RaptorOptions();
+
+  public FlexParameters flexParameters = null;
 
   /**
    * List of OTP request tags, these are used to cross-cutting concerns like logging and micrometer
