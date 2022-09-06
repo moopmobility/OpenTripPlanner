@@ -90,8 +90,9 @@ public class GeocoderResource {
   }
 
   private Collection<SearchResult> queryStopLocations(String query, boolean autocomplete) {
-    return LuceneIndex
-      .forServer(serverContext)
+    return serverContext
+      .graph()
+      .getLuceneIndex()
       .queryStopLocations(query, autocomplete)
       .map(sl ->
         new SearchResult(
@@ -105,9 +106,10 @@ public class GeocoderResource {
   }
 
   private Collection<? extends SearchResult> queryStations(String query, boolean autocomplete) {
-    return LuceneIndex
-      .forServer(serverContext)
-      .findStopLocationGroups(query, autocomplete)
+    return serverContext
+      .graph()
+      .getLuceneIndex()
+      .queryStopLocationsGroups(query, autocomplete)
       .map(sc ->
         new SearchResult(
           sc.getCoordinate().latitude(),
@@ -120,8 +122,9 @@ public class GeocoderResource {
   }
 
   private Collection<? extends SearchResult> queryCorners(String query, boolean autocomplete) {
-    return LuceneIndex
-      .forServer(serverContext)
+    return serverContext
+      .graph()
+      .getLuceneIndex()
       .queryStreetVertices(query, autocomplete)
       .map(v -> new SearchResult(v.getLat(), v.getLon(), stringifyStreetVertex(v), v.getLabel()))
       .collect(Collectors.toList());

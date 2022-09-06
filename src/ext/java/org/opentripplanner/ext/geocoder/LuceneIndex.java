@@ -37,14 +37,18 @@ import org.apache.lucene.search.suggest.document.SuggestIndexSearcher;
 import org.apache.lucene.store.ByteBuffersDirectory;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.vertextype.StreetVertex;
-import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.opentripplanner.transit.model.basic.I18NString;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.transit.model.site.StopLocationsGroup;
-import org.opentripplanner.transit.service.TransitService;
+import org.opentripplanner.transit.service.TransitModel;
+import org.opentripplanner.util.logging.ProgressTracker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LuceneIndex implements Serializable {
+
+  private static final Logger LOG = LoggerFactory.getLogger(LuceneIndex.class);
 
   private static final String TYPE = "type";
   private static final String ID = "id";
@@ -54,19 +58,25 @@ public class LuceneIndex implements Serializable {
   private static final String COORDINATE = "coordinate";
 
   private final Graph graph;
+  private final TransitModel transitModel;
 
-  private final TransitService transitService;
   private final Analyzer analyzer;
   private final SuggestIndexSearcher searcher;
 
-  public LuceneIndex(Graph graph, TransitService transitService) {
+  public LuceneIndex(Graph graph, TransitModel transitModel) {
     this.graph = graph;
-    this.transitService = transitService;
+    this.transitModel = transitModel;
     this.analyzer =
       new PerFieldAnalyzerWrapper(
         new StandardAnalyzer(),
         Map.of(NAME, new SimpleAnalyzer(), SUGGEST, new CompletionAnalyzer(new StandardAnalyzer()))
       );
+
+    var total =
+      transitModel.getStopModel().listStopLocations().size() +
+      transitModel.getStopModel().listStopLocationGroups().size() +
+      graph.getVertices().stream().filter(v -> v instanceof StreetVertex).count();
+    var tracker = ProgressTracker.track("Building LuceneIndex", 500000, total);
 
     var directory = new ByteBuffersDirectory();
 
@@ -77,9 +87,10 @@ public class LuceneIndex implements Serializable {
           iwcWithSuggestField(analyzer, Set.of(SUGGEST))
         )
       ) {
-        transitService
+        transitModel
+          .getStopModel()
           .listStopLocations()
-          .forEach(stopLocation ->
+          .forEach(stopLocation -> {
             addToIndex(
               directoryWriter,
               StopLocation.class,
@@ -88,29 +99,34 @@ public class LuceneIndex implements Serializable {
               stopLocation.getCode(),
               stopLocation.getCoordinate().latitude(),
               stopLocation.getCoordinate().longitude()
-            )
-          );
+            );
+            //noinspection Convert2MethodRef
+            tracker.step(msg -> LOG.info(msg));
+          });
 
-        transitService
+        transitModel
+          .getStopModel()
           .listStopLocationGroups()
-          .forEach(stopLocationsGroup ->
+          .forEach(stopLocationGroup -> {
             addToIndex(
               directoryWriter,
               StopLocationsGroup.class,
-              stopLocationsGroup.getId().toString(),
-              stopLocationsGroup.getName(),
+              stopLocationGroup.getId().toString(),
+              stopLocationGroup.getName(),
               null,
-              stopLocationsGroup.getCoordinate().latitude(),
-              stopLocationsGroup.getCoordinate().longitude()
-            )
-          );
+              stopLocationGroup.getCoordinate().latitude(),
+              stopLocationGroup.getCoordinate().longitude()
+            );
+            //noinspection Convert2MethodRef
+            tracker.step(msg -> LOG.info(msg));
+          });
 
         graph
           .getVertices()
           .stream()
           .filter(v -> v instanceof StreetVertex)
           .map(v -> (StreetVertex) v)
-          .forEach(streetVertex ->
+          .forEach(streetVertex -> {
             addToIndex(
               directoryWriter,
               StreetVertex.class,
@@ -119,9 +135,13 @@ public class LuceneIndex implements Serializable {
               streetVertex.getLabel(),
               streetVertex.getLat(),
               streetVertex.getLon()
-            )
-          );
+            );
+            //noinspection Convert2MethodRef
+            tracker.step(msg -> LOG.info(msg));
+          });
       }
+
+      LOG.info(tracker.completeMessage());
 
       DirectoryReader indexReader = DirectoryReader.open(directory);
       searcher = new SuggestIndexSearcher(indexReader);
@@ -130,26 +150,20 @@ public class LuceneIndex implements Serializable {
     }
   }
 
-  public static synchronized LuceneIndex forServer(OtpServerRequestContext serverContext) {
-    var graph = serverContext.graph();
-    var existingIndex = graph.getLuceneIndex();
-    if (existingIndex != null) {
-      return existingIndex;
-    }
-
-    var newIndex = new LuceneIndex(graph, serverContext.transitService());
+  public static void forGraph(Graph graph, TransitModel transitModel) {
+    var newIndex = new LuceneIndex(graph, transitModel);
     graph.setLuceneIndex(newIndex);
-    return newIndex;
   }
 
   public Stream<StopLocation> queryStopLocations(String query, boolean autocomplete) {
     return matchingDocuments(StopLocation.class, query, autocomplete)
-      .map(document -> transitService.getStopLocation(FeedScopedId.parseId(document.get(ID))));
+      .map(document -> transitModel.getStopLocationById(FeedScopedId.parseId(document.get(ID))));
   }
 
-  public Stream<StopLocationsGroup> findStopLocationGroups(String query, boolean autocomplete) {
+  public Stream<StopLocationsGroup> queryStopLocationsGroups(String query, boolean autocomplete) {
     return matchingDocuments(StopLocationsGroup.class, query, autocomplete)
-      .map(document -> transitService.getStopLocationsGroup(FeedScopedId.parseId(document.get(ID)))
+      .map(document ->
+        transitModel.getStopModel().getStopLocationsGroup(FeedScopedId.parseId(document.get(ID)))
       );
   }
 
