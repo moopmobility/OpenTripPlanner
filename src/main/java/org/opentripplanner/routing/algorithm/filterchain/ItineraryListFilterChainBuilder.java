@@ -20,6 +20,7 @@ import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.MaxLimi
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.NonTransitGeneralizedCostFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.OtherThanSameLegsMaxGeneralizedCostFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveBikerentalWithMostlyWalkingFilter;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveMostlyFlexFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveParkAndRideWithMostlyWalkingFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveTransitIfStreetOnlyIsBetterFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveWalkOnlyFilter;
@@ -57,6 +58,7 @@ public class ItineraryListFilterChainBuilder {
   private TransitGeneralizedCostFilterParams transitGeneralizedCostFilterParams;
   private double bikeRentalDistanceRatio;
   private double parkAndRideDurationRatio;
+  private double flexToScheduledTransitDurationRatio;
   private DoubleFunction<Double> nonTransitGeneralizedCostLimit;
   private Instant latestDepartureTimeLimit = null;
   private Consumer<Itinerary> maxLimitReachedSubscriber;
@@ -169,6 +171,16 @@ public class ItineraryListFilterChainBuilder {
    */
   public ItineraryListFilterChainBuilder withParkAndRideDurationRatio(double value) {
     this.parkAndRideDurationRatio = value;
+    return this;
+  }
+
+  /**
+   * This is used to filter out flex itineraries that contain long flex trips with only little
+   * scheduled transit. The value describes the minimum ratio of the duration of flex legs to
+   * scheduled transit to allow the itinerary.
+   */
+  public ItineraryListFilterChainBuilder withFlexToScheduledTransitDurationRatio(double value) {
+    this.flexToScheduledTransitDurationRatio = value;
     return this;
   }
 
@@ -346,6 +358,14 @@ public class ItineraryListFilterChainBuilder {
         filters.add(
           new DeletionFlaggingFilter(
             new RemoveParkAndRideWithMostlyWalkingFilter(parkAndRideDurationRatio)
+          )
+        );
+      }
+
+      if (flexToScheduledTransitDurationRatio > 0) {
+        filters.add(
+          new DeletionFlaggingFilter(
+            new RemoveMostlyFlexFilter(flexToScheduledTransitDurationRatio)
           )
         );
       }

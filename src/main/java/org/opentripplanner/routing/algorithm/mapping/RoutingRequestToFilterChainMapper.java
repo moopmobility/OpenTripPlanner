@@ -66,6 +66,7 @@ public class RoutingRequestToFilterChainMapper {
       .withTransitGeneralizedCostLimit(params.transitGeneralizedCostLimit)
       .withBikeRentalDistanceRatio(params.bikeRentalDistanceRatio)
       .withParkAndRideDurationRatio(params.parkAndRideDurationRatio)
+      .withFlexToScheduledTransitDurationRatio(params.flexToScheduledTransitDurationRatio)
       .withNonTransitGeneralizedCostLimit(params.nonTransitGeneralizedCostLimit)
       .withSameFirstOrLastTripFilter(params.filterItinerariesWithSameFirstOrLastTrip)
       .withAccessibilityScore(params.accessibilityScore && wheelchairAccessible, wheelchairMaxSlope)

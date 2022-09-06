@@ -32,6 +32,7 @@ public class ItineraryFiltersMapper {
       c.asLinearFunction("nonTransitGeneralizedCostLimit", dft.nonTransitGeneralizedCostLimit),
       c.asDouble("bikeRentalDistanceRatio", dft.bikeRentalDistanceRatio),
       c.asDouble("parkAndRideDurationRatio", dft.parkAndRideDurationRatio),
+      c.asDouble("flexToScheduledTransitDurationRatio", dft.flexToScheduledTransitDurationRatio),
       c.asBoolean(
         "filterItinerariesWithSameFirstOrLastTrip",
         dft.filterItinerariesWithSameFirstOrLastTrip
