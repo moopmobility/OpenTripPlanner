@@ -111,7 +111,7 @@ public final class RoutingPreferences implements Serializable {
     return switch (mode) {
       case WALK -> walkingBike ? bike.walkingSpeed() : walk.speed();
       case BICYCLE -> bike.speed();
-      case CAR -> car.speed();
+      case CAR -> car.maxSpeed();
       default -> throw new IllegalArgumentException("getSpeed(): Invalid mode " + mode);
     };
   }

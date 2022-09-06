@@ -43,6 +43,7 @@ class RequestToPreferencesMapper {
       setIfNotNull(req.carReluctance, car::withReluctance);
       setIfNotNull(req.carParkCost, car::withParkCost);
       setIfNotNull(req.carParkTime, car::withParkTime);
+      setIfNotNull(req.maxCarSpeed, car::withMaxSpeed);
     });
   }
 

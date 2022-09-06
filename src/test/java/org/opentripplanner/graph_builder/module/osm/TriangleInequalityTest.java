@@ -185,7 +185,7 @@ public class TriangleInequalityTest {
       preferences
         .withWalk(walk -> walk.withStairsReluctance(1.0).withSpeed(1.0).withReluctance(1.0))
         .withStreet(street -> street.withTurnReluctance(1.0))
-        .withCar(car -> car.withSpeed(1.0).withReluctance(1.0))
+        .withCar(car -> car.withMaxSpeed(1.0).withReluctance(1.0))
         .withBike(bike -> bike.withSpeed(1.0).withReluctance(1.0))
     );
 

@@ -292,7 +292,7 @@ public class StreetEdge
       switch (traverseMode) {
         case WALK -> walkingBike ? preferences.bike().walkingSpeed() : preferences.walk().speed();
         case BICYCLE, SCOOTER -> preferences.bike().speed();
-        case CAR -> getCarSpeed();
+        case CAR -> calculateCarSpeed((float) preferences.car().maxSpeed());
         case FLEX -> throw new IllegalArgumentException("getSpeed(): Invalid mode " + traverseMode);
       };
 
@@ -1346,6 +1346,10 @@ public class StreetEdge
     }
 
     return false;
+  }
+
+  private float calculateCarSpeed(double maxCarSpeed) {
+    return Math.min(carSpeed, (float) maxCarSpeed);
   }
 
   private void writeObject(ObjectOutputStream out) throws IOException {

@@ -682,12 +682,12 @@ your users receive a timely response. You can also limit the max duration. There
   private static void mapCarPreferences(NodeAdapter c, CarPreferences.Builder builder) {
     var dft = builder.original();
     builder
-      .withSpeed(
+      .withMaxSpeed(
         c
-          .of("carSpeed")
+          .of("maxCarSpeed")
           .since(V2_0)
           .summary("Max car speed along streets, in meters per second")
-          .asDouble(dft.speed())
+          .asDouble(dft.maxSpeed())
       )
       .withReluctance(
         c

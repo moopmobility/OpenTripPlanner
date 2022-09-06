@@ -403,7 +403,7 @@ HTTP headers to add to the request. Any header key, value can be inserted.
   "routingDefaults" : {
     "walkSpeed" : 1.3,
     "bikeSpeed" : 5,
-    "carSpeed" : 40,
+    "maxCarSpeed" : 40,
     "numItineraries" : 12,
     "transferPenalty" : 0,
     "walkReluctance" : 4.0,

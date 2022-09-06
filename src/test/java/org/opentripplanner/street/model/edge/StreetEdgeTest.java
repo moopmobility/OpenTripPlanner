@@ -53,7 +53,7 @@ public class StreetEdgeTest {
             .withStreet(s -> s.withTurnReluctance(1.0))
             .withWalk(it -> it.withSpeed(1.0).withReluctance(1.0).withStairsReluctance(1.0))
             .withBike(it -> it.withSpeed(5.0f).withReluctance(1.0).withWalkingSpeed(0.8))
-            .withCar(c -> c.withSpeed(15.0f).withReluctance(1.0))
+            .withCar(c -> c.withMaxSpeed(15.0f).withReluctance(1.0))
         )
         .build();
   }

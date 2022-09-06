@@ -22,7 +22,7 @@ class CarPreferencesTest {
 
   private final CarPreferences subject = CarPreferences
     .of()
-    .withSpeed(SPEED)
+    .withMaxSpeed(SPEED)
     .withReluctance(RELUCTANCE)
     .withParkTime(PARK_TIME)
     .withParkCost(PARK_COST)
@@ -35,7 +35,7 @@ class CarPreferencesTest {
 
   @Test
   void speed() {
-    assertEquals(EXPECTED_SPEED, subject.speed());
+    assertEquals(EXPECTED_SPEED, subject.maxSpeed());
   }
 
   @Test
@@ -85,8 +85,8 @@ class CarPreferencesTest {
     assertSame(subject, subject.copyOf().build());
 
     // Create a copy, make a change and set it back again to force creating a new object
-    var other = subject.copyOf().withSpeed(0.0).build();
-    var same = other.copyOf().withSpeed(SPEED).build();
+    var other = subject.copyOf().withMaxSpeed(0.0).build();
+    var same = other.copyOf().withMaxSpeed(SPEED).build();
     assertEqualsAndHashCode(StreetPreferences.DEFAULT, subject, other, same);
   }
 

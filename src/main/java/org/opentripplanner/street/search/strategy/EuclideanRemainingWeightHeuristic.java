@@ -51,7 +51,7 @@ public class EuclideanRemainingWeightHeuristic implements RemainingWeightHeurist
   private double getStreetSpeedUpperBound(RoutingPreferences preferences, StreetMode streetMode) {
     // Assume carSpeed > bikeSpeed > walkSpeed
     if (streetMode.includesDriving()) {
-      return preferences.car().speed();
+      return preferences.car().maxSpeed();
     }
     if (streetMode.includesBiking()) {
       return preferences.bike().speed();

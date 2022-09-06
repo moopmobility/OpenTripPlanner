@@ -363,6 +363,11 @@ public abstract class RoutingResource {
   @QueryParam("bikeParkCost")
   protected Integer bikeParkCost;
 
+  /** Maximum speed of a car (or flex bus/car). */
+  @QueryParam("maxCarSpeed")
+  protected Double maxCarSpeed;
+
+  /** Time to park a car */
   @QueryParam("carParkTime")
   protected Integer carParkTime = 60;
 
