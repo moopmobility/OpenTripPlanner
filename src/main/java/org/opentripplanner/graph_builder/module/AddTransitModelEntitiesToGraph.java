@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import org.opentripplanner.ext.flex.trip.FlexTrip;
 import org.opentripplanner.model.FeedInfo;
@@ -198,10 +197,10 @@ public class AddTransitModelEntitiesToGraph {
           // the GTFS spec allows you to define a pathway which has neither traversal time, distance
           // nor steps. This would lead to traversal costs of 0, so we compute the distance from the
           // vertices as fallback.
-          double distance = Optional
-            .of(pathway.getLength())
-            .filter(l -> l > 0)
-            .orElseGet(() -> distance(fromVertex.getCoordinate(), toVertex.getCoordinate()));
+          double distance = pathway.getLength();
+          if (pathway.getTraversalTime() <= 0 && distance <= 0) {
+            distance = distance(fromVertex.getCoordinate(), toVertex.getCoordinate());
+          }
 
           new PathwayEdge(
             fromVertex,
