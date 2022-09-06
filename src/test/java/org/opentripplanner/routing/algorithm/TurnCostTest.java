@@ -90,7 +90,7 @@ public class TurnCostTest {
 
     // Make a prototype routing request.
     proto = new RoutingRequest();
-    proto.carSpeed = 1.0;
+    proto.maxCarSpeed = 1.0;
     proto.walkSpeed = 1.0;
     proto.bikeSpeed = 1.0;
     proto.turnReluctance = (1.0);

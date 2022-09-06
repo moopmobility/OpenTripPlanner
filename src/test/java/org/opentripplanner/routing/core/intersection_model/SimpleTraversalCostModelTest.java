@@ -41,7 +41,7 @@ public class SimpleTraversalCostModelTest {
 
     // Initialize the routing request.
     options = new RoutingRequest();
-    options.carSpeed = 1.0;
+    options.maxCarSpeed = 1.0;
     options.walkSpeed = 1.0;
     options.carDecelerationSpeed = (2.0);
     options.carAccelerationSpeed = (2.0);

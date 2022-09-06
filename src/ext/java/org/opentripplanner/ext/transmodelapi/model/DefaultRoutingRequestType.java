@@ -44,7 +44,7 @@ public class DefaultRoutingRequestType {
           .name("carSpeed")
           .description("Max car speed along streets, in meters per second")
           .type(Scalars.GraphQLFloat)
-          .dataFetcher(env -> request.carSpeed)
+          .dataFetcher(env -> request.maxCarSpeed)
           .build()
       )
       .field(

@@ -275,12 +275,14 @@ public class RoutingRequest implements Cloneable, Serializable {
    * Default: 1.33 m/s ~ Same as walkSpeed
    */
   public double bikeWalkingSpeed = 1.33;
+
   /**
-   * Max car speed along streets, in meters per second.
+   * Maximum car speed along streets, in meters per second.
    * <p>
    * Default: 40 m/s, 144 km/h, above the maximum (finite) driving speed limit worldwide.
    */
-  public double carSpeed = 40.0;
+  public double maxCarSpeed = 40.0;
+
   public Locale locale = new Locale("en", "US");
   /**
    * An extra penalty added on transfers (i.e. all boardings except the first one). Not to be
@@ -1184,7 +1186,7 @@ public class RoutingRequest implements Cloneable, Serializable {
     return switch (mode) {
       case WALK -> walkingBike ? bikeWalkingSpeed : walkSpeed;
       case BICYCLE -> bikeSpeed;
-      case CAR -> carSpeed;
+      case CAR -> maxCarSpeed;
       default -> throw new IllegalArgumentException("getSpeed(): Invalid mode " + mode);
     };
   }
@@ -1193,7 +1195,7 @@ public class RoutingRequest implements Cloneable, Serializable {
   public double getStreetSpeedUpperBound() {
     // Assume carSpeed > bikeSpeed > walkSpeed
     if (streetSubRequestModes.getCar()) {
-      return carSpeed;
+      return maxCarSpeed;
     }
     if (streetSubRequestModes.getBicycle()) {
       return bikeSpeed;

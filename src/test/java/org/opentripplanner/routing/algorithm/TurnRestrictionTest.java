@@ -97,7 +97,7 @@ public class TurnRestrictionTest {
   @Test
   public void testForwardDefault() {
     RoutingRequest options = new RoutingRequest();
-    options.carSpeed = 1.0;
+    options.maxCarSpeed = 1.0;
     options.walkSpeed = 1.0;
 
     ShortestPathTree tree = AStarBuilder
@@ -152,7 +152,7 @@ public class TurnRestrictionTest {
   @Test
   public void testForwardAsCar() {
     RoutingRequest options = new RoutingRequest(TraverseMode.CAR);
-    options.carSpeed = 1.0;
+    options.maxCarSpeed = 1.0;
 
     ShortestPathTree tree = AStarBuilder
       .oneToOne()

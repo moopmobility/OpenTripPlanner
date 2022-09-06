@@ -40,7 +40,7 @@ public class StreetEdgeTest {
     v2 = vertex("maple_2nd", 1.0, 2.0);
 
     proto = new RoutingRequest();
-    proto.carSpeed = 15.0f;
+    proto.maxCarSpeed = 15.0f;
     proto.walkSpeed = 1.0;
     proto.bikeSpeed = 5.0f;
     proto.bikeWalkingSpeed = 0.8;

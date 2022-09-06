@@ -302,7 +302,7 @@ public class StreetEdge
       return Double.NaN;
     } else if (traverseMode.isDriving()) {
       // NOTE: Automobiles have variable speeds depending on the edge type
-      return calculateCarSpeed();
+      return calculateCarSpeed(options);
     }
     final double speed = options.getSpeed(traverseMode, walkingBike);
     return isStairs() ? (speed / options.stairsTimeFactor) : speed;
@@ -1225,9 +1225,10 @@ public class StreetEdge
   /**
    * Calculate the average automobile traversal speed of this segment, given the RoutingRequest, and
    * return it in meters per second.
+   * @param options
    */
-  private double calculateCarSpeed() {
-    return getCarSpeed();
+  private double calculateCarSpeed(RoutingRequest options) {
+    return Math.min(getCarSpeed(), options.maxCarSpeed);
   }
 
   private void writeObject(ObjectOutputStream out) throws IOException {

@@ -414,6 +414,10 @@ public abstract class RoutingResource {
   @QueryParam("bikeParkCost")
   protected Integer bikeParkCost;
 
+  /** Maximum speed of a car (or flex bus/car). */
+  @QueryParam("maxCarSpeed")
+  protected Double maxCarSpeed;
+
   /** Time to park a car */
   @QueryParam("carParkTime")
   protected Integer carParkTime = 60;
@@ -807,6 +811,8 @@ public abstract class RoutingResource {
     if (bikeSwitchTime != null) request.bikeSwitchTime = bikeSwitchTime;
 
     if (bikeSwitchCost != null) request.bikeSwitchCost = bikeSwitchCost;
+
+    if (maxCarSpeed != null) request.maxCarSpeed = maxCarSpeed;
 
     if (
       allowKeepingRentedBicycleAtDestination != null

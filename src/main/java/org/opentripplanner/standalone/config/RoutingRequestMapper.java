@@ -83,7 +83,6 @@ public class RoutingRequestMapper {
     request.carPickupCost = c.asInt("carPickupCost", dft.carPickupCost);
     request.carPickupTime = c.asInt("carPickupTime", dft.carPickupTime);
     request.carReluctance = c.asDouble("carReluctance", dft.carReluctance);
-    request.carSpeed = c.asDouble("carSpeed", dft.carSpeed);
     request.itineraryFilters = ItineraryFiltersMapper.map(c.path("itineraryFilters"));
     request.disableAlertFiltering = c.asBoolean("disableAlertFiltering", dft.disableAlertFiltering);
     request.elevatorBoardCost = c.asInt("elevatorBoardCost", dft.elevatorBoardCost);
@@ -94,6 +93,7 @@ public class RoutingRequestMapper {
     request.ignoreRealtimeUpdates = c.asBoolean("ignoreRealtimeUpdates", dft.ignoreRealtimeUpdates);
     request.carPickup = c.asBoolean("kissAndRide", dft.carPickup);
     request.locale = c.asLocale("locale", dft.locale);
+    request.maxCarSpeed = c.asDouble("maxCarSpeed", dft.maxCarSpeed);
     // 'maxTransfers' is configured in the Raptor tuning parameters, not here
     request.maxDirectStreetDuration =
       c.asDuration("maxDirectStreetDuration", dft.maxDirectStreetDuration);
