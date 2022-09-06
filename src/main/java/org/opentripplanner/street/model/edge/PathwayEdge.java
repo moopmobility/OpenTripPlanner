@@ -96,6 +96,10 @@ public class PathwayEdge extends Edge implements BikeWalkableEdge, WheelchairTra
       }
     }
 
+    if (distance > 0) {
+      s1.incrementWalkDistance(distance);
+    }
+
     if (time > 0) {
       double weight = time;
       if (s0.getRequest().wheelchair()) {
