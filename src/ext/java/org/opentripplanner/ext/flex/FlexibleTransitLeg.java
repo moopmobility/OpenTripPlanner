@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import org.locationtech.jts.geom.LineString;
 import org.opentripplanner.ext.flex.edgetype.FlexTripEdge;
+import org.opentripplanner.ext.flex.trip.UnscheduledTrip;
 import org.opentripplanner.model.BookingInfo;
 import org.opentripplanner.model.PickDrop;
 import org.opentripplanner.model.plan.Leg;
@@ -202,6 +203,26 @@ public class FlexibleTransitLeg implements Leg {
     }
 
     return copy;
+  }
+
+  @Override
+  public boolean isPartiallySameTransitLeg(Leg other) {
+    var same = Leg.super.isPartiallySameTransitLeg(other);
+    // flexible trips have all the same trip id, so we have to check that the start times
+    // are not equal
+    if (same) {
+      if (
+        other instanceof FlexibleTransitLeg flexibleTransitLeg &&
+        edge.getFlexTrip() instanceof UnscheduledTrip
+      ) {
+        return (
+          this.startTime.equals(flexibleTransitLeg.startTime) &&
+          this.getFrom().sameLocation(flexibleTransitLeg.getFrom()) &&
+          this.getTo().sameLocation(flexibleTransitLeg.getTo())
+        );
+      }
+    }
+    return false;
   }
 
   /**
