@@ -1,0 +1,10 @@
+openAPI:
+  info:
+    version: '${project.version}'
+    title: OpenTripPlanner REST API
+    description: 'Specification for the OpenTripPlanner REST API.'
+  servers: []
+resourcePackages:
+  - org.opentripplanner.api.rest
+prettyPrint: true
+cacheTTL: 0
