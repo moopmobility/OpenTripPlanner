@@ -123,7 +123,7 @@ public class RaptorRequestTransferCache {
    * This contains an extract of the parameters which may influence transfers. The possible values
    * are somewhat limited by rounding in {@link Transfer#prepareTransferRoutingRequest(RoutingRequest)}.
    */
-  private static class StreetRelevantOptions {
+  static class StreetRelevantOptions {
 
     private final StreetMode transferMode;
     private final BicycleOptimizeType optimize;
