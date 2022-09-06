@@ -202,6 +202,7 @@ public class FlexIntegrationTest {
       transitModel,
       noopIssueStore(),
       Duration.ofMinutes(10),
+      false,
       List.of(req)
     )
       .buildGraph();

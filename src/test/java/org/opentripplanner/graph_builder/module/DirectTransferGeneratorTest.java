@@ -66,6 +66,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -88,6 +89,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -122,6 +124,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -158,6 +161,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -181,6 +185,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -210,6 +215,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -234,6 +240,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       noopIssueStore(),
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();

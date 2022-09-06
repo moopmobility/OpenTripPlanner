@@ -46,18 +46,21 @@ public class DirectTransferGenerator implements GraphBuilderModule {
   private final Graph graph;
   private final TransitModel transitModel;
   private final DataImportIssueStore issueStore;
+  private final boolean limitTransfersToWithinStations;
 
   public DirectTransferGenerator(
     Graph graph,
     TransitModel transitModel,
     DataImportIssueStore issueStore,
     Duration radiusByDuration,
+    boolean limitTransfersToWithinStations,
     List<RoutingRequest> transferRequests
   ) {
     this.graph = graph;
     this.transitModel = transitModel;
     this.issueStore = issueStore;
     this.radiusByDuration = radiusByDuration;
+    this.limitTransfersToWithinStations = limitTransfersToWithinStations;
     this.transferRequests = transferRequests;
   }
 
@@ -150,6 +153,11 @@ public class DirectTransferGenerator implements GraphBuilderModule {
         } else {
           distinctTransfers
             .values()
+            .stream()
+            .filter(pathTransfer ->
+              !limitTransfersToWithinStations ||
+              pathTransfer.to.getParentStation() == pathTransfer.from.getParentStation()
+            )
             .forEach(transfer -> transfersByStop.put(transfer.from, transfer));
           nLinkedStops.incrementAndGet();
           nTransfersTotal.addAndGet(distinctTransfers.size());

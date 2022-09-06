@@ -307,7 +307,16 @@ public class BuildConfig implements OtpDataStoreConfig {
    */
   public final OsmDefaultsConfig osmDefaults;
 
+  /**
+   * {@link RoutingRequest}s to use when generating path transfers.
+   */
   public final List<RoutingRequest> transferRequests;
+
+  /**
+   * Limit path transfer generation to stops in the same station.
+   */
+  public boolean limitTransfersToWithinStations;
+
   /**
    * Visibility calculations for an area will not be done if there are more nodes than this limit.
    */
@@ -529,6 +538,8 @@ public class BuildConfig implements OtpDataStoreConfig {
     netexDefaults = new NetexDefaultsConfig(c.path("netexDefaults"));
     osmDefaults = new OsmDefaultsConfig(c.path("osmDefaults"));
     dataOverlay = DataOverlayConfigMapper.map(c.path("dataOverlay"));
+
+    limitTransfersToWithinStations = c.asBoolean("limitTransfersToWithinStations", false);
 
     if (c.path("transferRequests").isNonEmptyArray()) {
       transferRequests =
