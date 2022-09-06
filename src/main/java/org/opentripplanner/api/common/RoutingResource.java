@@ -1,12 +1,17 @@
 package org.opentripplanner.api.common;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
@@ -14,12 +19,15 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.opentripplanner.api.parameter.QualifiedModeSet;
 import org.opentripplanner.ext.dataoverlay.api.DataOverlayParameters;
 import org.opentripplanner.model.plan.pagecursor.PageCursor;
 import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.routing.core.BicycleOptimizeType;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
+import org.opentripplanner.transit.model.basic.TransitMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.util.OTPFeature;
 import org.slf4j.Logger;
@@ -204,6 +212,9 @@ public abstract class RoutingResource {
 
   @QueryParam("carReluctance")
   protected Double carReluctance;
+
+  @QueryParam("transitReluctanceForMode")
+  protected Map<String, Double> transitReluctanceForMode;
 
   /**
    * How much worse is waiting for a transit vehicle than being on a transit vehicle, as a
@@ -617,6 +628,9 @@ public abstract class RoutingResource {
   @QueryParam("boardSlack")
   private Integer boardSlack;
 
+  @QueryParam("boardSlackForMode")
+  private Map<String, Integer> boardSlackForMode = new HashMap<>();
+
   /**
    * The number of seconds to add after alighting a transit leg. It is recommended to use the {@code
    * alightTimes} in the {@code router-config.json} to set this for each mode.
@@ -625,6 +639,9 @@ public abstract class RoutingResource {
    */
   @QueryParam("alightSlack")
   private Integer alightSlack;
+
+  @QueryParam("alightSlackForMode")
+  private Map<String, Integer> alightSlackForMode = new HashMap<>();
 
   @QueryParam("locale")
   private String locale;
@@ -772,6 +789,13 @@ public abstract class RoutingResource {
 
     if (waitReluctance != null) request.setWaitReluctance(waitReluctance);
 
+    transitReluctanceForMode = parseDoubleModeMap(queryParameters, "transitReluctanceForMode");
+    if (transitReluctanceForMode != null) {
+      request.setTransitReluctanceForMode(
+        mergeModeMap(request.transitReluctanceForMode(), transitReluctanceForMode)
+      );
+    }
+
     if (waitAtBeginningFactor != null) request.setWaitAtBeginningFactor(waitAtBeginningFactor);
 
     if (walkSpeed != null) request.walkSpeed = walkSpeed;
@@ -896,7 +920,17 @@ public abstract class RoutingResource {
 
     if (boardSlack != null) request.boardSlack = boardSlack;
 
+    boardSlackForMode = parseIntegerModeMap(queryParameters, "boardSlackForMode");
+    if (boardSlackForMode != null && !boardSlackForMode.isEmpty()) {
+      request.boardSlackForMode = mergeModeMap(request.boardSlackForMode, boardSlackForMode);
+    }
+
     if (alightSlack != null) request.alightSlack = alightSlack;
+
+    alightSlackForMode = parseIntegerModeMap(queryParameters, "alightSlackForMode");
+    if (alightSlackForMode != null && !alightSlackForMode.isEmpty()) {
+      request.alightSlackForMode = mergeModeMap(request.alightSlackForMode, alightSlackForMode);
+    }
 
     if (minTransferTime != null) {
       int alightAndBoardSlack = request.boardSlack + request.alightSlack;
@@ -951,5 +985,76 @@ public abstract class RoutingResource {
     }
 
     return request;
+  }
+
+  private Map<String, Double> parseDoubleModeMap(
+    MultivaluedMap<String, String> queryParameters,
+    String parameterName
+  ) {
+    return parseModeMap(
+      queryParameters,
+      parameterName,
+      Double::parseDouble,
+      new TypeReference<>() {}
+    );
+  }
+
+  private Map<String, Integer> parseIntegerModeMap(
+    MultivaluedMap<String, String> queryParameters,
+    String parameterName
+  ) {
+    return parseModeMap(
+      queryParameters,
+      parameterName,
+      Integer::parseInt,
+      new TypeReference<>() {}
+    );
+  }
+
+  private <N extends Number> Map<String, N> parseModeMap(
+    MultivaluedMap<String, String> queryParameters,
+    String parameterName,
+    Function<String, N> valueParser,
+    TypeReference<Map<String, N>> typeReference
+  ) {
+    if (queryParameters.containsKey(parameterName)) {
+      try {
+        return new ObjectMapper().readValue(queryParameters.getFirst(parameterName), typeReference);
+      } catch (IOException e) {
+        throw new RuntimeException("Failed to parse " + parameterName, e);
+      }
+    }
+    var map = new HashMap<String, N>();
+    for (var key : queryParameters.keySet()) {
+      if (key.startsWith(parameterName + "[") && key.endsWith("]")) {
+        var mode = key.substring(key.indexOf("[") + 1, key.length() - 1);
+        map.put(mode, valueParser.apply(queryParameters.getFirst(key)));
+      }
+    }
+    return map.isEmpty() ? null : map;
+  }
+
+  private static <T extends Number> Map<TransitMode, T> mergeModeMap(
+    Map<TransitMode, T> defaults,
+    Map<String, T> modeMap
+  ) {
+    var parsed = modeMap
+      .entrySet()
+      .stream()
+      .filter(entry -> {
+        try {
+          TransitMode.valueOf(entry.getKey());
+        } catch (IllegalArgumentException e) {
+          return false;
+        }
+        return true;
+      })
+      .filter(entry -> entry.getValue() != null && entry.getValue().intValue() > 0)
+      .map(entry -> Map.entry(TransitMode.valueOf(entry.getKey()), entry.getValue()))
+      .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+    defaults.forEach(parsed::putIfAbsent);
+
+    return parsed;
   }
 }
