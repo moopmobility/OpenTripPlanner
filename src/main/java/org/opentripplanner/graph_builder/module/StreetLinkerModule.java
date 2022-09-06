@@ -108,29 +108,28 @@ public class StreetLinkerModule implements GraphBuilderModule {
     }
 
     for (TransitStopVertex tStop : vertices) {
-      // Stops with pathways do not need to be connected to the street network, since there are explicit entraces defined for that
-      if (tStop.hasPathways()) {
-        continue;
-      }
       // check if stop is already linked, to allow multiple linking cycles
-      if (tStop.getDegreeOut() + tStop.getDegreeIn() > 0) {
+      if (tStop.hasNonPathways()) {
         continue;
       }
-      TraverseModeSet modes = new TraverseModeSet(TraverseMode.WALK);
 
-      if (OTPFeature.FlexRouting.isOn()) {
-        // If regular stops are used for flex trips, they also need to be connected to car routable
-        // street edges.
-        if (stopLocationsUsedForFlexTrips.contains(tStop.getStop())) {
-          modes = new TraverseModeSet(TraverseMode.WALK, TraverseMode.CAR);
-        }
-      }
+      var modeSet = new TraverseModeSet();
+
+      // Stops with pathways do not need to be connected to the street network, since there are
+      // explicit entrances defined for that
+      modeSet.setWalk(!tStop.hasPathways());
+
+      // Driveable links to stops -- either no pathways exist or it is a flex stop which must always
+      // be reachable by driving
+      modeSet.setCar(
+        (OTPFeature.FlexRouting.isOn() && stopLocationsUsedForFlexTrips.contains(tStop.getStop()))
+      );
 
       graph
         .getLinker()
         .linkVertexPermanently(
           tStop,
-          modes,
+          modeSet,
           LinkingDirection.BOTH_WAYS,
           (vertex, streetVertex) ->
             List.of(
@@ -138,6 +137,7 @@ public class StreetLinkerModule implements GraphBuilderModule {
               new StreetTransitStopLink(streetVertex, (TransitStopVertex) vertex)
             )
         );
+
       //noinspection Convert2MethodRef
       progress.step(m -> LOG.info(m));
     }

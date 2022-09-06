@@ -22,7 +22,6 @@ public abstract class StreetTransitEntityLink<T extends Vertex>
   static final int STEL_TRAVERSE_COST = 1;
 
   private final T transitEntityVertex;
-
   private final Accessibility wheelchairAccessibility;
 
   public StreetTransitEntityLink(StreetVertex fromv, T tov, Accessibility wheelchairAccessibility) {
@@ -98,8 +97,10 @@ public abstract class StreetTransitEntityLink<T extends Vertex>
         }
         // Allow taking an owned bike in the station
         break;
+      case WALK:
+        break;
       case CAR:
-        // Forbid taking your own car in the station if bike P+R activated.
+        // Forbid taking your own car in the station if P+R activated.
         if (s0.getRequest().mode().includesParking() && !s0.isVehicleParked()) {
           return null;
         }
@@ -111,10 +112,6 @@ public abstract class StreetTransitEntityLink<T extends Vertex>
             return null;
           }
         }
-        // If Kiss & Ride (Taxi) mode is not enabled allow car traversal so that the Stop
-        // may be reached by car
-        break;
-      case WALK:
         break;
       default:
         return null;

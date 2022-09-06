@@ -60,6 +60,20 @@ public class TransitStopVertex extends StationElementVertex {
     return false;
   }
 
+  public boolean hasNonPathways() {
+    for (Edge e : this.getOutgoing()) {
+      if (!(e instanceof PathwayEdge)) {
+        return true;
+      }
+    }
+    for (Edge e : this.getIncoming()) {
+      if (!(e instanceof PathwayEdge)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public int getStreetToStopTime() {
     return streetToStopTime;
   }
