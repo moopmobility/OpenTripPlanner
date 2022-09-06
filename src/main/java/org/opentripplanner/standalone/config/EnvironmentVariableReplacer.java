@@ -3,6 +3,7 @@ package org.opentripplanner.standalone.config;
 import static java.util.Map.entry;
 import static org.opentripplanner.model.projectinfo.OtpProjectInfo.projectInfo;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -57,19 +58,32 @@ class EnvironmentVariableReplacer {
    * Search for {@link #PATTERN}s and replace each placeholder with the value of the corresponding
    * environment variable.
    *
+   *
+   * @param configDir
    * @param source is used only to generate human friendly error message in case the text contain a
    *               placeholder whitch can not be found.
    * @throws IllegalArgumentException if a placeholder exist in the {@code text}, but the
    *                                  environment variable do not exist.
    */
   public static String insertEnvironmentVariables(String text, String source) {
+    return insertEnvironmentVariables(null, text, source);
+  }
+
+  public static String insertEnvironmentVariables(File configDir, String text, String source) {
     Map<String, String> environmentVariables = new HashMap<>();
     Matcher matcher = PATTERN.matcher(text);
+
+    if (configDir != null) {
+      environmentVariables.put(
+        "${otp.graph-directory}",
+        configDir.toPath().toAbsolutePath().toString()
+      );
+    }
 
     while (matcher.find()) {
       String envVar = matcher.group(0);
       String nameOnly = matcher.group(1);
-      if (!environmentVariables.containsKey(nameOnly)) {
+      if (!environmentVariables.containsKey(envVar)) {
         String value = System.getenv(nameOnly);
         if (value != null) {
           environmentVariables.put(envVar, value);

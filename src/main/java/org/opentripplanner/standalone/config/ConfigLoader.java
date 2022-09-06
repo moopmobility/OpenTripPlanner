@@ -242,7 +242,7 @@ public class ConfigLoader {
         return MissingNode.getInstance();
       }
       jsonAsString = includeFileDirective(configDir, jsonAsString, source);
-      jsonAsString = insertEnvironmentVariables(jsonAsString, source);
+      jsonAsString = insertEnvironmentVariables(configDir, jsonAsString, source);
 
       return mapper.readTree(jsonAsString);
     } catch (IOException ie) {
