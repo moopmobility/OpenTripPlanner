@@ -65,7 +65,7 @@ public class ValidateAndInterpolateStopTimesForEachTrip {
       // if we don't have flex routing enabled then remove all the flex locations and location
       // groups
       if (OTPFeature.FlexRouting.isOff()) {
-        stopTimes.removeIf(st -> !(st.getStop() instanceof RegularStop));
+        stopTimes.removeIf(FlexTrip::isFlexStopTime);
       }
 
       // Stop times frequently contain duplicate, missing, or incorrect entries. Repair them.
@@ -262,9 +262,7 @@ public class ValidateAndInterpolateStopTimesForEachTrip {
       departureTime = st0.getDepartureTime();
 
       // Interpolate, if necessary, the times of non-timepoint stops
-      if (
-        !(st0.isDepartureTimeSet() && st0.isArrivalTimeSet()) && !FlexTrip.isFlexStop(st0.getStop())
-      ) {
+      if (!(st0.isDepartureTimeSet() && st0.isArrivalTimeSet()) && !FlexTrip.isFlexStopTime(st0)) {
         // figure out how many such stops there are in a row.
         int j;
         StopTime st = null;

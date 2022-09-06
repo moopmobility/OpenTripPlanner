@@ -36,10 +36,18 @@ public abstract class FlexTrip<T extends FlexTrip<T, B>, B extends FlexTripBuild
   }
 
   public static boolean containsFlexStops(List<StopTime> stopTimes) {
-    return stopTimes.stream().map(StopTime::getStop).anyMatch(FlexTrip::isFlexStop);
+    return stopTimes.stream().anyMatch(FlexTrip::isFlexStopTime);
   }
 
-  public static boolean isFlexStop(StopLocation stop) {
+  public static boolean isFlexStopTime(StopTime stopTime) {
+    return (
+      isFlexStop(stopTime.getStop()) ||
+      stopTime.getFlexWindowStart() != StopTime.MISSING_VALUE ||
+      stopTime.getFlexWindowEnd() != StopTime.MISSING_VALUE
+    );
+  }
+
+  private static boolean isFlexStop(StopLocation stop) {
     return stop instanceof GroupStop || stop instanceof AreaStop;
   }
 
