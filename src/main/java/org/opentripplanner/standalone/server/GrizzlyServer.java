@@ -1,6 +1,5 @@
 package org.opentripplanner.standalone.server;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.BindException;
 import javax.ws.rs.core.Application;
@@ -10,8 +9,6 @@ import org.glassfish.grizzly.http.server.HttpHandler;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.NetworkListener;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
-import org.glassfish.grizzly.ssl.SSLContextConfigurator;
-import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.grizzly.threadpool.ThreadPoolConfig;
 import org.glassfish.jersey.server.ContainerFactory;
 import org.opentripplanner.standalone.config.CommandLineParameters;
@@ -48,18 +45,12 @@ public class GrizzlyServer {
    */
   public void run() {
     LOG.info(
-      "Starting OTP Grizzly server on ports {} (HTTP) and {} (HTTPS) of interface {}",
+      "Starting OTP Grizzly server on port {} (HTTP) of interface {}",
       params.port,
-      params.securePort,
       params.bindAddress
     );
     LOG.info("OTP server base directory is: {}", params.baseDirectory);
     HttpServer httpServer = new HttpServer();
-
-    /* Configure SSL FIXME OTP2 where will we store they keyfile? */
-    SSLContextConfigurator sslConfig = new SSLContextConfigurator();
-    sslConfig.setKeyStoreFile(new File(params.getBaseDirectory(), "keystore").getAbsolutePath());
-    sslConfig.setKeyStorePass("opentrip");
 
     // Set up a pool of threads to handle incoming HTTP requests.
     // According to the Grizzly docs, setting the core and max pool size equal with no queue limit
@@ -73,34 +64,17 @@ public class GrizzlyServer {
       .setQueueLimit(-1);
 
     /* HTTP (non-encrypted) listener */
-    NetworkListener httpListener = new NetworkListener(
-      "otp_insecure",
-      params.bindAddress,
-      params.port
-    );
-    httpListener.setSecure(false);
+    NetworkListener listener = new NetworkListener("otp_insecure", params.bindAddress, params.port);
+    listener.setSecure(false);
 
     /* HTTPS listener */
-    NetworkListener httpsListener = new NetworkListener(
-      "otp_secure",
-      params.bindAddress,
-      params.securePort
-    );
-    // Ideally we'd share the threads between HTTP and HTTPS.
-    httpsListener.setSecure(true);
-    httpsListener.setSSLEngineConfig(
-      new SSLEngineConfigurator(sslConfig).setClientMode(false).setNeedClientAuth(false)
-    );
-
     // For both HTTP and HTTPS listeners: enable gzip compression, set thread pool, add listener to httpServer.
-    for (NetworkListener listener : new NetworkListener[] { httpListener, httpsListener }) {
-      CompressionConfig cc = listener.getCompressionConfig();
-      cc.setCompressionMode(CompressionConfig.CompressionMode.ON);
-      cc.setCompressionMinSize(50000); // the min number of bytes to compress
-      cc.setCompressableMimeTypes("application/json", "text/json"); // the mime types to compress
-      listener.getTransport().setWorkerThreadPoolConfig(threadPoolConfig);
-      httpServer.addListener(listener);
-    }
+    CompressionConfig cc = listener.getCompressionConfig();
+    cc.setCompressionMode(CompressionConfig.CompressionMode.ON);
+    cc.setCompressionMinSize(50000); // the min number of bytes to compress
+    cc.setCompressableMimeTypes("application/json", "text/json"); // the mime types to compress
+    listener.getTransport().setWorkerThreadPoolConfig(threadPoolConfig);
+    httpServer.addListener(listener);
 
     /* Add a few handlers (~= servlets) to the Grizzly server. */
 
