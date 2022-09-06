@@ -63,13 +63,22 @@ public class FlexTripEdge extends Edge {
       // not routable
       return null;
     }
+
+    var options = s0.getRoutingContext().opt;
+    var mode = this.trip.getTrip().getMode();
+    int timeInSeconds =
+      options.boardSlackForMode.getOrDefault(mode, options.boardSlack) +
+      getTimeInSeconds() +
+      options.alightSlackForMode.getOrDefault(mode, options.alightSlack);
+    double weight =
+      timeInSeconds *
+      options.transitReluctanceForMode().getOrDefault(mode, 1.0) +
+      options.walkBoardCost;
+
     StateEditor editor = s0.edit(this);
-    editor.setBackMode(TraverseMode.BUS);
-    // TODO: decide good value
-    editor.incrementWeight(10 * 60);
-    int timeInSeconds = getTimeInSeconds();
+    editor.setBackMode(TraverseMode.fromTransitMode(mode));
     editor.incrementTimeInSeconds(timeInSeconds);
-    editor.incrementWeight(timeInSeconds);
+    editor.incrementWeight(weight);
     editor.resetEnteredNoThroughTrafficArea();
     return editor.makeState();
   }
