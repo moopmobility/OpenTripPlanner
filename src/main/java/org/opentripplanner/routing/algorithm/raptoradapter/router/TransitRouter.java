@@ -4,8 +4,12 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.opentripplanner.routing.algorithm.mapping.RaptorPathToItineraryMapper;
 import org.opentripplanner.routing.algorithm.raptoradapter.router.street.AccessEgressRouter;
 import org.opentripplanner.routing.algorithm.raptoradapter.router.street.FlexAccessEgressRouter;
@@ -30,9 +34,11 @@ import org.opentripplanner.routing.error.RoutingValidationException;
 import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.routing.graph.Vertex;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
+import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.transit.raptor.RaptorService;
 import org.opentripplanner.transit.raptor.api.path.Path;
 import org.opentripplanner.transit.raptor.api.response.RaptorResponse;
+import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
 import org.opentripplanner.transit.service.TransitService;
 import org.opentripplanner.util.OTPFeature;
 
@@ -96,7 +102,7 @@ public class TransitRouter {
 
     debugTimingAggregator.finishedPatternFiltering();
 
-    var accessEgresses = getAccessEgresses();
+    var accessEgresses = getAccessEgresses(transitLayer);
 
     debugTimingAggregator.finishedAccessEgress(
       accessEgresses.getAccesses().size(),
@@ -155,20 +161,20 @@ public class TransitRouter {
     return new TransitRouterResult(itineraries, transitResponse.requestUsed().searchParams());
   }
 
-  private AccessEgresses getAccessEgresses() {
+  private AccessEgresses getAccessEgresses(TransitLayer transitLayer) {
     var accessEgressMapper = new AccessEgressMapper();
     var accessList = new ArrayList<AccessEgress>();
     var egressList = new ArrayList<AccessEgress>();
 
     var accessCalculator = (Runnable) () -> {
       debugTimingAggregator.startedAccessCalculating();
-      accessList.addAll(getAccessEgresses(accessEgressMapper, false));
+      accessList.addAll(getAccessEgresses(transitLayer, accessEgressMapper, false));
       debugTimingAggregator.finishedAccessCalculating();
     };
 
     var egressCalculator = (Runnable) () -> {
       debugTimingAggregator.startedEgressCalculating();
-      egressList.addAll(getAccessEgresses(accessEgressMapper, true));
+      egressList.addAll(getAccessEgresses(transitLayer, accessEgressMapper, true));
       debugTimingAggregator.finishedEgressCalculating();
     };
 
@@ -194,6 +200,7 @@ public class TransitRouter {
   }
 
   private Collection<AccessEgress> getAccessEgresses(
+    TransitLayer transitLayer,
     AccessEgressMapper accessEgressMapper,
     boolean isEgress
   ) {
@@ -235,6 +242,70 @@ public class TransitRouter {
         );
 
         results.addAll(accessEgressMapper.mapFlexAccessEgresses(flexAccessList, isEgress));
+
+        var flexConfig = serverContext.routerConfig().flexConfig();
+        if (flexConfig.allowOnlyStopReachedOnBoard) {
+          // Remove any flex trips where the stop was not reached on-board
+          results.removeIf(item -> item.hasRides() && !item.stopReachedOnBoard());
+        }
+
+        if (serverContext.routerConfig().flexConfig().minimumStreetDistanceForFlex > 0) {
+          var stopsWithShortWalk = results
+            .stream()
+            .filter(item ->
+              !item.hasRides() &&
+              item.getLastState().getWalkDistance() <=
+              serverContext.routerConfig().flexConfig().minimumStreetDistanceForFlex
+            )
+            .map(AccessEgress::stop)
+            .map(transitLayer::getStopByIndex)
+            .filter(Objects::nonNull)
+            .flatMap(stop ->
+              stop.getParentStation() != null
+                ? stop.getParentStation().getChildStops().stream()
+                : Stream.of(stop)
+            )
+            .map(StopLocation::getIndex)
+            .collect(Collectors.toSet());
+
+          // Remove all flex items, which are reachable on-street with a short walk (or have stations which are reachable)
+          results.removeIf(item -> item.hasRides() && stopsWithShortWalk.contains(item.stop()));
+        }
+
+        if (serverContext.routerConfig().flexConfig().removeWalkingIfFlexFaster) {
+          var minFlexTimeForStop = results
+            .stream()
+            .filter(RaptorTransfer::hasRides)
+            .collect(
+              Collectors.toMap(
+                RaptorTransfer::stop,
+                item -> item.getLastState().getElapsedTimeSeconds(),
+                Math::min
+              )
+            )
+            .entrySet()
+            .stream()
+            .flatMap(entry -> {
+              var stop = transitLayer.getStopByIndex(entry.getKey());
+              if (stop != null && stop.getParentStation() != null) {
+                return stop
+                  .getParentStation()
+                  .getChildStops()
+                  .stream()
+                  .map(childStop -> Map.entry(childStop.getIndex(), entry.getValue()));
+              } else {
+                return Stream.of(entry);
+              }
+            })
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, Math::min));
+
+          // Remove all walk items, which have a faster flex option
+          results.removeIf(item ->
+            !item.hasRides() &&
+            minFlexTimeForStop.getOrDefault(item.stop(), Long.MAX_VALUE) <
+            item.getLastState().getElapsedTimeSeconds()
+          );
+        }
       }
     }
 

@@ -118,6 +118,10 @@ public class RouterConfig implements Serializable {
     return vectorTileLayers;
   }
 
+  public FlexConfig flexConfig() {
+    return flexConfig;
+  }
+
   public FlexParameters flexParameters(RoutingRequest request) {
     return flexConfig.toFlexParameters(request);
   }

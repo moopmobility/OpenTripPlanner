@@ -17,12 +17,18 @@ public class FlexConfig {
   public final Duration maxTripDuration;
   public final double maxVehicleSpeed;
   public final double streetTimeFactor;
+  public final boolean allowOnlyStopReachedOnBoard;
+  public final int minimumStreetDistanceForFlex;
+  public final boolean removeWalkingIfFlexFaster;
 
   public FlexConfig(NodeAdapter json) {
     maxTransferSeconds = json.asInt("maxTransferDurationSeconds", DEFAULT_MAX_TRANSFER_SECONDS);
     maxTripDuration = json.asDuration("maxTripDuration", DEFAULT_MAX_TRIP_DURATION);
     maxVehicleSpeed = json.asDouble("maxVehicleSpeed", DEFAULT_MAX_VEHICLE_SPEED);
     streetTimeFactor = json.asDouble("streetTimeFactor", DEFAULT_STREET_TIME_FACTOR);
+    allowOnlyStopReachedOnBoard = json.asBoolean("allowOnlyStopReachedOnBoard", false);
+    minimumStreetDistanceForFlex = json.asInt("minimumStreetDistanceForFlex", 0);
+    removeWalkingIfFlexFaster = json.asBoolean("removeWalkingIfFlexFaster", false);
   }
 
   public FlexParameters toFlexParameters(RoutingRequest request) {
