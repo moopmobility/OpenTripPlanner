@@ -342,15 +342,15 @@ public class NycFareServiceImpl implements FareService {
     } else if (leg.isTransitLeg()) {
       Ride ride = rideForTransitPathLeg(leg);
       Route route = leg.getRoute();
-      int routeType = route.getGtfsType();
+      var subMode = route.getSubMode();
 
       // Note the old implementation directly used the ints as classifiers here.
-      if (routeType == 1) {
+      if ("1".equals(subMode.name())) {
         ride.classifier = NycRideClassifier.SUBWAY;
-      } else if (routeType == 2) {
+      } else if ("2".equals(subMode.name())) {
         // All rail is Staten Island Railway? This won't work for LIRR and MNRR.
         ride.classifier = NycRideClassifier.SIR;
-      } else if (routeType == 3) {
+      } else if ("3".equals(subMode.name())) {
         ride.classifier = NycRideClassifier.LOCAL_BUS;
       }
       String shortName = route.getShortName();

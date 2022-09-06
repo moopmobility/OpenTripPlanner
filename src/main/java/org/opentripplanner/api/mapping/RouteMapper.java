@@ -1,10 +1,13 @@
 package org.opentripplanner.api.mapping;
 
+import static org.opentripplanner.api.mapping.SubModeMapper.mapToGtfsRouteType;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.opentripplanner.api.model.ApiRoute;
 import org.opentripplanner.api.model.ApiRouteShort;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.network.Route;
 import org.opentripplanner.transit.model.organization.Branding;
 
@@ -29,8 +32,8 @@ public class RouteMapper {
     api.longName = stringMapper.mapToApi(domain.getLongName());
     api.mode = TraverseModeMapper.mapToApi(domain.getMode());
     api.type =
-      domain.getGtfsType() != null
-        ? domain.getGtfsType()
+      domain.getSubMode() != SubMode.UNKNOWN
+        ? mapToGtfsRouteType(domain.getSubMode())
         : RouteTypeMapper.mapToApi(domain.getMode());
     api.desc = domain.getDescription();
     api.url = domain.getUrl();

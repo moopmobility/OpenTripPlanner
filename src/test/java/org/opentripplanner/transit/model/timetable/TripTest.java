@@ -48,7 +48,7 @@ class TripTest {
     .withGtfsBlockId(BLOCK_ID)
     .withGtfsFareId(FARE_ID)
     .withNetexAlteration(TRIP_ALTERATION)
-    .withNetexSubmode(NETEX_SUBMODE_NAME)
+    .withSubMode(NETEX_SUBMODE_NAME)
     .withNetexInternalPlanningCode(NETEX_INTERNAL_PLANNING_CODE)
     .withOperator(OPERATOR)
     .withServiceId(SERVICE_ID)
@@ -61,14 +61,14 @@ class TripTest {
     var routeWithModes = ROUTE
       .copy()
       .withMode(TRANSIT_MODE)
-      .withNetexSubmode(NETEX_SUBMODE_NAME)
+      .withSubMode(NETEX_SUBMODE_NAME)
       .withBikesAllowed(BIKE_ACCESS)
       .build();
 
     var subject = Trip.of(TransitModelForTest.id(ID)).withRoute(routeWithModes).build();
 
     assertEquals(TRANSIT_MODE, subject.getMode());
-    assertEquals(NETEX_SUBMODE, subject.getNetexSubMode());
+    assertEquals(NETEX_SUBMODE, subject.getSubMode());
     assertEquals(BIKE_ACCESS, subject.getBikesAllowed());
   }
 
@@ -90,7 +90,7 @@ class TripTest {
     assertEquals(BLOCK_ID, copy.getGtfsBlockId());
     assertEquals(FARE_ID, copy.getGtfsFareId());
     assertEquals(TRIP_ALTERATION, copy.getNetexAlteration());
-    assertEquals(NETEX_SUBMODE, copy.getNetexSubMode());
+    assertEquals(NETEX_SUBMODE, copy.getSubMode());
     assertEquals(NETEX_INTERNAL_PLANNING_CODE, copy.getNetexInternalPlanningCode());
     assertEquals(OPERATOR, copy.getOperator());
     assertEquals(SERVICE_ID, copy.getServiceId());
@@ -121,7 +121,7 @@ class TripTest {
     assertFalse(
       subject.sameAs(subject.copy().withNetexAlteration(TripAlteration.REPLACED).build())
     );
-    assertFalse(subject.sameAs(subject.copy().withNetexSubmode("X").build()));
+    assertFalse(subject.sameAs(subject.copy().withSubMode("X").build()));
     assertFalse(subject.sameAs(subject.copy().withNetexInternalPlanningCode("X").build()));
     assertFalse(
       subject.sameAs(

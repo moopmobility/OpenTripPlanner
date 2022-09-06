@@ -1,6 +1,7 @@
 package org.opentripplanner.api.mapping;
 
 import static org.opentripplanner.api.mapping.ElevationMapper.mapElevation;
+import static org.opentripplanner.api.mapping.SubModeMapper.mapToGtfsRouteType;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -102,7 +103,7 @@ public class LegMapper {
       var route = domain.getRoute();
       api.route = i18NStringMapper.mapToApi(route.getLongName());
       api.routeColor = route.getColor();
-      api.routeType = domain.getRouteType();
+      api.routeType = mapToGtfsRouteType(domain.getSubMode());
       api.routeId = FeedScopedIdMapper.mapToApi(route.getId());
       api.routeShortName = route.getShortName();
       api.routeLongName = i18NStringMapper.mapToApi(route.getLongName());

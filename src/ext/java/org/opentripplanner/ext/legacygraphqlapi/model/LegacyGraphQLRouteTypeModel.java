@@ -1,5 +1,6 @@
 package org.opentripplanner.ext.legacygraphqlapi.model;
 
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.organization.Agency;
 
 /**
@@ -15,16 +16,16 @@ public class LegacyGraphQLRouteTypeModel {
   /**
    * Route type (GTFS).
    */
-  private final int routeType;
+  private final SubMode subMode;
 
   /**
    * Route type only covers routes of this feed.
    */
   private final String feedId;
 
-  public LegacyGraphQLRouteTypeModel(Agency agency, int routeType, String feedId) {
+  public LegacyGraphQLRouteTypeModel(Agency agency, SubMode subMode, String feedId) {
     this.agency = agency;
-    this.routeType = routeType;
+    this.subMode = subMode;
     this.feedId = feedId;
   }
 
@@ -32,8 +33,8 @@ public class LegacyGraphQLRouteTypeModel {
     return agency;
   }
 
-  public int getRouteType() {
-    return routeType;
+  public SubMode getRouteType() {
+    return subMode;
   }
 
   public String getFeedId() {

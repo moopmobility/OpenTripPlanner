@@ -96,7 +96,7 @@ class RouteMapper {
     }
 
     builder.withMode(mode.mainMode());
-    builder.withNetexSubmode(mode.subMode());
+    builder.withSubMode(mode.subMode());
 
     if (line instanceof FlexibleLine_VersionStructure) {
       builder.withFlexibleLineType(

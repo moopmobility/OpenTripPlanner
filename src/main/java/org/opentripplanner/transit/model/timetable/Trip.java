@@ -26,7 +26,7 @@ public final class Trip extends AbstractTransitEntity<Trip, TripBuilder> impleme
   private final FeedScopedId serviceId;
   private final String shortName;
   private final TransitMode mode;
-  private final SubMode netexSubmode;
+  private final SubMode subMode;
   private final String headsign;
   private final FeedScopedId shapeId;
 
@@ -46,10 +46,8 @@ public final class Trip extends AbstractTransitEntity<Trip, TripBuilder> impleme
     // Route is done first, it is used as a fallback for some fields
     this.route = requireNonNull(builder.getRoute());
     this.mode = requireNonNullElse(builder.getMode(), route.getMode());
-    this.netexSubmode =
-      builder.getNetexSubmode() != null
-        ? SubMode.getOrBuildAndCacheForever(builder.getNetexSubmode())
-        : route.getNetexSubmode();
+    this.subMode =
+      ifNotNull(builder.getSubMode(), SubMode::getOrBuildAndCacheForever, route.getSubMode());
     this.direction = requireNonNullElse(builder.getDirection(), Direction.UNKNOWN);
     this.bikesAllowed = requireNonNullElse(builder.getBikesAllowed(), route.getBikesAllowed());
     this.wheelchairBoarding =
@@ -111,8 +109,8 @@ public final class Trip extends AbstractTransitEntity<Trip, TripBuilder> impleme
   }
 
   @Nonnull
-  public SubMode getNetexSubMode() {
-    return netexSubmode;
+  public SubMode getSubMode() {
+    return subMode;
   }
 
   @Nullable
@@ -199,7 +197,7 @@ public final class Trip extends AbstractTransitEntity<Trip, TripBuilder> impleme
       Objects.equals(this.route, other.route) &&
       Objects.equals(this.shortName, other.shortName) &&
       Objects.equals(this.mode, other.mode) &&
-      Objects.equals(this.netexSubmode, other.netexSubmode) &&
+      Objects.equals(this.subMode, other.subMode) &&
       Objects.equals(this.serviceId, other.serviceId) &&
       Objects.equals(this.netexInternalPlanningCode, other.netexInternalPlanningCode) &&
       Objects.equals(this.headsign, other.headsign) &&

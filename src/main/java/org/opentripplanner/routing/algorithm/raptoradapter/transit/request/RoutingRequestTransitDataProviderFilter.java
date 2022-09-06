@@ -77,7 +77,7 @@ public class RoutingRequestTransitDataProviderFilter implements TransitDataProvi
   @Override
   public boolean tripTimesPredicate(TripTimes tripTimes) {
     final Trip trip = tripTimes.getTrip();
-    if (!transitModeFilter.allows(trip.getMode(), trip.getNetexSubMode())) {
+    if (!transitModeFilter.allows(trip.getMode(), trip.getSubMode())) {
       return false;
     }
 

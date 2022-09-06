@@ -69,13 +69,17 @@ public class TripMapperTest {
     assertEquals(BLOCK_ID, result.getGtfsBlockId());
     assertEquals(Direction.INBOUND, result.getDirection());
     assertEquals(FARE_ID, result.getGtfsFareId());
-    assertNotNull(result.getRoute());
     assertEquals("A:1", result.getServiceId().toString());
     assertEquals("A:1", result.getShapeId().toString());
     assertEquals(TRIP_HEADSIGN, result.getHeadsign());
     assertEquals(TRIP_SHORT_NAME, result.getShortName());
     assertEquals(WheelchairAccessibility.POSSIBLE, result.getWheelchairBoarding());
     assertEquals(BikeAccess.ALLOWED, result.getBikesAllowed());
+
+    var route = result.getRoute();
+    assertNotNull(route);
+    assertEquals(route.getMode(), result.getMode());
+    assertEquals(route.getSubMode(), result.getSubMode());
   }
 
   @Test

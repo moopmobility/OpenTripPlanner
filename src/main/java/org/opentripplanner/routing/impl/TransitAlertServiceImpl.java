@@ -9,6 +9,7 @@ import java.util.Set;
 import org.opentripplanner.routing.alertpatch.EntitySelector;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
 import org.opentripplanner.routing.services.TransitAlertService;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.timetable.Direction;
 import org.opentripplanner.transit.service.TransitModel;
@@ -110,13 +111,16 @@ public class TransitAlertServiceImpl implements TransitAlertService {
   }
 
   @Override
-  public Collection<TransitAlert> getRouteTypeAndAgencyAlerts(int routeType, FeedScopedId agency) {
-    return alerts.get(new EntitySelector.RouteTypeAndAgency(routeType, agency));
+  public Collection<TransitAlert> getRouteTypeAndAgencyAlerts(
+    SubMode subMode,
+    FeedScopedId agency
+  ) {
+    return alerts.get(new EntitySelector.RouteTypeAndAgency(subMode, agency));
   }
 
   @Override
-  public Collection<TransitAlert> getRouteTypeAlerts(int routeType, String feedId) {
-    return alerts.get(new EntitySelector.RouteType(routeType, feedId));
+  public Collection<TransitAlert> getRouteTypeAlerts(SubMode subMode, String feedId) {
+    return alerts.get(new EntitySelector.RouteType(subMode, feedId));
   }
 
   @Override

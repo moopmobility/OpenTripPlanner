@@ -405,7 +405,7 @@ public final class TripPattern
   }
 
   public boolean matchesModeOrSubMode(TransitMode mode, SubMode transportSubmode) {
-    return getMode().equals(mode) || route.getNetexSubmode().equals(transportSubmode);
+    return getMode().equals(mode) || route.getSubMode().equals(transportSubmode);
   }
 
   public TripPattern clone() {

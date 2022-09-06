@@ -25,6 +25,7 @@ import org.opentripplanner.routing.alertpatch.EntitySelector.DirectionAndRoute;
 import org.opentripplanner.routing.alertpatch.EntitySelector.StopAndRouteOrTripKey;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
 import org.opentripplanner.transit.model.basic.I18NString;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.basic.TranslatedString;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.network.Route;
@@ -216,7 +217,7 @@ public class LegacyGraphQLAlertImpl implements LegacyGraphQLDataFetchers.LegacyG
           }
           if (entitySelector instanceof EntitySelector.RouteTypeAndAgency) {
             FeedScopedId agencyId = ((EntitySelector.RouteTypeAndAgency) entitySelector).agencyId;
-            int routeType = ((EntitySelector.RouteTypeAndAgency) entitySelector).routeType;
+            SubMode routeType = ((EntitySelector.RouteTypeAndAgency) entitySelector).subMode;
             Agency agency = getTransitService(environment).getAgencyForId(agencyId);
             return List.of(
               agency != null
@@ -225,14 +226,14 @@ public class LegacyGraphQLAlertImpl implements LegacyGraphQLDataFetchers.LegacyG
                   agency,
                   routeType,
                   null,
-                  Integer.toString(routeType),
+                  routeType.name(),
                   "agency",
                   "route type"
                 )
             );
           }
           if (entitySelector instanceof EntitySelector.RouteType) {
-            int routeType = ((EntitySelector.RouteType) entitySelector).routeType;
+            SubMode routeType = ((EntitySelector.RouteType) entitySelector).subMode;
             String feedId = ((EntitySelector.RouteType) entitySelector).feedId;
             return List.of(new LegacyGraphQLRouteTypeModel(null, routeType, feedId));
           }

@@ -20,7 +20,7 @@ public class LegacyGraphQLRouteTypeImpl
 
   @Override
   public DataFetcher<Integer> routeType() {
-    return environment -> getSource(environment).getRouteType();
+    return environment -> Integer.parseInt(getSource(environment).getRouteType().name());
   }
 
   @Override
@@ -32,7 +32,7 @@ public class LegacyGraphQLRouteTypeImpl
         .stream()
         .filter(route ->
           route.getId().getFeedId().equals(getSource(environment).getFeedId()) &&
-          route.getGtfsType() == getSource(environment).getRouteType() &&
+          route.getSubMode() == getSource(environment).getRouteType() &&
           (agency == null || route.getAgency().equals(agency))
         )
         .collect(Collectors.toList());

@@ -15,7 +15,7 @@ public class TripBuilder extends AbstractEntityBuilder<Trip, TripBuilder> {
   private FeedScopedId serviceId;
   private String shortName;
   private TransitMode mode;
-  private String netexSubmode;
+  private String subMode;
   private String headsign;
   private FeedScopedId shapeId;
   private Direction direction;
@@ -36,7 +36,7 @@ public class TripBuilder extends AbstractEntityBuilder<Trip, TripBuilder> {
     this.operator = original.getOperator();
     this.serviceId = original.getServiceId();
     this.mode = original.getMode();
-    this.netexSubmode = original.getNetexSubMode().name();
+    this.subMode = original.getSubMode().name();
     this.netexAlteration = original.getNetexAlteration();
     this.shortName = original.getShortName();
     this.headsign = original.getHeadsign();
@@ -94,12 +94,12 @@ public class TripBuilder extends AbstractEntityBuilder<Trip, TripBuilder> {
     return this;
   }
 
-  public String getNetexSubmode() {
-    return netexSubmode;
+  public String getSubMode() {
+    return subMode;
   }
 
-  public TripBuilder withNetexSubmode(String netexSubmode) {
-    this.netexSubmode = netexSubmode;
+  public TripBuilder withSubMode(String subMode) {
+    this.subMode = subMode;
     return this;
   }
 

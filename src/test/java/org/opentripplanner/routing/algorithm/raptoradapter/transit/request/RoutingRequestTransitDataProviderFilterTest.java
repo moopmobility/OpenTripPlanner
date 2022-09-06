@@ -545,7 +545,7 @@ public class RoutingRequestTransitDataProviderFilterTest {
       .of(tripId)
       .withRoute(route)
       .withMode(mode)
-      .withNetexSubmode(submode)
+      .withSubMode(submode)
       .withBikesAllowed(bikeAccess)
       .withWheelchairBoarding(wheelchairBoarding)
       .withNetexAlteration(tripAlteration)

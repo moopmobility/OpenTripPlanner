@@ -21,9 +21,8 @@ public final class RouteBuilder extends AbstractEntityBuilder<Route, RouteBuilde
   private String shortName;
   private I18NString longName;
   private TransitMode mode;
-  private Integer gtfsType;
   private Integer gtfsSortOrder;
-  private String netexSubmode;
+  private String subMode;
   private String flexibleLineType;
   private String description;
   private String url;
@@ -44,9 +43,8 @@ public final class RouteBuilder extends AbstractEntityBuilder<Route, RouteBuilde
     this.shortName = original.getShortName();
     this.longName = original.getLongName();
     this.mode = original.getMode();
-    this.gtfsType = original.getGtfsType();
     this.gtfsSortOrder = original.getGtfsSortOrder();
-    this.netexSubmode = original.getNetexSubmode().name();
+    this.subMode = original.getSubMode().name();
     this.flexibleLineType = original.getFlexibleLineType();
     this.description = original.getDescription();
     this.url = original.getUrl();
@@ -117,15 +115,6 @@ public final class RouteBuilder extends AbstractEntityBuilder<Route, RouteBuilde
     return this;
   }
 
-  public Integer getGtfsType() {
-    return gtfsType;
-  }
-
-  public RouteBuilder withGtfsType(int gtfsType) {
-    this.gtfsType = gtfsType;
-    return this;
-  }
-
   public Integer getGtfsSortOrder() {
     return gtfsSortOrder;
   }
@@ -189,12 +178,12 @@ public final class RouteBuilder extends AbstractEntityBuilder<Route, RouteBuilde
     return this;
   }
 
-  public String getNetexSubmode() {
-    return netexSubmode;
+  public String getSubMode() {
+    return subMode;
   }
 
-  public RouteBuilder withNetexSubmode(String netexSubmode) {
-    this.netexSubmode = netexSubmode;
+  public RouteBuilder withSubMode(String subMode) {
+    this.subMode = subMode;
     return this;
   }
 

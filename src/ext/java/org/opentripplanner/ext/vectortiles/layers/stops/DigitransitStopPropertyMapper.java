@@ -3,11 +3,11 @@ package org.opentripplanner.ext.vectortiles.layers.stops;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.opentripplanner.api.mapping.SubModeMapper;
 import org.opentripplanner.common.model.T2;
 import org.opentripplanner.ext.vectortiles.PropertyMapper;
 import org.opentripplanner.transit.model.network.TripPattern;
@@ -47,7 +47,7 @@ public class DigitransitStopPropertyMapper extends PropertyMapper<RegularStop> {
         .stream()
         .map(route -> {
           JSONObject routeObject = new JSONObject();
-          routeObject.put("gtfsType", route.getGtfsType());
+          routeObject.put("gtfsType", SubModeMapper.mapToGtfsRouteType(route.getSubMode()));
           return routeObject;
         })
         .toList()

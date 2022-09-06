@@ -1,5 +1,7 @@
 package org.opentripplanner.ext.legacygraphqlapi.datafetchers;
 
+import static org.opentripplanner.api.mapping.SubModeMapper.mapToGtfsRouteType;
+
 import graphql.relay.Relay;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
@@ -44,13 +46,13 @@ public class LegacyGraphQLRouteImpl implements LegacyGraphQLDataFetchers.LegacyG
             case ROUTE_TYPE:
               alerts.addAll(
                 alertService.getRouteTypeAlerts(
-                  getSource(environment).getGtfsType(),
+                  getSource(environment).getSubMode(),
                   getSource(environment).getId().getFeedId()
                 )
               );
               alerts.addAll(
                 alertService.getRouteTypeAndAgencyAlerts(
-                  getSource(environment).getGtfsType(),
+                  getSource(environment).getSubMode(),
                   getSource(environment).getAgency().getId()
                 )
               );
@@ -202,7 +204,7 @@ public class LegacyGraphQLRouteImpl implements LegacyGraphQLDataFetchers.LegacyG
 
   @Override
   public DataFetcher<Integer> type() {
-    return environment -> getSource(environment).getGtfsType();
+    return environment -> mapToGtfsRouteType(getSource(environment).getSubMode());
   }
 
   @Override

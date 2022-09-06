@@ -88,7 +88,7 @@ public class RouteMapperTest {
     assertEquals(SHORT_NAME, result.getShortName());
     assertEquals(LONG_NAME, result.getLongName().toString());
     assertEquals(DESC, result.getDescription());
-    assertEquals(ROUTE_TYPE, result.getGtfsType());
+    assertEquals(Integer.toString(ROUTE_TYPE), result.getSubMode().name());
     assertEquals(TRANSIT_MODE, result.getMode());
     assertEquals(URL, result.getUrl());
     assertEquals(COLOR, result.getColor());
@@ -118,7 +118,7 @@ public class RouteMapperTest {
     assertEquals(result.getShortName(), SHORT_NAME);
     assertNull(result.getLongName());
     assertNull(result.getDescription());
-    assertEquals(ROUTE_TYPE.intValue(), (int) result.getGtfsType());
+    assertEquals(ROUTE_TYPE.toString(), result.getSubMode().name());
     assertEquals(TRANSIT_MODE, result.getMode());
     assertNull(result.getUrl());
     assertNull(result.getColor());

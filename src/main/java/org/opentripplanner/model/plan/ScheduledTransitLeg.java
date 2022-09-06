@@ -20,6 +20,7 @@ import org.opentripplanner.model.plan.legreference.ScheduledTransitLegReference;
 import org.opentripplanner.model.transfer.ConstrainedTransfer;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
 import org.opentripplanner.routing.core.TraverseMode;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.basic.WheelchairAccessibility;
 import org.opentripplanner.transit.model.framework.AbstractTransitEntity;
 import org.opentripplanner.transit.model.network.Route;
@@ -218,8 +219,8 @@ public class ScheduledTransitLeg implements Leg {
   }
 
   @Override
-  public Integer getRouteType() {
-    return getTrip().getRoute().getGtfsType();
+  public SubMode getSubMode() {
+    return getTrip().getSubMode();
   }
 
   @Override
@@ -383,7 +384,7 @@ public class ScheduledTransitLeg implements Leg {
       .addBool("realTime", getRealTime())
       .addNum("distance", distanceMeters, "m")
       .addNum("cost", generalizedCost)
-      .addNum("routeType", getRouteType())
+      .addStr("subMode", getSubMode().name())
       .addObjOp("agencyId", getAgency(), AbstractTransitEntity::getId)
       .addObjOp("routeId", getRoute(), AbstractTransitEntity::getId)
       .addObjOp("tripId", getTrip(), AbstractTransitEntity::getId)

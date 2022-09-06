@@ -124,7 +124,7 @@ class TripMapper {
         return null;
       }
       builder.withMode(transitMode.mainMode());
-      builder.withNetexSubmode(transitMode.subMode());
+      builder.withSubMode(transitMode.subMode());
     }
 
     builder.withDirection(DirectionMapper.map(resolveDirectionType(serviceJourney)));

@@ -98,7 +98,7 @@ public class ServiceJourneyType {
           .name("transportSubmode")
           .type(TRANSPORT_SUBMODE)
           .dataFetcher(environment ->
-            TransmodelTransportSubmode.fromValue(((trip(environment))).getNetexSubMode())
+            TransmodelTransportSubmode.fromValue(((trip(environment))).getSubMode())
           )
           .build()
       )

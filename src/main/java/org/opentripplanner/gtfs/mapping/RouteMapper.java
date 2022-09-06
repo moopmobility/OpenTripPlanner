@@ -59,7 +59,7 @@ class RouteMapper {
     lhs.withAgency(agencyMapper.map(rhs.getAgency()));
     lhs.withShortName(rhs.getShortName());
     lhs.withLongName(longName);
-    lhs.withGtfsType(rhs.getType());
+    lhs.withSubMode(Integer.toString(rhs.getType()));
 
     if (rhs.isSortOrderSet()) {
       lhs.withGtfsSortOrder(rhs.getSortOrder());

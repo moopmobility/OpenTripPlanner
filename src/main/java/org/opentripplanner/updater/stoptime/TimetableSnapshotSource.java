@@ -633,7 +633,7 @@ public class TimetableSnapshotSource implements TimetableSnapshotProvider {
       builder.withAgency(dummyAgency);
       // Guess the route type as it doesn't exist yet in the specifications
       // Bus. Used for short- and long-distance bus routes.
-      builder.withGtfsType(3);
+      builder.withSubMode("3");
       builder.withMode(TransitMode.BUS);
       // Create route name
       I18NString longName = NonLocalizedString.ofNullable(tripDescriptor.getTripId());

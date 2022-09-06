@@ -3,6 +3,7 @@ package org.opentripplanner.routing.services;
 import java.time.LocalDate;
 import java.util.Collection;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.timetable.Direction;
 
@@ -29,9 +30,9 @@ public interface TransitAlertService {
     LocalDate serviceDate
   );
 
-  Collection<TransitAlert> getRouteTypeAndAgencyAlerts(int routeType, FeedScopedId agency);
+  Collection<TransitAlert> getRouteTypeAndAgencyAlerts(SubMode subMode, FeedScopedId agency);
 
-  Collection<TransitAlert> getRouteTypeAlerts(int routeType, String feedId);
+  Collection<TransitAlert> getRouteTypeAlerts(SubMode subMode, String feedId);
 
   Collection<TransitAlert> getDirectionAndRouteAlerts(Direction direction, FeedScopedId route);
 }

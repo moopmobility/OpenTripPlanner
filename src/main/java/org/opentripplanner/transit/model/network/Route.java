@@ -28,10 +28,8 @@ public final class Route extends AbstractTransitEntity<Route, RouteBuilder> impl
   private final String shortName;
   private final I18NString longName;
   private final TransitMode mode;
-  // TODO: consolidate gtfsType and netexSubmode
-  private final Integer gtfsType;
   private final Integer gtfsSortOrder;
-  private final SubMode netexSubmode;
+  private final SubMode subMode;
   private final String flexibleLineType;
   private final String description;
   private final String url;
@@ -54,9 +52,8 @@ public final class Route extends AbstractTransitEntity<Route, RouteBuilder> impl
     this.operator = builder.getOperator();
     this.branding = builder.getBranding();
     this.groupsOfRoutes = listOfNullSafe(builder.getGroupsOfRoutes());
-    this.gtfsType = builder.getGtfsType();
     this.gtfsSortOrder = builder.getGtfsSortOrder();
-    this.netexSubmode = SubMode.getOrBuildAndCacheForever(builder.getNetexSubmode());
+    this.subMode = SubMode.getOrBuildAndCacheForever(builder.getSubMode());
     this.flexibleLineType = builder.getFlexibleLineType();
     this.description = builder.getDescription();
     this.url = builder.getUrl();
@@ -79,10 +76,9 @@ public final class Route extends AbstractTransitEntity<Route, RouteBuilder> impl
       Objects.equals(this.longName, other.longName) &&
       Objects.equals(this.branding, other.branding) &&
       Objects.equals(this.mode, other.mode) &&
-      Objects.equals(this.gtfsType, other.gtfsType) &&
       Objects.equals(this.gtfsSortOrder, other.gtfsSortOrder) &&
       Objects.equals(this.flexibleLineType, other.flexibleLineType) &&
-      Objects.equals(this.netexSubmode, other.netexSubmode) &&
+      Objects.equals(this.subMode, other.subMode) &&
       Objects.equals(this.description, other.description) &&
       Objects.equals(this.url, other.url) &&
       Objects.equals(this.color, other.color) &&
@@ -144,18 +140,13 @@ public final class Route extends AbstractTransitEntity<Route, RouteBuilder> impl
   }
 
   @Nullable
-  public Integer getGtfsType() {
-    return gtfsType;
-  }
-
-  @Nullable
   public Integer getGtfsSortOrder() {
     return gtfsSortOrder;
   }
 
   @Nonnull
-  public SubMode getNetexSubmode() {
-    return netexSubmode;
+  public SubMode getSubMode() {
+    return subMode;
   }
 
   @Nullable

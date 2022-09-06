@@ -20,6 +20,7 @@ import org.opentripplanner.routing.alertpatch.TimePeriod;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
 import org.opentripplanner.routing.services.TransitAlertService;
 import org.opentripplanner.transit.model.basic.I18NString;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.basic.TranslatedString;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.updater.GtfsRealtimeFuzzyTripMatcher;
@@ -125,9 +126,9 @@ public class AlertsUpdateHandler {
         agencyId = informed.getAgencyId().intern();
       }
 
-      int routeType = MISSING_INT_FIELD_VALUE;
+      var routeType = SubMode.UNKNOWN;
       if (informed.hasRouteType()) {
-        routeType = informed.getRouteType();
+        routeType = SubMode.of(Integer.toString(informed.getRouteType()));
       }
 
       if (tripId != null) {
@@ -163,12 +164,12 @@ public class AlertsUpdateHandler {
         alertText.addEntity(new EntitySelector.Stop(new FeedScopedId(feedId, stopId)));
       } else if (agencyId != null) {
         FeedScopedId feedScopedAgencyId = new FeedScopedId(feedId, agencyId);
-        if (routeType != MISSING_INT_FIELD_VALUE) {
+        if (routeType != SubMode.UNKNOWN) {
           alertText.addEntity(new EntitySelector.RouteTypeAndAgency(routeType, feedScopedAgencyId));
         } else {
           alertText.addEntity(new EntitySelector.Agency(feedScopedAgencyId));
         }
-      } else if (routeType != MISSING_INT_FIELD_VALUE) {
+      } else if (routeType != SubMode.UNKNOWN) {
         alertText.addEntity(new EntitySelector.RouteType(routeType, feedId));
       } else {
         String description = "Entity selector: " + informed;

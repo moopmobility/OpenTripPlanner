@@ -13,7 +13,7 @@ public final class ApiRoute implements Serializable {
   public String shortName;
   public String longName;
   public String mode;
-  public int type;
+  public Integer type;
   public String desc;
   public String url;
   public String color;

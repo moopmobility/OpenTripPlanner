@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import org.opentripplanner.routing.alertpatch.TransitAlert;
 import org.opentripplanner.routing.services.TransitAlertService;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.timetable.Direction;
 import org.opentripplanner.transit.service.TransitModel;
@@ -112,20 +113,22 @@ public class DelegatingTransitAlertServiceImpl implements TransitAlertService {
   }
 
   @Override
-  public Collection<TransitAlert> getRouteTypeAndAgencyAlerts(int routeType, FeedScopedId agency) {
+  public Collection<TransitAlert> getRouteTypeAndAgencyAlerts(
+    SubMode subMode,
+    FeedScopedId agency
+  ) {
     return transitAlertServices
       .stream()
-      .map(transitAlertService -> transitAlertService.getRouteTypeAndAgencyAlerts(routeType, agency)
-      )
+      .map(transitAlertService -> transitAlertService.getRouteTypeAndAgencyAlerts(subMode, agency))
       .flatMap(Collection::stream)
       .collect(Collectors.toList());
   }
 
   @Override
-  public Collection<TransitAlert> getRouteTypeAlerts(int routeType, String feedId) {
+  public Collection<TransitAlert> getRouteTypeAlerts(SubMode subMode, String feedId) {
     return transitAlertServices
       .stream()
-      .map(transitAlertService -> transitAlertService.getRouteTypeAlerts(routeType, feedId))
+      .map(transitAlertService -> transitAlertService.getRouteTypeAlerts(subMode, feedId))
       .flatMap(Collection::stream)
       .collect(Collectors.toList());
   }

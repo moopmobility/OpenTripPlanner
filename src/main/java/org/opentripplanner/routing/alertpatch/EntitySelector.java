@@ -2,6 +2,7 @@ package org.opentripplanner.routing.alertpatch;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.timetable.Direction;
 
@@ -214,18 +215,18 @@ public interface EntitySelector {
 
   class RouteType implements EntitySelector {
 
-    public final int routeType;
+    public final SubMode subMode;
 
     public final String feedId;
 
-    public RouteType(int routeType, String feedId) {
-      this.routeType = routeType;
+    public RouteType(SubMode subMode, String feedId) {
+      this.subMode = subMode;
       this.feedId = feedId;
     }
 
     @Override
     public int hashCode() {
-      return 37 * routeType * Objects.hash(feedId);
+      return Objects.hash(subMode, feedId);
     }
 
     @Override
@@ -237,25 +238,24 @@ public interface EntitySelector {
         return false;
       }
       RouteType that = (RouteType) o;
-      return routeType == that.routeType && feedId.equals(that.feedId);
+      return subMode == that.subMode && feedId.equals(that.feedId);
     }
   }
 
   class RouteTypeAndAgency implements EntitySelector {
 
-    public final int routeType;
+    public final SubMode subMode;
 
     public final FeedScopedId agencyId;
 
-    public RouteTypeAndAgency(int routeType, FeedScopedId agencyId) {
-      this.routeType = routeType;
+    public RouteTypeAndAgency(SubMode subMode, FeedScopedId agencyId) {
+      this.subMode = subMode;
       this.agencyId = agencyId;
     }
 
     @Override
     public int hashCode() {
-      int agencyHash = Objects.hash(agencyId);
-      return 37 * routeType * agencyHash;
+      return Objects.hash(subMode, agencyId);
     }
 
     @Override
@@ -267,7 +267,7 @@ public interface EntitySelector {
         return false;
       }
       RouteTypeAndAgency that = (RouteTypeAndAgency) o;
-      return routeType == that.routeType && agencyId.equals(that.agencyId);
+      return subMode == that.subMode && agencyId.equals(that.agencyId);
     }
   }
 

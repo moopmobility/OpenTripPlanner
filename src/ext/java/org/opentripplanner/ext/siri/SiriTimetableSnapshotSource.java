@@ -543,7 +543,7 @@ public class SiriTimetableSnapshotSource implements TimetableSnapshotProvider {
         replacedRoute
       );
       routeBuilder.withMode(transitMode.first);
-      routeBuilder.withNetexSubmode(transitMode.second);
+      routeBuilder.withSubMode(transitMode.second);
       routeBuilder.withOperator(operator);
 
       // TODO - SIRI: Is there a better way to find authority/Agency?
