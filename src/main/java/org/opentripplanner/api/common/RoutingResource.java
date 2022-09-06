@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
@@ -24,9 +25,13 @@ import org.codehaus.jackson.type.TypeReference;
 import org.opentripplanner.api.parameter.QualifiedModeSet;
 import org.opentripplanner.ext.dataoverlay.api.DataOverlayParameters;
 import org.opentripplanner.model.plan.pagecursor.PageCursor;
+import org.opentripplanner.routing.api.request.RequestModes;
 import org.opentripplanner.routing.api.request.RoutingRequest;
+import org.opentripplanner.routing.api.request.StreetMode;
 import org.opentripplanner.routing.core.BicycleOptimizeType;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
+import org.opentripplanner.transit.model.basic.MainAndSubMode;
+import org.opentripplanner.transit.model.basic.SubMode;
 import org.opentripplanner.transit.model.basic.TransitMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.util.OTPFeature;
@@ -317,6 +322,29 @@ public abstract class RoutingResource {
    */
   @QueryParam("mode")
   protected String modes;
+
+  @QueryParam("directMode")
+  @DefaultValue("WALK")
+  protected StreetMode directMode;
+
+  @QueryParam("accessMode")
+  @DefaultValue("WALK")
+  protected StreetMode accessMode;
+
+  @QueryParam("egressMode")
+  @DefaultValue("WALK")
+  protected StreetMode egressMode;
+
+  @QueryParam("transferMode")
+  @DefaultValue("WALK")
+  protected StreetMode transferMode;
+
+  @QueryParam("transitModes")
+  protected List<String> transitModes;
+
+  @QueryParam("noTransitModes")
+  @DefaultValue("false")
+  protected boolean noTransitModes;
 
   /**
    * The minimum time, in seconds, between successive trips on different vehicles. This is designed
@@ -915,11 +943,28 @@ public abstract class RoutingResource {
       request.setBicycleOptimizeType(optimize);
     }
     /* Temporary code to get bike/car parking and renting working. */
-    if (modes != null) {
+    if (modes != null && !modes.isBlank()) {
       var modeSet = new QualifiedModeSet(modes);
       if (!modeSet.qModes.isEmpty()) {
         request.modes = modeSet.getRequestModes();
       }
+    } else {
+      var builder = RequestModes.of();
+      builder.withDirectMode(directMode);
+      builder.withAccessMode(accessMode);
+      builder.withEgressMode(egressMode);
+      builder.withTransferMode(transferMode);
+
+      if (!noTransitModes) {
+        if (transitModes.isEmpty()) {
+          builder.withTransitModes(MainAndSubMode.all());
+        } else {
+          builder.withTransitModes(
+            transitModes.stream().map(this::parseMainAndSubMode).collect(Collectors.toList())
+          );
+        }
+      }
+      request.modes = builder.build();
     }
 
     if (request.vehicleRental && bikeSpeed == null) {
@@ -1011,6 +1056,18 @@ public abstract class RoutingResource {
     }
 
     return request;
+  }
+
+  private MainAndSubMode parseMainAndSubMode(String mode) {
+    var mainMode = mode;
+    var subMode = (String) null;
+    if (mode.indexOf(":") > 0) {
+      mainMode = mode.substring(0, mode.indexOf(":"));
+      subMode = mode.substring(mode.indexOf(":"));
+      return new MainAndSubMode(TransitMode.valueOf(mainMode), SubMode.of(subMode));
+    } else {
+      return new MainAndSubMode(TransitMode.valueOf(mainMode));
+    }
   }
 
   private Map<String, Double> parseDoubleModeMap(
