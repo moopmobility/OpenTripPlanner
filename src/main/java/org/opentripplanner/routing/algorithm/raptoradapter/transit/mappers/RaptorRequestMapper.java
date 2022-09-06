@@ -6,10 +6,13 @@ import io.micrometer.core.instrument.MeterRegistry;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import org.opentripplanner.routing.algorithm.raptoradapter.router.performance.PerformanceTimersForRaptor;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.SlackProvider;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TripSchedule;
 import org.opentripplanner.routing.api.request.RoutingRequest;
+import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.transit.raptor.api.request.Optimization;
 import org.opentripplanner.transit.raptor.api.request.RaptorProfile;
 import org.opentripplanner.transit.raptor.api.request.RaptorRequest;
@@ -129,14 +132,21 @@ public class RaptorRequestMapper {
       .addAccessPaths(accessPaths)
       .addEgressPaths(egressPaths);
 
-    if (request.raptorDebugging.isEnabled()) {
+    if (request.debugRaptorStops != null || request.debugRaptorPath != null) {
       var debug = builder.debug();
       var debugLogger = new SystemErrDebugLogger(true);
 
+      if (request.debugRaptorStops != null) {
+        debug.addStops(mapToStopIndex(request.debugRaptorStops));
+      }
+
+      if (request.debugRaptorPath != null) {
+        debug
+          .setPath(mapToStopIndex(request.debugRaptorPath))
+          .debugPathFromStopIndex(request.debugRaptorPathFromStopIndex);
+      }
+
       debug
-        .addStops(request.raptorDebugging.stops())
-        .setPath(request.raptorDebugging.path())
-        .debugPathFromStopIndex(request.raptorDebugging.debugPathFromStopIndex())
         .stopArrivalListener(debugLogger::stopArrivalLister)
         .patternRideDebugListener(debugLogger::patternRideLister)
         .pathFilteringListener(debugLogger::pathFilteringListener)
@@ -153,6 +163,10 @@ public class RaptorRequestMapper {
     );
 
     return builder.build();
+  }
+
+  private List<Integer> mapToStopIndex(Collection<StopLocation> debugRaptorStops) {
+    return debugRaptorStops.stream().map(StopLocation::getIndex).toList();
   }
 
   private int relativeTime(Instant time) {

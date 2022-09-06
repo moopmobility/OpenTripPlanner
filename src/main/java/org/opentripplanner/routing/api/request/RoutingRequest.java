@@ -48,6 +48,7 @@ import org.opentripplanner.routing.vehicle_rental.VehicleRentalStation;
 import org.opentripplanner.transit.model.basic.TransitMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.network.Route;
+import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.util.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -681,6 +682,25 @@ public class RoutingRequest implements Cloneable, Serializable {
   public RaptorOptions raptorOptions = new RaptorOptions();
 
   public FlexParameters flexParameters = null;
+
+  /**
+   * Raptor can print all events when arriving at stops to stderrr. For developers only.
+   */
+  public Set<StopLocation> debugRaptorStops;
+
+  /**
+   * Raptor can print all events for a path to stderr. For developers only.
+   *
+   * @see #debugRaptorPathFromStopIndex
+   */
+  public List<StopLocation> debugRaptorPath;
+
+  /**
+   * Stop index to print a Raptor paths to stderr. For developers only.
+   *
+   * @see #debugRaptorPath
+   */
+  public int debugRaptorPathFromStopIndex = 0;
 
   /**
    * List of OTP request tags, these are used to cross-cutting concerns like logging and micrometer

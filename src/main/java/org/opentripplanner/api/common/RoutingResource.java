@@ -719,6 +719,9 @@ public abstract class RoutingResource {
   @QueryParam("debugRaptorPath")
   private String debugRaptorPath;
 
+  @QueryParam("debugRaptorPathFromStopIndex")
+  private int debugRaptorPathFromStopIndex = 0;
+
   /**
    * somewhat ugly bug fix: the graphService is only needed here for fetching per-graph time zones.
    * this should ideally be done when setting the routing context, but at present departure/ arrival
@@ -973,7 +976,24 @@ public abstract class RoutingResource {
       request.itineraryFilters.debug = debugItineraryFilter;
     }
 
-    request.raptorDebugging.withStops(debugRaptorStops).withPath(debugRaptorPath);
+    if (debugRaptorStops != null) {
+      request.debugRaptorStops =
+        FeedScopedId
+          .parseListOfIds(debugRaptorStops)
+          .stream()
+          .map(feedScopedId -> serverContext.transitService().getStopLocation(feedScopedId))
+          .collect(Collectors.toSet());
+    }
+
+    if (debugRaptorPath != null) {
+      request.debugRaptorPath =
+        FeedScopedId
+          .parseListOfIds(debugRaptorPath)
+          .stream()
+          .map(feedScopedId -> serverContext.transitService().getStopLocation(feedScopedId))
+          .toList();
+      request.debugRaptorPathFromStopIndex = debugRaptorPathFromStopIndex;
+    }
 
     if (useVehicleParkingAvailabilityInformation != null) {
       request.useVehicleParkingAvailabilityInformation = useVehicleParkingAvailabilityInformation;

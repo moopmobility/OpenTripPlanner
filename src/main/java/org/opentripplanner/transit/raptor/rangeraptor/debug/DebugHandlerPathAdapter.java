@@ -13,7 +13,11 @@ final class DebugHandlerPathAdapter extends AbstractDebugHandlerAdapter<Path<?>>
 
   @Override
   protected int stop(Path<?> path) {
-    return path.egressLeg().fromStop();
+    // A dummyPath() was constructed, ignore
+    if (path.accessLeg() == null) {
+      return Integer.MIN_VALUE;
+    }
+    return path.egressLeg() != null ? path.egressLeg().fromStop() : 0;
   }
 
   @Override
