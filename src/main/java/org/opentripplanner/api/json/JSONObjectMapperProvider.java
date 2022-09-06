@@ -56,7 +56,6 @@ public class JSONObjectMapperProvider implements ContextResolver<ObjectMapper> {
     // and named, versioned reusable modules.
     mapper =
       new ObjectMapper()
-        .registerModule(FeedScopedIdSerializer.makeModule())
         .registerModule(new JtsModule())
         .setSerializationInclusion(Include.NON_NULL); // skip null fields
   }
