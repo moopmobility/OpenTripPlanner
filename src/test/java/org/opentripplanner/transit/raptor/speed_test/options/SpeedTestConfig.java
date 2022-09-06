@@ -39,7 +39,8 @@ public class SpeedTestConfig {
     testDate = adapter.asDateOrRelativePeriod("testDate", "PT0D");
     graph = adapter.asUri("graph", null);
     feedId = adapter.asText("feedId", null);
-    transitRoutingParams = new TransitRoutingConfig(adapter.path("tuningParameters"));
+    transitRoutingParams =
+      new TransitRoutingConfig(adapter.path("tuningParameters"), new RoutingRequest());
     request = mapRoutingRequest(adapter.path("routingDefaults"));
   }
 

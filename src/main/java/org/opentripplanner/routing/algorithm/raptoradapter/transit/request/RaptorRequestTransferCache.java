@@ -13,8 +13,13 @@ import org.opentripplanner.routing.api.request.StreetMode;
 import org.opentripplanner.routing.api.request.WheelchairAccessibilityRequest;
 import org.opentripplanner.routing.core.BicycleOptimizeType;
 import org.opentripplanner.routing.core.RoutingContext;
+import org.opentripplanner.util.lang.ToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RaptorRequestTransferCache {
+
+  private static final Logger LOG = LoggerFactory.getLogger(RaptorRequestTransferCache.class);
 
   private final LoadingCache<CacheKey, RaptorTransferIndex> transferCache;
 
@@ -41,6 +46,7 @@ public class RaptorRequestTransferCache {
     return new CacheLoader<>() {
       @Override
       public RaptorTransferIndex load(@javax.annotation.Nonnull CacheKey cacheKey) {
+        LOG.info("Adding request to cache: {}", cacheKey.options);
         return RaptorTransferIndex.create(cacheKey.transfersByStopIndex, cacheKey.routingContext);
       }
     };
@@ -85,8 +91,6 @@ public class RaptorRequestTransferCache {
   /**
    * This contains an extract of the parameters which may influence transfers. The possible values
    * are somewhat limited by rounding in {@link Transfer#prepareTransferRoutingRequest(RoutingRequest)}.
-   * <p>
-   * TODO: the bikeWalking options are not used.
    */
   private static class StreetRelevantOptions {
 
@@ -98,10 +102,12 @@ public class RaptorRequestTransferCache {
     private final WheelchairAccessibilityRequest wheelchairAccessibility;
     private final double walkSpeed;
     private final double bikeSpeed;
+    private final double bikeWalkingSpeed;
     private final double walkReluctance;
     private final double stairsReluctance;
     private final double stairsTimeFactor;
     private final double turnReluctance;
+    private final double bikeWalkingReluctance;
     private final int elevatorBoardCost;
     private final int elevatorBoardTime;
     private final int elevatorHopCost;
@@ -123,11 +129,13 @@ public class RaptorRequestTransferCache {
 
       this.walkSpeed = routingRequest.walkSpeed;
       this.bikeSpeed = routingRequest.bikeSpeed;
+      this.bikeWalkingSpeed = routingRequest.bikeWalkingSpeed;
 
       this.walkReluctance = routingRequest.walkReluctance;
       this.stairsReluctance = routingRequest.stairsReluctance;
       this.stairsTimeFactor = routingRequest.stairsTimeFactor;
       this.turnReluctance = routingRequest.turnReluctance;
+      this.bikeWalkingReluctance = routingRequest.bikeWalkingReluctance;
 
       this.elevatorBoardCost = routingRequest.elevatorBoardCost;
       this.elevatorBoardTime = routingRequest.elevatorBoardTime;
@@ -146,7 +154,9 @@ public class RaptorRequestTransferCache {
         wheelchairAccessibility,
         walkSpeed,
         bikeSpeed,
+        bikeWalkingSpeed,
         walkReluctance,
+        bikeWalkingReluctance,
         stairsReluctance,
         turnReluctance,
         elevatorBoardCost,
@@ -174,7 +184,9 @@ public class RaptorRequestTransferCache {
         Double.compare(that.bikeTriangleTimeFactor, bikeTriangleTimeFactor) == 0 &&
         Double.compare(that.walkSpeed, walkSpeed) == 0 &&
         Double.compare(that.bikeSpeed, bikeSpeed) == 0 &&
+        Double.compare(that.bikeWalkingSpeed, bikeWalkingSpeed) == 0 &&
         Double.compare(that.walkReluctance, walkReluctance) == 0 &&
+        Double.compare(that.bikeWalkingReluctance, bikeWalkingReluctance) == 0 &&
         Double.compare(that.stairsReluctance, stairsReluctance) == 0 &&
         Double.compare(that.stairsTimeFactor, stairsTimeFactor) == 0 &&
         Double.compare(that.turnReluctance, turnReluctance) == 0 &&
@@ -188,6 +200,33 @@ public class RaptorRequestTransferCache {
         transferMode == that.transferMode &&
         optimize == that.optimize
       );
+    }
+
+    @Override
+    public String toString() {
+      return ToStringBuilder
+        .of(StreetRelevantOptions.class)
+        .addEnum("transferMode", transferMode)
+        .addEnum("optimize", optimize)
+        .addNum("bikeTriangleSafetyFactor", bikeTriangleSafetyFactor)
+        .addNum("bikeTriangleSlopeFactor", bikeTriangleSlopeFactor)
+        .addNum("bikeTriangleTimeFactor", bikeTriangleTimeFactor)
+        .addObj("wheelchairAccessible", wheelchairAccessibility)
+        .addNum("walkSpeed", walkSpeed)
+        .addNum("bikeSpeed", bikeSpeed)
+        .addNum("bikeWalkingSpeed", bikeWalkingSpeed)
+        .addNum("walkReluctance", walkReluctance)
+        .addNum("bikeWalkReluctance", bikeWalkingReluctance)
+        .addNum("stairsReluctance", stairsReluctance)
+        .addNum("stairsTimeFactor", stairsTimeFactor)
+        .addNum("turnReluctance", turnReluctance)
+        .addNum("elevatorBoardCost", elevatorBoardCost)
+        .addNum("elevatorBoardTime", elevatorBoardTime)
+        .addNum("elevatorHopCost", elevatorHopCost)
+        .addNum("elevatorHopTime", elevatorHopTime)
+        .addNum("bikeSwitchCost", bikeSwitchCost)
+        .addNum("bikeSwitchTime", bikeSwitchTime)
+        .toString();
     }
   }
 }

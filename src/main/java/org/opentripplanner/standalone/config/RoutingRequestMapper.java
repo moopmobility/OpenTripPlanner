@@ -17,12 +17,10 @@ public class RoutingRequestMapper {
   private static final Logger LOG = LoggerFactory.getLogger(RoutingRequestMapper.class);
 
   public static RoutingRequest mapRoutingRequest(NodeAdapter c) {
-    RoutingRequest dft = new RoutingRequest();
+    return mapRoutingRequest(c, new RoutingRequest());
+  }
 
-    if (c.isEmpty()) {
-      return dft;
-    }
-
+  public static RoutingRequest mapRoutingRequest(NodeAdapter c, RoutingRequest dft) {
     LOG.debug("Loading default routing parameters from JSON.");
     RoutingRequest request = new RoutingRequest();
 

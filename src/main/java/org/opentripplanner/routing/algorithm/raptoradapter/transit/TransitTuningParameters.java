@@ -2,6 +2,7 @@ package org.opentripplanner.routing.algorithm.raptoradapter.transit;
 
 import java.time.Duration;
 import java.util.List;
+import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.transit.model.site.StopTransferPriority;
 import org.opentripplanner.util.time.DurationUtils;
 
@@ -50,6 +51,11 @@ public interface TransitTuningParameters {
     public List<Duration> pagingSearchWindowAdjustments() {
       return PAGING_SEARCH_WINDOW_ADJUSTMENTS;
     }
+
+    @Override
+    public List<RoutingRequest> transferCacheRequests() {
+      return List.of();
+    }
   };
 
   /**
@@ -96,4 +102,10 @@ public interface TransitTuningParameters {
    * The default values are: {@link #PAGING_SEARCH_WINDOW_ADJUSTMENTS}
    */
   List<Duration> pagingSearchWindowAdjustments();
+
+  /*
+   * RoutingRequests which will be used at server startup to pre-fill the raptor transfer cache.
+   * @see org.opentripplanner.routing.algorithm.raptor.transit.request.RaptorRequestTransferCache
+   */
+  List<RoutingRequest> transferCacheRequests();
 }

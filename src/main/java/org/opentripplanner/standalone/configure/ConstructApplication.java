@@ -1,5 +1,6 @@
 package org.opentripplanner.standalone.configure;
 
+import java.util.Set;
 import javax.annotation.Nullable;
 import javax.ws.rs.core.Application;
 import org.opentripplanner.datastore.api.DataSource;
@@ -7,10 +8,12 @@ import org.opentripplanner.ext.geocoder.LuceneIndex;
 import org.opentripplanner.ext.transmodelapi.TransmodelAPI;
 import org.opentripplanner.graph_builder.GraphBuilder;
 import org.opentripplanner.graph_builder.GraphBuilderDataSources;
+import org.opentripplanner.routing.algorithm.raptoradapter.transit.Transfer;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TransitLayer;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TripSchedule;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.mappers.TransitLayerMapper;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.mappers.TransitLayerUpdater;
+import org.opentripplanner.routing.core.RoutingContext;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.opentripplanner.standalone.config.BuildConfig;
@@ -24,6 +27,7 @@ import org.opentripplanner.transit.raptor.configure.RaptorConfig;
 import org.opentripplanner.transit.service.TransitModel;
 import org.opentripplanner.updater.configure.UpdaterConfigurator;
 import org.opentripplanner.util.OTPFeature;
+import org.opentripplanner.util.logging.ProgressTracker;
 import org.opentripplanner.visualizer.GraphVisualizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,6 +140,8 @@ public class ConstructApplication {
 
     graph().initEllipsoidToGeoidDifference();
 
+    initializeTransferCache();
+
     if (OTPFeature.SandboxAPITransmodelApi.isOn()) {
       TransmodelAPI.setUp(
         routerConfig().transmodelApi(),
@@ -147,6 +153,32 @@ public class ConstructApplication {
     if (OTPFeature.SandboxAPIGeocoder.isOn()) {
       LOG.info("Creating debug client geocoder lucene index");
       LuceneIndex.forServer(createServerContext());
+    }
+  }
+
+  public void initializeTransferCache() {
+    var transferCacheRequests = routerConfig().transitTuningParameters().transferCacheRequests();
+    if (!transferCacheRequests.isEmpty()) {
+      var progress = ProgressTracker.track(
+        "Creating initial raptor transfer cache",
+        1,
+        transferCacheRequests.size()
+      );
+
+      LOG.info(progress.startMessage());
+
+      transferCacheRequests
+        .stream()
+        .map(Transfer::prepareTransferRoutingRequest)
+        .forEach(request -> {
+          var routingContext = new RoutingContext(request, graph(), Set.of(), Set.of());
+          transitModel().getTransitLayer().getRaptorTransfersForRequest(routingContext);
+
+          //noinspection Convert2MethodRef
+          progress.step(s -> LOG.info(s));
+        });
+
+      LOG.info(progress.completeMessage());
     }
   }
 

@@ -53,11 +53,11 @@ public class RouterConfig implements Serializable {
     this.requestLogFile = adapter.asText("requestLogFile", null);
     this.transmodelApi = new TransmodelAPIConfig(adapter.path("transmodelApi"));
     this.streetRoutingTimeout = parseStreetRoutingTimeout(adapter);
-    this.transitConfig = new TransitRoutingConfig(adapter.path("transit"));
     this.routingRequestDefaults = mapRoutingRequest(adapter.path("routingDefaults"));
     this.updatersParameters = new UpdatersConfig(adapter);
     this.vectorTileLayers = new VectorTileConfig(adapter.path("vectorTileLayers").asList());
     this.flexConfig = new FlexConfig(adapter.path("flex"));
+    this.transitConfig = new TransitRoutingConfig(adapter.path("transit"), routingRequestDefaults);
 
     if (logUnusedParams) {
       adapter.logAllUnusedParameters(LOG);

@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TransitTuningParameters;
+import org.opentripplanner.routing.api.request.RoutingRequest;
 import org.opentripplanner.transit.model.site.StopTransferPriority;
 import org.opentripplanner.transit.raptor.api.request.DynamicSearchWindowCoefficients;
 import org.opentripplanner.transit.raptor.api.request.RaptorTuningParameters;
@@ -22,8 +23,9 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
 
   private final Map<StopTransferPriority, Integer> stopTransferCost;
   private final DynamicSearchWindowCoefficients dynamicSearchWindowCoefficients;
+  private final List<RoutingRequest> transferCacheRequests;
 
-  public TransitRoutingConfig(NodeAdapter c) {
+  public TransitRoutingConfig(NodeAdapter c, RoutingRequest routingRequestDefaults) {
     RaptorTuningParameters dft = new RaptorTuningParameters() {};
 
     this.maxNumberOfTransfers = c.asInt("maxNumberOfTransfers", dft.maxNumberOfTransfers());
@@ -46,6 +48,18 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
 
     this.dynamicSearchWindowCoefficients =
       new DynamicSearchWindowConfig(c.path("dynamicSearchWindow"));
+
+    if (c.path("transferCacheRequests") != null) {
+      this.transferCacheRequests =
+        c
+          .path("transferCacheRequests")
+          .asList()
+          .stream()
+          .map(node -> RoutingRequestMapper.mapRoutingRequest(node, routingRequestDefaults))
+          .toList();
+    } else {
+      this.transferCacheRequests = List.of();
+    }
   }
 
   @Override
@@ -91,6 +105,11 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
   @Override
   public List<Duration> pagingSearchWindowAdjustments() {
     return pagingSearchWindowAdjustments;
+  }
+
+  @Override
+  public List<RoutingRequest> transferCacheRequests() {
+    return transferCacheRequests;
   }
 
   private static class DynamicSearchWindowConfig implements DynamicSearchWindowCoefficients {
