@@ -887,6 +887,9 @@ public class StreetEdge
     splitEdge.setWalkSafetyFactor(walkSafetyFactor);
     splitEdge.setStreetClass(getStreetClass());
     splitEdge.setCarSpeed(getCarSpeed());
+    splitEdge.setMotorVehicleNoThruTraffic(isMotorVehicleNoThruTraffic());
+    splitEdge.setBicycleNoThruTraffic(isBicycleNoThruTraffic());
+    splitEdge.setWalkNoThruTraffic(isWalkNoThruTraffic());
     splitEdge.setElevationExtensionUsingParent(this, fromDistance, toDistance);
   }
 
