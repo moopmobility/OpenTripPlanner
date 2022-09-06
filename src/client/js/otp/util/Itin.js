@@ -199,8 +199,8 @@ otp.util.Itin = {
         return otp.util.Geo.distanceString(m);
     },
 
-    durationString : function (startTime, endTime) {
-      return otp.util.Time.secsToHrMin( (endTime - startTime)/1000.0 );
+    durationString : function (seconds) {
+      return otp.util.Time.secsToHrMin(seconds);
     },
 
     modeStrings : {

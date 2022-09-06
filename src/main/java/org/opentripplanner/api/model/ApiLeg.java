@@ -1,6 +1,7 @@
 package org.opentripplanner.api.model;
 
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.List;
 import org.opentripplanner.util.model.EncodedPolyline;
 
@@ -14,12 +15,12 @@ public class ApiLeg {
   /**
    * The date and time this leg begins.
    */
-  public Calendar startTime = null;
+  public ZonedDateTime startTime = null;
 
   /**
    * The date and time this leg ends.
    */
-  public Calendar endTime = null;
+  public ZonedDateTime endTime = null;
 
   /**
    * For transit leg, the offset from the scheduled departure-time of the boarding stop in this leg.
@@ -234,6 +235,6 @@ public class ApiLeg {
    * The leg's duration in seconds
    */
   public double getDuration() {
-    return endTime.getTimeInMillis() / 1000.0 - startTime.getTimeInMillis() / 1000.0;
+    return Duration.between(startTime, endTime).toSeconds();
   }
 }

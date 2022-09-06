@@ -1,6 +1,7 @@
 package org.opentripplanner.api.common;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -73,6 +74,10 @@ public abstract class RoutingResource {
   /** The time that the trip should depart (or arrive, for requests where arriveBy is true). */
   @QueryParam("time")
   protected String time;
+
+  /** The time that the trip should depart (or arrive, for requests where arriveBy is true). */
+  @QueryParam("datetime")
+  protected Instant datetime;
 
   /**
    * The length of the search-window in seconds. This parameter is optional.
@@ -719,7 +724,9 @@ public abstract class RoutingResource {
 
     if (toPlace != null) request.to = LocationStringParser.fromOldStyleString(toPlace);
 
-    {
+    if (datetime != null) {
+      request.setDateTime(datetime);
+    } else {
       //FIXME: move into setter method on routing request
       ZoneId tz = serverContext.transitService().getTimeZone();
       if (date == null && time != null) { // Time was provided but not date

@@ -30,6 +30,7 @@ public enum OTPFeature {
   ParallelRouting(false),
   TransferConstraints(true),
   FloatingBike(true),
+  ISO8601DateTimeFormat(false),
 
   // Sandbox extension features - Must be turned OFF by default
   ActuatorAPI(false),

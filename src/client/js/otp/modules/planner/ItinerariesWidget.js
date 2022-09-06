@@ -254,7 +254,7 @@ otp.widgets.ItinerariesWidget =
         div.append('<div class="otp-itinsAccord-header-number">'+(index+1)+'.</div>');
 
         var maxSpan = itin.tripPlan.latestEndTime - itin.tripPlan.earliestStartTime;
-        var startPct = (itin.itinData.startTime - itin.tripPlan.earliestStartTime) / maxSpan;
+        var startPct = (moment(itin.itinData.startTime) - itin.tripPlan.earliestStartTime) / maxSpan;
         var itinSpan = itin.getEndTime() - itin.getStartTime();
         var timeWidth = 40;
         var startPx = 20+timeWidth, endPx = div.width()-timeWidth - (itin.groupSize ? 48 : 0);
@@ -274,10 +274,10 @@ otp.widgets.ItinerariesWidget =
 
         for(var l=0; l<itin.itinData.legs.length; l++) {
             var leg = itin.itinData.legs[l];
-            var startPct = (leg.startTime - itin.tripPlan.earliestStartTime) / maxSpan;
-            var endPct = (leg.endTime - itin.tripPlan.earliestStartTime) / maxSpan;
+            var startPct = (moment(leg.startTime) - itin.tripPlan.earliestStartTime) / maxSpan;
+            var endPct = (moment(leg.endTime) - itin.tripPlan.earliestStartTime) / maxSpan;
             var leftPx = startPx + startPct * pxSpan + 1;
-            var widthPx = pxSpan * (leg.endTime - leg.startTime) / maxSpan - 1;
+            var widthPx = pxSpan * (moment(leg.endTime) - moment(leg.startTime)) / maxSpan - 1;
 
             //div.append('<div class="otp-itinsAccord-header-segment" style="width: '+widthPx+'px; left: '+leftPx+'px; background: '+this.getModeColor(leg.mode)+' url(images/mode/'+leg.mode.toLowerCase()+'.png) center no-repeat;"></div>');
             var legTextColor = otp.util.Itin.getLegTextColor(leg);
@@ -581,7 +581,7 @@ otp.widgets.ItinerariesWidget =
             }
 
             if(leg.mode === "WALK" || leg.mode === "BICYCLE" || leg.mode === "SCOOTER" || leg.mode === "CAR") {
-                headerHtml += " "+otp.util.Itin.distanceString(leg.distance) + ", " + otp.util.Itin.durationString(leg.startTime, leg.endTime) + pgettext("direction", " to ")+otp.util.Itin.getName(leg.to);
+                headerHtml += " "+otp.util.Itin.distanceString(leg.distance) + ", " + otp.util.Itin.durationString(leg.duration) + pgettext("direction", " to ")+otp.util.Itin.getName(leg.to);
                 if(otp.config.municoderHostname) {
                     var spanId = this.newMunicoderRequest(leg.to.lat, leg.to.lon);
                     headerHtml += '<span id="'+spanId+'"></span>';
@@ -649,7 +649,7 @@ otp.widgets.ItinerariesWidget =
 
         // create an alert if this is a different day from the searched day
         var queryTime = otp.util.Time.constructQueryTime(itin.tripPlan.queryParams);
-        if(itin.differentServiceDayFromQuery(itin.tripPlan.queryParams.originalQueryTime || queryTime)) {
+        if(itin.differentServiceDayFromQuery(queryTime)) {
             //TRANSLATORS: Shown as alert text before showing itinerary.
             alerts = [ _tr("This itinerary departs on a different day than the one searched for") ];
         }
@@ -814,7 +814,7 @@ otp.widgets.ItinerariesWidget =
                     this_.module.stopViewerWidget.$().offset({top: evt.clientY, left: evt.clientX});
                 }
                 this_.module.stopViewerWidget.show();
-                this_.module.stopViewerWidget.setActiveTime(leg.startTime);
+                this_.module.stopViewerWidget.setActiveTime(moment(leg.startTime));
                 this_.module.stopViewerWidget.setStop(leg.from.stopId, leg.from.name);
                 this_.module.stopViewerWidget.bringToFront();
             });
@@ -938,7 +938,7 @@ otp.widgets.ItinerariesWidget =
                         this_.module.stopViewerWidget.$().offset({top: evt.clientY, left: evt.clientX});
                     }
                     this_.module.stopViewerWidget.show();
-                    this_.module.stopViewerWidget.setActiveTime(leg.endTime);
+                    this_.module.stopViewerWidget.setActiveTime(moment(leg.endTime));
                     this_.module.stopViewerWidget.setStop(leg.to.stopId, leg.to.name);
                     this_.module.stopViewerWidget.bringToFront();
                 });

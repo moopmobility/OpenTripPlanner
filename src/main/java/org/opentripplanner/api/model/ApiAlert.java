@@ -1,6 +1,6 @@
 package org.opentripplanner.api.model;
 
-import java.util.Date;
+import java.time.Instant;
 
 public class ApiAlert {
 
@@ -8,6 +8,6 @@ public class ApiAlert {
   public String alertDescriptionText;
   public String alertUrl;
   /** null means unknown */
-  public Date effectiveStartDate;
-  public Date effectiveEndDate;
+  public Instant effectiveStartDate;
+  public Instant effectiveEndDate;
 }

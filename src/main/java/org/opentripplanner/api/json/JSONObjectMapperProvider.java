@@ -3,10 +3,13 @@ package org.opentripplanner.api.json;
 import com.bedatadriven.jackson.datatype.jts.JtsModule;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
+import org.opentripplanner.util.OTPFeature;
 
 /**
  * AgencyAndId is a third-party class in One Bus Away which represents a GTFS element's ID,
@@ -54,9 +57,15 @@ public class JSONObjectMapperProvider implements ContextResolver<ObjectMapper> {
     // Our module includes a single class-serializer relationship.
     // Constructors are available for both unnamed, unversioned throwaway modules
     // and named, versioned reusable modules.
-    mapper =
+    this.mapper =
       new ObjectMapper()
         .registerModule(new JtsModule())
+        .registerModule(new JavaTimeModule())
+        .disable(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS)
+        .configure(
+          SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
+          OTPFeature.ISO8601DateTimeFormat.isOff()
+        )
         .setSerializationInclusion(Include.NON_NULL); // skip null fields
   }
 

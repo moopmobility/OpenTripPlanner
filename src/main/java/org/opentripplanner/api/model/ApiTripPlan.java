@@ -1,7 +1,7 @@
 package org.opentripplanner.api.model;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,7 +10,7 @@ import java.util.List;
 public class ApiTripPlan {
 
   /** The time and date of travel */
-  public Date date;
+  public Instant date;
 
   /** The origin */
   public ApiPlace from;

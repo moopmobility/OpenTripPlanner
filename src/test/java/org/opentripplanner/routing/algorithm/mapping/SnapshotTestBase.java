@@ -354,7 +354,7 @@ public abstract class SnapshotTestBase {
     private SnapshotItinerarySerializer() {
       objectMapper = new ObjectMapper();
       objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
-      objectMapper.enable(SerializationFeature.WRITE_DATES_WITH_ZONE_ID);
+      objectMapper.disable(SerializationFeature.WRITE_DATES_WITH_ZONE_ID);
       objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
       objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
       objectMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);

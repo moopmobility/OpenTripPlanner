@@ -133,8 +133,12 @@ otp.util.Time = {
     },
 
     constructQueryTime : function (queryParams) {
-      var queryTime = queryParams.date + ' ' + queryParams.time;
-      return moment(queryTime, 'MM-DD-YYYY HH:mma').unix()*1000
+      if (queryParams.datetime) {
+          return moment(queryParams.datetime).unix() * 1000;
+      } else {
+          var queryTime = queryParams.date + ' ' + queryParams.time;
+          return moment(queryTime, otp.config.apiDateFormat + ' ' + otp.config.apiTimeFormat).unix() * 1000
+      }
     },
 
     CLASS_NAME: "otp.util.Time"

@@ -4,7 +4,6 @@ import static org.opentripplanner.api.mapping.ElevationMapper.mapElevation;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import org.opentripplanner.api.model.ApiAlert;
@@ -60,8 +59,8 @@ public class LegMapper {
       return null;
     }
     ApiLeg api = new ApiLeg();
-    api.startTime = GregorianCalendar.from(domain.getStartTime());
-    api.endTime = GregorianCalendar.from(domain.getEndTime());
+    api.startTime = domain.getStartTime();
+    api.endTime = domain.getEndTime();
 
     // Set the arrival and departure times, even if this is redundant information
     api.from =

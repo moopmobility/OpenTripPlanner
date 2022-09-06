@@ -56,11 +56,11 @@ otp.modules.planner.Itinerary = otp.Class({
     },
 
     getStartTime : function() {
-        return this.itinData.legs[0].startTime;
+        return moment(this.itinData.legs[0].startTime);
     },
 
     getEndTime : function() {
-        return this.itinData.legs[this.itinData.legs.length-1].endTime;
+        return moment(this.itinData.legs[this.itinData.legs.length-1].endTime);
     },
 
     getStartTimeStr : function() {

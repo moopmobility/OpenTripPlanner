@@ -42,8 +42,8 @@ public class AlertMapper {
       api.alertUrl = domain.alertUrl.toString(locale);
     }
 
-    api.effectiveStartDate = ofNullableInstant(domain.getEffectiveStartDate());
-    api.effectiveEndDate = ofNullableInstant(domain.getEffectiveEndDate());
+    api.effectiveStartDate = domain.getEffectiveStartDate();
+    api.effectiveEndDate = domain.getEffectiveEndDate();
 
     return api;
   }

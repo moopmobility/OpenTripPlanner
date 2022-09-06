@@ -148,7 +148,7 @@ otp.widgets.transit.StopViewerWidget =
 
     setActiveTime : function(activeTime) {
         this.activeTime = activeTime;
-        this.datePicker.datepicker("setDate", new Date(activeTime));
+        this.datePicker.datepicker("setDate", activeTime.toDate());
     },
 
 });

@@ -3,10 +3,8 @@ package org.opentripplanner.api.mapping;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.opentripplanner.api.model.ApiPlace;
 import org.opentripplanner.api.model.ApiVehicleParkingSpaces;
@@ -76,8 +74,8 @@ public class PlaceMapper {
       api.lat = domain.coordinate.latitude();
     }
 
-    api.arrival = Optional.ofNullable(arrival).map(GregorianCalendar::from).orElse(null);
-    api.departure = Optional.ofNullable(departure).map(GregorianCalendar::from).orElse(null);
+    api.arrival = arrival;
+    api.departure = departure;
     api.stopIndex = stopIndex;
     api.stopSequence = gtfsStopSequence;
     api.vertexType = VertexTypeMapper.mapVertexType(domain.vertexType);

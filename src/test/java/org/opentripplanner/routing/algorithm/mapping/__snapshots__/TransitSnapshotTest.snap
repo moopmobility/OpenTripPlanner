@@ -5,7 +5,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 3821,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:03:41.000+00:00",
+      "endTime": "2009-11-17T11:03:41-08:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -17,9 +17,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 4923.15,
-          "endTime": "2009-11-17T19:03:41.000+00:00",
+          "endTime": "2009-11-17T11:03:41-08:00",
           "from": {
-            "departure": "2009-11-17T18:00:00.000+00:00",
+            "departure": "2009-11-17T10:00:00-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -36,7 +36,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:00:00.000+00:00",
+          "startTime": "2009-11-17T10:00:00-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -209,7 +209,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:03:41.000+00:00",
+            "arrival": "2009-11-17T11:03:41-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -219,7 +219,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:00:00.000+00:00",
+      "startTime": "2009-11-17T10:00:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -233,7 +233,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 2261,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:38:41.000+00:00",
+      "endTime": "2009-11-17T10:38:41-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -279,9 +279,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 920.33,
-          "endTime": "2009-11-17T18:12:58.000+00:00",
+          "endTime": "2009-11-17T10:12:58-08:00",
           "from": {
-            "departure": "2009-11-17T18:01:00.000+00:00",
+            "departure": "2009-11-17T10:01:00-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -298,7 +298,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:01:00.000+00:00",
+          "startTime": "2009-11-17T10:01:00-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -354,8 +354,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:12:58.000+00:00",
-            "departure": "2009-11-17T18:12:58.000+00:00",
+            "arrival": "2009-11-17T10:12:58-08:00",
+            "departure": "2009-11-17T10:12:58-08:00",
             "lat": 45.524581,
             "lon": -122.649367,
             "name": "NE Sandy & 16th",
@@ -375,10 +375,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3602.73,
-          "endTime": "2009-11-17T18:25:49.000+00:00",
+          "endTime": "2009-11-17T10:25:49-08:00",
           "from": {
-            "arrival": "2009-11-17T18:12:58.000+00:00",
-            "departure": "2009-11-17T18:12:58.000+00:00",
+            "arrival": "2009-11-17T10:12:58-08:00",
+            "departure": "2009-11-17T10:12:58-08:00",
             "lat": 45.524581,
             "lon": -122.649367,
             "name": "NE Sandy & 16th",
@@ -394,8 +394,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:13:32.000+00:00",
-              "departure": "2009-11-17T18:13:32.000+00:00",
+              "arrival": "2009-11-17T10:13:32-08:00",
+              "departure": "2009-11-17T10:13:32-08:00",
               "lat": 45.523767,
               "lon": -122.651428,
               "name": "NE Sandy & 14th",
@@ -407,8 +407,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:14:00.000+00:00",
-              "departure": "2009-11-17T18:14:00.000+00:00",
+              "arrival": "2009-11-17T10:14:00-08:00",
+              "departure": "2009-11-17T10:14:00-08:00",
               "lat": 45.523103,
               "lon": -122.653064,
               "name": "NE Sandy & 12th",
@@ -420,8 +420,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:14:47.000+00:00",
-              "departure": "2009-11-17T18:14:47.000+00:00",
+              "arrival": "2009-11-17T10:14:47-08:00",
+              "departure": "2009-11-17T10:14:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -433,8 +433,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:15:24.000+00:00",
-              "departure": "2009-11-17T18:15:24.000+00:00",
+              "arrival": "2009-11-17T10:15:24-08:00",
+              "departure": "2009-11-17T10:15:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -446,8 +446,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:15:52.000+00:00",
-              "departure": "2009-11-17T18:15:52.000+00:00",
+              "arrival": "2009-11-17T10:15:52-08:00",
+              "departure": "2009-11-17T10:15:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -459,8 +459,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:18:00.000+00:00",
-              "departure": "2009-11-17T18:18:00.000+00:00",
+              "arrival": "2009-11-17T10:18:00-08:00",
+              "departure": "2009-11-17T10:18:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -472,8 +472,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:19:00.000+00:00",
-              "departure": "2009-11-17T18:19:00.000+00:00",
+              "arrival": "2009-11-17T10:19:00-08:00",
+              "departure": "2009-11-17T10:19:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -485,8 +485,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:20:17.000+00:00",
-              "departure": "2009-11-17T18:20:17.000+00:00",
+              "arrival": "2009-11-17T10:20:17-08:00",
+              "departure": "2009-11-17T10:20:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -498,8 +498,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:21:25.000+00:00",
-              "departure": "2009-11-17T18:21:25.000+00:00",
+              "arrival": "2009-11-17T10:21:25-08:00",
+              "departure": "2009-11-17T10:21:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -511,8 +511,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:22:14.000+00:00",
-              "departure": "2009-11-17T18:22:14.000+00:00",
+              "arrival": "2009-11-17T10:22:14-08:00",
+              "departure": "2009-11-17T10:22:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -524,8 +524,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:24:09.000+00:00",
-              "departure": "2009-11-17T18:24:09.000+00:00",
+              "arrival": "2009-11-17T10:24:09-08:00",
+              "departure": "2009-11-17T10:24:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -537,8 +537,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:00.000+00:00",
-              "departure": "2009-11-17T18:25:00.000+00:00",
+              "arrival": "2009-11-17T10:25:00-08:00",
+              "departure": "2009-11-17T10:25:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -550,8 +550,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:21.000+00:00",
-              "departure": "2009-11-17T18:25:21.000+00:00",
+              "arrival": "2009-11-17T10:25:21-08:00",
+              "departure": "2009-11-17T10:25:21-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -563,8 +563,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:31.000+00:00",
-              "departure": "2009-11-17T18:25:31.000+00:00",
+              "arrival": "2009-11-17T10:25:31-08:00",
+              "departure": "2009-11-17T10:25:31-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -589,11 +589,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:12:58.000+00:00",
+          "startTime": "2009-11-17T10:12:58-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:25:49.000+00:00",
-            "departure": "2009-11-17T18:25:49.000+00:00",
+            "arrival": "2009-11-17T10:25:49-08:00",
+            "departure": "2009-11-17T10:25:49-08:00",
             "lat": 45.523312,
             "lon": -122.694901,
             "name": "W Burnside & NW King",
@@ -613,10 +613,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 999.1,
-          "endTime": "2009-11-17T18:38:41.000+00:00",
+          "endTime": "2009-11-17T10:38:41-08:00",
           "from": {
-            "arrival": "2009-11-17T18:25:49.000+00:00",
-            "departure": "2009-11-17T18:25:49.000+00:00",
+            "arrival": "2009-11-17T10:25:49-08:00",
+            "departure": "2009-11-17T10:25:49-08:00",
             "lat": 45.523312,
             "lon": -122.694901,
             "name": "W Burnside & NW King",
@@ -636,7 +636,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:25:49.000+00:00",
+          "startTime": "2009-11-17T10:25:49-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -679,7 +679,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:38:41.000+00:00",
+            "arrival": "2009-11-17T10:38:41-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -689,7 +689,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:01:00.000+00:00",
+      "startTime": "2009-11-17T10:01:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 771,
@@ -703,7 +703,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1470,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:39:22.000+00:00",
+      "endTime": "2009-11-17T10:39:22-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -749,9 +749,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 62.01,
-          "endTime": "2009-11-17T18:15:40.000+00:00",
+          "endTime": "2009-11-17T10:15:40-08:00",
           "from": {
-            "departure": "2009-11-17T18:14:52.000+00:00",
+            "departure": "2009-11-17T10:14:52-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -768,7 +768,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:14:52.000+00:00",
+          "startTime": "2009-11-17T10:14:52-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -785,8 +785,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:15:40.000+00:00",
-            "departure": "2009-11-17T18:15:40.000+00:00",
+            "arrival": "2009-11-17T10:15:40-08:00",
+            "departure": "2009-11-17T10:15:40-08:00",
             "lat": 45.517226,
             "lon": -122.649266,
             "name": "SE Morrison & 16th",
@@ -806,10 +806,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 5218.86,
-          "endTime": "2009-11-17T18:35:54.000+00:00",
+          "endTime": "2009-11-17T10:35:54-08:00",
           "from": {
-            "arrival": "2009-11-17T18:15:40.000+00:00",
-            "departure": "2009-11-17T18:15:40.000+00:00",
+            "arrival": "2009-11-17T10:15:40-08:00",
+            "departure": "2009-11-17T10:15:40-08:00",
             "lat": 45.517226,
             "lon": -122.649266,
             "name": "SE Morrison & 16th",
@@ -825,8 +825,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:16:15.000+00:00",
-              "departure": "2009-11-17T18:16:15.000+00:00",
+              "arrival": "2009-11-17T10:16:15-08:00",
+              "departure": "2009-11-17T10:16:15-08:00",
               "lat": 45.517253,
               "lon": -122.651354,
               "name": "SE Morrison & 14th",
@@ -838,8 +838,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:17:00.000+00:00",
-              "departure": "2009-11-17T18:17:00.000+00:00",
+              "arrival": "2009-11-17T10:17:00-08:00",
+              "departure": "2009-11-17T10:17:00-08:00",
               "lat": 45.517299,
               "lon": -122.654067,
               "name": "SE Morrison & 12th",
@@ -851,8 +851,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:17:38.000+00:00",
-              "departure": "2009-11-17T18:17:38.000+00:00",
+              "arrival": "2009-11-17T10:17:38-08:00",
+              "departure": "2009-11-17T10:17:38-08:00",
               "lat": 45.517292,
               "lon": -122.656563,
               "name": "SE Morrison & 9th",
@@ -864,8 +864,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:18:08.000+00:00",
-              "departure": "2009-11-17T18:18:08.000+00:00",
+              "arrival": "2009-11-17T10:18:08-08:00",
+              "departure": "2009-11-17T10:18:08-08:00",
               "lat": 45.517322,
               "lon": -122.65847,
               "name": "SE Morrison & 7th",
@@ -877,8 +877,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:18:39.000+00:00",
-              "departure": "2009-11-17T18:18:39.000+00:00",
+              "arrival": "2009-11-17T10:18:39-08:00",
+              "departure": "2009-11-17T10:18:39-08:00",
               "lat": 45.517298,
               "lon": -122.660523,
               "name": "SE Morrison & Grand",
@@ -890,8 +890,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:20:03.000+00:00",
-              "departure": "2009-11-17T18:20:03.000+00:00",
+              "arrival": "2009-11-17T10:20:03-08:00",
+              "departure": "2009-11-17T10:20:03-08:00",
               "lat": 45.517351,
               "lon": -122.66601,
               "name": "Morrison Bridge",
@@ -903,8 +903,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:22:27.000+00:00",
-              "departure": "2009-11-17T18:22:27.000+00:00",
+              "arrival": "2009-11-17T10:22:27-08:00",
+              "departure": "2009-11-17T10:22:27-08:00",
               "lat": 45.51959,
               "lon": -122.674599,
               "name": "SW Washington & 3rd",
@@ -916,8 +916,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:23:00.000+00:00",
-              "departure": "2009-11-17T18:23:00.000+00:00",
+              "arrival": "2009-11-17T10:23:00-08:00",
+              "departure": "2009-11-17T10:23:00-08:00",
               "lat": 45.520129,
               "lon": -122.676635,
               "name": "SW Washington & 5th",
@@ -929,8 +929,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:23:52.000+00:00",
-              "departure": "2009-11-17T18:23:52.000+00:00",
+              "arrival": "2009-11-17T10:23:52-08:00",
+              "departure": "2009-11-17T10:23:52-08:00",
               "lat": 45.520695,
               "lon": -122.678657,
               "name": "SW Washington & Broadway",
@@ -942,8 +942,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:24:34.000+00:00",
-              "departure": "2009-11-17T18:24:34.000+00:00",
+              "arrival": "2009-11-17T10:24:34-08:00",
+              "departure": "2009-11-17T10:24:34-08:00",
               "lat": 45.521124,
               "lon": -122.6803,
               "name": "SW Washington & 9th",
@@ -955,8 +955,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:25:47.000+00:00",
-              "departure": "2009-11-17T18:25:47.000+00:00",
+              "arrival": "2009-11-17T10:25:47-08:00",
+              "departure": "2009-11-17T10:25:47-08:00",
               "lat": 45.521094,
               "lon": -122.682819,
               "name": "SW 11th & Alder",
@@ -968,8 +968,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:26:36.000+00:00",
-              "departure": "2009-11-17T18:26:36.000+00:00",
+              "arrival": "2009-11-17T10:26:36-08:00",
+              "departure": "2009-11-17T10:26:36-08:00",
               "lat": 45.52055,
               "lon": -122.683933,
               "name": "SW Morrison & 12th",
@@ -981,8 +981,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:27:25.000+00:00",
-              "departure": "2009-11-17T18:27:25.000+00:00",
+              "arrival": "2009-11-17T10:27:25-08:00",
+              "departure": "2009-11-17T10:27:25-08:00",
               "lat": 45.521063,
               "lon": -122.685848,
               "name": "SW Morrison & 14th",
@@ -994,8 +994,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:28:18.000+00:00",
-              "departure": "2009-11-17T18:28:18.000+00:00",
+              "arrival": "2009-11-17T10:28:18-08:00",
+              "departure": "2009-11-17T10:28:18-08:00",
               "lat": 45.521641,
               "lon": -122.687932,
               "name": "SW Morrison & 16th",
@@ -1007,8 +1007,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:29:00.000+00:00",
-              "departure": "2009-11-17T18:29:00.000+00:00",
+              "arrival": "2009-11-17T10:29:00-08:00",
+              "departure": "2009-11-17T10:29:00-08:00",
               "lat": 45.52206,
               "lon": -122.689577,
               "name": "SW Morrison & 17th",
@@ -1020,8 +1020,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:29:54.000+00:00",
-              "departure": "2009-11-17T18:29:54.000+00:00",
+              "arrival": "2009-11-17T10:29:54-08:00",
+              "departure": "2009-11-17T10:29:54-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -1033,8 +1033,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:31.000+00:00",
-              "departure": "2009-11-17T18:30:31.000+00:00",
+              "arrival": "2009-11-17T10:30:31-08:00",
+              "departure": "2009-11-17T10:30:31-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -1046,8 +1046,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:48.000+00:00",
-              "departure": "2009-11-17T18:30:48.000+00:00",
+              "arrival": "2009-11-17T10:30:48-08:00",
+              "departure": "2009-11-17T10:30:48-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -1059,8 +1059,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:31:20.000+00:00",
-              "departure": "2009-11-17T18:31:20.000+00:00",
+              "arrival": "2009-11-17T10:31:20-08:00",
+              "departure": "2009-11-17T10:31:20-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -1072,8 +1072,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:32:18.000+00:00",
-              "departure": "2009-11-17T18:32:18.000+00:00",
+              "arrival": "2009-11-17T10:32:18-08:00",
+              "departure": "2009-11-17T10:32:18-08:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -1085,8 +1085,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:33:11.000+00:00",
-              "departure": "2009-11-17T18:33:11.000+00:00",
+              "arrival": "2009-11-17T10:33:11-08:00",
+              "departure": "2009-11-17T10:33:11-08:00",
               "lat": 45.525416,
               "lon": -122.698381,
               "name": "NW 23rd & Flanders",
@@ -1098,8 +1098,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:34:05.000+00:00",
-              "departure": "2009-11-17T18:34:05.000+00:00",
+              "arrival": "2009-11-17T10:34:05-08:00",
+              "departure": "2009-11-17T10:34:05-08:00",
               "lat": 45.527543,
               "lon": -122.698473,
               "name": "NW 23rd & Irving",
@@ -1111,8 +1111,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:35:00.000+00:00",
-              "departure": "2009-11-17T18:35:00.000+00:00",
+              "arrival": "2009-11-17T10:35:00-08:00",
+              "departure": "2009-11-17T10:35:00-08:00",
               "lat": 45.529681,
               "lon": -122.698529,
               "name": "NW 23rd & Lovejoy",
@@ -1137,11 +1137,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "15",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:15:40.000+00:00",
+          "startTime": "2009-11-17T10:15:40-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:35:54.000+00:00",
-            "departure": "2009-11-17T18:35:54.000+00:00",
+            "arrival": "2009-11-17T10:35:54-08:00",
+            "departure": "2009-11-17T10:35:54-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -1161,10 +1161,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 266.21,
-          "endTime": "2009-11-17T18:39:22.000+00:00",
+          "endTime": "2009-11-17T10:39:22-08:00",
           "from": {
-            "arrival": "2009-11-17T18:35:54.000+00:00",
-            "departure": "2009-11-17T18:35:54.000+00:00",
+            "arrival": "2009-11-17T10:35:54-08:00",
+            "departure": "2009-11-17T10:35:54-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -1184,7 +1184,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:35:54.000+00:00",
+          "startTime": "2009-11-17T10:35:54-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -1214,7 +1214,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:39:22.000+00:00",
+            "arrival": "2009-11-17T10:39:22-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -1224,7 +1224,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:14:52.000+00:00",
+      "startTime": "2009-11-17T10:14:52-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 1214,
@@ -1238,7 +1238,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 2275,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:53:55.000+00:00",
+      "endTime": "2009-11-17T10:53:55-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -1284,9 +1284,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 920.33,
-          "endTime": "2009-11-17T18:27:58.000+00:00",
+          "endTime": "2009-11-17T10:27:58-08:00",
           "from": {
-            "departure": "2009-11-17T18:16:00.000+00:00",
+            "departure": "2009-11-17T10:16:00-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -1303,7 +1303,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:16:00.000+00:00",
+          "startTime": "2009-11-17T10:16:00-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -1359,8 +1359,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:27:58.000+00:00",
-            "departure": "2009-11-17T18:27:58.000+00:00",
+            "arrival": "2009-11-17T10:27:58-08:00",
+            "departure": "2009-11-17T10:27:58-08:00",
             "lat": 45.524581,
             "lon": -122.649367,
             "name": "NE Sandy & 16th",
@@ -1380,10 +1380,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3602.73,
-          "endTime": "2009-11-17T18:41:03.000+00:00",
+          "endTime": "2009-11-17T10:41:03-08:00",
           "from": {
-            "arrival": "2009-11-17T18:27:58.000+00:00",
-            "departure": "2009-11-17T18:27:58.000+00:00",
+            "arrival": "2009-11-17T10:27:58-08:00",
+            "departure": "2009-11-17T10:27:58-08:00",
             "lat": 45.524581,
             "lon": -122.649367,
             "name": "NE Sandy & 16th",
@@ -1399,8 +1399,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:28:32.000+00:00",
-              "departure": "2009-11-17T18:28:32.000+00:00",
+              "arrival": "2009-11-17T10:28:32-08:00",
+              "departure": "2009-11-17T10:28:32-08:00",
               "lat": 45.523767,
               "lon": -122.651428,
               "name": "NE Sandy & 14th",
@@ -1412,8 +1412,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:29:00.000+00:00",
-              "departure": "2009-11-17T18:29:00.000+00:00",
+              "arrival": "2009-11-17T10:29:00-08:00",
+              "departure": "2009-11-17T10:29:00-08:00",
               "lat": 45.523103,
               "lon": -122.653064,
               "name": "NE Sandy & 12th",
@@ -1425,8 +1425,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:29:47.000+00:00",
-              "departure": "2009-11-17T18:29:47.000+00:00",
+              "arrival": "2009-11-17T10:29:47-08:00",
+              "departure": "2009-11-17T10:29:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -1438,8 +1438,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:24.000+00:00",
-              "departure": "2009-11-17T18:30:24.000+00:00",
+              "arrival": "2009-11-17T10:30:24-08:00",
+              "departure": "2009-11-17T10:30:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -1451,8 +1451,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:52.000+00:00",
-              "departure": "2009-11-17T18:30:52.000+00:00",
+              "arrival": "2009-11-17T10:30:52-08:00",
+              "departure": "2009-11-17T10:30:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -1464,8 +1464,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:33:00.000+00:00",
-              "departure": "2009-11-17T18:33:00.000+00:00",
+              "arrival": "2009-11-17T10:33:00-08:00",
+              "departure": "2009-11-17T10:33:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -1477,8 +1477,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:34:00.000+00:00",
-              "departure": "2009-11-17T18:34:00.000+00:00",
+              "arrival": "2009-11-17T10:34:00-08:00",
+              "departure": "2009-11-17T10:34:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -1490,8 +1490,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:35:17.000+00:00",
-              "departure": "2009-11-17T18:35:17.000+00:00",
+              "arrival": "2009-11-17T10:35:17-08:00",
+              "departure": "2009-11-17T10:35:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -1503,8 +1503,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:36:25.000+00:00",
-              "departure": "2009-11-17T18:36:25.000+00:00",
+              "arrival": "2009-11-17T10:36:25-08:00",
+              "departure": "2009-11-17T10:36:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -1516,8 +1516,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:37:14.000+00:00",
-              "departure": "2009-11-17T18:37:14.000+00:00",
+              "arrival": "2009-11-17T10:37:14-08:00",
+              "departure": "2009-11-17T10:37:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -1529,8 +1529,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:39:09.000+00:00",
-              "departure": "2009-11-17T18:39:09.000+00:00",
+              "arrival": "2009-11-17T10:39:09-08:00",
+              "departure": "2009-11-17T10:39:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -1542,8 +1542,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:00.000+00:00",
-              "departure": "2009-11-17T18:40:00.000+00:00",
+              "arrival": "2009-11-17T10:40:00-08:00",
+              "departure": "2009-11-17T10:40:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -1555,8 +1555,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:27.000+00:00",
-              "departure": "2009-11-17T18:40:27.000+00:00",
+              "arrival": "2009-11-17T10:40:27-08:00",
+              "departure": "2009-11-17T10:40:27-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -1568,8 +1568,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:40.000+00:00",
-              "departure": "2009-11-17T18:40:40.000+00:00",
+              "arrival": "2009-11-17T10:40:40-08:00",
+              "departure": "2009-11-17T10:40:40-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -1594,11 +1594,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:27:58.000+00:00",
+          "startTime": "2009-11-17T10:27:58-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:41:03.000+00:00",
-            "departure": "2009-11-17T18:41:03.000+00:00",
+            "arrival": "2009-11-17T10:41:03-08:00",
+            "departure": "2009-11-17T10:41:03-08:00",
             "lat": 45.523312,
             "lon": -122.694901,
             "name": "W Burnside & NW King",
@@ -1618,10 +1618,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 999.1,
-          "endTime": "2009-11-17T18:53:55.000+00:00",
+          "endTime": "2009-11-17T10:53:55-08:00",
           "from": {
-            "arrival": "2009-11-17T18:41:03.000+00:00",
-            "departure": "2009-11-17T18:41:03.000+00:00",
+            "arrival": "2009-11-17T10:41:03-08:00",
+            "departure": "2009-11-17T10:41:03-08:00",
             "lat": 45.523312,
             "lon": -122.694901,
             "name": "W Burnside & NW King",
@@ -1641,7 +1641,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:41:03.000+00:00",
+          "startTime": "2009-11-17T10:41:03-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -1684,7 +1684,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:53:55.000+00:00",
+            "arrival": "2009-11-17T10:53:55-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -1694,7 +1694,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:16:00.000+00:00",
+      "startTime": "2009-11-17T10:16:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 785,
@@ -1708,7 +1708,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1540,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:55:32.000+00:00",
+      "endTime": "2009-11-17T10:55:32-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -1754,9 +1754,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 62.01,
-          "endTime": "2009-11-17T18:30:40.000+00:00",
+          "endTime": "2009-11-17T10:30:40-08:00",
           "from": {
-            "departure": "2009-11-17T18:29:52.000+00:00",
+            "departure": "2009-11-17T10:29:52-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -1773,7 +1773,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:29:52.000+00:00",
+          "startTime": "2009-11-17T10:29:52-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -1790,8 +1790,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:30:40.000+00:00",
-            "departure": "2009-11-17T18:30:40.000+00:00",
+            "arrival": "2009-11-17T10:30:40-08:00",
+            "departure": "2009-11-17T10:30:40-08:00",
             "lat": 45.517226,
             "lon": -122.649266,
             "name": "SE Morrison & 16th",
@@ -1811,10 +1811,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 5218.86,
-          "endTime": "2009-11-17T18:52:04.000+00:00",
+          "endTime": "2009-11-17T10:52:04-08:00",
           "from": {
-            "arrival": "2009-11-17T18:30:40.000+00:00",
-            "departure": "2009-11-17T18:30:40.000+00:00",
+            "arrival": "2009-11-17T10:30:40-08:00",
+            "departure": "2009-11-17T10:30:40-08:00",
             "lat": 45.517226,
             "lon": -122.649266,
             "name": "SE Morrison & 16th",
@@ -1830,8 +1830,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:31:15.000+00:00",
-              "departure": "2009-11-17T18:31:15.000+00:00",
+              "arrival": "2009-11-17T10:31:15-08:00",
+              "departure": "2009-11-17T10:31:15-08:00",
               "lat": 45.517253,
               "lon": -122.651354,
               "name": "SE Morrison & 14th",
@@ -1843,8 +1843,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:32:00.000+00:00",
-              "departure": "2009-11-17T18:32:00.000+00:00",
+              "arrival": "2009-11-17T10:32:00-08:00",
+              "departure": "2009-11-17T10:32:00-08:00",
               "lat": 45.517299,
               "lon": -122.654067,
               "name": "SE Morrison & 12th",
@@ -1856,8 +1856,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:32:38.000+00:00",
-              "departure": "2009-11-17T18:32:38.000+00:00",
+              "arrival": "2009-11-17T10:32:38-08:00",
+              "departure": "2009-11-17T10:32:38-08:00",
               "lat": 45.517292,
               "lon": -122.656563,
               "name": "SE Morrison & 9th",
@@ -1869,8 +1869,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:33:08.000+00:00",
-              "departure": "2009-11-17T18:33:08.000+00:00",
+              "arrival": "2009-11-17T10:33:08-08:00",
+              "departure": "2009-11-17T10:33:08-08:00",
               "lat": 45.517322,
               "lon": -122.65847,
               "name": "SE Morrison & 7th",
@@ -1882,8 +1882,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:33:39.000+00:00",
-              "departure": "2009-11-17T18:33:39.000+00:00",
+              "arrival": "2009-11-17T10:33:39-08:00",
+              "departure": "2009-11-17T10:33:39-08:00",
               "lat": 45.517298,
               "lon": -122.660523,
               "name": "SE Morrison & Grand",
@@ -1895,8 +1895,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:35:03.000+00:00",
-              "departure": "2009-11-17T18:35:03.000+00:00",
+              "arrival": "2009-11-17T10:35:03-08:00",
+              "departure": "2009-11-17T10:35:03-08:00",
               "lat": 45.517351,
               "lon": -122.66601,
               "name": "Morrison Bridge",
@@ -1908,8 +1908,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:37:27.000+00:00",
-              "departure": "2009-11-17T18:37:27.000+00:00",
+              "arrival": "2009-11-17T10:37:27-08:00",
+              "departure": "2009-11-17T10:37:27-08:00",
               "lat": 45.51959,
               "lon": -122.674599,
               "name": "SW Washington & 3rd",
@@ -1921,8 +1921,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:38:00.000+00:00",
-              "departure": "2009-11-17T18:38:00.000+00:00",
+              "arrival": "2009-11-17T10:38:00-08:00",
+              "departure": "2009-11-17T10:38:00-08:00",
               "lat": 45.520129,
               "lon": -122.676635,
               "name": "SW Washington & 5th",
@@ -1934,8 +1934,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:38:52.000+00:00",
-              "departure": "2009-11-17T18:38:52.000+00:00",
+              "arrival": "2009-11-17T10:38:52-08:00",
+              "departure": "2009-11-17T10:38:52-08:00",
               "lat": 45.520695,
               "lon": -122.678657,
               "name": "SW Washington & Broadway",
@@ -1947,8 +1947,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:39:34.000+00:00",
-              "departure": "2009-11-17T18:39:34.000+00:00",
+              "arrival": "2009-11-17T10:39:34-08:00",
+              "departure": "2009-11-17T10:39:34-08:00",
               "lat": 45.521124,
               "lon": -122.6803,
               "name": "SW Washington & 9th",
@@ -1960,8 +1960,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:40:47.000+00:00",
-              "departure": "2009-11-17T18:40:47.000+00:00",
+              "arrival": "2009-11-17T10:40:47-08:00",
+              "departure": "2009-11-17T10:40:47-08:00",
               "lat": 45.521094,
               "lon": -122.682819,
               "name": "SW 11th & Alder",
@@ -1973,8 +1973,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:41:36.000+00:00",
-              "departure": "2009-11-17T18:41:36.000+00:00",
+              "arrival": "2009-11-17T10:41:36-08:00",
+              "departure": "2009-11-17T10:41:36-08:00",
               "lat": 45.52055,
               "lon": -122.683933,
               "name": "SW Morrison & 12th",
@@ -1986,8 +1986,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:42:25.000+00:00",
-              "departure": "2009-11-17T18:42:25.000+00:00",
+              "arrival": "2009-11-17T10:42:25-08:00",
+              "departure": "2009-11-17T10:42:25-08:00",
               "lat": 45.521063,
               "lon": -122.685848,
               "name": "SW Morrison & 14th",
@@ -1999,8 +1999,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:43:18.000+00:00",
-              "departure": "2009-11-17T18:43:18.000+00:00",
+              "arrival": "2009-11-17T10:43:18-08:00",
+              "departure": "2009-11-17T10:43:18-08:00",
               "lat": 45.521641,
               "lon": -122.687932,
               "name": "SW Morrison & 16th",
@@ -2012,8 +2012,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:44:00.000+00:00",
-              "departure": "2009-11-17T18:44:00.000+00:00",
+              "arrival": "2009-11-17T10:44:00-08:00",
+              "departure": "2009-11-17T10:44:00-08:00",
               "lat": 45.52206,
               "lon": -122.689577,
               "name": "SW Morrison & 17th",
@@ -2025,8 +2025,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:45:03.000+00:00",
-              "departure": "2009-11-17T18:45:03.000+00:00",
+              "arrival": "2009-11-17T10:45:03-08:00",
+              "departure": "2009-11-17T10:45:03-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -2038,8 +2038,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:45:46.000+00:00",
-              "departure": "2009-11-17T18:45:46.000+00:00",
+              "arrival": "2009-11-17T10:45:46-08:00",
+              "departure": "2009-11-17T10:45:46-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -2051,8 +2051,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:46:07.000+00:00",
-              "departure": "2009-11-17T18:46:07.000+00:00",
+              "arrival": "2009-11-17T10:46:07-08:00",
+              "departure": "2009-11-17T10:46:07-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -2064,8 +2064,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:46:44.000+00:00",
-              "departure": "2009-11-17T18:46:44.000+00:00",
+              "arrival": "2009-11-17T10:46:44-08:00",
+              "departure": "2009-11-17T10:46:44-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -2077,8 +2077,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:47:51.000+00:00",
-              "departure": "2009-11-17T18:47:51.000+00:00",
+              "arrival": "2009-11-17T10:47:51-08:00",
+              "departure": "2009-11-17T10:47:51-08:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -2090,8 +2090,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:48:53.000+00:00",
-              "departure": "2009-11-17T18:48:53.000+00:00",
+              "arrival": "2009-11-17T10:48:53-08:00",
+              "departure": "2009-11-17T10:48:53-08:00",
               "lat": 45.525416,
               "lon": -122.698381,
               "name": "NW 23rd & Flanders",
@@ -2103,8 +2103,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:49:56.000+00:00",
-              "departure": "2009-11-17T18:49:56.000+00:00",
+              "arrival": "2009-11-17T10:49:56-08:00",
+              "departure": "2009-11-17T10:49:56-08:00",
               "lat": 45.527543,
               "lon": -122.698473,
               "name": "NW 23rd & Irving",
@@ -2116,8 +2116,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:51:00.000+00:00",
-              "departure": "2009-11-17T18:51:00.000+00:00",
+              "arrival": "2009-11-17T10:51:00-08:00",
+              "departure": "2009-11-17T10:51:00-08:00",
               "lat": 45.529681,
               "lon": -122.698529,
               "name": "NW 23rd & Lovejoy",
@@ -2142,11 +2142,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "15",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:30:40.000+00:00",
+          "startTime": "2009-11-17T10:30:40-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:52:04.000+00:00",
-            "departure": "2009-11-17T18:52:04.000+00:00",
+            "arrival": "2009-11-17T10:52:04-08:00",
+            "departure": "2009-11-17T10:52:04-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -2166,10 +2166,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 266.21,
-          "endTime": "2009-11-17T18:55:32.000+00:00",
+          "endTime": "2009-11-17T10:55:32-08:00",
           "from": {
-            "arrival": "2009-11-17T18:52:04.000+00:00",
-            "departure": "2009-11-17T18:52:04.000+00:00",
+            "arrival": "2009-11-17T10:52:04-08:00",
+            "departure": "2009-11-17T10:52:04-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -2189,7 +2189,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:52:04.000+00:00",
+          "startTime": "2009-11-17T10:52:04-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2219,7 +2219,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:55:32.000+00:00",
+            "arrival": "2009-11-17T10:55:32-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -2229,7 +2229,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:29:52.000+00:00",
+      "startTime": "2009-11-17T10:29:52-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 1284,
@@ -2243,7 +2243,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1849,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:08:19.000+00:00",
+      "endTime": "2009-11-17T11:08:19-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -2293,9 +2293,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 419.62,
-          "endTime": "2009-11-17T18:42:54.000+00:00",
+          "endTime": "2009-11-17T10:42:54-08:00",
           "from": {
-            "departure": "2009-11-17T18:37:30.000+00:00",
+            "departure": "2009-11-17T10:37:30-08:00",
             "lat": 45.51726,
             "lon": -122.64847,
             "name": "SE Morrison St. & SE 17th Ave. (P1)",
@@ -2312,7 +2312,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:37:30.000+00:00",
+          "startTime": "2009-11-17T10:37:30-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -2342,8 +2342,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:42:54.000+00:00",
-            "departure": "2009-11-17T18:42:54.000+00:00",
+            "arrival": "2009-11-17T10:42:54-08:00",
+            "departure": "2009-11-17T10:42:54-08:00",
             "lat": 45.517059,
             "lon": -122.65358,
             "name": "SE 12th & Morrison",
@@ -2363,10 +2363,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2035.62,
-          "endTime": "2009-11-17T18:51:01.000+00:00",
+          "endTime": "2009-11-17T10:51:01-08:00",
           "from": {
-            "arrival": "2009-11-17T18:42:54.000+00:00",
-            "departure": "2009-11-17T18:42:54.000+00:00",
+            "arrival": "2009-11-17T10:42:54-08:00",
+            "departure": "2009-11-17T10:42:54-08:00",
             "lat": 45.517059,
             "lon": -122.65358,
             "name": "SE 12th & Morrison",
@@ -2382,8 +2382,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:44:00.000+00:00",
-              "departure": "2009-11-17T18:44:00.000+00:00",
+              "arrival": "2009-11-17T10:44:00-08:00",
+              "departure": "2009-11-17T10:44:00-08:00",
               "lat": 45.519229,
               "lon": -122.653546,
               "name": "SE 12th & Stark",
@@ -2395,8 +2395,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:44:44.000+00:00",
-              "departure": "2009-11-17T18:44:44.000+00:00",
+              "arrival": "2009-11-17T10:44:44-08:00",
+              "departure": "2009-11-17T10:44:44-08:00",
               "lat": 45.520674,
               "lon": -122.653544,
               "name": "SE 12th & Pine",
@@ -2408,8 +2408,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:46:00.000+00:00",
-              "departure": "2009-11-17T18:46:00.000+00:00",
+              "arrival": "2009-11-17T10:46:00-08:00",
+              "departure": "2009-11-17T10:46:00-08:00",
               "lat": 45.52318,
               "lon": -122.653507,
               "name": "NE 12th & Sandy",
@@ -2421,8 +2421,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:47:45.000+00:00",
-              "departure": "2009-11-17T18:47:45.000+00:00",
+              "arrival": "2009-11-17T10:47:45-08:00",
+              "departure": "2009-11-17T10:47:45-08:00",
               "lat": 45.527449,
               "lon": -122.653462,
               "name": "NE 12th & Irving",
@@ -2434,8 +2434,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:49:00.000+00:00",
-              "departure": "2009-11-17T18:49:00.000+00:00",
+              "arrival": "2009-11-17T10:49:00-08:00",
+              "departure": "2009-11-17T10:49:00-08:00",
               "lat": 45.529793,
               "lon": -122.654429,
               "name": "NE 11th & Holladay",
@@ -2447,8 +2447,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:49:39.000+00:00",
-              "departure": "2009-11-17T18:49:39.000+00:00",
+              "arrival": "2009-11-17T10:49:39-08:00",
+              "departure": "2009-11-17T10:49:39-08:00",
               "lat": 45.53135,
               "lon": -122.654497,
               "name": "NE 11th & Multnomah",
@@ -2460,8 +2460,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:50:15.000+00:00",
-              "departure": "2009-11-17T18:50:15.000+00:00",
+              "arrival": "2009-11-17T10:50:15-08:00",
+              "departure": "2009-11-17T10:50:15-08:00",
               "lat": 45.531573,
               "lon": -122.656408,
               "name": "NE Multnomah & 9th",
@@ -2486,11 +2486,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "70",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:42:54.000+00:00",
+          "startTime": "2009-11-17T10:42:54-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:51:01.000+00:00",
-            "departure": "2009-11-17T18:54:29.000+00:00",
+            "arrival": "2009-11-17T10:51:01-08:00",
+            "departure": "2009-11-17T10:54:29-08:00",
             "lat": 45.531569,
             "lon": -122.659045,
             "name": "NE Multnomah & 7th",
@@ -2513,10 +2513,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3560.24,
-          "endTime": "2009-11-17T19:07:55.000+00:00",
+          "endTime": "2009-11-17T11:07:55-08:00",
           "from": {
-            "arrival": "2009-11-17T18:51:01.000+00:00",
-            "departure": "2009-11-17T18:54:29.000+00:00",
+            "arrival": "2009-11-17T10:51:01-08:00",
+            "departure": "2009-11-17T10:54:29-08:00",
             "lat": 45.531569,
             "lon": -122.659045,
             "name": "NE Multnomah & 7th",
@@ -2532,8 +2532,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:55:05.000+00:00",
-              "departure": "2009-11-17T18:55:05.000+00:00",
+              "arrival": "2009-11-17T10:55:05-08:00",
+              "departure": "2009-11-17T10:55:05-08:00",
               "lat": 45.531586,
               "lon": -122.660482,
               "name": "NE Multnomah & Grand",
@@ -2545,8 +2545,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:56:09.000+00:00",
-              "departure": "2009-11-17T18:56:09.000+00:00",
+              "arrival": "2009-11-17T10:56:09-08:00",
+              "departure": "2009-11-17T10:56:09-08:00",
               "lat": 45.531159,
               "lon": -122.66293,
               "name": "NE Multnomah & 3rd",
@@ -2558,8 +2558,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:58:00.000+00:00",
-              "departure": "2009-11-17T18:58:00.000+00:00",
+              "arrival": "2009-11-17T10:58:00-08:00",
+              "departure": "2009-11-17T10:58:00-08:00",
               "lat": 45.530005,
               "lon": -122.666476,
               "name": "Rose Quarter Transit Center",
@@ -2571,8 +2571,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:01:20.000+00:00",
-              "departure": "2009-11-17T19:01:20.000+00:00",
+              "arrival": "2009-11-17T11:01:20-08:00",
+              "departure": "2009-11-17T11:01:20-08:00",
               "lat": 45.526655,
               "lon": -122.676462,
               "name": "NW Glisan & 6th",
@@ -2584,8 +2584,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:02:15.000+00:00",
-              "departure": "2009-11-17T19:02:15.000+00:00",
+              "arrival": "2009-11-17T11:02:15-08:00",
+              "departure": "2009-11-17T11:02:15-08:00",
               "lat": 45.528799,
               "lon": -122.677238,
               "name": "NW Station Way & Union Station",
@@ -2597,8 +2597,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:04:00.000+00:00",
-              "departure": "2009-11-17T19:04:00.000+00:00",
+              "arrival": "2009-11-17T11:04:00-08:00",
+              "departure": "2009-11-17T11:04:00-08:00",
               "lat": 45.531582,
               "lon": -122.681193,
               "name": "NW Northrup & 10th",
@@ -2610,8 +2610,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:04:33.000+00:00",
-              "departure": "2009-11-17T19:04:33.000+00:00",
+              "arrival": "2009-11-17T11:04:33-08:00",
+              "departure": "2009-11-17T11:04:33-08:00",
               "lat": 45.531534,
               "lon": -122.683319,
               "name": "NW 12th & Northrup",
@@ -2623,8 +2623,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:05:04.000+00:00",
-              "departure": "2009-11-17T19:05:04.000+00:00",
+              "arrival": "2009-11-17T11:05:04-08:00",
+              "departure": "2009-11-17T11:05:04-08:00",
               "lat": 45.531503,
               "lon": -122.685357,
               "name": "NW Northrup & 14th",
@@ -2636,8 +2636,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:06:07.000+00:00",
-              "departure": "2009-11-17T19:06:07.000+00:00",
+              "arrival": "2009-11-17T11:06:07-08:00",
+              "departure": "2009-11-17T11:06:07-08:00",
               "lat": 45.531434,
               "lon": -122.689417,
               "name": "NW Northrup & 18th",
@@ -2649,8 +2649,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:07:24.000+00:00",
-              "departure": "2009-11-17T19:07:24.000+00:00",
+              "arrival": "2009-11-17T11:07:24-08:00",
+              "departure": "2009-11-17T11:07:24-08:00",
               "lat": 45.531346,
               "lon": -122.694455,
               "name": "NW Northrup & 21st",
@@ -2675,11 +2675,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:54:29.000+00:00",
+          "startTime": "2009-11-17T10:54:29-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T19:07:55.000+00:00",
-            "departure": "2009-11-17T19:07:55.000+00:00",
+            "arrival": "2009-11-17T11:07:55-08:00",
+            "departure": "2009-11-17T11:07:55-08:00",
             "lat": 45.531308,
             "lon": -122.696445,
             "name": "NW Northrup & 22nd",
@@ -2699,10 +2699,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 18.81,
-          "endTime": "2009-11-17T19:08:19.000+00:00",
+          "endTime": "2009-11-17T11:08:19-08:00",
           "from": {
-            "arrival": "2009-11-17T19:07:55.000+00:00",
-            "departure": "2009-11-17T19:07:55.000+00:00",
+            "arrival": "2009-11-17T11:07:55-08:00",
+            "departure": "2009-11-17T11:07:55-08:00",
             "lat": 45.531308,
             "lon": -122.696445,
             "name": "NW Northrup & 22nd",
@@ -2722,7 +2722,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T19:07:55.000+00:00",
+          "startTime": "2009-11-17T11:07:55-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -2739,7 +2739,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:08:19.000+00:00",
+            "arrival": "2009-11-17T11:08:19-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -2749,7 +2749,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:37:30.000+00:00",
+      "startTime": "2009-11-17T10:37:30-08:00",
       "tooSloped": false,
       "transfers": 1,
       "transitTime": 1293,
@@ -2769,7 +2769,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 3451,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:57:31.000+00:00",
+      "endTime": "2009-11-17T10:57:31-08:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -2781,9 +2781,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 4442.91,
-          "endTime": "2009-11-17T18:57:31.000+00:00",
+          "endTime": "2009-11-17T10:57:31-08:00",
           "from": {
-            "departure": "2009-11-17T18:00:00.000+00:00",
+            "departure": "2009-11-17T10:00:00-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -2803,7 +2803,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:00:00.000+00:00",
+          "startTime": "2009-11-17T10:00:00-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2937,7 +2937,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:57:31.000+00:00",
+            "arrival": "2009-11-17T10:57:31-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -2947,7 +2947,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:00:00.000+00:00",
+      "startTime": "2009-11-17T10:00:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -2961,7 +2961,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1553,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:38:40.000+00:00",
+      "endTime": "2009-11-17T10:38:40-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -3007,9 +3007,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 87.02,
-          "endTime": "2009-11-17T18:14:00.000+00:00",
+          "endTime": "2009-11-17T10:14:00-08:00",
           "from": {
-            "departure": "2009-11-17T18:12:47.000+00:00",
+            "departure": "2009-11-17T10:12:47-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -3029,7 +3029,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:12:47.000+00:00",
+          "startTime": "2009-11-17T10:12:47-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3059,8 +3059,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:14:00.000+00:00",
-            "departure": "2009-11-17T18:14:00.000+00:00",
+            "arrival": "2009-11-17T10:14:00-08:00",
+            "departure": "2009-11-17T10:14:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -3080,10 +3080,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3729.97,
-          "endTime": "2009-11-17T18:26:49.000+00:00",
+          "endTime": "2009-11-17T10:26:49-08:00",
           "from": {
-            "arrival": "2009-11-17T18:14:00.000+00:00",
-            "departure": "2009-11-17T18:14:00.000+00:00",
+            "arrival": "2009-11-17T10:14:00-08:00",
+            "departure": "2009-11-17T10:14:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -3099,8 +3099,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:14:47.000+00:00",
-              "departure": "2009-11-17T18:14:47.000+00:00",
+              "arrival": "2009-11-17T10:14:47-08:00",
+              "departure": "2009-11-17T10:14:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -3112,8 +3112,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:15:24.000+00:00",
-              "departure": "2009-11-17T18:15:24.000+00:00",
+              "arrival": "2009-11-17T10:15:24-08:00",
+              "departure": "2009-11-17T10:15:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -3125,8 +3125,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:15:52.000+00:00",
-              "departure": "2009-11-17T18:15:52.000+00:00",
+              "arrival": "2009-11-17T10:15:52-08:00",
+              "departure": "2009-11-17T10:15:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -3138,8 +3138,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:18:00.000+00:00",
-              "departure": "2009-11-17T18:18:00.000+00:00",
+              "arrival": "2009-11-17T10:18:00-08:00",
+              "departure": "2009-11-17T10:18:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -3151,8 +3151,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:19:00.000+00:00",
-              "departure": "2009-11-17T18:19:00.000+00:00",
+              "arrival": "2009-11-17T10:19:00-08:00",
+              "departure": "2009-11-17T10:19:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -3164,8 +3164,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:20:17.000+00:00",
-              "departure": "2009-11-17T18:20:17.000+00:00",
+              "arrival": "2009-11-17T10:20:17-08:00",
+              "departure": "2009-11-17T10:20:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -3177,8 +3177,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:21:25.000+00:00",
-              "departure": "2009-11-17T18:21:25.000+00:00",
+              "arrival": "2009-11-17T10:21:25-08:00",
+              "departure": "2009-11-17T10:21:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -3190,8 +3190,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:22:14.000+00:00",
-              "departure": "2009-11-17T18:22:14.000+00:00",
+              "arrival": "2009-11-17T10:22:14-08:00",
+              "departure": "2009-11-17T10:22:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -3203,8 +3203,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:24:09.000+00:00",
-              "departure": "2009-11-17T18:24:09.000+00:00",
+              "arrival": "2009-11-17T10:24:09-08:00",
+              "departure": "2009-11-17T10:24:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -3216,8 +3216,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:00.000+00:00",
-              "departure": "2009-11-17T18:25:00.000+00:00",
+              "arrival": "2009-11-17T10:25:00-08:00",
+              "departure": "2009-11-17T10:25:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -3229,8 +3229,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:21.000+00:00",
-              "departure": "2009-11-17T18:25:21.000+00:00",
+              "arrival": "2009-11-17T10:25:21-08:00",
+              "departure": "2009-11-17T10:25:21-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -3242,8 +3242,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:31.000+00:00",
-              "departure": "2009-11-17T18:25:31.000+00:00",
+              "arrival": "2009-11-17T10:25:31-08:00",
+              "departure": "2009-11-17T10:25:31-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -3255,8 +3255,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:25:49.000+00:00",
-              "departure": "2009-11-17T18:25:49.000+00:00",
+              "arrival": "2009-11-17T10:25:49-08:00",
+              "departure": "2009-11-17T10:25:49-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -3268,8 +3268,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:26:22.000+00:00",
-              "departure": "2009-11-17T18:26:22.000+00:00",
+              "arrival": "2009-11-17T10:26:22-08:00",
+              "departure": "2009-11-17T10:26:22-08:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -3294,11 +3294,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:14:00.000+00:00",
+          "startTime": "2009-11-17T10:14:00-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:26:49.000+00:00",
-            "departure": "2009-11-17T18:26:49.000+00:00",
+            "arrival": "2009-11-17T10:26:49-08:00",
+            "departure": "2009-11-17T10:26:49-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -3318,10 +3318,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 913.81,
-          "endTime": "2009-11-17T18:38:40.000+00:00",
+          "endTime": "2009-11-17T10:38:40-08:00",
           "from": {
-            "arrival": "2009-11-17T18:26:49.000+00:00",
-            "departure": "2009-11-17T18:26:49.000+00:00",
+            "arrival": "2009-11-17T10:26:49-08:00",
+            "departure": "2009-11-17T10:26:49-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -3341,7 +3341,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:26:49.000+00:00",
+          "startTime": "2009-11-17T10:26:49-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -3410,7 +3410,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:38:40.000+00:00",
+            "arrival": "2009-11-17T10:38:40-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -3420,7 +3420,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:12:47.000+00:00",
+      "startTime": "2009-11-17T10:12:47-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 769,
@@ -3434,7 +3434,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1583,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:54:10.000+00:00",
+      "endTime": "2009-11-17T10:54:10-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -3480,9 +3480,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 87.02,
-          "endTime": "2009-11-17T18:29:00.000+00:00",
+          "endTime": "2009-11-17T10:29:00-08:00",
           "from": {
-            "departure": "2009-11-17T18:27:47.000+00:00",
+            "departure": "2009-11-17T10:27:47-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -3502,7 +3502,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:27:47.000+00:00",
+          "startTime": "2009-11-17T10:27:47-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3532,8 +3532,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:29:00.000+00:00",
-            "departure": "2009-11-17T18:29:00.000+00:00",
+            "arrival": "2009-11-17T10:29:00-08:00",
+            "departure": "2009-11-17T10:29:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -3553,10 +3553,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3729.97,
-          "endTime": "2009-11-17T18:42:19.000+00:00",
+          "endTime": "2009-11-17T10:42:19-08:00",
           "from": {
-            "arrival": "2009-11-17T18:29:00.000+00:00",
-            "departure": "2009-11-17T18:29:00.000+00:00",
+            "arrival": "2009-11-17T10:29:00-08:00",
+            "departure": "2009-11-17T10:29:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -3572,8 +3572,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:29:47.000+00:00",
-              "departure": "2009-11-17T18:29:47.000+00:00",
+              "arrival": "2009-11-17T10:29:47-08:00",
+              "departure": "2009-11-17T10:29:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -3585,8 +3585,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:24.000+00:00",
-              "departure": "2009-11-17T18:30:24.000+00:00",
+              "arrival": "2009-11-17T10:30:24-08:00",
+              "departure": "2009-11-17T10:30:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -3598,8 +3598,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:30:52.000+00:00",
-              "departure": "2009-11-17T18:30:52.000+00:00",
+              "arrival": "2009-11-17T10:30:52-08:00",
+              "departure": "2009-11-17T10:30:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -3611,8 +3611,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:33:00.000+00:00",
-              "departure": "2009-11-17T18:33:00.000+00:00",
+              "arrival": "2009-11-17T10:33:00-08:00",
+              "departure": "2009-11-17T10:33:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -3624,8 +3624,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:34:00.000+00:00",
-              "departure": "2009-11-17T18:34:00.000+00:00",
+              "arrival": "2009-11-17T10:34:00-08:00",
+              "departure": "2009-11-17T10:34:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -3637,8 +3637,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:35:17.000+00:00",
-              "departure": "2009-11-17T18:35:17.000+00:00",
+              "arrival": "2009-11-17T10:35:17-08:00",
+              "departure": "2009-11-17T10:35:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -3650,8 +3650,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:36:25.000+00:00",
-              "departure": "2009-11-17T18:36:25.000+00:00",
+              "arrival": "2009-11-17T10:36:25-08:00",
+              "departure": "2009-11-17T10:36:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -3663,8 +3663,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:37:14.000+00:00",
-              "departure": "2009-11-17T18:37:14.000+00:00",
+              "arrival": "2009-11-17T10:37:14-08:00",
+              "departure": "2009-11-17T10:37:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -3676,8 +3676,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:39:09.000+00:00",
-              "departure": "2009-11-17T18:39:09.000+00:00",
+              "arrival": "2009-11-17T10:39:09-08:00",
+              "departure": "2009-11-17T10:39:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -3689,8 +3689,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:00.000+00:00",
-              "departure": "2009-11-17T18:40:00.000+00:00",
+              "arrival": "2009-11-17T10:40:00-08:00",
+              "departure": "2009-11-17T10:40:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -3702,8 +3702,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:27.000+00:00",
-              "departure": "2009-11-17T18:40:27.000+00:00",
+              "arrival": "2009-11-17T10:40:27-08:00",
+              "departure": "2009-11-17T10:40:27-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -3715,8 +3715,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:40:40.000+00:00",
-              "departure": "2009-11-17T18:40:40.000+00:00",
+              "arrival": "2009-11-17T10:40:40-08:00",
+              "departure": "2009-11-17T10:40:40-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -3728,8 +3728,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:41:03.000+00:00",
-              "departure": "2009-11-17T18:41:03.000+00:00",
+              "arrival": "2009-11-17T10:41:03-08:00",
+              "departure": "2009-11-17T10:41:03-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -3741,8 +3741,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:41:44.000+00:00",
-              "departure": "2009-11-17T18:41:44.000+00:00",
+              "arrival": "2009-11-17T10:41:44-08:00",
+              "departure": "2009-11-17T10:41:44-08:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -3767,11 +3767,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:29:00.000+00:00",
+          "startTime": "2009-11-17T10:29:00-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:42:19.000+00:00",
-            "departure": "2009-11-17T18:42:19.000+00:00",
+            "arrival": "2009-11-17T10:42:19-08:00",
+            "departure": "2009-11-17T10:42:19-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -3791,10 +3791,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 913.81,
-          "endTime": "2009-11-17T18:54:10.000+00:00",
+          "endTime": "2009-11-17T10:54:10-08:00",
           "from": {
-            "arrival": "2009-11-17T18:42:19.000+00:00",
-            "departure": "2009-11-17T18:42:19.000+00:00",
+            "arrival": "2009-11-17T10:42:19-08:00",
+            "departure": "2009-11-17T10:42:19-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -3814,7 +3814,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:42:19.000+00:00",
+          "startTime": "2009-11-17T10:42:19-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -3883,7 +3883,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:54:10.000+00:00",
+            "arrival": "2009-11-17T10:54:10-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -3893,7 +3893,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:27:47.000+00:00",
+      "startTime": "2009-11-17T10:27:47-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 799,
@@ -3907,7 +3907,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1553,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:09:40.000+00:00",
+      "endTime": "2009-11-17T11:09:40-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -3953,9 +3953,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 87.02,
-          "endTime": "2009-11-17T18:45:00.000+00:00",
+          "endTime": "2009-11-17T10:45:00-08:00",
           "from": {
-            "departure": "2009-11-17T18:43:47.000+00:00",
+            "departure": "2009-11-17T10:43:47-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -3975,7 +3975,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:43:47.000+00:00",
+          "startTime": "2009-11-17T10:43:47-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -4005,8 +4005,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:45:00.000+00:00",
-            "departure": "2009-11-17T18:45:00.000+00:00",
+            "arrival": "2009-11-17T10:45:00-08:00",
+            "departure": "2009-11-17T10:45:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -4026,10 +4026,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3729.97,
-          "endTime": "2009-11-17T18:57:49.000+00:00",
+          "endTime": "2009-11-17T10:57:49-08:00",
           "from": {
-            "arrival": "2009-11-17T18:45:00.000+00:00",
-            "departure": "2009-11-17T18:45:00.000+00:00",
+            "arrival": "2009-11-17T10:45:00-08:00",
+            "departure": "2009-11-17T10:45:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -4045,8 +4045,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:45:47.000+00:00",
-              "departure": "2009-11-17T18:45:47.000+00:00",
+              "arrival": "2009-11-17T10:45:47-08:00",
+              "departure": "2009-11-17T10:45:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -4058,8 +4058,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:46:24.000+00:00",
-              "departure": "2009-11-17T18:46:24.000+00:00",
+              "arrival": "2009-11-17T10:46:24-08:00",
+              "departure": "2009-11-17T10:46:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -4071,8 +4071,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:46:52.000+00:00",
-              "departure": "2009-11-17T18:46:52.000+00:00",
+              "arrival": "2009-11-17T10:46:52-08:00",
+              "departure": "2009-11-17T10:46:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -4084,8 +4084,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:49:00.000+00:00",
-              "departure": "2009-11-17T18:49:00.000+00:00",
+              "arrival": "2009-11-17T10:49:00-08:00",
+              "departure": "2009-11-17T10:49:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -4097,8 +4097,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:50:00.000+00:00",
-              "departure": "2009-11-17T18:50:00.000+00:00",
+              "arrival": "2009-11-17T10:50:00-08:00",
+              "departure": "2009-11-17T10:50:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -4110,8 +4110,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:51:17.000+00:00",
-              "departure": "2009-11-17T18:51:17.000+00:00",
+              "arrival": "2009-11-17T10:51:17-08:00",
+              "departure": "2009-11-17T10:51:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -4123,8 +4123,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:52:25.000+00:00",
-              "departure": "2009-11-17T18:52:25.000+00:00",
+              "arrival": "2009-11-17T10:52:25-08:00",
+              "departure": "2009-11-17T10:52:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -4136,8 +4136,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:53:14.000+00:00",
-              "departure": "2009-11-17T18:53:14.000+00:00",
+              "arrival": "2009-11-17T10:53:14-08:00",
+              "departure": "2009-11-17T10:53:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -4149,8 +4149,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:55:09.000+00:00",
-              "departure": "2009-11-17T18:55:09.000+00:00",
+              "arrival": "2009-11-17T10:55:09-08:00",
+              "departure": "2009-11-17T10:55:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -4162,8 +4162,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:56:00.000+00:00",
-              "departure": "2009-11-17T18:56:00.000+00:00",
+              "arrival": "2009-11-17T10:56:00-08:00",
+              "departure": "2009-11-17T10:56:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -4175,8 +4175,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:56:21.000+00:00",
-              "departure": "2009-11-17T18:56:21.000+00:00",
+              "arrival": "2009-11-17T10:56:21-08:00",
+              "departure": "2009-11-17T10:56:21-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -4188,8 +4188,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:56:31.000+00:00",
-              "departure": "2009-11-17T18:56:31.000+00:00",
+              "arrival": "2009-11-17T10:56:31-08:00",
+              "departure": "2009-11-17T10:56:31-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -4201,8 +4201,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:56:49.000+00:00",
-              "departure": "2009-11-17T18:56:49.000+00:00",
+              "arrival": "2009-11-17T10:56:49-08:00",
+              "departure": "2009-11-17T10:56:49-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -4214,8 +4214,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:57:22.000+00:00",
-              "departure": "2009-11-17T18:57:22.000+00:00",
+              "arrival": "2009-11-17T10:57:22-08:00",
+              "departure": "2009-11-17T10:57:22-08:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -4240,11 +4240,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:45:00.000+00:00",
+          "startTime": "2009-11-17T10:45:00-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:57:49.000+00:00",
-            "departure": "2009-11-17T18:57:49.000+00:00",
+            "arrival": "2009-11-17T10:57:49-08:00",
+            "departure": "2009-11-17T10:57:49-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -4264,10 +4264,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 913.81,
-          "endTime": "2009-11-17T19:09:40.000+00:00",
+          "endTime": "2009-11-17T11:09:40-08:00",
           "from": {
-            "arrival": "2009-11-17T18:57:49.000+00:00",
-            "departure": "2009-11-17T18:57:49.000+00:00",
+            "arrival": "2009-11-17T10:57:49-08:00",
+            "departure": "2009-11-17T10:57:49-08:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -4287,7 +4287,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:57:49.000+00:00",
+          "startTime": "2009-11-17T10:57:49-08:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -4356,7 +4356,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:09:40.000+00:00",
+            "arrival": "2009-11-17T11:09:40-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -4366,7 +4366,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:43:47.000+00:00",
+      "startTime": "2009-11-17T10:43:47-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 769,
@@ -4380,7 +4380,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1567,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:11:51.000+00:00",
+      "endTime": "2009-11-17T11:11:51-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -4430,9 +4430,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 20.74,
-          "endTime": "2009-11-17T18:46:00.000+00:00",
+          "endTime": "2009-11-17T10:46:00-08:00",
           "from": {
-            "departure": "2009-11-17T18:45:44.000+00:00",
+            "departure": "2009-11-17T10:45:44-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -4452,7 +4452,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:45:44.000+00:00",
+          "startTime": "2009-11-17T10:45:44-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -4469,8 +4469,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:46:00.000+00:00",
-            "departure": "2009-11-17T18:46:00.000+00:00",
+            "arrival": "2009-11-17T10:46:00-08:00",
+            "departure": "2009-11-17T10:46:00-08:00",
             "lat": 45.52318,
             "lon": -122.653507,
             "name": "NE 12th & Sandy",
@@ -4490,10 +4490,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1355.21,
-          "endTime": "2009-11-17T18:51:01.000+00:00",
+          "endTime": "2009-11-17T10:51:01-08:00",
           "from": {
-            "arrival": "2009-11-17T18:46:00.000+00:00",
-            "departure": "2009-11-17T18:46:00.000+00:00",
+            "arrival": "2009-11-17T10:46:00-08:00",
+            "departure": "2009-11-17T10:46:00-08:00",
             "lat": 45.52318,
             "lon": -122.653507,
             "name": "NE 12th & Sandy",
@@ -4509,8 +4509,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:47:45.000+00:00",
-              "departure": "2009-11-17T18:47:45.000+00:00",
+              "arrival": "2009-11-17T10:47:45-08:00",
+              "departure": "2009-11-17T10:47:45-08:00",
               "lat": 45.527449,
               "lon": -122.653462,
               "name": "NE 12th & Irving",
@@ -4522,8 +4522,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T18:49:00.000+00:00",
-              "departure": "2009-11-17T18:49:00.000+00:00",
+              "arrival": "2009-11-17T10:49:00-08:00",
+              "departure": "2009-11-17T10:49:00-08:00",
               "lat": 45.529793,
               "lon": -122.654429,
               "name": "NE 11th & Holladay",
@@ -4535,8 +4535,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:49:39.000+00:00",
-              "departure": "2009-11-17T18:49:39.000+00:00",
+              "arrival": "2009-11-17T10:49:39-08:00",
+              "departure": "2009-11-17T10:49:39-08:00",
               "lat": 45.53135,
               "lon": -122.654497,
               "name": "NE 11th & Multnomah",
@@ -4548,8 +4548,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:50:15.000+00:00",
-              "departure": "2009-11-17T18:50:15.000+00:00",
+              "arrival": "2009-11-17T10:50:15-08:00",
+              "departure": "2009-11-17T10:50:15-08:00",
               "lat": 45.531573,
               "lon": -122.656408,
               "name": "NE Multnomah & 9th",
@@ -4574,11 +4574,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "70",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:46:00.000+00:00",
+          "startTime": "2009-11-17T10:46:00-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T18:51:01.000+00:00",
-            "departure": "2009-11-17T18:54:29.000+00:00",
+            "arrival": "2009-11-17T10:51:01-08:00",
+            "departure": "2009-11-17T10:54:29-08:00",
             "lat": 45.531569,
             "lon": -122.659045,
             "name": "NE Multnomah & 7th",
@@ -4601,10 +4601,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3838.71,
-          "endTime": "2009-11-17T19:08:50.000+00:00",
+          "endTime": "2009-11-17T11:08:50-08:00",
           "from": {
-            "arrival": "2009-11-17T18:51:01.000+00:00",
-            "departure": "2009-11-17T18:54:29.000+00:00",
+            "arrival": "2009-11-17T10:51:01-08:00",
+            "departure": "2009-11-17T10:54:29-08:00",
             "lat": 45.531569,
             "lon": -122.659045,
             "name": "NE Multnomah & 7th",
@@ -4620,8 +4620,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T18:55:05.000+00:00",
-              "departure": "2009-11-17T18:55:05.000+00:00",
+              "arrival": "2009-11-17T10:55:05-08:00",
+              "departure": "2009-11-17T10:55:05-08:00",
               "lat": 45.531586,
               "lon": -122.660482,
               "name": "NE Multnomah & Grand",
@@ -4633,8 +4633,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:56:09.000+00:00",
-              "departure": "2009-11-17T18:56:09.000+00:00",
+              "arrival": "2009-11-17T10:56:09-08:00",
+              "departure": "2009-11-17T10:56:09-08:00",
               "lat": 45.531159,
               "lon": -122.66293,
               "name": "NE Multnomah & 3rd",
@@ -4646,8 +4646,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T18:58:00.000+00:00",
-              "departure": "2009-11-17T18:58:00.000+00:00",
+              "arrival": "2009-11-17T10:58:00-08:00",
+              "departure": "2009-11-17T10:58:00-08:00",
               "lat": 45.530005,
               "lon": -122.666476,
               "name": "Rose Quarter Transit Center",
@@ -4659,8 +4659,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:01:20.000+00:00",
-              "departure": "2009-11-17T19:01:20.000+00:00",
+              "arrival": "2009-11-17T11:01:20-08:00",
+              "departure": "2009-11-17T11:01:20-08:00",
               "lat": 45.526655,
               "lon": -122.676462,
               "name": "NW Glisan & 6th",
@@ -4672,8 +4672,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:02:15.000+00:00",
-              "departure": "2009-11-17T19:02:15.000+00:00",
+              "arrival": "2009-11-17T11:02:15-08:00",
+              "departure": "2009-11-17T11:02:15-08:00",
               "lat": 45.528799,
               "lon": -122.677238,
               "name": "NW Station Way & Union Station",
@@ -4685,8 +4685,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:04:00.000+00:00",
-              "departure": "2009-11-17T19:04:00.000+00:00",
+              "arrival": "2009-11-17T11:04:00-08:00",
+              "departure": "2009-11-17T11:04:00-08:00",
               "lat": 45.531582,
               "lon": -122.681193,
               "name": "NW Northrup & 10th",
@@ -4698,8 +4698,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:04:33.000+00:00",
-              "departure": "2009-11-17T19:04:33.000+00:00",
+              "arrival": "2009-11-17T11:04:33-08:00",
+              "departure": "2009-11-17T11:04:33-08:00",
               "lat": 45.531534,
               "lon": -122.683319,
               "name": "NW 12th & Northrup",
@@ -4711,8 +4711,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:05:04.000+00:00",
-              "departure": "2009-11-17T19:05:04.000+00:00",
+              "arrival": "2009-11-17T11:05:04-08:00",
+              "departure": "2009-11-17T11:05:04-08:00",
               "lat": 45.531503,
               "lon": -122.685357,
               "name": "NW Northrup & 14th",
@@ -4724,8 +4724,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:06:07.000+00:00",
-              "departure": "2009-11-17T19:06:07.000+00:00",
+              "arrival": "2009-11-17T11:06:07-08:00",
+              "departure": "2009-11-17T11:06:07-08:00",
               "lat": 45.531434,
               "lon": -122.689417,
               "name": "NW Northrup & 18th",
@@ -4737,8 +4737,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:07:24.000+00:00",
-              "departure": "2009-11-17T19:07:24.000+00:00",
+              "arrival": "2009-11-17T11:07:24-08:00",
+              "departure": "2009-11-17T11:07:24-08:00",
               "lat": 45.531346,
               "lon": -122.694455,
               "name": "NW Northrup & 21st",
@@ -4750,8 +4750,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:07:55.000+00:00",
-              "departure": "2009-11-17T19:07:55.000+00:00",
+              "arrival": "2009-11-17T11:07:55-08:00",
+              "departure": "2009-11-17T11:07:55-08:00",
               "lat": 45.531308,
               "lon": -122.696445,
               "name": "NW Northrup & 22nd",
@@ -4776,11 +4776,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T18:54:29.000+00:00",
+          "startTime": "2009-11-17T10:54:29-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T19:08:50.000+00:00",
-            "departure": "2009-11-17T19:08:50.000+00:00",
+            "arrival": "2009-11-17T11:08:50-08:00",
+            "departure": "2009-11-17T11:08:50-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -4800,10 +4800,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 231.46,
-          "endTime": "2009-11-17T19:11:51.000+00:00",
+          "endTime": "2009-11-17T11:11:51-08:00",
           "from": {
-            "arrival": "2009-11-17T19:08:50.000+00:00",
-            "departure": "2009-11-17T19:08:50.000+00:00",
+            "arrival": "2009-11-17T11:08:50-08:00",
+            "departure": "2009-11-17T11:08:50-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -4823,7 +4823,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T19:08:50.000+00:00",
+          "startTime": "2009-11-17T11:08:50-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -4853,7 +4853,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:11:51.000+00:00",
+            "arrival": "2009-11-17T11:11:51-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -4863,7 +4863,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:45:44.000+00:00",
+      "startTime": "2009-11-17T10:45:44-08:00",
       "tooSloped": false,
       "transfers": 1,
       "transitTime": 1162,
@@ -4877,7 +4877,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 1578,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:25:05.000+00:00",
+      "endTime": "2009-11-17T11:25:05-08:00",
       "fare": {
         "details": {
           "regular": [
@@ -4927,9 +4927,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 87.02,
-          "endTime": "2009-11-17T19:00:00.000+00:00",
+          "endTime": "2009-11-17T11:00:00-08:00",
           "from": {
-            "departure": "2009-11-17T18:58:47.000+00:00",
+            "departure": "2009-11-17T10:58:47-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -4949,7 +4949,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:58:47.000+00:00",
+          "startTime": "2009-11-17T10:58:47-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -4979,8 +4979,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:00:00.000+00:00",
-            "departure": "2009-11-17T19:00:00.000+00:00",
+            "arrival": "2009-11-17T11:00:00-08:00",
+            "departure": "2009-11-17T11:00:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -5000,10 +5000,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 3520.32,
-          "endTime": "2009-11-17T19:12:44.000+00:00",
+          "endTime": "2009-11-17T11:12:44-08:00",
           "from": {
-            "arrival": "2009-11-17T19:00:00.000+00:00",
-            "departure": "2009-11-17T19:00:00.000+00:00",
+            "arrival": "2009-11-17T11:00:00-08:00",
+            "departure": "2009-11-17T11:00:00-08:00",
             "lat": 45.523103,
             "lon": -122.653064,
             "name": "NE Sandy & 12th",
@@ -5019,8 +5019,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T19:00:47.000+00:00",
-              "departure": "2009-11-17T19:00:47.000+00:00",
+              "arrival": "2009-11-17T11:00:47-08:00",
+              "departure": "2009-11-17T11:00:47-08:00",
               "lat": 45.523024,
               "lon": -122.656526,
               "name": "E Burnside & NE 9th",
@@ -5032,8 +5032,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:01:24.000+00:00",
-              "departure": "2009-11-17T19:01:24.000+00:00",
+              "arrival": "2009-11-17T11:01:24-08:00",
+              "departure": "2009-11-17T11:01:24-08:00",
               "lat": 45.523012,
               "lon": -122.659365,
               "name": "E Burnside & NE 6th",
@@ -5045,8 +5045,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:01:52.000+00:00",
-              "departure": "2009-11-17T19:01:52.000+00:00",
+              "arrival": "2009-11-17T11:01:52-08:00",
+              "departure": "2009-11-17T11:01:52-08:00",
               "lat": 45.523015,
               "lon": -122.661534,
               "name": "E Burnside & NE M L King",
@@ -5058,8 +5058,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:04:00.000+00:00",
-              "departure": "2009-11-17T19:04:00.000+00:00",
+              "arrival": "2009-11-17T11:04:00-08:00",
+              "departure": "2009-11-17T11:04:00-08:00",
               "lat": 45.523249,
               "lon": -122.671269,
               "name": "W Burnside & Burnside Bridge",
@@ -5071,8 +5071,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:05:00.000+00:00",
-              "departure": "2009-11-17T19:05:00.000+00:00",
+              "arrival": "2009-11-17T11:05:00-08:00",
+              "departure": "2009-11-17T11:05:00-08:00",
               "lat": 45.523169,
               "lon": -122.675893,
               "name": "W Burnside & NW 5th",
@@ -5084,8 +5084,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:06:17.000+00:00",
-              "departure": "2009-11-17T19:06:17.000+00:00",
+              "arrival": "2009-11-17T11:06:17-08:00",
+              "departure": "2009-11-17T11:06:17-08:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -5097,8 +5097,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:07:25.000+00:00",
-              "departure": "2009-11-17T19:07:25.000+00:00",
+              "arrival": "2009-11-17T11:07:25-08:00",
+              "departure": "2009-11-17T11:07:25-08:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -5110,8 +5110,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:08:14.000+00:00",
-              "departure": "2009-11-17T19:08:14.000+00:00",
+              "arrival": "2009-11-17T11:08:14-08:00",
+              "departure": "2009-11-17T11:08:14-08:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -5123,8 +5123,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "0"
             },
             {
-              "arrival": "2009-11-17T19:10:09.000+00:00",
-              "departure": "2009-11-17T19:10:09.000+00:00",
+              "arrival": "2009-11-17T11:10:09-08:00",
+              "departure": "2009-11-17T11:10:09-08:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -5136,8 +5136,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:11:00.000+00:00",
-              "departure": "2009-11-17T19:11:00.000+00:00",
+              "arrival": "2009-11-17T11:11:00-08:00",
+              "departure": "2009-11-17T11:11:00-08:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -5149,8 +5149,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:11:27.000+00:00",
-              "departure": "2009-11-17T19:11:27.000+00:00",
+              "arrival": "2009-11-17T11:11:27-08:00",
+              "departure": "2009-11-17T11:11:27-08:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -5162,8 +5162,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:11:40.000+00:00",
-              "departure": "2009-11-17T19:11:40.000+00:00",
+              "arrival": "2009-11-17T11:11:40-08:00",
+              "departure": "2009-11-17T11:11:40-08:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -5175,8 +5175,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:12:03.000+00:00",
-              "departure": "2009-11-17T19:12:03.000+00:00",
+              "arrival": "2009-11-17T11:12:03-08:00",
+              "departure": "2009-11-17T11:12:03-08:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -5201,11 +5201,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T19:00:00.000+00:00",
+          "startTime": "2009-11-17T11:00:00-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T19:12:44.000+00:00",
-            "departure": "2009-11-17T19:17:51.000+00:00",
+            "arrival": "2009-11-17T11:12:44-08:00",
+            "departure": "2009-11-17T11:17:51-08:00",
             "lat": 45.523512,
             "lon": -122.698081,
             "name": "W Burnside & NW 23rd",
@@ -5228,10 +5228,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 981.85,
-          "endTime": "2009-11-17T19:22:04.000+00:00",
+          "endTime": "2009-11-17T11:22:04-08:00",
           "from": {
-            "arrival": "2009-11-17T19:12:44.000+00:00",
-            "departure": "2009-11-17T19:17:51.000+00:00",
+            "arrival": "2009-11-17T11:12:44-08:00",
+            "departure": "2009-11-17T11:17:51-08:00",
             "lat": 45.523512,
             "lon": -122.698081,
             "name": "W Burnside & NW 23rd",
@@ -5247,8 +5247,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-11-17T19:18:53.000+00:00",
-              "departure": "2009-11-17T19:18:53.000+00:00",
+              "arrival": "2009-11-17T11:18:53-08:00",
+              "departure": "2009-11-17T11:18:53-08:00",
               "lat": 45.525416,
               "lon": -122.698381,
               "name": "NW 23rd & Flanders",
@@ -5260,8 +5260,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:19:56.000+00:00",
-              "departure": "2009-11-17T19:19:56.000+00:00",
+              "arrival": "2009-11-17T11:19:56-08:00",
+              "departure": "2009-11-17T11:19:56-08:00",
               "lat": 45.527543,
               "lon": -122.698473,
               "name": "NW 23rd & Irving",
@@ -5273,8 +5273,8 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
               "zoneId": "1"
             },
             {
-              "arrival": "2009-11-17T19:21:00.000+00:00",
-              "departure": "2009-11-17T19:21:00.000+00:00",
+              "arrival": "2009-11-17T11:21:00-08:00",
+              "departure": "2009-11-17T11:21:00-08:00",
               "lat": 45.529681,
               "lon": -122.698529,
               "name": "NW 23rd & Lovejoy",
@@ -5299,11 +5299,11 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "routeShortName": "15",
           "routeType": 3,
           "serviceDate": "2009-11-17",
-          "startTime": "2009-11-17T19:17:51.000+00:00",
+          "startTime": "2009-11-17T11:17:51-08:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-11-17T19:22:04.000+00:00",
-            "departure": "2009-11-17T19:22:04.000+00:00",
+            "arrival": "2009-11-17T11:22:04-08:00",
+            "departure": "2009-11-17T11:22:04-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -5323,10 +5323,10 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 231.46,
-          "endTime": "2009-11-17T19:25:05.000+00:00",
+          "endTime": "2009-11-17T11:25:05-08:00",
           "from": {
-            "arrival": "2009-11-17T19:22:04.000+00:00",
-            "departure": "2009-11-17T19:22:04.000+00:00",
+            "arrival": "2009-11-17T11:22:04-08:00",
+            "departure": "2009-11-17T11:22:04-08:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -5346,7 +5346,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T19:22:04.000+00:00",
+          "startTime": "2009-11-17T11:22:04-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -5376,7 +5376,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:25:05.000+00:00",
+            "arrival": "2009-11-17T11:25:05-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -5386,7 +5386,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:58:47.000+00:00",
+      "startTime": "2009-11-17T10:58:47-08:00",
       "tooSloped": false,
       "transfers": 1,
       "transitTime": 1017,
@@ -5406,7 +5406,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 3804,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T19:03:24.000+00:00",
+      "endTime": "2009-11-17T11:03:24-08:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -5418,9 +5418,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 4875.79,
-          "endTime": "2009-11-17T19:03:24.000+00:00",
+          "endTime": "2009-11-17T11:03:24-08:00",
           "from": {
-            "departure": "2009-11-17T18:00:00.000+00:00",
+            "departure": "2009-11-17T10:00:00-08:00",
             "lat": 45.51932,
             "lon": -122.648567,
             "name": "SE Stark    St. & SE 17th Ave. (P0)",
@@ -5437,7 +5437,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:00:00.000+00:00",
+          "startTime": "2009-11-17T10:00:00-08:00",
           "steps": [
             {
               "absoluteDirection": "NORTH",
@@ -5636,7 +5636,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T19:03:24.000+00:00",
+            "arrival": "2009-11-17T11:03:24-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -5646,7 +5646,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:00:00.000+00:00",
+      "startTime": "2009-11-17T10:00:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -5666,7 +5666,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 3230,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:53:50.000+00:00",
+      "endTime": "2009-11-17T10:53:50-08:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -5678,9 +5678,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 4154.15,
-          "endTime": "2009-11-17T18:53:50.000+00:00",
+          "endTime": "2009-11-17T10:53:50-08:00",
           "from": {
-            "departure": "2009-11-17T18:00:00.000+00:00",
+            "departure": "2009-11-17T10:00:00-08:00",
             "lat": 45.52337,
             "lon": -122.653725,
             "name": "NE 12th & Couch",
@@ -5700,7 +5700,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:00:00.000+00:00",
+          "startTime": "2009-11-17T10:00:00-08:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -5834,7 +5834,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:53:50.000+00:00",
+            "arrival": "2009-11-17T10:53:50-08:00",
             "lat": 45.53122,
             "lon": -122.69659,
             "name": "NW Northrup St. & NW 22nd Ave. (P2)",
@@ -5844,7 +5844,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:00:00.000+00:00",
+      "startTime": "2009-11-17T10:00:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -5864,7 +5864,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
       "duration": 2366,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-11-17T18:39:26.000+00:00",
+      "endTime": "2009-11-17T10:39:26-08:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -5876,9 +5876,9 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2985.43,
-          "endTime": "2009-11-17T18:39:26.000+00:00",
+          "endTime": "2009-11-17T10:39:26-08:00",
           "from": {
-            "departure": "2009-11-17T18:00:00.000+00:00",
+            "departure": "2009-11-17T10:00:00-08:00",
             "lat": 45.530244,
             "lon": -122.667794,
             "name": "Interstate/Rose Quarter MAX Station",
@@ -5898,7 +5898,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-11-17T18:00:00.000+00:00",
+          "startTime": "2009-11-17T10:00:00-08:00",
           "steps": [
             {
               "absoluteDirection": "NORTHWEST",
@@ -6045,7 +6045,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
             }
           ],
           "to": {
-            "arrival": "2009-11-17T18:39:26.000+00:00",
+            "arrival": "2009-11-17T10:39:26-08:00",
             "lat": 45.531,
             "lon": -122.70029,
             "name": "NW Northrup St. & NW 24th Ave. (P3)",
@@ -6055,7 +6055,7 @@ org.opentripplanner.routing.algorithm.mapping.TransitSnapshotTest.test_trip_plan
           "walkingBike": false
         }
       ],
-      "startTime": "2009-11-17T18:00:00.000+00:00",
+      "startTime": "2009-11-17T10:00:00-08:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
