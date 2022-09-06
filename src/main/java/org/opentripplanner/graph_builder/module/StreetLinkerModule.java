@@ -12,6 +12,7 @@ import org.opentripplanner.graph_builder.model.GraphBuilderModule;
 import org.opentripplanner.routing.core.TraverseMode;
 import org.opentripplanner.routing.core.TraverseModeSet;
 import org.opentripplanner.routing.edgetype.StreetTransitEntranceLink;
+import org.opentripplanner.routing.edgetype.StreetTransitFlexLink;
 import org.opentripplanner.routing.edgetype.StreetTransitStopLink;
 import org.opentripplanner.routing.edgetype.StreetVehicleParkingLink;
 import org.opentripplanner.routing.edgetype.VehicleParkingEdge;
@@ -108,29 +109,40 @@ public class StreetLinkerModule implements GraphBuilderModule {
     }
 
     for (TransitStopVertex tStop : vertices) {
-      // Stops with pathways do not need to be connected to the street network, since there are explicit entraces defined for that
+      // check if stop is already linked, to allow multiple linking cycles
+      if (tStop.hasNonPathways()) {
+        continue;
+      }
+
+      if (
+        OTPFeature.FlexRouting.isOn() && stopLocationsUsedForFlexTrips.contains(tStop.getStop())
+      ) {
+        // Flex stops must always car accessible
+        graph
+          .getLinker()
+          .linkVertexPermanently(
+            tStop,
+            new TraverseModeSet(TraverseMode.CAR),
+            LinkingDirection.BOTH_WAYS,
+            (vertex, streetVertex) ->
+              List.of(
+                new StreetTransitFlexLink((TransitStopVertex) vertex, streetVertex),
+                new StreetTransitFlexLink(streetVertex, (TransitStopVertex) vertex)
+              )
+          );
+      }
+
+      // Stops with pathways do not need to be connected to the street network, since there are
+      // explicit entrances defined for that
       if (tStop.hasPathways()) {
         continue;
-      }
-      // check if stop is already linked, to allow multiple linking cycles
-      if (tStop.getDegreeOut() + tStop.getDegreeIn() > 0) {
-        continue;
-      }
-      TraverseModeSet modes = new TraverseModeSet(TraverseMode.WALK);
-
-      if (OTPFeature.FlexRouting.isOn()) {
-        // If regular stops are used for flex trips, they also need to be connected to car routable
-        // street edges.
-        if (stopLocationsUsedForFlexTrips.contains(tStop.getStop())) {
-          modes = new TraverseModeSet(TraverseMode.WALK, TraverseMode.CAR);
-        }
       }
 
       graph
         .getLinker()
         .linkVertexPermanently(
           tStop,
-          modes,
+          new TraverseModeSet(TraverseMode.WALK),
           LinkingDirection.BOTH_WAYS,
           (vertex, streetVertex) ->
             List.of(
