@@ -517,6 +517,31 @@
                     <protocArtifact>com.google.protobuf:protoc:3.19.2:exe:${os.detected.classifier}</protocArtifact>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-maven-plugin-jakarta</artifactId>
+                <version>2.2.8</version>
+                <configuration>
+                    <outputFileName>openapi</outputFileName>
+                    <outputPath>${project.build.directory}/openapi</outputPath>
+                    <outputFormat>JSONANDYAML</outputFormat>
+                    <configurationFilePath>${project.build.outputDirectory}/openapi-config.yaml</configurationFilePath>
+                    <resourcePackages>
+                        <package>org.opentripplanner.api.resource</package>
+                        <package>org.opentripplanner.ext</package>
+                        <package>org.opentripplanner.index</package>
+                    </resourcePackages>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>resolve</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
