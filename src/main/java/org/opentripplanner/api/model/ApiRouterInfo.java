@@ -1,9 +1,10 @@
 package org.opentripplanner.api.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Polygon;
 import org.opentripplanner.api.mapping.TraverseModeMapper;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.vehicle_parking.VehicleParkingService;
@@ -21,7 +22,7 @@ public class ApiRouterInfo {
   public final boolean hasCarPark;
   public final boolean hasVehicleParking;
   public String routerId;
-  public Geometry polygon;
+  public ApiPolygon polygon;
   public Date buildTime;
   public long transitServiceStarts;
   public long transitServiceEnds;
@@ -38,7 +39,7 @@ public class ApiRouterInfo {
     VehicleParkingService vehicleParkingService = graph.getVehicleParkingService();
 
     this.routerId = routerId;
-    this.polygon = graph.getConvexHull();
+    this.polygon = mapToApi((Polygon) graph.getConvexHull());
     this.buildTime = Date.from(graph.buildTime);
     this.transitServiceStarts = transitService.getTransitServiceStarts().toEpochSecond();
     this.transitServiceEnds = transitService.getTransitServiceEnds().toEpochSecond();
@@ -50,7 +51,7 @@ public class ApiRouterInfo {
     this.hasCarPark = mapHasCarPark(vehicleParkingService);
     this.hasVehicleParking = mapHasVehicleParking(vehicleParkingService);
     this.travelOptions = TravelOptionsMaker.makeOptions(graph, transitService);
-    transitService.getCenter().ifPresentOrElse(this::setCenter, this::calculateCenter);
+    transitService.getCenter().ifPresentOrElse(this::updateCenter, this::calculateCenter);
   }
 
   public boolean mapHasBikeSharing(VehicleRentalStationService service) {
@@ -90,7 +91,7 @@ public class ApiRouterInfo {
    * It is first called when OSM is loaded. Then after transit data is loaded. So that center is set
    * in all combinations of street and transit loading.
    */
-  public void setCenter(Coordinate center) {
+  private void updateCenter(Coordinate center) {
     //Transit data was loaded and center was calculated with calculateTransitCenter
     centerLongitude = center.x;
     centerLatitude = center.y;
@@ -99,9 +100,9 @@ public class ApiRouterInfo {
   /**
    * Set center coordinate from mean coordinates of bounding box.
    *
-   * @see #setCenter(Coordinate)
+   * @see #updateCenter(Coordinate)
    */
-  public void calculateCenter() {
+  private void calculateCenter() {
     // Does not work around 180th parallel.
     centerLatitude = (getUpperRightLatitude() + getLowerLeftLatitude()) / 2;
     centerLongitude = (getUpperRightLongitude() + getLowerLeftLongitude()) / 2;
@@ -121,5 +122,23 @@ public class ApiRouterInfo {
 
   public double getUpperRightLongitude() {
     return envelope.getUpperRightLongitude();
+  }
+
+  private ApiPolygon mapToApi(Polygon convexHull) {
+    var coordinates = new ArrayList<List<Double>>();
+    for (Coordinate coordinate : convexHull.getExteriorRing().getCoordinates()) {
+      coordinates.add(List.of(coordinate.getX(), coordinate.getY()));
+    }
+
+    var api = new ApiPolygon();
+    api.coordinates = List.of(coordinates);
+
+    return api;
+  }
+
+  public static class ApiPolygon {
+
+    public String type = "Polygon";
+    public List<List<List<Double>>> coordinates;
   }
 }
