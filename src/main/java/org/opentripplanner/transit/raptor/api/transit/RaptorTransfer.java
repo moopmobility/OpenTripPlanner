@@ -8,6 +8,8 @@ import org.opentripplanner.util.time.DurationUtils;
  * to Raptor - all these are the same thing.
  */
 public interface RaptorTransfer {
+  int UNAVAILABLE = -1;
+
   /**
    * <ul>
    *     <li>Access: The first stop in the journey, where the access path just arrived at.
@@ -50,7 +52,7 @@ public interface RaptorTransfer {
    * when the access path can't start immediately, but have to wait for a vehicle arriving. Also DRT
    * systems or bike shares can have operation time limitations.
    * <p>
-   * Returns -1 if transfer is not possible after the requested departure time
+   * Returns {@link #UNAVAILABLE} if transfer is not possible after the requested departure time
    */
   default int earliestDepartureTime(int requestedDepartureTime) {
     return requestedDepartureTime;
@@ -60,7 +62,7 @@ public interface RaptorTransfer {
    * Returns the latest possible arrival time for the path. Used in DRT systems or bike shares where
    * they can have operation time limitations.
    * <p>
-   * Returns -1 if transfer is not possible before the requested arrival time
+   * Returns {@link #UNAVAILABLE} if transfer is not possible before the requested arrival time
    */
   default int latestArrivalTime(int requestedArrivalTime) {
     return requestedArrivalTime;

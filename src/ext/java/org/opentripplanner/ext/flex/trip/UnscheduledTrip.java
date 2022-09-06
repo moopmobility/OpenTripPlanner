@@ -26,6 +26,7 @@ import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.framework.TransitBuilder;
 import org.opentripplanner.transit.model.site.GroupStop;
 import org.opentripplanner.transit.model.site.StopLocation;
+import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
 
 /**
  * This type of FlexTrip is used when a taxi-type service is modeled, which operates in one or
@@ -150,7 +151,7 @@ public class UnscheduledTrip extends FlexTrip<UnscheduledTrip, UnscheduledTripBu
       fromStopTime.flexWindowEnd < departureTime ||
       toStopTime.flexWindowEnd < (departureTime + flexTime)
     ) {
-      return -1;
+      return RaptorTransfer.UNAVAILABLE;
     }
 
     return Math.max(departureTime, fromStopTime.flexWindowStart);
@@ -164,7 +165,7 @@ public class UnscheduledTrip extends FlexTrip<UnscheduledTrip, UnscheduledTripBu
       toStopTime.flexWindowStart > arrivalTime ||
       fromStopTime.flexWindowStart > (arrivalTime - flexTime)
     ) {
-      return -1;
+      return RaptorTransfer.UNAVAILABLE;
     }
 
     return Math.min(arrivalTime, toStopTime.flexWindowEnd);

@@ -465,7 +465,11 @@ public class PathBuilderLeg<T extends RaptorTripSchedule> {
     if (next.isTransfer()) {
       newToTime -= next.asTransferLeg().streetPath.durationInSeconds();
     }
-    newToTime = accessPath.latestArrivalTime(newToTime);
+
+    var shiftedToTime = accessPath.latestArrivalTime(newToTime);
+    if (shiftedToTime != RaptorTransfer.UNAVAILABLE) {
+      newToTime = shiftedToTime;
+    }
 
     setTime(newToTime - accessPath.durationInSeconds(), newToTime);
   }
@@ -490,7 +494,11 @@ public class PathBuilderLeg<T extends RaptorTripSchedule> {
     if (egressPath.hasRides()) {
       newFromTime += slackProvider.transferSlack();
     }
-    newFromTime = egressPath.earliestDepartureTime(newFromTime);
+
+    var shiftedFromTime = egressPath.earliestDepartureTime(newFromTime);
+    if (shiftedFromTime != RaptorTransfer.UNAVAILABLE) {
+      newFromTime = shiftedFromTime;
+    }
 
     setTime(newFromTime, newFromTime + egressPath.durationInSeconds());
   }

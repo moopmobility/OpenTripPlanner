@@ -29,6 +29,7 @@ import org.opentripplanner.transit.model.framework.TransitBuilder;
 import org.opentripplanner.transit.model.site.GroupStop;
 import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
+import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
 
 /**
  * A scheduled deviated trip is similar to a regular scheduled trip, except that is continues stop
@@ -165,7 +166,9 @@ public class ScheduledDeviatedTrip
     for (int i = fromStopIndex; stopTime == MISSING_VALUE && i >= 0; i--) {
       stopTime = stopTimes[i].departureTime;
     }
-    return stopTime != MISSING_VALUE && stopTime >= departureTime ? stopTime : -1;
+    return stopTime != MISSING_VALUE && stopTime >= departureTime
+      ? stopTime
+      : RaptorTransfer.UNAVAILABLE;
   }
 
   @Override
@@ -174,7 +177,9 @@ public class ScheduledDeviatedTrip
     for (int i = toStopIndex; stopTime == MISSING_VALUE && i < stopTimes.length; i++) {
       stopTime = stopTimes[i].arrivalTime;
     }
-    return stopTime != MISSING_VALUE && stopTime <= arrivalTime ? stopTime : -1;
+    return stopTime != MISSING_VALUE && stopTime <= arrivalTime
+      ? stopTime
+      : RaptorTransfer.UNAVAILABLE;
   }
 
   @Override

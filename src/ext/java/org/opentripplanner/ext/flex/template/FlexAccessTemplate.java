@@ -18,6 +18,7 @@ import org.opentripplanner.routing.graphfinder.NearbyStop;
 import org.opentripplanner.routing.spt.GraphPath;
 import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
+import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
 import org.opentripplanner.transit.service.TransitService;
 
 public class FlexAccessTemplate extends FlexAccessEgressTemplate {
@@ -74,7 +75,7 @@ public class FlexAccessTemplate extends FlexAccessEgressTemplate {
         toStopIndex,
         flexTime
       );
-      if (latestArrivalTime == -1) {
+      if (latestArrivalTime == RaptorTransfer.UNAVAILABLE) {
         return null;
       }
 
@@ -88,7 +89,7 @@ public class FlexAccessTemplate extends FlexAccessEgressTemplate {
         toStopIndex,
         flexTime
       );
-      if (earliestDepartureTime == -1) {
+      if (earliestDepartureTime == RaptorTransfer.UNAVAILABLE) {
         return null;
       }
 

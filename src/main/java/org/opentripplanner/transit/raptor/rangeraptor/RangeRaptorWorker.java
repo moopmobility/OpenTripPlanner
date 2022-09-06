@@ -412,13 +412,13 @@ public final class RangeRaptorWorker<T extends RaptorTripSchedule> implements Wo
       int timeDependentDepartureTime = calculator.departureTime(it, iterationDepartureTime);
 
       // This access is not available after the iteration departure time
-      if (timeDependentDepartureTime == -1) {
+      if (timeDependentDepartureTime == RaptorTransfer.UNAVAILABLE) {
         continue;
       }
 
-      // If the time differs from the iterationDepartureTime, than the access has time
+      // If the time differs from the iterationDepartureTime, then the access has time
       // restrictions. If the difference between _any_ access between iterations is not a
-      // uniform iterationStep, than the exactTripSearch optimisation may not be used.
+      // uniform iterationStep, then the exactTripSearch optimisation may not be used.
       if (timeDependentDepartureTime != iterationDepartureTime) {
         hasTimeDependentAccess = true;
       }

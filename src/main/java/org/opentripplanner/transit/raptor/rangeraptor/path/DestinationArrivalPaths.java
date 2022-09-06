@@ -167,8 +167,7 @@ public class DestinationArrivalPaths<T extends RaptorTripSchedule> {
       transitCalculator
     );
 
-    // TODO OTP2 - Use a constant not -1
-    if (departureTime == -1) {
+    if (departureTime == RaptorTransfer.UNAVAILABLE) {
       return null;
     }
 

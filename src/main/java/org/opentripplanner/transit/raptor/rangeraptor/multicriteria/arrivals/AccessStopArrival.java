@@ -38,7 +38,7 @@ public final class AccessStopArrival<T extends RaptorTripSchedule> extends Abstr
   public AbstractStopArrival<T> timeShiftNewArrivalTime(int newRequestedArrivalTime) {
     int newArrivalTime = access.latestArrivalTime(newRequestedArrivalTime);
 
-    if (newArrivalTime == -1 || newArrivalTime == arrivalTime()) {
+    if (newArrivalTime == RaptorTransfer.UNAVAILABLE || newArrivalTime == arrivalTime()) {
       return this;
     }
 

@@ -3,6 +3,7 @@ package org.opentripplanner.ext.flex;
 import org.opentripplanner.ext.flex.trip.FlexTrip;
 import org.opentripplanner.routing.core.State;
 import org.opentripplanner.transit.model.site.RegularStop;
+import org.opentripplanner.transit.raptor.api.transit.RaptorTransfer;
 
 public class FlexAccessEgress {
 
@@ -49,8 +50,8 @@ public class FlexAccessEgress {
       toStopIndex,
       flexTime
     );
-    if (earliestAvailableTransitDepartureTime == -1) {
-      return -1;
+    if (earliestAvailableTransitDepartureTime == RaptorTransfer.UNAVAILABLE) {
+      return RaptorTransfer.UNAVAILABLE;
     }
     return earliestAvailableTransitDepartureTime - preFlexTime + differenceFromStartOfTime;
   }
@@ -63,8 +64,8 @@ public class FlexAccessEgress {
       toStopIndex,
       flexTime
     );
-    if (latestAvailableTransitArrivalTime == -1) {
-      return -1;
+    if (latestAvailableTransitArrivalTime == RaptorTransfer.UNAVAILABLE) {
+      return RaptorTransfer.UNAVAILABLE;
     }
     return latestAvailableTransitArrivalTime + postFlexTime + differenceFromStartOfTime;
   }
