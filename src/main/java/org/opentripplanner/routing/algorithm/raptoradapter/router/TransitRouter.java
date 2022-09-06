@@ -182,8 +182,8 @@ public class TransitRouter {
       try {
         CompletableFuture
           .allOf(
-            CompletableFuture.runAsync(accessCalculator),
-            CompletableFuture.runAsync(egressCalculator)
+            CompletableFuture.runAsync(accessCalculator, serverContext.raptorConfig().threadPool()),
+            CompletableFuture.runAsync(egressCalculator, serverContext.raptorConfig().threadPool())
           )
           .join();
       } catch (CompletionException e) {

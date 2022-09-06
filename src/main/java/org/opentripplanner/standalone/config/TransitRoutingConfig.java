@@ -19,6 +19,7 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
   private final int iterationDepartureStepInSeconds;
   private final int searchThreadPoolSize;
   private final int transferCacheMaxSize;
+  private final int transferCacheMaxThreads;
   private final List<Duration> pagingSearchWindowAdjustments;
 
   private final Map<StopTransferPriority, Integer> stopTransferCost;
@@ -42,6 +43,8 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
         NodeAdapter::asInt
       );
     this.transferCacheMaxSize = c.asInt("transferCacheMaxSize", 25);
+    this.transferCacheMaxThreads =
+      c.asInt("transferCacheMaxThreads", Runtime.getRuntime().availableProcessors() - 1);
 
     this.pagingSearchWindowAdjustments =
       c.asDurations("pagingSearchWindowAdjustments", PAGING_SEARCH_WINDOW_ADJUSTMENTS);
@@ -100,6 +103,11 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
   @Override
   public int transferCacheMaxSize() {
     return transferCacheMaxSize;
+  }
+
+  @Override
+  public int transferCacheMaxThreads() {
+    return transferCacheMaxThreads;
   }
 
   @Override

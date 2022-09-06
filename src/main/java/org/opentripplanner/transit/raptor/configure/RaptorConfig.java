@@ -1,7 +1,7 @@
 package org.opentripplanner.transit.raptor.configure;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import javax.annotation.Nullable;
 import org.opentripplanner.transit.raptor.api.request.RaptorRequest;
 import org.opentripplanner.transit.raptor.api.request.RaptorTuningParameters;
@@ -112,6 +112,6 @@ public class RaptorConfig<T extends RaptorTripSchedule> {
 
   @Nullable
   private ExecutorService createNewThreadPool(int size) {
-    return size > 0 ? Executors.newFixedThreadPool(size) : null;
+    return size > 0 ? new ForkJoinPool(size) : null;
   }
 }

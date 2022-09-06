@@ -52,7 +52,7 @@ public interface RaptorTuningParameters {
    * thread.
    */
   default int searchThreadPoolSize() {
-    return 0;
+    return Runtime.getRuntime().availableProcessors();
   }
 
   /**

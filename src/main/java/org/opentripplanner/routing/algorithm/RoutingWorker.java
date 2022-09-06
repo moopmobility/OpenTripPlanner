@@ -102,9 +102,18 @@ public class RoutingWorker {
       try {
         CompletableFuture
           .allOf(
-            CompletableFuture.runAsync(() -> routeDirectStreet(itineraries, routingErrors)),
-            CompletableFuture.runAsync(() -> routeDirectFlex(itineraries, routingErrors)),
-            CompletableFuture.runAsync(() -> routeTransit(itineraries, routingErrors))
+            CompletableFuture.runAsync(
+              () -> routeDirectStreet(itineraries, routingErrors),
+              serverContext.raptorConfig().threadPool()
+            ),
+            CompletableFuture.runAsync(
+              () -> routeDirectFlex(itineraries, routingErrors),
+              serverContext.raptorConfig().threadPool()
+            ),
+            CompletableFuture.runAsync(
+              () -> routeTransit(itineraries, routingErrors),
+              serverContext.raptorConfig().threadPool()
+            )
           )
           .join();
       } catch (CompletionException e) {
