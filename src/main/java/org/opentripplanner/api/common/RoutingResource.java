@@ -287,7 +287,7 @@ public abstract class RoutingResource {
    *   <a href="http://docs.opentripplanner.org/en/latest/Configuration/#routing-modes">Routing modes</a>.
    */
   @QueryParam("mode")
-  protected QualifiedModeSet modes;
+  protected String modes;
 
   /**
    * The minimum time, in seconds, between successive trips on different vehicles. This is designed
@@ -713,6 +713,12 @@ public abstract class RoutingResource {
   protected RouteRequest buildRequest(MultivaluedMap<String, String> queryParameters) {
     final RouteRequest request = defaultRouteRequest();
 
+    /* Temporary code to get bike/car parking and renting working. */
+    QualifiedModeSet modeSet = null;
+    if (modes != null) {
+      modeSet = new QualifiedModeSet(modes);
+    }
+
     // The routing request should already contain defaults, which are set when it is initialized or
     // in the JSON router configuration and cloned. We check whether each parameter was supplied
     // before overwriting the default.
@@ -752,8 +758,8 @@ public abstract class RoutingResource {
     {
       var journey = request.journey();
       /* Temporary code to get bike/car parking and renting working. */
-      if (modes != null && !modes.qModes.isEmpty()) {
-        journey.setModes(modes.getRequestModes());
+      if (modeSet != null && !modeSet.qModes.isEmpty()) {
+        journey.setModes(modeSet.getRequestModes());
       }
 
       {
@@ -821,11 +827,11 @@ public abstract class RoutingResource {
         );
 
         List<MainAndSubMode> tModes;
-        if (modes == null) {
+        if (modeSet == null) {
           tModes = MainAndSubMode.all();
         } else {
           // Create modes
-          tModes = modes.getTransitModes().stream().map(MainAndSubMode::new).toList();
+          tModes = modeSet.getTransitModes().stream().map(MainAndSubMode::new).toList();
         }
 
         // Add modes filter to all existing selectors

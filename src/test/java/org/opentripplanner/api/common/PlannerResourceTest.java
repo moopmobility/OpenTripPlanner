@@ -11,7 +11,6 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.TestServerContext;
 import org.opentripplanner._support.time.ZoneIds;
-import org.opentripplanner.api.parameter.QualifiedModeSet;
 import org.opentripplanner.api.resource.PlannerResource;
 import org.opentripplanner.routing.api.request.RequestModes;
 import org.opentripplanner.routing.graph.Graph;
@@ -41,7 +40,7 @@ class PlannerResourceTest {
   void bicycleRent() {
     var resource = new PlannerResource();
 
-    resource.modes = new QualifiedModeSet("BICYCLE_RENT");
+    resource.modes = "BICYCLE_RENT";
     resource.serverContext = context();
 
     MultivaluedMap<String, String> queryParams = new MultivaluedHashMap<>(new HashMap<>());
