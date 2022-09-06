@@ -305,7 +305,7 @@ public abstract class RoutingResource {
    *   <a href="http://docs.opentripplanner.org/en/latest/Configuration/#routing-modes">Routing modes</a>.
    */
   @QueryParam("mode")
-  protected QualifiedModeSet modes;
+  protected String modes;
 
   /**
    * The minimum time, in seconds, between successive trips on different vehicles. This is designed
@@ -882,8 +882,11 @@ public abstract class RoutingResource {
       request.setBicycleOptimizeType(optimize);
     }
     /* Temporary code to get bike/car parking and renting working. */
-    if (modes != null && !modes.qModes.isEmpty()) {
-      request.modes = modes.getRequestModes();
+    if (modes != null) {
+      var modeSet = new QualifiedModeSet(modes);
+      if (!modeSet.qModes.isEmpty()) {
+        request.modes = modeSet.getRequestModes();
+      }
     }
 
     if (request.vehicleRental && bikeSpeed == null) {
