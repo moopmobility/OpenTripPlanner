@@ -52,4 +52,44 @@ public class RemoveTransitIfStreetOnlyIsBetterFilterTest implements PlanTestCons
     // Then:
     assertEquals(toStr(List.of(bicycle, walk, i1)), toStr(result));
   }
+
+  @Test
+  public void keepHighCostButFasterItinerary() {
+    Itinerary walk = newItinerary(A, 6).walk(10, E).build();
+    walk.setGeneralizedCost(300);
+
+    Itinerary i1 = newItinerary(A).bus(21, 6, 8, E).build();
+    i1.setGeneralizedCost(600);
+
+    Itinerary i2 = newItinerary(A).bus(31, 6, 20, E).build();
+    i2.setGeneralizedCost(600);
+
+    List<Itinerary> result = DeletionFlaggerTestHelper.process(
+      List.of(i2, walk, i1),
+      new RemoveTransitIfStreetOnlyIsBetterFilter()
+    );
+
+    // Then:
+    assertEquals(toStr(List.of(walk, i1)), toStr(result));
+  }
+
+  @Test
+  public void keepLowCostButSlowerItinerary() {
+    Itinerary walk = newItinerary(A, 6).walk(10, E).build();
+    walk.setGeneralizedCost(300);
+
+    Itinerary i1 = newItinerary(A).bus(21, 6, 20, E).build();
+    i1.setGeneralizedCost(600);
+
+    Itinerary i2 = newItinerary(A).bus(31, 6, 20, E).build();
+    i2.setGeneralizedCost(100);
+
+    List<Itinerary> result = DeletionFlaggerTestHelper.process(
+      List.of(i2, walk, i1),
+      new RemoveTransitIfStreetOnlyIsBetterFilter()
+    );
+
+    // Then:
+    assertEquals(toStr(List.of(i2, walk)), toStr(result));
+  }
 }
