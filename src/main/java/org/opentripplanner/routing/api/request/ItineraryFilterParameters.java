@@ -118,6 +118,8 @@ public class ItineraryFilterParameters {
    */
   public boolean removeItinerariesWithSameRoutesAndStops;
 
+  public final boolean removeTransitIfStreetOnlyBetter;
+
   private ItineraryFilterParameters() {
     this.debug = false;
     this.groupSimilarityKeepOne = 0.85;
@@ -132,6 +134,7 @@ public class ItineraryFilterParameters {
     this.filterItinerariesWithSameFirstOrLastTrip = false;
     this.accessibilityScore = false;
     this.removeItinerariesWithSameRoutesAndStops = false;
+    this.removeTransitIfStreetOnlyBetter = true;
   }
 
   public ItineraryFilterParameters(ItineraryFilterParameters i) {
@@ -147,7 +150,8 @@ public class ItineraryFilterParameters {
       i.flexToScheduledTransitDurationRatio,
       i.filterItinerariesWithSameFirstOrLastTrip,
       i.accessibilityScore,
-      i.removeItinerariesWithSameRoutesAndStops
+      i.removeItinerariesWithSameRoutesAndStops,
+      i.removeTransitIfStreetOnlyBetter
     );
   }
 
@@ -163,7 +167,8 @@ public class ItineraryFilterParameters {
     double flexToScheduledTransitDurationRatio,
     boolean filterItinerariesWithSameFirstOrLastTrip,
     boolean accessibilityScore,
-    boolean removeItinerariesWithSameRoutesAndStops
+    boolean removeItinerariesWithSameRoutesAndStops,
+    boolean removeTransitIfStreetOnlyBetter
   ) {
     this.debug = debug;
     this.groupSimilarityKeepOne = groupSimilarityKeepOne;
@@ -177,6 +182,7 @@ public class ItineraryFilterParameters {
     this.filterItinerariesWithSameFirstOrLastTrip = filterItinerariesWithSameFirstOrLastTrip;
     this.accessibilityScore = accessibilityScore;
     this.removeItinerariesWithSameRoutesAndStops = removeItinerariesWithSameRoutesAndStops;
+    this.removeTransitIfStreetOnlyBetter = removeTransitIfStreetOnlyBetter;
   }
 
   public static ItineraryFilterParameters createDefault() {

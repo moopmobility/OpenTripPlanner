@@ -41,7 +41,8 @@ public class ItineraryFiltersMapper {
       c.asBoolean(
         "removeItinerariesWithSameRoutesAndStops",
         dft.removeItinerariesWithSameRoutesAndStops
-      )
+      ),
+      c.asBoolean("removeTransitIfStreetOnlyBetter", true)
     );
   }
 

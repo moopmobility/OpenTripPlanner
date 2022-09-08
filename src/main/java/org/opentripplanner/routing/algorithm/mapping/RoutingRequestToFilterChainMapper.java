@@ -75,7 +75,7 @@ public class RoutingRequestToFilterChainMapper {
         params.removeItinerariesWithSameRoutesAndStops
       )
       .withTransitAlerts(transitAlertService, getMultiModalStation)
-      .withRemoveTransitWithHigherCostThanBestOnStreetOnly(true)
+      .withRemoveTransitWithHigherCostThanBestOnStreetOnly(params.removeTransitIfStreetOnlyBetter)
       .withLatestDepartureTimeLimit(filterOnLatestDepartureTime)
       .withMaxLimitReachedSubscriber(maxLimitReachedSubscriber)
       .withRemoveWalkAllTheWayResults(removeWalkAllTheWayResults)
