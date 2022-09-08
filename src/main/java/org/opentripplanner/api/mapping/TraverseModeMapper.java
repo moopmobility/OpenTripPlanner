@@ -65,6 +65,8 @@ public class TraverseModeMapper {
         return "TROLLEYBUS";
       case MONORAIL:
         return "MONORAIL";
+      case TAXI:
+        return "TAXI";
     }
     throw new IllegalArgumentException("Traverse mode not mapped: " + domain);
   }
@@ -105,6 +107,9 @@ public class TraverseModeMapper {
         return "TROLLEYBUS";
       case MONORAIL:
         return "MONORAIL";
+      case TAXI1:
+      case TAXI2:
+        return "TAXI";
     }
     throw new IllegalArgumentException("Traverse mode not mapped: " + domain);
   }

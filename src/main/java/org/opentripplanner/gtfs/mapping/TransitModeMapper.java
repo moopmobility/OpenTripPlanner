@@ -48,6 +48,12 @@ public class TransitModeMapper {
     } else if (routeType >= 1400 && routeType < 1500) { //Funicalar Service
       return TransitMode.FUNICULAR;
     } else if (routeType >= 1500 && routeType < 1600) { //Taxi Service
+      if (routeType == 1501) {
+        return TransitMode.TAXI1;
+      }
+      if (routeType == 1502) {
+        return TransitMode.TAXI2;
+      }
       return null;
     } else if (routeType >= 1600 && routeType < 1700) { //Self drive
       return TransitMode.BUS;
