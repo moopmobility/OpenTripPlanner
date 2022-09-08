@@ -3,6 +3,8 @@ package org.opentripplanner.graph_builder.module;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimaps;
 import java.time.Duration;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,8 @@ import org.opentripplanner.graph_builder.model.GraphBuilderModule;
 import org.opentripplanner.model.PathTransfer;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.Transfer;
 import org.opentripplanner.routing.api.request.RoutingRequest;
+import org.opentripplanner.routing.edgetype.PathwayEdge;
+import org.opentripplanner.routing.edgetype.StreetEdge;
 import org.opentripplanner.routing.graph.Edge;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.graph.Vertex;
@@ -101,6 +105,10 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       HashMultimap.create()
     );
 
+    var stopPairsWithTransfers = Multimaps.<StopPair, PathTransfer>synchronizedMultimap(
+      HashMultimap.create()
+    );
+
     stops
       .stream()
       .parallel()
@@ -159,6 +167,14 @@ public class DirectTransferGenerator implements GraphBuilderModule {
               pathTransfer.to.getParentStation() == pathTransfer.from.getParentStation()
             )
             .forEach(transfer -> transfersByStop.put(transfer.from, transfer));
+
+          distinctTransfers.forEach((transferKey, pathTransfer) ->
+            stopPairsWithTransfers.put(
+              new StopPair(transferKey.source, transferKey.target),
+              pathTransfer
+            )
+          );
+
           nLinkedStops.incrementAndGet();
           nTransfersTotal.addAndGet(distinctTransfers.size());
         }
@@ -176,6 +192,76 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       nTransfersTotal,
       nLinkedStops
     );
+
+    stopPairsWithTransfers
+      .keySet()
+      .stream()
+      .sorted(
+        Comparator.comparing(stopPair ->
+          "%s-%s-%s-%s".formatted(
+              stopPair.from.getName(),
+              stopPair.from.getId().toString(),
+              stopPair.to.getName(),
+              stopPair.to.getId().toString()
+            )
+        )
+      )
+      .forEach(stopPair -> {
+        var hasWheelchairAccessibleTransfer = stopPairsWithTransfers
+          .get(stopPair)
+          .stream()
+          .map(PathTransfer::getEdges)
+          .filter(Objects::nonNull)
+          .flatMap(Collection::stream)
+          .anyMatch(edge ->
+            (edge instanceof StreetEdge && !((StreetEdge) edge).isStairs()) ||
+            (edge instanceof StreetEdge && !((StreetEdge) edge).isWheelchairAccessible()) ||
+            (edge instanceof PathwayEdge && !((PathwayEdge) edge).isWheelchairAccessible())
+          );
+
+        if (!hasWheelchairAccessibleTransfer) {
+          issueStore.add(
+            "MissingWheelchairAccessibleTransfer",
+            "No wheelchair accessible transfer between stops: %s (%s) -> %s (%s)",
+            stopPair.from.getName(),
+            stopPair.from.getId(),
+            stopPair.to.getName(),
+            stopPair.to.getId()
+          );
+        }
+      });
+
+    transitModel
+      .getStopModel()
+      .listStopLocationGroups()
+      .stream()
+      .sorted(Comparator.comparing(stopLocationsGroup -> stopLocationsGroup.getName().toString()))
+      .forEach(stopLocationsGroup -> {
+        stopLocationsGroup
+          .getChildStops()
+          .stream()
+          .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
+          .forEach(stopA -> {
+            stopLocationsGroup
+              .getChildStops()
+              .stream()
+              .filter(stopB -> stopA != stopB)
+              .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
+              .forEach(stopB -> {
+                if (!stopPairsWithTransfers.containsKey(new StopPair(stopA, stopB))) {
+                  issueStore.add(
+                    "MissingTransfersWithinStation",
+                    "Missing transfer within stations %s: %s (%s) -> %s (%s)",
+                    stopLocationsGroup.getName(),
+                    stopA.getName(),
+                    stopA.getId(),
+                    stopB.getName(),
+                    stopB.getId()
+                  );
+                }
+              });
+          });
+      });
   }
 
   @Override
@@ -198,37 +284,7 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       : nearbyStopFinder.findNearbyStops(vertex, routingRequest, reverseDirection);
   }
 
-  private static class TransferKey {
+  private record TransferKey(StopLocation source, StopLocation target, List<Edge> edges) {}
 
-    private final StopLocation source;
-    private final StopLocation target;
-    private final List<Edge> edges;
-
-    private TransferKey(StopLocation source, StopLocation target, List<Edge> edges) {
-      this.source = source;
-      this.target = target;
-      this.edges = edges;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(source, target, edges);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) {
-        return true;
-      }
-      if (o == null || getClass() != o.getClass()) {
-        return false;
-      }
-      final TransferKey that = (TransferKey) o;
-      return (
-        source.equals(that.source) &&
-        target.equals(that.target) &&
-        Objects.equals(edges, that.edges)
-      );
-    }
-  }
+  private record StopPair(StopLocation from, StopLocation to) {}
 }
