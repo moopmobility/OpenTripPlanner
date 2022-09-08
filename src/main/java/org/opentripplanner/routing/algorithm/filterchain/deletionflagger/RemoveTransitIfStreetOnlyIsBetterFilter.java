@@ -1,5 +1,6 @@
 package org.opentripplanner.routing.algorithm.filterchain.deletionflagger;
 
+import java.time.Duration;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -7,9 +8,9 @@ import java.util.stream.Collectors;
 import org.opentripplanner.model.plan.Itinerary;
 
 /**
- * Filter itineraries based on generalizedCost, compared with a on-street-all-the-way itinerary(if
- * it exist). If an itinerary is slower than the best all-the-way-on-street itinerary, then the
- * transit itinerary is removed.
+ * Filter itineraries based on durationSeconds and generalizedCost, compared with an
+ * on-street-all-the-way itinerary (if it exists). If an itinerary is both slower and has a higher
+ * cost than the best all-the-way-on-street itinerary, then the transit itinerary is removed.
  */
 public class RemoveTransitIfStreetOnlyIsBetterFilter implements ItineraryDeletionFlagger {
 
@@ -30,18 +31,25 @@ public class RemoveTransitIfStreetOnlyIsBetterFilter implements ItineraryDeletio
     Optional<Itinerary> bestStreetOp = itineraries
       .stream()
       .filter(Itinerary::isOnStreetAllTheWay)
-      .min(Comparator.comparingInt(l -> l.getGeneralizedCost()));
+      .min(Comparator.comparingInt(Itinerary::getGeneralizedCost));
 
     if (bestStreetOp.isEmpty()) {
       return List.of();
     }
 
-    final long limit = bestStreetOp.get().getGeneralizedCost();
+    final long costLimit = bestStreetOp.get().getGeneralizedCost();
+    final Duration timeLimit = bestStreetOp.get().getDuration();
 
-    // Filter away itineraries that have higher cost than the best non-transit option.
+    // Filter away itineraries that have higher cost and are slower than the best non-transit option.
     return itineraries
       .stream()
-      .filter(it -> !it.isOnStreetAllTheWay() && it.getGeneralizedCost() >= limit)
+      .filter(it ->
+        !(
+          it.isOnStreetAllTheWay() ||
+          it.getGeneralizedCost() < costLimit ||
+          it.getDuration().compareTo(timeLimit) < 0
+        )
+      )
       .collect(Collectors.toList());
   }
 
