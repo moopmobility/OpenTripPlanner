@@ -74,6 +74,16 @@ public class ItineraryFilterParameters {
 
   /**
    * This is used to filter out flex itineraries that contain long flex trips with only little
+   * scheduled transit. The value describes the minimum ratio of the distance of flex legs to
+   * scheduled transit to allow the itinerary.
+   * <p>
+   * Default value is 0 (off). To remove trips with 2 times more flex than scheduled transit use 2.0
+   * (200%).
+   */
+  public double flexToScheduledTransitDistanceRatio;
+
+  /**
+   * This is used to filter out flex itineraries that contain long flex trips with only little
    * scheduled transit. The value describes the minimum ratio of the duration of flex legs to
    * scheduled transit to allow the itinerary.
    * <p>
@@ -127,6 +137,7 @@ public class ItineraryFilterParameters {
     this.groupedOtherThanSameLegsMaxCostMultiplier = 2.0;
     this.bikeRentalDistanceRatio = 0.0;
     this.parkAndRideDurationRatio = 0.0;
+    this.flexToScheduledTransitDistanceRatio = 0.0;
     this.flexToScheduledTransitDurationRatio = 0.0;
     this.transitGeneralizedCostLimit =
       new TransitGeneralizedCostFilterParams(RequestFunctions.createLinearFunction(900, 1.5), 0.4);
@@ -147,6 +158,7 @@ public class ItineraryFilterParameters {
       i.nonTransitGeneralizedCostLimit,
       i.bikeRentalDistanceRatio,
       i.parkAndRideDurationRatio,
+      i.flexToScheduledTransitDistanceRatio,
       i.flexToScheduledTransitDurationRatio,
       i.filterItinerariesWithSameFirstOrLastTrip,
       i.accessibilityScore,
@@ -164,6 +176,7 @@ public class ItineraryFilterParameters {
     DoubleFunction<Double> nonTransitGeneralizedCostLimit,
     double bikeRentalDistanceRatio,
     double parkAndRideDurationRatio,
+    double flexToScheduledTransitDistanceRatio,
     double flexToScheduledTransitDurationRatio,
     boolean filterItinerariesWithSameFirstOrLastTrip,
     boolean accessibilityScore,
@@ -178,6 +191,7 @@ public class ItineraryFilterParameters {
     this.nonTransitGeneralizedCostLimit = nonTransitGeneralizedCostLimit;
     this.bikeRentalDistanceRatio = bikeRentalDistanceRatio;
     this.parkAndRideDurationRatio = parkAndRideDurationRatio;
+    this.flexToScheduledTransitDistanceRatio = flexToScheduledTransitDistanceRatio;
     this.flexToScheduledTransitDurationRatio = flexToScheduledTransitDurationRatio;
     this.filterItinerariesWithSameFirstOrLastTrip = filterItinerariesWithSameFirstOrLastTrip;
     this.accessibilityScore = accessibilityScore;

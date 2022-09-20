@@ -1,7 +1,9 @@
 package org.opentripplanner.routing.algorithm.filterchain.deletionflagger;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.ToDoubleFunction;
 import java.util.stream.Collectors;
 import org.opentripplanner.model.plan.Itinerary;
 import org.opentripplanner.model.plan.Leg;
@@ -13,17 +15,21 @@ import org.opentripplanner.model.plan.Leg;
  * <p>
  * This filter is turned off by default (flexToScheduledTransitDurationRatio == 0)
  */
-public class RemoveMostlyFlexFilter implements ItineraryDeletionFlagger {
+public class RemoveMostlyFlexFilter<V> implements ItineraryDeletionFlagger {
 
-  private final double flexToScheduledTransitDurationRatio;
+  private final double flexToScheduledTransitRatio;
+  private final ToDoubleFunction<Leg> valueExtractor;
+  private final String name;
 
-  public RemoveMostlyFlexFilter(double ratio) {
-    this.flexToScheduledTransitDurationRatio = ratio;
+  public RemoveMostlyFlexFilter(double ratio, ToDoubleFunction<Leg> valueExtractor, String name) {
+    this.flexToScheduledTransitRatio = ratio;
+    this.valueExtractor = valueExtractor;
+    this.name = name;
   }
 
   @Override
   public String name() {
-    return "flex-vs-scheduled-transit-filter";
+    return this.name;
   }
 
   @Override
@@ -39,25 +45,25 @@ public class RemoveMostlyFlexFilter implements ItineraryDeletionFlagger {
         .stream()
         .anyMatch(l -> l != null && l.isScheduledTransitLeg());
 
-      double flexDuration = itinerary
+      double flexValue = itinerary
         .getLegs()
         .stream()
         .filter(Leg::isFlexibleTrip)
-        .mapToDouble(l -> l.getDuration().toSeconds())
+        .mapToDouble(this.valueExtractor)
         .sum();
 
-      double scheduledDuration = itinerary
+      double scheduledValue = itinerary
         .getLegs()
         .stream()
         .filter(Leg::isScheduledTransitLeg)
-        .mapToDouble(l -> l.getDuration().toSeconds())
+        .mapToDouble(this.valueExtractor)
         .sum();
 
       return (
         containsFlexTransit &&
         containsScheduledTransit &&
-        scheduledDuration != 0 &&
-        (flexDuration / scheduledDuration) > flexToScheduledTransitDurationRatio
+        scheduledValue != 0 &&
+        (flexValue / scheduledValue) > flexToScheduledTransitRatio
       );
     };
   }
@@ -69,5 +75,21 @@ public class RemoveMostlyFlexFilter implements ItineraryDeletionFlagger {
     }
 
     return itineraries.stream().filter(shouldBeFlaggedForRemoval()).collect(Collectors.toList());
+  }
+
+  public static RemoveMostlyFlexFilter<Double> ofDistance(double ratio) {
+    return new RemoveMostlyFlexFilter<>(
+      ratio,
+      Leg::getDistanceMeters,
+      "flex-vs-scheduled-transit-distance-filter"
+    );
+  }
+
+  public static RemoveMostlyFlexFilter<Duration> ofDuration(double ratio) {
+    return new RemoveMostlyFlexFilter<>(
+      ratio,
+      leg -> leg.getDuration().toSeconds(),
+      "flex-vs-scheduled-transit-duration-filter"
+    );
   }
 }

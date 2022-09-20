@@ -58,6 +58,7 @@ public class ItineraryListFilterChainBuilder {
   private TransitGeneralizedCostFilterParams transitGeneralizedCostFilterParams;
   private double bikeRentalDistanceRatio;
   private double parkAndRideDurationRatio;
+  private double flexToScheduledTransitDistanceRatio;
   private double flexToScheduledTransitDurationRatio;
   private DoubleFunction<Double> nonTransitGeneralizedCostLimit;
   private Instant latestDepartureTimeLimit = null;
@@ -171,6 +172,16 @@ public class ItineraryListFilterChainBuilder {
    */
   public ItineraryListFilterChainBuilder withParkAndRideDurationRatio(double value) {
     this.parkAndRideDurationRatio = value;
+    return this;
+  }
+
+  /**
+   * This is used to filter out flex itineraries that contain long flex trips with only little
+   * scheduled transit. The value describes the minimum ratio of the distance of flex legs to
+   * scheduled transit to allow the itinerary.
+   */
+  public ItineraryListFilterChainBuilder withFlexToScheduledTransitDistanceRatio(double value) {
+    this.flexToScheduledTransitDistanceRatio = value;
     return this;
   }
 
@@ -362,10 +373,18 @@ public class ItineraryListFilterChainBuilder {
         );
       }
 
+      if (flexToScheduledTransitDistanceRatio > 0) {
+        filters.add(
+          new DeletionFlaggingFilter(
+            RemoveMostlyFlexFilter.ofDistance(flexToScheduledTransitDistanceRatio)
+          )
+        );
+      }
+
       if (flexToScheduledTransitDurationRatio > 0) {
         filters.add(
           new DeletionFlaggingFilter(
-            new RemoveMostlyFlexFilter(flexToScheduledTransitDurationRatio)
+            RemoveMostlyFlexFilter.ofDuration(flexToScheduledTransitDurationRatio)
           )
         );
       }
