@@ -1,6 +1,7 @@
 package org.opentripplanner.standalone.config;
 
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.TransvisionFilter;
 import org.opentripplanner.routing.api.request.ItineraryFilterParameters;
 import org.opentripplanner.routing.api.request.RequestFunctions;
 import org.slf4j.Logger;
@@ -34,6 +35,7 @@ public class ItineraryFiltersMapper {
       c.asDouble("parkAndRideDurationRatio", dft.parkAndRideDurationRatio),
       c.asDouble("flexToScheduledTransitDistanceRatio", dft.flexToScheduledTransitDistanceRatio),
       c.asDouble("flexToScheduledTransitDurationRatio", dft.flexToScheduledTransitDurationRatio),
+      parseTransvision(c.path("transvision")),
       c.asBoolean(
         "filterItinerariesWithSameFirstOrLastTrip",
         dft.filterItinerariesWithSameFirstOrLastTrip
@@ -47,6 +49,22 @@ public class ItineraryFiltersMapper {
     );
   }
 
+  private static TransvisionFilter.Parameters parseTransvision(NodeAdapter adapter) {
+    if (!adapter.isObject()) {
+      return null;
+    }
+
+    return new TransvisionFilter.Parameters(
+      adapter.asInt("minimumTaxiSecondGroups", 180),
+      adapter.asDouble("minimumTaxiTransferScore", 2),
+      adapter.asInt("minimumTransfersSecondGroups", 180),
+      adapter.asInt("minimumTransfersTaxiGroups", 2000),
+      adapter.asInt("fasterTransfersScore", 2),
+      adapter.asInt("minimumSecondsForFasterItinerary", 300),
+      adapter.asDouble("maximumScoreForFasterItinerary", 10)
+    );
+  }
+
   private static TransitGeneralizedCostFilterParams parseTransitGeneralizedCostLimit(
     NodeAdapter node,
     TransitGeneralizedCostFilterParams transitGeneralizedCostLimit
@@ -55,7 +73,7 @@ public class ItineraryFiltersMapper {
       return transitGeneralizedCostLimit;
     }
 
-    if (node.isObject()) {
+    if (node.isNonEmptyObject()) {
       return new TransitGeneralizedCostFilterParams(
         node.asLinearFunction("costLimitFunction", transitGeneralizedCostLimit.costLimitFunction()),
         node.asDouble("intervalRelaxFactor", transitGeneralizedCostLimit.intervalRelaxFactor())

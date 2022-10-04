@@ -12,6 +12,8 @@ import java.time.Month;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.opentripplanner.ext.flex.FlexibleTransitLeg;
+import org.opentripplanner.model.PickDrop;
 import org.opentripplanner.model.StopTime;
 import org.opentripplanner.model.transfer.ConstrainedTransfer;
 import org.opentripplanner.model.transfer.TransferConstraint;
@@ -234,6 +236,26 @@ public class TestItineraryBuilder implements PlanTestConstants {
     );
   }
 
+  public TestItineraryBuilder flexBus(
+    int tripId,
+    int startTime,
+    int endTime,
+    int distanceMeters,
+    Place to
+  ) {
+    return flexTransit(
+      RAIL_ROUTE,
+      tripId,
+      startTime,
+      endTime,
+      TRIP_FROM_STOP_INDEX,
+      TRIP_TO_STOP_INDEX,
+      to,
+      null,
+      distanceMeters
+    );
+  }
+
   public Itinerary egress(int walkDuration) {
     walk(walkDuration, null);
     return build();
@@ -381,6 +403,56 @@ public class TestItineraryBuilder implements PlanTestConstants {
     }
 
     leg.setDistanceMeters(speed(leg.getMode()) * (end - start));
+
+    legs.add(leg);
+    cost += legCost;
+
+    // Setup for adding another leg
+    lastEndTime = end;
+    lastPlace = to;
+
+    return this;
+  }
+
+  private TestItineraryBuilder flexTransit(
+    Route route,
+    int tripId,
+    int start,
+    int end,
+    int fromStopIndex,
+    int toStopIndex,
+    Place to,
+    LocalDate serviceDate,
+    int distanceMeters
+  ) {
+    if (lastPlace == null) {
+      throw new IllegalStateException("Trip from place is unknown!");
+    }
+    int waitTime = start - lastEndTime(start);
+    int legCost = 0;
+    legCost += cost(WAIT_RELUCTANCE_FACTOR, waitTime);
+    legCost += cost(1.0f, end - start) + BOARD_COST;
+
+    Trip trip = trip(tripId, route.copy().withShortName("" + tripId).build());
+
+    var leg = new FlexibleTransitLeg(
+      trip,
+      PickDrop.SCHEDULED,
+      PickDrop.SCHEDULED,
+      null,
+      null,
+      distanceMeters,
+      null,
+      serviceDate != null ? serviceDate : SERVICE_DAY,
+      fromStopIndex,
+      toStopIndex,
+      lastPlace,
+      to,
+      newTime(start),
+      newTime(end),
+      legCost,
+      false
+    );
 
     legs.add(leg);
     cost += legCost;

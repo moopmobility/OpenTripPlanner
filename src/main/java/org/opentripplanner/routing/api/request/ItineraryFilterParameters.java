@@ -4,6 +4,7 @@ import java.util.function.DoubleFunction;
 import org.opentripplanner.ext.accessibilityscore.AccessibilityScoreFilter;
 import org.opentripplanner.routing.algorithm.filterchain.ItineraryListFilterChainBuilder;
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.TransvisionFilter;
 
 /**
  * Group by Similarity filter parameters
@@ -92,6 +93,8 @@ public class ItineraryFilterParameters {
    */
   public double flexToScheduledTransitDurationRatio;
 
+  public TransvisionFilter.Parameters transvision;
+
   /**
    * This is a a bit similar to {@link #transitGeneralizedCostLimit}, with a few important
    * differences.
@@ -139,6 +142,7 @@ public class ItineraryFilterParameters {
     this.parkAndRideDurationRatio = 0.0;
     this.flexToScheduledTransitDistanceRatio = 0.0;
     this.flexToScheduledTransitDurationRatio = 0.0;
+    this.transvision = null;
     this.transitGeneralizedCostLimit =
       new TransitGeneralizedCostFilterParams(RequestFunctions.createLinearFunction(900, 1.5), 0.4);
     this.nonTransitGeneralizedCostLimit = RequestFunctions.createLinearFunction(3600, 2);
@@ -160,6 +164,7 @@ public class ItineraryFilterParameters {
       i.parkAndRideDurationRatio,
       i.flexToScheduledTransitDistanceRatio,
       i.flexToScheduledTransitDurationRatio,
+      i.transvision,
       i.filterItinerariesWithSameFirstOrLastTrip,
       i.accessibilityScore,
       i.removeItinerariesWithSameRoutesAndStops,
@@ -178,6 +183,7 @@ public class ItineraryFilterParameters {
     double parkAndRideDurationRatio,
     double flexToScheduledTransitDistanceRatio,
     double flexToScheduledTransitDurationRatio,
+    TransvisionFilter.Parameters transvision,
     boolean filterItinerariesWithSameFirstOrLastTrip,
     boolean accessibilityScore,
     boolean removeItinerariesWithSameRoutesAndStops,
@@ -193,6 +199,7 @@ public class ItineraryFilterParameters {
     this.parkAndRideDurationRatio = parkAndRideDurationRatio;
     this.flexToScheduledTransitDistanceRatio = flexToScheduledTransitDistanceRatio;
     this.flexToScheduledTransitDurationRatio = flexToScheduledTransitDurationRatio;
+    this.transvision = transvision;
     this.filterItinerariesWithSameFirstOrLastTrip = filterItinerariesWithSameFirstOrLastTrip;
     this.accessibilityScore = accessibilityScore;
     this.removeItinerariesWithSameRoutesAndStops = removeItinerariesWithSameRoutesAndStops;

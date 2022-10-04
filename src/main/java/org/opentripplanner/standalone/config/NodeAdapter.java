@@ -104,7 +104,11 @@ public class NodeAdapter {
   }
 
   public boolean isObject() {
-    return json.isObject() && json.size() > 0;
+    return json.isObject();
+  }
+
+  public boolean isNonEmptyObject() {
+    return isObject() && json.size() > 0;
   }
 
   public String getSource() {
