@@ -684,6 +684,8 @@ public class RoutingRequest implements Cloneable, Serializable {
 
   public FlexParameters flexParameters = null;
 
+  public boolean allowOnlyScheduledTransitDirectToStop;
+
   /**
    * Raptor can print all events when arriving at stops to stderrr. For developers only.
    */

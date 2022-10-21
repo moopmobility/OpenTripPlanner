@@ -29,10 +29,12 @@ import org.opentripplanner.routing.api.response.InputField;
 import org.opentripplanner.routing.api.response.RoutingError;
 import org.opentripplanner.routing.api.response.RoutingErrorCode;
 import org.opentripplanner.routing.core.RoutingContext;
+import org.opentripplanner.routing.core.State;
 import org.opentripplanner.routing.core.TemporaryVerticesContainer;
 import org.opentripplanner.routing.error.RoutingValidationException;
 import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.routing.graph.Vertex;
+import org.opentripplanner.routing.vertextype.TransitStopVertex;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.transit.raptor.RaptorService;
@@ -218,6 +220,12 @@ public class TransitRouter {
         temporaryVertices
       );
 
+      // If a stop/station was explicitly provided only allow arriving by scheduled transit
+      var place = isEgress ? request.to : request.from;
+      if (place.stopId != null && request.allowOnlyScheduledTransitDirectToStop) {
+        return createDirectStopAccessEgress(isEgress, routingContext);
+      }
+
       if (!isEgress) {
         accessRequest.allowKeepingRentedVehicleAtDestination = false;
       }
@@ -310,6 +318,27 @@ public class TransitRouter {
     }
 
     return results;
+  }
+
+  private Collection<AccessEgress> createDirectStopAccessEgress(
+    boolean isEgress,
+    RoutingContext routingContext
+  ) {
+    var vertices = isEgress != routingContext.opt.arriveBy
+      ? routingContext.toVertices
+      : routingContext.fromVertices;
+
+    return vertices
+      .stream()
+      .filter(TransitStopVertex.class::isInstance)
+      .map(TransitStopVertex.class::cast)
+      .map(vertex ->
+        new AccessEgress(
+          vertex.getStop().getIndex(),
+          new State(vertex, routingContext.opt, routingContext)
+        )
+      )
+      .toList();
   }
 
   private RaptorRoutingRequestTransitData createRequestTransitDataProvider(

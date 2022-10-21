@@ -29,6 +29,8 @@ public class RoutingRequestMapper {
     request.alightSlack = c.asInt("alightSlack", dft.alightSlack);
     request.alightSlackForMode =
       c.asEnumMap("alightSlackForMode", TransitMode.class, NodeAdapter::asInt);
+    request.allowOnlyScheduledTransitDirectToStop =
+      c.asBoolean("allowOnlyScheduledTransitDirectToStop", false);
     request.allowedVehicleRentalNetworks =
       c.asTextSet("allowedVehicleRentalNetworks", dft.allowedVehicleRentalNetworks);
     request.arriveBy = c.asBoolean("arriveBy", dft.arriveBy);
