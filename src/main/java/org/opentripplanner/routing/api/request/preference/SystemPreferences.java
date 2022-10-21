@@ -31,12 +31,14 @@ public class SystemPreferences implements Serializable {
   private final DataOverlayParameters dataOverlay;
   private final boolean geoidElevation;
   private final Duration maxJourneyDuration;
+  private final boolean allowOnlyScheduledTransitDirectToStop;
 
   private SystemPreferences() {
     this.tags = Set.of();
     this.dataOverlay = null;
     this.geoidElevation = false;
     this.maxJourneyDuration = Duration.ofHours(24);
+    this.allowOnlyScheduledTransitDirectToStop = false;
   }
 
   private SystemPreferences(Builder builder) {
@@ -44,6 +46,7 @@ public class SystemPreferences implements Serializable {
     this.dataOverlay = builder.dataOverlay;
     this.geoidElevation = builder.geoidElevation;
     this.maxJourneyDuration = Objects.requireNonNull(builder.maxJourneyDuration);
+    this.allowOnlyScheduledTransitDirectToStop = builder.allowOnlyScheduledTransitDirectToStop;
   }
 
   public static SystemPreferences.Builder of() {
@@ -73,6 +76,10 @@ public class SystemPreferences implements Serializable {
 
   public Duration maxJourneyDuration() {
     return maxJourneyDuration;
+  }
+
+  public boolean allowOnlyScheduledTransitDirectToStop() {
+    return allowOnlyScheduledTransitDirectToStop;
   }
 
   @Override
@@ -112,6 +119,7 @@ public class SystemPreferences implements Serializable {
     private DataOverlayParameters dataOverlay;
     private boolean geoidElevation;
     private Duration maxJourneyDuration;
+    private boolean allowOnlyScheduledTransitDirectToStop;
 
     public Builder(SystemPreferences original) {
       this.original = original;
@@ -119,6 +127,7 @@ public class SystemPreferences implements Serializable {
       this.dataOverlay = original.dataOverlay;
       this.geoidElevation = original.geoidElevation;
       this.maxJourneyDuration = original.maxJourneyDuration;
+      this.allowOnlyScheduledTransitDirectToStop = original.allowOnlyScheduledTransitDirectToStop;
     }
 
     public SystemPreferences original() {
@@ -142,6 +151,13 @@ public class SystemPreferences implements Serializable {
 
     public Builder withMaxJourneyDuration(Duration maxJourneyDuration) {
       this.maxJourneyDuration = maxJourneyDuration;
+      return this;
+    }
+
+    public Builder withAllowOnlyScheduledTransitDirectToStop(
+      boolean allowOnlyScheduledTransitDirectToStop
+    ) {
+      this.allowOnlyScheduledTransitDirectToStop = allowOnlyScheduledTransitDirectToStop;
       return this;
     }
 

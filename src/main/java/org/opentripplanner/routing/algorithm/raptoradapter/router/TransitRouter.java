@@ -25,13 +25,18 @@ import org.opentripplanner.routing.algorithm.raptoradapter.transit.request.Route
 import org.opentripplanner.routing.algorithm.transferoptimization.configure.TransferOptimizationServiceConfigurator;
 import org.opentripplanner.routing.api.request.RouteRequest;
 import org.opentripplanner.routing.api.request.StreetMode;
+import org.opentripplanner.routing.api.request.request.StreetRequest;
 import org.opentripplanner.routing.api.response.InputField;
 import org.opentripplanner.routing.api.response.RoutingError;
 import org.opentripplanner.routing.api.response.RoutingErrorCode;
 import org.opentripplanner.routing.error.RoutingValidationException;
 import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
+import org.opentripplanner.street.model.vertex.TransitStopVertex;
 import org.opentripplanner.street.search.TemporaryVerticesContainer;
+import org.opentripplanner.street.search.request.StreetSearchRequest;
+import org.opentripplanner.street.search.request.StreetSearchRequestMapper;
+import org.opentripplanner.street.search.state.State;
 import org.opentripplanner.transit.model.site.StopLocation;
 
 public class TransitRouter {
@@ -216,6 +221,14 @@ public class TransitRouter {
     // Prepare access/egress lists
     RouteRequest accessRequest = request.clone();
 
+    // If a stop/station was explicitly provided only allow arriving by scheduled transit
+    var place = isEgress ? request.to() : request.from();
+    if (
+      place.stopId != null && request.preferences().system().allowOnlyScheduledTransitDirectToStop()
+    ) {
+      return createDirectStopAccessEgress(isEgress, temporaryVertices, streetRequest);
+    }
+
     if (!isEgress) {
       accessRequest.journey().rental().setAllowArrivingInRentedVehicleAtDestination(false);
     }
@@ -311,6 +324,31 @@ public class TransitRouter {
     }
 
     return results;
+  }
+
+  private Collection<DefaultAccessEgress> createDirectStopAccessEgress(
+    boolean isEgress,
+    TemporaryVerticesContainer temporaryVertices,
+    StreetRequest streetRequest
+  ) {
+    var vertices = isEgress != request.arriveBy()
+      ? temporaryVertices.getToVertices()
+      : temporaryVertices.getFromVertices();
+
+    var streetSearchRequest = StreetSearchRequestMapper
+      .map(request)
+      .withMode(streetRequest.mode())
+      .withArriveBy(request.arriveBy())
+      .build();
+
+    return vertices
+      .stream()
+      .filter(TransitStopVertex.class::isInstance)
+      .map(TransitStopVertex.class::cast)
+      .map(vertex ->
+        new DefaultAccessEgress(vertex.getStop().getIndex(), new State(vertex, streetSearchRequest))
+      )
+      .toList();
   }
 
   private RaptorRoutingRequestTransitData createRequestTransitDataProvider(

@@ -4,6 +4,7 @@ import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_2;
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V_TV;
 import static org.opentripplanner.standalone.config.routerequest.ItineraryFiltersConfig.mapItineraryFilterParams;
 import static org.opentripplanner.standalone.config.routerequest.TransferConfig.mapTransferPreferences;
 import static org.opentripplanner.standalone.config.routerequest.WheelchairConfig.mapWheelchairPreferences;
@@ -776,6 +777,15 @@ search, hence, making it a bit slower. Recommended values would be from 12 hours
 """
           )
           .asDuration(dft.maxJourneyDuration())
+      )
+      .withAllowOnlyScheduledTransitDirectToStop(
+        c
+          .of("allowOnlyScheduledTransitDirectToStop")
+          .since(V_TV)
+          .summary(
+            "If a stop/station was explicitly provided as a GenericLocation, only allow arriving by scheduled transit."
+          )
+          .asBoolean(dft.allowOnlyScheduledTransitDirectToStop())
       );
     if (OTPFeature.DataOverlay.isOn()) {
       builder.withDataOverlay(
