@@ -6,12 +6,17 @@ import java.time.Duration;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import org.opentripplanner.graph_builder.DataImportIssueStore;
+import org.opentripplanner.graph_builder.issues.MissingTransferWithinStation;
+import org.opentripplanner.graph_builder.issues.StationWithMissingTransfers;
 import org.opentripplanner.graph_builder.issues.StopNotLinkedForTransfers;
+import org.opentripplanner.graph_builder.issues.SuspectTransferWithinStation;
 import org.opentripplanner.graph_builder.model.GraphBuilderModule;
 import org.opentripplanner.model.PathTransfer;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.Transfer;
@@ -25,6 +30,7 @@ import org.opentripplanner.routing.graphfinder.NearbyStop;
 import org.opentripplanner.routing.vertextype.TransitStopVertex;
 import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
+import org.opentripplanner.transit.model.site.StopLocationsGroup;
 import org.opentripplanner.transit.service.DefaultTransitService;
 import org.opentripplanner.transit.service.TransitModel;
 import org.opentripplanner.util.OTPFeature;
@@ -33,9 +39,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@link GraphBuilderModule} module that links up the
- * stops of a transit network among themselves. This is necessary for routing in long-distance
- * mode.
+ * {@link GraphBuilderModule} module that links up the stops of a transit network among themselves.
+ * This is necessary for routing in long-distance mode.
  * <p>
  * It will use the street network if OSM data has already been loaded into the graph. Otherwise it
  * will use straight-line distance between stops.
@@ -193,6 +198,9 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       nLinkedStops
     );
 
+    var shorTransferLimit = 850;
+    var stopPairsWithShortAccessibleTransfers = new HashSet<DirectTransferGenerator.StopPair>();
+
     stopPairsWithTransfers
       .keySet()
       .stream()
@@ -210,24 +218,25 @@ public class DirectTransferGenerator implements GraphBuilderModule {
         var hasWheelchairAccessibleTransfer = stopPairsWithTransfers
           .get(stopPair)
           .stream()
-          .map(PathTransfer::getEdges)
-          .filter(Objects::nonNull)
-          .flatMap(Collection::stream)
-          .anyMatch(edge ->
-            (edge instanceof StreetEdge && !((StreetEdge) edge).isStairs()) ||
-            (edge instanceof StreetEdge && !((StreetEdge) edge).isWheelchairAccessible()) ||
-            (edge instanceof PathwayEdge && !((PathwayEdge) edge).isWheelchairAccessible())
+          .anyMatch(pathTransfer ->
+            Optional
+              .ofNullable(pathTransfer.getEdges())
+              .stream()
+              .flatMap(List::stream)
+              .noneMatch(edge ->
+                (edge instanceof StreetEdge && ((StreetEdge) edge).isStairs()) ||
+                (edge instanceof StreetEdge && !((StreetEdge) edge).isWheelchairAccessible()) ||
+                (edge instanceof PathwayEdge && !((PathwayEdge) edge).isWheelchairAccessible())
+              )
           );
 
-        if (!hasWheelchairAccessibleTransfer) {
-          issueStore.add(
-            "MissingWheelchairAccessibleTransfer",
-            "No wheelchair accessible transfer between stops: %s (%s) -> %s (%s)",
-            stopPair.from.getName(),
-            stopPair.from.getId(),
-            stopPair.to.getName(),
-            stopPair.to.getId()
-          );
+        var hasShortTransfer = stopPairsWithTransfers
+          .get(stopPair)
+          .stream()
+          .anyMatch(pathTransfer -> pathTransfer.getDistanceMeters() < shorTransferLimit);
+
+        if (hasWheelchairAccessibleTransfer && hasShortTransfer) {
+          stopPairsWithShortAccessibleTransfers.add(stopPair);
         }
       });
 
@@ -235,32 +244,103 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       .getStopModel()
       .listStopLocationGroups()
       .stream()
-      .sorted(Comparator.comparing(stopLocationsGroup -> stopLocationsGroup.getName().toString()))
+      .sorted(
+        Comparator
+          .<StopLocationsGroup, Integer>comparing(stopLocationsGroup ->
+            stopLocationsGroup.getChildStops().size()
+          )
+          .reversed()
+      )
       .forEach(stopLocationsGroup -> {
-        stopLocationsGroup
+        var size = stopLocationsGroup.getChildStops().size();
+
+        var nokChildTransfers = stopLocationsGroup
           .getChildStops()
           .stream()
           .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
-          .forEach(stopA -> {
+          .mapToLong(stopA ->
             stopLocationsGroup
               .getChildStops()
               .stream()
-              .filter(stopB -> stopA != stopB)
               .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
-              .forEach(stopB -> {
-                if (!stopPairsWithTransfers.containsKey(new StopPair(stopA, stopB))) {
+              .filter(stopB -> stopA != stopB)
+              .filter(stopB -> {
+                var pair = new StopPair(stopA, stopB);
+                if (!stopPairsWithTransfers.containsKey(pair)) {
                   issueStore.add(
-                    "MissingTransfersWithinStation",
-                    "Missing transfer within stations %s: %s (%s) -> %s (%s)",
-                    stopLocationsGroup.getName(),
-                    stopA.getName(),
-                    stopA.getId(),
-                    stopB.getName(),
-                    stopB.getId()
+                    new MissingTransferWithinStation(
+                      stopLocationsGroup.getName().toString(),
+                      stopLocationsGroup.getCoordinate(),
+                      Optional
+                        .ofNullable(stopA.getPlatformCode())
+                        .orElse(stopA.getName().toString()),
+                      stopA.getCoordinate(),
+                      Optional
+                        .ofNullable(stopB.getPlatformCode())
+                        .orElse(stopB.getName().toString()),
+                      stopB.getCoordinate()
+                    )
                   );
+                  return true;
+                } else if (!stopPairsWithShortAccessibleTransfers.contains(pair)) {
+                  issueStore.add(
+                    new SuspectTransferWithinStation(
+                      stopLocationsGroup.getName().toString(),
+                      stopLocationsGroup.getCoordinate(),
+                      Optional
+                        .ofNullable(stopA.getPlatformCode())
+                        .orElse(stopA.getName().toString()),
+                      Optional
+                        .ofNullable(stopB.getPlatformCode())
+                        .orElse(stopB.getName().toString()),
+                      stopPairsWithTransfers
+                        .get(pair)
+                        .stream()
+                        .findFirst()
+                        .map(PathTransfer::getEdges)
+                        .map(Collection::stream)
+                        .stream()
+                        .flatMap(Function.identity())
+                        .noneMatch(edge ->
+                          (edge instanceof StreetEdge && ((StreetEdge) edge).isStairs()) ||
+                          (
+                            edge instanceof StreetEdge &&
+                            !((StreetEdge) edge).isWheelchairAccessible()
+                          ) ||
+                          (
+                            edge instanceof PathwayEdge &&
+                            !((PathwayEdge) edge).isWheelchairAccessible()
+                          )
+                        ),
+                      stopPairsWithTransfers
+                        .get(pair)
+                        .stream()
+                        .mapToDouble(PathTransfer::getDistanceMeters)
+                        .min()
+                        .orElse(Double.NaN),
+                      shorTransferLimit,
+                      stopPairsWithTransfers.get(pair).stream().map(PathTransfer::getEdges)
+                    )
+                  );
+                  return true;
                 }
-              });
-          });
+
+                return false;
+              })
+              .count()
+          )
+          .sum();
+
+        if (nokChildTransfers > 0) {
+          issueStore.add(
+            new StationWithMissingTransfers(
+              stopLocationsGroup.getName().toString(),
+              stopLocationsGroup.getCoordinate(),
+              size,
+              nokChildTransfers
+            )
+          );
+        }
       });
   }
 
