@@ -227,9 +227,9 @@ public class DataImportIssuesToHTML implements GraphBuilderModule {
         out.println("<html><head><title>Graph report for OTP Graph</title>");
         out.println("\t<meta charset=\"utf-8\">");
         out.println("<meta name='viewport' content='width=device-width, initial-scale=1'>");
-        out.println("<script src='http://code.jquery.com/jquery-1.11.1.js'></script>");
+        out.println("<script src='https://code.jquery.com/jquery-1.11.1.js'></script>");
         out.println(
-          "<link rel='stylesheet' href='http://yui.yahooapis.com/pure/0.5.0/pure-min.css'>"
+          "<link rel='stylesheet' href='https://yui.yahooapis.com/pure/0.5.0/pure-min.css'>"
         );
         String css =
           "\t\t<style>\n" +
