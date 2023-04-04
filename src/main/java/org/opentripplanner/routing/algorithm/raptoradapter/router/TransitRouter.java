@@ -36,6 +36,7 @@ import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.routing.graph.Vertex;
 import org.opentripplanner.routing.vertextype.TransitStopVertex;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
+import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
 import org.opentripplanner.transit.raptor.RaptorService;
 import org.opentripplanner.transit.raptor.api.path.Path;
@@ -245,11 +246,24 @@ public class TransitRouter {
           routingContext,
           serverContext.transitService(),
           additionalSearchDays,
-          serverContext.routerConfig().flexParameters(request),
+          serverContext.routerConfig().flexParameters(request, place.forcedStopId == null),
           isEgress
         );
 
         results.addAll(accessEgressMapper.mapFlexAccessEgresses(flexAccessList, isEgress));
+
+        if (place.forcedStopId != null) {
+          var stopIds = serverContext
+            .transitService()
+            .findStopOrChildStops(place.forcedStopId)
+            .stream()
+            .filter(RegularStop.class::isInstance)
+            .map(RegularStop.class::cast)
+            .map(StopLocation::getIndex)
+            .collect(Collectors.toSet());
+
+          results.removeIf(item -> !stopIds.contains(item.stop()));
+        }
 
         var flexConfig = serverContext.routerConfig().flexConfig();
         if (flexConfig.allowOnlyStopReachedOnBoard) {

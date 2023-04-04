@@ -122,8 +122,8 @@ public class RouterConfig implements Serializable {
     return flexConfig;
   }
 
-  public FlexParameters flexParameters(RoutingRequest request) {
-    return flexConfig.toFlexParameters(request);
+  public FlexParameters flexParameters(RoutingRequest request, boolean useMaxTripDuration) {
+    return flexConfig.toFlexParameters(request, useMaxTripDuration);
   }
 
   /**

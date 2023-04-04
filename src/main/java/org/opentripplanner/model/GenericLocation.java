@@ -25,6 +25,12 @@ public class GenericLocation {
   public final FeedScopedId stopId;
 
   /**
+   * Refers to a specific element in the OTP model. This can currently be a regular stop, area stop,
+   * group stop, station, multi-modal station or group of stations.
+   */
+  public final FeedScopedId forcedStopId;
+
+  /**
    * Coordinates of the location. These can be used by themselves or as a fallback if placeId is not
    * found.
    */
@@ -32,11 +38,26 @@ public class GenericLocation {
 
   public final Double lng;
 
+  public GenericLocation(
+    String label,
+    FeedScopedId stopId,
+    Double lat,
+    Double lng,
+    FeedScopedId forcedStopId
+  ) {
+    this.label = label;
+    this.stopId = stopId;
+    this.lat = lat;
+    this.lng = lng;
+    this.forcedStopId = forcedStopId;
+  }
+
   public GenericLocation(String label, FeedScopedId stopId, Double lat, Double lng) {
     this.label = label;
     this.stopId = stopId;
     this.lat = lat;
     this.lng = lng;
+    this.forcedStopId = null;
   }
 
   public GenericLocation(Double lat, Double lng) {
@@ -44,6 +65,7 @@ public class GenericLocation {
     this.stopId = null;
     this.lat = lat;
     this.lng = lng;
+    this.forcedStopId = null;
   }
 
   public static GenericLocation fromStopId(String name, String feedId, String stopId) {
