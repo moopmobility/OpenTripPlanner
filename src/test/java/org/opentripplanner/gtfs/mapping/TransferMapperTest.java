@@ -79,7 +79,8 @@ public class TransferMapperTest {
     TRIP_MAPPER =
       new TripMapper(ROUTE_MAPPER, new DirectionMapper(ISSUE_STORE), TRANSLATION_HELPER);
 
-    STATION_MAPPER = new StationMapper(TRANSLATION_HELPER, StopTransferPriority.ALLOWED);
+    STATION_MAPPER =
+      new StationMapper(TRANSLATION_HELPER, StopTransferPriority.ALLOWED, id -> null, ISSUE_STORE);
 
     STOP_TIME_MAPPER =
       new StopTimeMapper(

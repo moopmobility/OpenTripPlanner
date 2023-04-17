@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.onebusaway.gtfs.model.AgencyAndId;
 import org.onebusaway.gtfs.model.Stop;
+import org.opentripplanner.graph_builder.issue.api.DataImportIssueStore;
 import org.opentripplanner.transit.model.site.StopTransferPriority;
 
 public class StationMapperTest {
@@ -32,7 +33,9 @@ public class StationMapperTest {
     var recommendedPriority = StopTransferPriority.RECOMMENDED;
     StationMapper recommendedTransferMapper = new StationMapper(
       new TranslationHelper(),
-      recommendedPriority
+      recommendedPriority,
+      id -> null,
+      DataImportIssueStore.NOOP
     );
     var stationWithRecommendedTransfer = recommendedTransferMapper.map(STATION);
     assertEquals(recommendedPriority, stationWithRecommendedTransfer.getPriority());

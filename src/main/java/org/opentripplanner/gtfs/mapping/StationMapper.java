@@ -5,6 +5,10 @@ import static org.opentripplanner.gtfs.mapping.AgencyAndIdMapper.mapAgencyAndId;
 import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import org.opentripplanner.graph_builder.issue.api.DataImportIssueStore;
+import org.opentripplanner.graph_builder.issues.ParentGroupOfStationsNotFound;
+import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.site.Station;
 import org.opentripplanner.transit.model.site.StationBuilder;
 import org.opentripplanner.transit.model.site.StopTransferPriority;
@@ -25,18 +29,37 @@ class StationMapper {
 
   private final TranslationHelper translationHelper;
   private final StopTransferPriority stationTransferPreference;
+  private final Function<FeedScopedId, Station> stationLookup;
+  private final DataImportIssueStore issueStore;
 
   StationMapper(
     TranslationHelper translationHelper,
-    StopTransferPriority stationTransferPreference
+    StopTransferPriority stationTransferPreference,
+    Function<FeedScopedId, Station> stationLookup,
+    DataImportIssueStore issueStore
   ) {
     this.translationHelper = translationHelper;
     this.stationTransferPreference = stationTransferPreference;
+    this.stationLookup = stationLookup;
+    this.issueStore = issueStore;
   }
 
   /** Map from GTFS to OTP model, {@code null} safe. */
   Station map(org.onebusaway.gtfs.model.Stop orginal) {
     return orginal == null ? null : mappedStops.computeIfAbsent(orginal, this::doMap);
+  }
+
+  public void mapGroupOfStations(org.onebusaway.gtfs.model.Stop rhs) {
+    var station = stationLookup.apply(mapAgencyAndId(rhs.getId()));
+    var parentStation = stationLookup.apply(
+      new FeedScopedId(rhs.getId().getAgencyId(), rhs.getParentStation())
+    );
+
+    if (parentStation != null) {
+      parentStation.addChildStation(station);
+    } else {
+      issueStore.add(new ParentGroupOfStationsNotFound(station, rhs.getParentStation()));
+    }
   }
 
   private Station doMap(org.onebusaway.gtfs.model.Stop rhs) {

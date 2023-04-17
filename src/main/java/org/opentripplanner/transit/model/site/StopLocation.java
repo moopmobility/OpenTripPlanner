@@ -85,6 +85,15 @@ public interface StopLocation extends LogInfo {
     return null;
   }
 
+  @Nullable
+  default Station getHighestParentStation() {
+    var station = getParentStation();
+    while (station != null && station.getParentStation() != null) {
+      station = station.getParentStation();
+    }
+    return station;
+  }
+
   @Nonnull
   default Collection<FareZone> getFareZones() {
     return List.of();

@@ -103,7 +103,8 @@ public class GTFSToOtpTransitServiceMapper {
     translationHelper = new TranslationHelper();
     feedInfoMapper = new FeedInfoMapper(feedId);
     agencyMapper = new AgencyMapper(feedId);
-    stationMapper = new StationMapper(translationHelper, stationTransferPreference);
+    stationMapper =
+      new StationMapper(translationHelper, stationTransferPreference, stationLookup, issueStore);
     stopMapper = new StopMapper(translationHelper, stationLookup);
     entranceMapper = new EntranceMapper(translationHelper, stationLookup);
     pathwayNodeMapper = new PathwayNodeMapper(translationHelper, stationLookup);
@@ -181,6 +182,12 @@ public class GTFSToOtpTransitServiceMapper {
     for (org.onebusaway.gtfs.model.Stop it : stops) {
       if (it.getLocationType() == LOCATION_TYPE_STATION) {
         builder.getStations().add(stationMapper.map(it));
+      }
+    }
+
+    for (org.onebusaway.gtfs.model.Stop it : stops) {
+      if (it.getLocationType() == LOCATION_TYPE_STATION && it.getParentStation() != null) {
+        stationMapper.mapGroupOfStations(it);
       }
     }
 

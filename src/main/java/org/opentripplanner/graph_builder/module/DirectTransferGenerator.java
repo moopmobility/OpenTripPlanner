@@ -188,7 +188,8 @@ public class DirectTransferGenerator implements GraphBuilderModule {
             .stream()
             .filter(pathTransfer ->
               !limitTransfersToWithinStations ||
-              pathTransfer.to.getParentStation() == pathTransfer.from.getParentStation()
+              pathTransfer.to.getHighestParentStation() ==
+              pathTransfer.from.getHighestParentStation()
             )
             .forEach(transfer -> transfersByStop.put(transfer.from, transfer));
 

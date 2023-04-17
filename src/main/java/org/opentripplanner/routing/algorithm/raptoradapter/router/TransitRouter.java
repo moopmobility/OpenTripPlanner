@@ -289,8 +289,8 @@ public class TransitRouter {
           .map(transitLayer::getStopByIndex)
           .filter(Objects::nonNull)
           .flatMap(stop ->
-            stop.getParentStation() != null
-              ? stop.getParentStation().getChildStops().stream()
+            stop.getHighestParentStation() != null
+              ? stop.getHighestParentStation().getChildStops().stream()
               : Stream.of(stop)
           )
           .map(StopLocation::getIndex)
@@ -315,9 +315,9 @@ public class TransitRouter {
           .stream()
           .flatMap(entry -> {
             var stop = transitLayer.getStopByIndex(entry.getKey());
-            if (stop != null && stop.getParentStation() != null) {
+            if (stop != null && stop.getHighestParentStation() != null) {
               return stop
-                .getParentStation()
+                .getHighestParentStation()
                 .getChildStops()
                 .stream()
                 .map(childStop -> Map.entry(childStop.getIndex(), entry.getValue()));

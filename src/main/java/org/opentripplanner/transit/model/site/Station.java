@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.locationtech.jts.algorithm.ConvexHull;
@@ -41,9 +42,13 @@ public class Station
   private final ZoneId timezone;
   private final boolean transfersNotAllowed;
 
+  private Station parentStation;
+
   // We serialize this class to json only for snapshot tests, and this creates cyclical structures
   @JsonBackReference
   private final Set<StopLocation> childStops = new HashSet<>();
+
+  private final Set<StopLocationsGroup> childStations = new HashSet<>();
 
   private GeometryCollection geometry;
 
@@ -74,6 +79,11 @@ public class Station
     this.geometry = computeGeometry(coordinate, childStops);
   }
 
+  public void addChildStation(Station station) {
+    station.parentStation = this;
+    this.childStations.add(station);
+  }
+
   public boolean includes(StopLocation stop) {
     return childStops.contains(stop);
   }
@@ -83,9 +93,22 @@ public class Station
     return name;
   }
 
+  public Station getParentStation() {
+    return parentStation;
+  }
+
   @Nonnull
   public Collection<StopLocation> getChildStops() {
-    return childStops;
+    return Stream
+      .concat(
+        getChildStations().stream().flatMap(s -> s.getChildStops().stream()),
+        childStops.stream()
+      )
+      .toList();
+  }
+
+  public Collection<StopLocationsGroup> getChildStations() {
+    return childStations;
   }
 
   @Override
