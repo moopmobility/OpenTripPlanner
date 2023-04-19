@@ -1,8 +1,10 @@
 package org.opentripplanner.api.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Polygon;
 import org.opentripplanner.api.mapping.ModeMapper;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.vehicle_parking.VehicleParkingService;
@@ -19,7 +21,7 @@ public class ApiRouterInfo {
   public final boolean hasCarPark;
   public final boolean hasVehicleParking;
   public String routerId;
-  public Geometry polygon;
+  public ApiPolygon polygon;
   public Date buildTime;
   public long transitServiceStarts;
   public long transitServiceEnds;
@@ -39,7 +41,7 @@ public class ApiRouterInfo {
     VehicleParkingService vehicleParkingService = graph.getVehicleParkingService();
 
     this.routerId = routerId;
-    this.polygon = graph.getConvexHull();
+    this.polygon = mapToApi((Polygon) graph.getConvexHull());
     this.buildTime = Date.from(graph.buildTime);
     this.transitServiceStarts = transitService.getTransitServiceStarts().toEpochSecond();
     this.transitServiceEnds = transitService.getTransitServiceEnds().toEpochSecond();
@@ -106,5 +108,23 @@ public class ApiRouterInfo {
 
   public double getCenterLongitude() {
     return envelope.center().longitude();
+  }
+
+  private ApiPolygon mapToApi(Polygon convexHull) {
+    var coordinates = new ArrayList<List<Double>>();
+    for (Coordinate coordinate : convexHull.getExteriorRing().getCoordinates()) {
+      coordinates.add(List.of(coordinate.getX(), coordinate.getY()));
+    }
+
+    var api = new ApiPolygon();
+    api.coordinates = List.of(coordinates);
+
+    return api;
+  }
+
+  public static class ApiPolygon {
+
+    public String type = "Polygon";
+    public List<List<List<Double>>> coordinates;
   }
 }
