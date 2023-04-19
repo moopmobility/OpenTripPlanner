@@ -2,6 +2,7 @@ package org.opentripplanner.standalone.config.sandbox;
 
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V_TV;
 
 import java.time.Duration;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
@@ -26,11 +27,16 @@ public class FlexConfig {
   private final Duration maxAccessWalkDuration;
   private final Duration maxEgressWalkDuration;
 
+  private final double maxVehicleSpeed;
+  private final double streetTimeFactor;
+
   private FlexConfig() {
     maxTransferDuration = Duration.ofMinutes(5);
     maxFlexTripDuration = Duration.ofMinutes(45);
     maxAccessWalkDuration = Duration.ofMinutes(45);
     maxEgressWalkDuration = Duration.ofMinutes(45);
+    maxVehicleSpeed = 29.; // 104 km/h
+    streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
   }
 
   public FlexConfig(NodeAdapter root, String parameterName) {
@@ -91,6 +97,20 @@ public class FlexConfig {
         )
         .description(ACCESS_EGRESS_DESCRIPTION)
         .asDuration(DEFAULT.maxEgressWalkDuration);
+
+    streetTimeFactor =
+      json
+        .of("streetTimeFactor")
+        .since(V_TV)
+        .summary("Multiplier for how much slower the bus travels compared to cars.")
+        .asDouble(DEFAULT.streetTimeFactor);
+
+    maxVehicleSpeed =
+      json
+        .of("maxVehicleSpeed")
+        .since(V_TV)
+        .summary("The maximum vehicle speed (car speed)")
+        .asDouble(DEFAULT.maxVehicleSpeed);
   }
 
   public Duration maxFlexTripDuration() {
@@ -107,5 +127,13 @@ public class FlexConfig {
 
   public Duration maxEgressWalkDuration() {
     return maxEgressWalkDuration;
+  }
+
+  public double streetTimeFactor() {
+    return streetTimeFactor;
+  }
+
+  public double maxVehicleSpeed() {
+    return maxVehicleSpeed;
   }
 }

@@ -1,6 +1,5 @@
 package org.opentripplanner.ext.flex.flexpathcalculator;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import org.opentripplanner.astar.model.GraphPath;
@@ -10,6 +9,7 @@ import org.opentripplanner.framework.geometry.GeometryUtils;
 import org.opentripplanner.routing.api.request.RouteRequest;
 import org.opentripplanner.routing.api.request.StreetMode;
 import org.opentripplanner.routing.api.request.request.StreetRequest;
+import org.opentripplanner.standalone.config.sandbox.FlexConfig;
 import org.opentripplanner.street.model.edge.Edge;
 import org.opentripplanner.street.model.vertex.Vertex;
 import org.opentripplanner.street.search.StreetSearchBuilder;
@@ -34,11 +34,11 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
 
   private final Map<Vertex, ShortestPathTree<State, Edge, Vertex>> cache = new HashMap<>();
   private final boolean reverseDirection;
-  private final Duration maxFlexTripDuration;
+  private final FlexConfig config;
 
-  public StreetFlexPathCalculator(boolean reverseDirection, Duration maxFlexTripDuration) {
+  public StreetFlexPathCalculator(boolean reverseDirection, FlexConfig config) {
     this.reverseDirection = reverseDirection;
-    this.maxFlexTripDuration = maxFlexTripDuration;
+    this.config = config;
   }
 
   @Override
@@ -62,7 +62,7 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
     }
 
     int distance = (int) path.edges.stream().mapToDouble(Edge::getDistanceMeters).sum();
-    int duration = path.getDuration();
+    int duration = (int) Math.round(path.getDuration() * config.streetTimeFactor());
 
     // computing the linestring from the graph path is a surprisingly expensive operation
     // so we delay it until it's actually needed. since most flex paths are never shown to the user
@@ -76,11 +76,14 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
 
   private ShortestPathTree<State, Edge, Vertex> routeToMany(Vertex vertex) {
     RouteRequest routingRequest = new RouteRequest();
+    routingRequest.withPreferences(builder ->
+      builder.withCar(car -> car.withMaxSpeed(config.maxVehicleSpeed()))
+    );
     routingRequest.setArriveBy(reverseDirection);
 
     return StreetSearchBuilder
       .of()
-      .setSkipEdgeStrategy(new DurationSkipEdgeStrategy<>(maxFlexTripDuration))
+      .setSkipEdgeStrategy(new DurationSkipEdgeStrategy<>(config.maxFlexTripDuration()))
       .setDominanceFunction(new DominanceFunctions.EarliestArrival())
       .setRequest(routingRequest)
       .setStreetRequest(new StreetRequest(StreetMode.CAR))
