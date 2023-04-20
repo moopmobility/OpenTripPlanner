@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import org.locationtech.jts.geom.LineString;
 import org.opentripplanner.ext.flex.edgetype.FlexTripEdge;
+import org.opentripplanner.ext.flex.trip.UnscheduledTrip;
 import org.opentripplanner.framework.i18n.I18NString;
 import org.opentripplanner.framework.lang.DoubleUtils;
 import org.opentripplanner.framework.tostring.ToStringBuilder;
@@ -213,6 +214,25 @@ public class FlexibleTransitLeg implements TransitLeg {
   @Override
   public List<FareProductUse> fareProducts() {
     return fareProducts;
+  }
+
+  public boolean isPartiallySameTransitLeg(Leg other) {
+    var same = TransitLeg.super.isPartiallySameTransitLeg(other);
+    // flexible trips have all the same trip id, so we have to check that the start times
+    // are not equal
+    if (same) {
+      if (
+        other instanceof FlexibleTransitLeg flexibleTransitLeg &&
+        edge.getFlexTrip() instanceof UnscheduledTrip
+      ) {
+        return (
+          this.startTime.equals(flexibleTransitLeg.startTime) &&
+          this.getFrom().sameLocation(flexibleTransitLeg.getFrom()) &&
+          this.getTo().sameLocation(flexibleTransitLeg.getTo())
+        );
+      }
+    }
+    return false;
   }
 
   /**
