@@ -13,7 +13,6 @@ import org.locationtech.jts.geom.LineString;
 import org.opentripplanner.framework.geometry.GeometryUtils;
 import org.opentripplanner.framework.geometry.HashGridSpatialIndex;
 import org.opentripplanner.framework.geometry.SphericalDistanceLibrary;
-import org.opentripplanner.framework.geometry.SplitLineString;
 import org.opentripplanner.framework.i18n.I18NString;
 import org.opentripplanner.framework.i18n.LocalizedString;
 import org.opentripplanner.framework.i18n.NonLocalizedString;
@@ -28,7 +27,6 @@ import org.opentripplanner.routing.linking.VertexLinker;
 import org.opentripplanner.street.model.edge.Edge;
 import org.opentripplanner.street.model.edge.StreetEdge;
 import org.opentripplanner.street.model.edge.TemporaryFreeEdge;
-import org.opentripplanner.street.model.edge.TemporaryPartialStreetEdge;
 import org.opentripplanner.street.model.vertex.StreetVertex;
 import org.opentripplanner.street.model.vertex.TemporaryStreetLocation;
 import org.opentripplanner.street.model.vertex.TransitStopVertex;
@@ -126,7 +124,7 @@ public class StreetIndex {
         }
       } else {
         // creates links from street head -> location -> street tail.
-        createHalfLocationForTest(location, name, nearestPoint, street, endVertex, tempEdges);
+        createHalfLocationForTest(location, street, endVertex, tempEdges);
       }
     }
     location.setWheelchairAccessible(wheelchairAccessible);
@@ -260,60 +258,18 @@ public class StreetIndex {
 
   private static void createHalfLocationForTest(
     TemporaryStreetLocation base,
-    I18NString name,
-    Coordinate nearestPoint,
     StreetEdge street,
     boolean endVertex,
     DisposableEdgeCollection tempEdges
   ) {
     StreetVertex tov = (StreetVertex) street.getToVertex();
     StreetVertex fromv = (StreetVertex) street.getFromVertex();
-    LineString geometry = street.getGeometry();
-
-    SplitLineString geometries = getGeometry(street, nearestPoint);
-
-    double totalGeomLength = geometry.getLength();
-    double lengthRatioIn = geometries.beginning().getLength() / totalGeomLength;
-
-    double lengthIn = street.getDistanceMeters() * lengthRatioIn;
-    double lengthOut = street.getDistanceMeters() * (1 - lengthRatioIn);
 
     if (endVertex) {
-      TemporaryPartialStreetEdge temporaryPartialStreetEdge = new TemporaryPartialStreetEdge(
-        street,
-        fromv,
-        base,
-        geometries.beginning(),
-        name,
-        lengthIn
-      );
-
-      temporaryPartialStreetEdge.setMotorVehicleNoThruTraffic(street.isMotorVehicleNoThruTraffic());
-      temporaryPartialStreetEdge.setBicycleNoThruTraffic(street.isBicycleNoThruTraffic());
-      temporaryPartialStreetEdge.setWalkNoThruTraffic(street.isWalkNoThruTraffic());
-      temporaryPartialStreetEdge.setLink(street.isLink());
-      tempEdges.addEdge(temporaryPartialStreetEdge);
+      street.createPartialEdge(fromv, base).ifPresent(tempEdges::addEdge);
     } else {
-      TemporaryPartialStreetEdge temporaryPartialStreetEdge = new TemporaryPartialStreetEdge(
-        street,
-        base,
-        tov,
-        geometries.ending(),
-        name,
-        lengthOut
-      );
-
-      temporaryPartialStreetEdge.setLink(street.isLink());
-      temporaryPartialStreetEdge.setMotorVehicleNoThruTraffic(street.isMotorVehicleNoThruTraffic());
-      temporaryPartialStreetEdge.setBicycleNoThruTraffic(street.isBicycleNoThruTraffic());
-      temporaryPartialStreetEdge.setWalkNoThruTraffic(street.isWalkNoThruTraffic());
-      tempEdges.addEdge(temporaryPartialStreetEdge);
+      street.createPartialEdge(base, tov).ifPresent(tempEdges::addEdge);
     }
-  }
-
-  private static SplitLineString getGeometry(StreetEdge e, Coordinate nearestPoint) {
-    LineString geometry = e.getGeometry();
-    return GeometryUtils.splitGeometryAtPoint(geometry, nearestPoint);
   }
 
   private static LineString edgeGeometryOrStraightLine(Edge e) {

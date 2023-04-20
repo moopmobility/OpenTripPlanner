@@ -1005,6 +1005,10 @@ public class StreetEdge
     splitEdge.setWalkSafetyFactor(walkSafetyFactor);
     splitEdge.setLink(isLink());
     splitEdge.setCarSpeed(getCarSpeed());
+    splitEdge.setLink(isLink());
+    splitEdge.setMotorVehicleNoThruTraffic(isMotorVehicleNoThruTraffic());
+    splitEdge.setBicycleNoThruTraffic(isBicycleNoThruTraffic());
+    splitEdge.setWalkNoThruTraffic(isWalkNoThruTraffic());
     splitEdge.setElevationExtensionUsingParent(this, fromDistance, toDistance);
     splitEdge.addRentalRestriction(fromv.rentalRestrictions());
   }

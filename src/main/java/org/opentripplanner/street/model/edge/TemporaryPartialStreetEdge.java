@@ -21,7 +21,7 @@ public final class TemporaryPartialStreetEdge extends StreetEdge implements Temp
    * is negative, a new length is calculated from the geometry. The elevation data is calculated
    * using the 'parentEdge' and given 'length'.
    */
-  public TemporaryPartialStreetEdge(
+  TemporaryPartialStreetEdge(
     StreetEdge parentEdge,
     StreetVertex v1,
     StreetVertex v2,
