@@ -230,6 +230,7 @@ otp.util.Itin = {
         //cable cars where the car is suspended from the cable.
         'GONDOLA' : _tr('Aerial Tram'),
         'AIRPLANE' : _tr('Airplane'),
+        'TAXI'    : _tr('Taxi')
     },
 
     modeString : function(mode) {
@@ -345,7 +346,7 @@ otp.util.Itin = {
         if(mode === "WALK") return '#444';
         if(mode === "BICYCLE") return '#44f';
         if(mode === "SCOOTER") return '#88f';
-        if(mode === "CAR") return '#444';
+        if(mode === "CAR" || mode === "TAXI") return '#888';
         if(mode === "RAIL") return '#b00';
         if(mode === "COACH") return '#0f0';
         if(mode === "SUBWAY") return '#f00';
@@ -372,7 +373,7 @@ otp.util.Itin = {
         if (leg.routeTextColor) {
             return '#' + leg.routeTextColor;
         }
-        else if(leg.mode === "WALK") {
+        else if(leg.mode === "WALK" || leg.mode === 'CAR' || leg.mode === 'TAXI') {
             return '#fff';
         }
         else {

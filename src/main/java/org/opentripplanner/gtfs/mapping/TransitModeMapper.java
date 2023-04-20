@@ -52,9 +52,14 @@ public class TransitModeMapper {
       // see https://groups.google.com/g/gtfs-changes/c/keT5rTPS7Y0/m/71uMz2l6ke0J for an effort to
       // standardise
       return TransitMode.CARPOOL;
-    } else if (routeType >= 1500 && routeType < 1599) {
-      //Taxi Service
-      return TransitMode.TAXI;
+    } else if (routeType >= 1500 && routeType < 1600) { //Taxi Service
+      if (routeType == 1501) {
+        return TransitMode.TAXI1;
+      }
+      if (routeType == 1502) {
+        return TransitMode.TAXI2;
+      }
+      return null;
     } else if (routeType >= 1600 && routeType < 1700) { //Self drive
       return TransitMode.BUS;
     } else if (routeType >= 1700 && routeType < 1800) { //Miscellaneous Service

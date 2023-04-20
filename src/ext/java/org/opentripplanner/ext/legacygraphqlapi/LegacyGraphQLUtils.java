@@ -66,7 +66,7 @@ public class LegacyGraphQLUtils {
       case TROLLEYBUS -> LegacyGraphQLTransitMode.TROLLEYBUS;
       case MONORAIL -> LegacyGraphQLTransitMode.MONORAIL;
       case CARPOOL -> LegacyGraphQLTransitMode.CARPOOL;
-      case TAXI -> LegacyGraphQLTransitMode.TAXI;
+      case TAXI1, TAXI2 -> LegacyGraphQLTransitMode.TAXI;
     };
   }
 
