@@ -3,14 +3,22 @@ package org.opentripplanner.graph_builder.module;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimaps;
 import java.time.Duration;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.framework.logging.ProgressTracker;
 import org.opentripplanner.graph_builder.issue.api.DataImportIssueStore;
+import org.opentripplanner.graph_builder.issues.MissingTransferWithinStation;
+import org.opentripplanner.graph_builder.issues.StationWithMissingTransfers;
 import org.opentripplanner.graph_builder.issues.StopNotLinkedForTransfers;
+import org.opentripplanner.graph_builder.issues.SuspectTransferWithinStation;
 import org.opentripplanner.graph_builder.model.GraphBuilderModule;
 import org.opentripplanner.model.PathTransfer;
 import org.opentripplanner.routing.api.request.RouteRequest;
@@ -18,19 +26,21 @@ import org.opentripplanner.routing.api.request.request.StreetRequest;
 import org.opentripplanner.routing.graph.Graph;
 import org.opentripplanner.routing.graphfinder.NearbyStop;
 import org.opentripplanner.street.model.edge.Edge;
+import org.opentripplanner.street.model.edge.PathwayEdge;
+import org.opentripplanner.street.model.edge.StreetEdge;
 import org.opentripplanner.street.model.vertex.TransitStopVertex;
 import org.opentripplanner.street.model.vertex.Vertex;
 import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
+import org.opentripplanner.transit.model.site.StopLocationsGroup;
 import org.opentripplanner.transit.service.DefaultTransitService;
 import org.opentripplanner.transit.service.TransitModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@link GraphBuilderModule} module that links up the
- * stops of a transit network among themselves. This is necessary for routing in long-distance
- * mode.
+ * {@link GraphBuilderModule} module that links up the stops of a transit network among themselves.
+ * This is necessary for routing in long-distance mode.
  * <p>
  * It will use the street network if OSM data has already been loaded into the graph. Otherwise it
  * will use straight-line distance between stops.
@@ -98,6 +108,10 @@ public class DirectTransferGenerator implements GraphBuilderModule {
 
     // This is a synchronizedMultimap so that a parallel stream may be used to insert elements.
     var transfersByStop = Multimaps.<StopLocation, PathTransfer>synchronizedMultimap(
+      HashMultimap.create()
+    );
+
+    var stopPairsWithTransfers = Multimaps.<StopPair, PathTransfer>synchronizedMultimap(
       HashMultimap.create()
     );
 
@@ -177,6 +191,14 @@ public class DirectTransferGenerator implements GraphBuilderModule {
               pathTransfer.to.getParentStation() == pathTransfer.from.getParentStation()
             )
             .forEach(transfer -> transfersByStop.put(transfer.from, transfer));
+
+          distinctTransfers.forEach((transferKey, pathTransfer) ->
+            stopPairsWithTransfers.put(
+              new StopPair(transferKey.source, transferKey.target),
+              pathTransfer
+            )
+          );
+
           nLinkedStops.incrementAndGet();
           nTransfersTotal.addAndGet(distinctTransfers.size());
         }
@@ -194,6 +216,151 @@ public class DirectTransferGenerator implements GraphBuilderModule {
       nTransfersTotal,
       nLinkedStops
     );
+
+    var shorTransferLimit = 850;
+    var stopPairsWithShortAccessibleTransfers = new HashSet<DirectTransferGenerator.StopPair>();
+
+    stopPairsWithTransfers
+      .keySet()
+      .stream()
+      .sorted(
+        Comparator.comparing(stopPair ->
+          "%s-%s-%s-%s".formatted(
+              stopPair.from.getName(),
+              stopPair.from.getId().toString(),
+              stopPair.to.getName(),
+              stopPair.to.getId().toString()
+            )
+        )
+      )
+      .forEach(stopPair -> {
+        var hasWheelchairAccessibleTransfer = stopPairsWithTransfers
+          .get(stopPair)
+          .stream()
+          .anyMatch(pathTransfer ->
+            Optional
+              .ofNullable(pathTransfer.getEdges())
+              .stream()
+              .flatMap(List::stream)
+              .noneMatch(edge ->
+                (edge instanceof StreetEdge && ((StreetEdge) edge).isStairs()) ||
+                (edge instanceof StreetEdge && !((StreetEdge) edge).isWheelchairAccessible()) ||
+                (edge instanceof PathwayEdge && !((PathwayEdge) edge).isWheelchairAccessible())
+              )
+          );
+
+        var hasShortTransfer = stopPairsWithTransfers
+          .get(stopPair)
+          .stream()
+          .anyMatch(pathTransfer -> pathTransfer.getDistanceMeters() < shorTransferLimit);
+
+        if (hasWheelchairAccessibleTransfer && hasShortTransfer) {
+          stopPairsWithShortAccessibleTransfers.add(stopPair);
+        }
+      });
+
+    transitModel
+      .getStopModel()
+      .listStopLocationGroups()
+      .stream()
+      .sorted(
+        Comparator
+          .<StopLocationsGroup, Integer>comparing(stopLocationsGroup ->
+            stopLocationsGroup.getChildStops().size()
+          )
+          .reversed()
+      )
+      .forEach(stopLocationsGroup -> {
+        var size = stopLocationsGroup.getChildStops().size();
+
+        var nokChildTransfers = stopLocationsGroup
+          .getChildStops()
+          .stream()
+          .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
+          .mapToLong(stopA ->
+            stopLocationsGroup
+              .getChildStops()
+              .stream()
+              .sorted(Comparator.comparing(stopLocation -> stopLocation.getId().toString()))
+              .filter(stopB -> stopA != stopB)
+              .filter(stopB -> {
+                var pair = new StopPair(stopA, stopB);
+                if (!stopPairsWithTransfers.containsKey(pair)) {
+                  issueStore.add(
+                    new MissingTransferWithinStation(
+                      stopLocationsGroup.getName().toString(),
+                      stopLocationsGroup.getCoordinate(),
+                      Optional
+                        .ofNullable(stopA.getPlatformCode())
+                        .orElse(stopA.getName().toString()),
+                      stopA.getCoordinate(),
+                      Optional
+                        .ofNullable(stopB.getPlatformCode())
+                        .orElse(stopB.getName().toString()),
+                      stopB.getCoordinate()
+                    )
+                  );
+                  return true;
+                } else if (!stopPairsWithShortAccessibleTransfers.contains(pair)) {
+                  issueStore.add(
+                    new SuspectTransferWithinStation(
+                      stopLocationsGroup.getName().toString(),
+                      stopLocationsGroup.getCoordinate(),
+                      Optional
+                        .ofNullable(stopA.getPlatformCode())
+                        .orElse(stopA.getName().toString()),
+                      Optional
+                        .ofNullable(stopB.getPlatformCode())
+                        .orElse(stopB.getName().toString()),
+                      stopPairsWithTransfers
+                        .get(pair)
+                        .stream()
+                        .findFirst()
+                        .map(PathTransfer::getEdges)
+                        .map(Collection::stream)
+                        .stream()
+                        .flatMap(Function.identity())
+                        .noneMatch(edge ->
+                          (edge instanceof StreetEdge && ((StreetEdge) edge).isStairs()) ||
+                          (
+                            edge instanceof StreetEdge &&
+                            !((StreetEdge) edge).isWheelchairAccessible()
+                          ) ||
+                          (
+                            edge instanceof PathwayEdge &&
+                            !((PathwayEdge) edge).isWheelchairAccessible()
+                          )
+                        ),
+                      stopPairsWithTransfers
+                        .get(pair)
+                        .stream()
+                        .mapToDouble(PathTransfer::getDistanceMeters)
+                        .min()
+                        .orElse(Double.NaN),
+                      shorTransferLimit,
+                      stopPairsWithTransfers.get(pair).stream().map(PathTransfer::getEdges)
+                    )
+                  );
+                  return true;
+                }
+
+                return false;
+              })
+              .count()
+          )
+          .sum();
+
+        if (nokChildTransfers > 0) {
+          issueStore.add(
+            new StationWithMissingTransfers(
+              stopLocationsGroup.getName().toString(),
+              stopLocationsGroup.getCoordinate(),
+              size,
+              nokChildTransfers
+            )
+          );
+        }
+      });
   }
 
   @Override
@@ -219,4 +386,6 @@ public class DirectTransferGenerator implements GraphBuilderModule {
   }
 
   private record TransferKey(StopLocation source, StopLocation target, List<Edge> edges) {}
+
+  private record StopPair(StopLocation from, StopLocation to) {}
 }
