@@ -1,12 +1,9 @@
 package org.opentripplanner.standalone.config.routerequest;
 
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_0;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_2;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V_TV;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.*;
 
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.TransvisionFilter;
 import org.opentripplanner.routing.api.request.framework.RequestFunctions;
 import org.opentripplanner.routing.api.request.preference.ItineraryFilterPreferences;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
@@ -203,6 +200,17 @@ result to be included. However, if there is only a single result, it is never fi
           .summary("Ration of walking / flex duration")
           .asDouble(dft.flexToScheduledTransitDurationRatio())
       )
+      .withRequireScheduledTransit(
+        c
+          .of("requireScheduledTransit")
+          .summary("Require itineraries to contain scheduled transit")
+          .asBoolean(dft.requireScheduledTransit())
+      )
+      .withTransvision(
+        parseTransvisionFilterParameters(
+          c.of("transvision").summary("Transvision filter configuration").asObject()
+        )
+      )
       .withFilterItinerariesWithSameFirstOrLastTrip(
         c
           .of("filterItinerariesWithSameFirstOrLastTrip")
@@ -261,6 +269,90 @@ removed from list.
           .asDouble(dft.minBikeParkingDistance())
       )
       .build();
+  }
+
+  private static TransvisionFilter.Parameters parseTransvisionFilterParameters(NodeAdapter node) {
+    if (node == null) {
+      return null;
+    }
+
+    var enabled = node
+      .of("enabled")
+      .summary("Should the Transvision filter be enabled?")
+      .since(V_TV)
+      .asBoolean(false);
+
+    var minimumTaxiSecondGroups = node
+      .of("minimumTaxiSecondGroups")
+      .summary("")
+      .description(
+        "when selecting among itineraries with the minimum taxi distance, the number of seconds which are considered equal. (default: `180` seconds, in which case every 3 extra minutes increments the score)"
+      )
+      .since(V_TV)
+      .asInt(180);
+
+    var minimumTaxiTransferScore = node
+      .of("minimumTaxiTransferScore")
+      .summary("")
+      .description(
+        "how many second groups is a transfer equivalent with. (default: `2`, in which case a transfer is equivalent with 6 extra minutes)"
+      )
+      .since(V_TV)
+      .asDouble(2);
+    var minimumTransfersSecondGroups = node
+      .of("minimumTransfersSecondGroups")
+      .summary("")
+      .description(
+        "when selecting among itineraries with minimum transfers, the number of seconds which are considered equal. (default: `180` seconds, in which case every 3 extra minutes increments the score)"
+      )
+      .since(V_TV)
+      .asInt(180);
+    var minimumTransfersTaxiGroups = node
+      .of("minimumTransfersTaxiGroups")
+      .summary("")
+      .description(
+        "when selecting among itineraries with minimum transfers, the extra taxi distance which is considered equal. (default: `2000` meters, in which case each extra 2000 meters of distance increments the score)"
+      )
+      .since(V_TV)
+      .asInt(2000);
+    var fasterTransfersScore = node
+      .of("fasterTransfersScore")
+      .summary("")
+      .description(
+        "amount to increment the faster score for each extra transfer compared to the minimum taxi and minimum transfers itineraries (default: `2`)"
+      )
+      .since(V_TV)
+      .asInt(2);
+    var minimumSecondsForFasterItinerary = node
+      .of("minimumSecondsForFasterItinerary")
+      .summary("")
+      .description(
+        "maximum score for an itinerary to be considered faster, roughly the ratio of `extra taxi distance in meters / time saved in seconds` (default: `10`)"
+      )
+      .since(V_TV)
+      .asInt(300);
+    var maximumScoreForFasterItinerary = node
+      .of("maximumScoreForFasterItinerary")
+      .summary("")
+      .description(
+        "amount to increment the faster score for each extra transfer compared to the minimum taxi and minimum transfers itineraries (default: `2`)"
+      )
+      .since(V_TV)
+      .asDouble(10);
+
+    if (!enabled) {
+      return null;
+    }
+
+    return new TransvisionFilter.Parameters(
+      minimumTaxiSecondGroups,
+      minimumTaxiTransferScore,
+      minimumTransfersSecondGroups,
+      minimumTransfersTaxiGroups,
+      fasterTransfersScore,
+      minimumSecondsForFasterItinerary,
+      maximumScoreForFasterItinerary
+    );
   }
 
   private static TransitGeneralizedCostFilterParams parseTransitGeneralizedCostLimit(

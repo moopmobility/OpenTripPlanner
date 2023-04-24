@@ -15,23 +15,8 @@ import org.opentripplanner.model.plan.Itinerary;
 import org.opentripplanner.model.plan.SortOrder;
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
 import org.opentripplanner.routing.algorithm.filterchain.comparator.SortOrderComparator;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.LatestDepartureTimeFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.MaxLimitFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.NonTransitGeneralizedCostFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.OtherThanSameLegsMaxGeneralizedCostFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveBikerentalWithMostlyWalkingFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveItinerariesWithShortStreetLeg;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveMostlyFlexFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveParkAndRideWithMostlyWalkingFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveTransitIfStreetOnlyIsBetterFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveWalkOnlyFilter;
-import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.TransitGeneralizedCostFilter;
-import org.opentripplanner.routing.algorithm.filterchain.filter.DeletionFlaggingFilter;
-import org.opentripplanner.routing.algorithm.filterchain.filter.GroupByFilter;
-import org.opentripplanner.routing.algorithm.filterchain.filter.RemoveDeletionFlagForLeastTransfersItinerary;
-import org.opentripplanner.routing.algorithm.filterchain.filter.SameFirstOrLastTripFilter;
-import org.opentripplanner.routing.algorithm.filterchain.filter.SortingFilter;
-import org.opentripplanner.routing.algorithm.filterchain.filter.TransitAlertFilter;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.*;
+import org.opentripplanner.routing.algorithm.filterchain.filter.*;
 import org.opentripplanner.routing.algorithm.filterchain.groupids.GroupByAllSameStations;
 import org.opentripplanner.routing.algorithm.filterchain.groupids.GroupByDistance;
 import org.opentripplanner.routing.algorithm.filterchain.groupids.GroupBySameRoutesAndStops;
@@ -64,6 +49,8 @@ public class ItineraryListFilterChainBuilder {
   private DoubleAlgorithmFunction nonTransitGeneralizedCostLimit;
   private double flexToScheduledTransitDistanceRatio;
   private double flexToScheduledTransitDurationRatio;
+  private boolean requireScheduledTransit;
+  private TransvisionFilter.Parameters transvision;
   private Instant latestDepartureTimeLimit = null;
   private Consumer<Itinerary> maxLimitReachedSubscriber;
   private boolean accessibilityScore;
@@ -199,6 +186,18 @@ public class ItineraryListFilterChainBuilder {
    */
   public ItineraryListFilterChainBuilder withFlexToScheduledTransitDurationRatio(double value) {
     this.flexToScheduledTransitDurationRatio = value;
+    return this;
+  }
+
+  public ItineraryListFilterChainBuilder withRequireScheduledTransit(
+    boolean requireScheduledTransit
+  ) {
+    this.requireScheduledTransit = requireScheduledTransit;
+    return this;
+  }
+
+  public ItineraryListFilterChainBuilder withTransvision(TransvisionFilter.Parameters transvision) {
+    this.transvision = transvision;
     return this;
   }
 
@@ -435,6 +434,14 @@ public class ItineraryListFilterChainBuilder {
 
     if (rideHailingFilter != null) {
       filters.add(rideHailingFilter);
+    }
+
+    if (requireScheduledTransit) {
+      filters.add(new DeletionFlaggingFilter(new RequireScheduledTransitFilter()));
+    }
+
+    if (transvision != null) {
+      filters.add(new DeletionFlaggingFilter(new TransvisionFilter(transvision)));
     }
 
     return new ItineraryListFilterChain(filters, debug);

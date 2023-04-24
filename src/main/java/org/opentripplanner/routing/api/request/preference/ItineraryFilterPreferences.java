@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 import org.opentripplanner.framework.tostring.ToStringBuilder;
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.TransvisionFilter;
 import org.opentripplanner.routing.api.request.framework.DoubleAlgorithmFunction;
 import org.opentripplanner.routing.api.request.framework.RequestFunctions;
 import org.opentripplanner.routing.api.request.framework.Units;
@@ -30,6 +31,8 @@ public final class ItineraryFilterPreferences {
   private final double parkAndRideDurationRatio;
   private final double flexToScheduledTransitDistanceRatio;
   private final double flexToScheduledTransitDurationRatio;
+  private final boolean requireScheduledTransit;
+  private final TransvisionFilter.Parameters transvision;
   private final boolean removeItinerariesWithSameRoutesAndStops;
   private final TransitGeneralizedCostFilterParams transitGeneralizedCostLimit;
 
@@ -46,6 +49,8 @@ public final class ItineraryFilterPreferences {
     this.parkAndRideDurationRatio = 0.0;
     this.flexToScheduledTransitDistanceRatio = 0.0;
     this.flexToScheduledTransitDurationRatio = 0.0;
+    this.requireScheduledTransit = false;
+    this.transvision = null;
     this.removeItinerariesWithSameRoutesAndStops = false;
     this.transitGeneralizedCostLimit =
       new TransitGeneralizedCostFilterParams(RequestFunctions.createLinearFunction(900, 1.5), 0.4);
@@ -69,6 +74,8 @@ public final class ItineraryFilterPreferences {
       Units.reluctance(builder.flexToScheduledTransitDistanceRatio);
     this.flexToScheduledTransitDurationRatio =
       Units.reluctance(builder.flexToScheduledTransitDurationRatio);
+    this.requireScheduledTransit = builder.requireScheduledTransit;
+    this.transvision = builder.transvision;
     this.removeItinerariesWithSameRoutesAndStops = builder.removeItinerariesWithSameRoutesAndStops;
     this.transitGeneralizedCostLimit = Objects.requireNonNull(builder.transitGeneralizedCostLimit);
   }
@@ -127,6 +134,14 @@ public final class ItineraryFilterPreferences {
 
   public double flexToScheduledTransitDurationRatio() {
     return flexToScheduledTransitDurationRatio;
+  }
+
+  public boolean requireScheduledTransit() {
+    return requireScheduledTransit;
+  }
+
+  public TransvisionFilter.Parameters transvision() {
+    return transvision;
   }
 
   public boolean removeItinerariesWithSameRoutesAndStops() {
@@ -251,6 +266,8 @@ public final class ItineraryFilterPreferences {
     private double parkAndRideDurationRatio;
     private double flexToScheduledTransitDistanceRatio;
     private double flexToScheduledTransitDurationRatio;
+    private boolean requireScheduledTransit;
+    private TransvisionFilter.Parameters transvision;
     private boolean removeItinerariesWithSameRoutesAndStops;
     private TransitGeneralizedCostFilterParams transitGeneralizedCostLimit;
 
@@ -328,6 +345,16 @@ public final class ItineraryFilterPreferences {
       return this;
     }
 
+    public Builder withRequireScheduledTransit(boolean requireScheduledTransit) {
+      this.requireScheduledTransit = requireScheduledTransit;
+      return this;
+    }
+
+    public Builder withTransvision(TransvisionFilter.Parameters transvision) {
+      this.transvision = transvision;
+      return this;
+    }
+
     public Builder withRemoveItinerariesWithSameRoutesAndStops(
       boolean removeItinerariesWithSameRoutesAndStops
     ) {
@@ -358,6 +385,8 @@ public final class ItineraryFilterPreferences {
       this.parkAndRideDurationRatio = original.parkAndRideDurationRatio;
       this.flexToScheduledTransitDistanceRatio = original.flexToScheduledTransitDistanceRatio;
       this.flexToScheduledTransitDurationRatio = original.flexToScheduledTransitDurationRatio;
+      this.requireScheduledTransit = original.requireScheduledTransit;
+      this.transvision = original.transvision;
       this.removeItinerariesWithSameRoutesAndStops =
         original.removeItinerariesWithSameRoutesAndStops;
       this.transitGeneralizedCostLimit = original.transitGeneralizedCostLimit;

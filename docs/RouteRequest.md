@@ -99,9 +99,19 @@ and in the [transferRequests in build-config.json](BuildConfiguration.md#transfe
 |    [nonTransitGeneralizedCostLimit](#rd_if_nonTransitGeneralizedCostLimit)                           |    `linear-function`   | The function define a max-limit for generalized-cost for non-transit itineraries.                                                  | *Optional* | `"f(x) = 3,600 + 2.0 x"` |     2.1     |
 |    [parkAndRideDurationRatio](#rd_if_parkAndRideDurationRatio)                                       |        `double`        | Filter P+R routes that consist of driving and walking by the minimum fraction of the driving using of _time_.                      | *Optional* | `0.0`                    |     2.1     |
 |    [removeItinerariesWithSameRoutesAndStops](#rd_if_removeItinerariesWithSameRoutesAndStops)         |        `boolean`       | Set to true if you want to list only the first itinerary  which goes through the same stops and routes.                            | *Optional* | `false`                  |     2.2     |
+|    requireScheduledTransit                                                                           |        `boolean`       | Require itineraries to contain scheduled transit                                                                                   | *Optional* | `false`                  |      na     |
 |    [transitGeneralizedCostLimit](#rd_if_transitGeneralizedCostLimit)                                 |        `object`        | A relative limit for the generalized-cost for transit itineraries.                                                                 | *Optional* |                          |     2.1     |
 |       [costLimitFunction](#rd_if_transitGeneralizedCostLimit_costLimitFunction)                      |    `linear-function`   | The base function used by the filter.                                                                                              | *Optional* | `"f(x) = 900 + 1.5 x"`   |     2.2     |
 |       [intervalRelaxFactor](#rd_if_transitGeneralizedCostLimit_intervalRelaxFactor)                  |        `double`        | How much the filter should be relaxed for itineraries that do not overlap in time.                                                 | *Optional* | `0.4`                    |     2.2     |
+|    transvision                                                                                       |        `object`        | Transvision filter configuration                                                                                                   | *Optional* |                          |      na     |
+|       enabled                                                                                        |        `boolean`       | Should the Transvision filter be enabled?                                                                                          | *Optional* | `false`                  | Transvision |
+|       [fasterTransfersScore](#rd_if_transvision_fasterTransfersScore)                                |        `integer`       |                                                                                                                                    | *Optional* | `2`                      | Transvision |
+|       [maximumScoreForFasterItinerary](#rd_if_transvision_maximumScoreForFasterItinerary)            |        `double`        |                                                                                                                                    | *Optional* | `10.0`                   | Transvision |
+|       [minimumSecondsForFasterItinerary](#rd_if_transvision_minimumSecondsForFasterItinerary)        |        `integer`       |                                                                                                                                    | *Optional* | `300`                    | Transvision |
+|       [minimumTaxiSecondGroups](#rd_if_transvision_minimumTaxiSecondGroups)                          |        `integer`       |                                                                                                                                    | *Optional* | `180`                    | Transvision |
+|       [minimumTaxiTransferScore](#rd_if_transvision_minimumTaxiTransferScore)                        |        `double`        |                                                                                                                                    | *Optional* | `2.0`                    | Transvision |
+|       [minimumTransfersSecondGroups](#rd_if_transvision_minimumTransfersSecondGroups)                |        `integer`       |                                                                                                                                    | *Optional* | `180`                    | Transvision |
+|       [minimumTransfersTaxiGroups](#rd_if_transvision_minimumTransfersTaxiGroups)                    |        `integer`       |                                                                                                                                    | *Optional* | `2000`                   | Transvision |
 | [maxAccessEgressDurationForMode](#rd_maxAccessEgressDurationForMode)                                 | `enum map of duration` | Limit access/egress per street mode.                                                                                               | *Optional* |                          |     2.1     |
 | [maxDirectStreetDurationForMode](#rd_maxDirectStreetDurationForMode)                                 | `enum map of duration` | Limit direct route duration per street mode.                                                                                       | *Optional* |                          |     2.2     |
 | [preferredVehicleParkingTags](#rd_preferredVehicleParkingTags)                                       |       `string[]`       | Vehicle parking facilities that don't have one of these tags will receive an extra cost and will therefore be penalised.           | *Optional* |                          |     2.3     |
@@ -600,6 +610,55 @@ This value is used to increase the filter threshold for itineraries further away
 time, compared to those, that have exactly the same arrival and departure times.
 
 The unit is cost unit per second of time difference.
+
+<h3 id="rd_if_transvision_fasterTransfersScore">fasterTransfersScore</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `integer` ∙ **Cardinality:** `Optional` ∙ **Default value:** `2`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+amount to increment the faster score for each extra transfer compared to the minimum taxi and minimum transfers itineraries (default: `2`)
+
+<h3 id="rd_if_transvision_maximumScoreForFasterItinerary">maximumScoreForFasterItinerary</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `double` ∙ **Cardinality:** `Optional` ∙ **Default value:** `10.0`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+amount to increment the faster score for each extra transfer compared to the minimum taxi and minimum transfers itineraries (default: `2`)
+
+<h3 id="rd_if_transvision_minimumSecondsForFasterItinerary">minimumSecondsForFasterItinerary</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `integer` ∙ **Cardinality:** `Optional` ∙ **Default value:** `300`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+maximum score for an itinerary to be considered faster, roughly the ratio of `extra taxi distance in meters / time saved in seconds` (default: `10`)
+
+<h3 id="rd_if_transvision_minimumTaxiSecondGroups">minimumTaxiSecondGroups</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `integer` ∙ **Cardinality:** `Optional` ∙ **Default value:** `180`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+when selecting among itineraries with the minimum taxi distance, the number of seconds which are considered equal. (default: `180` seconds, in which case every 3 extra minutes increments the score)
+
+<h3 id="rd_if_transvision_minimumTaxiTransferScore">minimumTaxiTransferScore</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `double` ∙ **Cardinality:** `Optional` ∙ **Default value:** `2.0`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+how many second groups is a transfer equivalent with. (default: `2`, in which case a transfer is equivalent with 6 extra minutes)
+
+<h3 id="rd_if_transvision_minimumTransfersSecondGroups">minimumTransfersSecondGroups</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `integer` ∙ **Cardinality:** `Optional` ∙ **Default value:** `180`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+when selecting among itineraries with minimum transfers, the number of seconds which are considered equal. (default: `180` seconds, in which case every 3 extra minutes increments the score)
+
+<h3 id="rd_if_transvision_minimumTransfersTaxiGroups">minimumTransfersTaxiGroups</h3>
+
+**Since version:** `Transvision` ∙ **Type:** `integer` ∙ **Cardinality:** `Optional` ∙ **Default value:** `2000`   
+**Path:** /routingDefaults/itineraryFilters/transvision 
+
+when selecting among itineraries with minimum transfers, the extra taxi distance which is considered equal. (default: `2000` meters, in which case each extra 2000 meters of distance increments the score)
 
 <h3 id="rd_maxAccessEgressDurationForMode">maxAccessEgressDurationForMode</h3>
 

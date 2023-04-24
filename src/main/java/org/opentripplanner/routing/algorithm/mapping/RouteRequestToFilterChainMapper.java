@@ -61,6 +61,8 @@ public class RouteRequestToFilterChainMapper {
       .withParkAndRideDurationRatio(params.parkAndRideDurationRatio())
       .withFlexToScheduledTransitDistanceRatio(params.flexToScheduledTransitDistanceRatio())
       .withFlexToScheduledTransitDurationRatio(params.flexToScheduledTransitDurationRatio())
+      .withRequireScheduledTransit(params.requireScheduledTransit())
+      .withTransvision(params.transvision())
       .withNonTransitGeneralizedCostLimit(params.nonTransitGeneralizedCostLimit())
       .withSameFirstOrLastTripFilter(params.filterItinerariesWithSameFirstOrLastTrip())
       .withAccessibilityScore(

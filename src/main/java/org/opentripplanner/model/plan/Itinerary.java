@@ -139,6 +139,10 @@ public class Itinerary {
       .anyMatch(l -> l instanceof ScheduledTransitLeg || l instanceof FlexibleTransitLeg);
   }
 
+  public boolean hasScheduledTransit() {
+    return legs.stream().anyMatch(l -> l instanceof ScheduledTransitLeg);
+  }
+
   public Leg firstLeg() {
     return getLegs().get(0);
   }
