@@ -2,12 +2,7 @@ package org.opentripplanner.openstreetmap.tagmapping;
 
 import static org.opentripplanner.openstreetmap.wayproperty.MixinPropertiesBuilder.ofBicycleSafety;
 import static org.opentripplanner.openstreetmap.wayproperty.WayPropertiesBuilder.withModes;
-import static org.opentripplanner.street.model.StreetTraversalPermission.ALL;
-import static org.opentripplanner.street.model.StreetTraversalPermission.BICYCLE_AND_CAR;
-import static org.opentripplanner.street.model.StreetTraversalPermission.CAR;
-import static org.opentripplanner.street.model.StreetTraversalPermission.NONE;
-import static org.opentripplanner.street.model.StreetTraversalPermission.PEDESTRIAN;
-import static org.opentripplanner.street.model.StreetTraversalPermission.PEDESTRIAN_AND_BICYCLE;
+import static org.opentripplanner.street.model.StreetTraversalPermission.*;
 
 import org.opentripplanner.openstreetmap.wayproperty.WayProperties;
 import org.opentripplanner.openstreetmap.wayproperty.WayPropertySet;
@@ -107,6 +102,7 @@ class DefaultMapper implements OsmTagMapper {
       withModes(PEDESTRIAN_AND_BICYCLE).bicycleSafety(0.87)
     );
     props.setProperties("highway=service;cycleway=lane", withModes(ALL).bicycleSafety(0.77));
+    props.setProperties("highway=unclassified;cycleway=lane", withModes(ALL).bicycleSafety(0.77));
     props.setProperties("highway=residential;cycleway=lane", withModes(ALL).bicycleSafety(0.77));
     props.setProperties(
       "highway=residential_link;cycleway=lane",
