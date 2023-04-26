@@ -104,10 +104,7 @@ public class DefaultWayPropertySetSource implements WayPropertySetSource {
     props.setProperties("highway=motorway", withModes(CAR).bicycleSafety(8));
 
     /* cycleway=lane */
-    props.setProperties(
-      "highway=*;cycleway=lane",
-      withModes(PEDESTRIAN_AND_BICYCLE).bicycleSafety(0.87)
-    );
+    props.setProperties("highway=*;cycleway=lane", withModes(ALL).bicycleSafety(0.87));
     props.setProperties("highway=service;cycleway=lane", withModes(ALL).bicycleSafety(0.77));
     props.setProperties("highway=residential;cycleway=lane", withModes(ALL).bicycleSafety(0.77));
     props.setProperties(
