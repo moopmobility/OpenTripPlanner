@@ -98,7 +98,7 @@ public class FlexIntegrationTest {
     assertEquals("Zone 2", flex.getRoute().getShortName());
     assertTrue(flex.isFlexibleTrip());
     assertEquals(
-      "corner of Story Place Southwest and service road (part of Flex Zone 2)",
+      "service road (part of Flex Zone 2)",
       flex.getFrom().name.toString()
     );
     assertEquals("Destination (part of Flex Zone 2)", flex.getTo().name.toString());
@@ -152,7 +152,7 @@ public class FlexIntegrationTest {
     // walk, flex
     assertEquals(2, itin.getLegs().size());
     assertEquals("2021-12-02T12:52:42-05:00[America/New_York]", itin.startTime().toString());
-    assertEquals(3203, itin.getGeneralizedCost());
+    assertEquals(5147, itin.getGeneralizedCost());
 
     var walkToFlex = itin.getStreetLeg(0);
     assertEquals(WALK, walkToFlex.getMode());
