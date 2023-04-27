@@ -43,29 +43,28 @@ public class Transfer {
     rr.from = null;
     rr.to = null;
 
-    // Some of the values are rounded to ease caching in RaptorRequestTransferCache
-    rr.bikeTriangleSafetyFactor = roundTo(request.bikeTriangleSafetyFactor, 1);
-    rr.bikeTriangleSlopeFactor = roundTo(request.bikeTriangleSlopeFactor, 1);
-    rr.bikeTriangleTimeFactor = 1.0 - rr.bikeTriangleSafetyFactor - rr.bikeTriangleSlopeFactor;
-    rr.bikeSwitchCost = roundTo100(request.bikeSwitchCost);
-    rr.bikeSwitchTime = roundTo100(request.bikeSwitchTime);
+    rr.bikeTriangleSafetyFactor = request.bikeTriangleSafetyFactor;
+    rr.bikeTriangleSlopeFactor = request.bikeTriangleSlopeFactor;
+    rr.bikeTriangleTimeFactor = request.bikeTriangleTimeFactor;
+    rr.bikeSwitchCost = request.bikeSwitchCost;
+    rr.bikeSwitchTime = request.bikeSwitchTime;
 
     // it's a record (immutable) so can be safely reused
     rr.wheelchairAccessibility = request.wheelchairAccessibility;
 
-    rr.walkSpeed = roundToHalf(request.walkSpeed);
-    rr.bikeSpeed = roundToHalf(request.bikeSpeed);
+    rr.walkSpeed = request.walkSpeed;
+    rr.bikeSpeed = request.bikeSpeed;
 
-    rr.walkReluctance = roundTo(request.walkReluctance, 1);
-    rr.stairsReluctance = roundTo(request.stairsReluctance, 1);
-    rr.stairsTimeFactor = roundTo(request.stairsTimeFactor, 1);
-    rr.turnReluctance = roundTo(request.turnReluctance, 1);
-    rr.walkSafetyFactor = roundTo(request.walkSafetyFactor, 1);
+    rr.walkReluctance = request.walkReluctance;
+    rr.stairsReluctance = request.stairsReluctance;
+    rr.stairsTimeFactor = request.stairsTimeFactor;
+    rr.turnReluctance = request.turnReluctance;
+    rr.walkSafetyFactor = request.walkSafetyFactor;
 
-    rr.elevatorBoardCost = roundTo100(request.elevatorBoardCost);
-    rr.elevatorBoardTime = roundTo100(request.elevatorBoardTime);
-    rr.elevatorHopCost = roundTo100(request.elevatorHopCost);
-    rr.elevatorHopTime = roundTo100(request.elevatorHopTime);
+    rr.elevatorBoardCost = request.elevatorBoardCost;
+    rr.elevatorBoardTime = request.elevatorBoardTime;
+    rr.elevatorHopCost = request.elevatorHopCost;
+    rr.elevatorHopTime = request.elevatorHopTime;
 
     return rr;
   }
