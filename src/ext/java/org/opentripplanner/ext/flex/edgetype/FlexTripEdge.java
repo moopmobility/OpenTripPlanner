@@ -71,7 +71,7 @@ public class FlexTripEdge extends Edge {
       getTimeInSeconds() +
       options.alightSlackForMode.getOrDefault(mode, options.alightSlack);
     double weight =
-      timeInSeconds *
+      flexPath.distanceMeters *
       options.transitReluctanceForMode().getOrDefault(mode, 1.0) +
       options.walkBoardCost;
 
