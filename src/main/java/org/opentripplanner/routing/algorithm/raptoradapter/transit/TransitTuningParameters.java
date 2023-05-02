@@ -48,6 +48,11 @@ public interface TransitTuningParameters {
     }
 
     @Override
+    public int transferCacheMaxThreads() {
+      return 0;
+    }
+
+    @Override
     public List<Duration> pagingSearchWindowAdjustments() {
       return PAGING_SEARCH_WINDOW_ADJUSTMENTS;
     }
@@ -76,6 +81,12 @@ public interface TransitTuningParameters {
    * too large, more memory may be used than needed.
    */
   int transferCacheMaxSize();
+
+  /**
+   * The maximum number of threads to use when calculating transfers for a given RoutingRequest if
+   * {@link org.opentripplanner.util.OTPFeature#ParallelRouting} is enabled.
+   */
+  int transferCacheMaxThreads();
 
   /**
    * This parameter is used to reduce the number of pages a client have to step through for a

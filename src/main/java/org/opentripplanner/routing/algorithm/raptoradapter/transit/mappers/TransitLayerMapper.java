@@ -90,7 +90,10 @@ public class TransitLayerMapper {
       constrainedTransfers = transferIndexGenerator.generateTransfers();
     }
 
-    var transferCache = new RaptorRequestTransferCache(tuningParameters.transferCacheMaxSize());
+    var transferCache = new RaptorRequestTransferCache(
+      tuningParameters.transferCacheMaxSize(),
+      tuningParameters.transferCacheMaxThreads()
+    );
 
     LOG.info("Mapping complete.");
 

@@ -6,7 +6,10 @@ import com.google.common.cache.LoadingCache;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinWorkerThread;
 import javax.annotation.Nonnull;
+import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.framework.tostring.ToStringBuilder;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.RaptorTransferIndex;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.Transfer;
@@ -26,9 +29,25 @@ public class RaptorRequestTransferCache {
   private static final Logger LOG = LoggerFactory.getLogger(RaptorRequestTransferCache.class);
 
   private final LoadingCache<CacheKey, RaptorTransferIndex> transferCache;
+  private final ForkJoinPool threadPool;
 
-  public RaptorRequestTransferCache(int maximumSize) {
+  public RaptorRequestTransferCache(int maximumSize, int maximumThreads) {
     transferCache = CacheBuilder.newBuilder().maximumSize(maximumSize).build(cacheLoader());
+    if (OTPFeature.ParallelRouting.isOn() && maximumThreads > 0) {
+      var factory = new ForkJoinPool.ForkJoinWorkerThreadFactory() {
+        @Override
+        public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
+          var worker = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
+          worker.setName(
+            RaptorRequestTransferCache.class.getSimpleName() + "-" + worker.getPoolIndex()
+          );
+          return worker;
+        }
+      };
+      threadPool = new ForkJoinPool(maximumThreads, factory, null, false);
+    } else {
+      threadPool = null;
+    }
   }
 
   public LoadingCache<CacheKey, RaptorTransferIndex> getTransferCache() {
@@ -54,7 +73,19 @@ public class RaptorRequestTransferCache {
       @Nonnull
       public RaptorTransferIndex load(@Nonnull CacheKey cacheKey) {
         LOG.info("Adding request to cache: {}", cacheKey.options);
-        return RaptorTransferIndex.create(cacheKey.transfersByStopIndex, cacheKey.request);
+        if (threadPool != null) {
+          try {
+            return threadPool
+              .submit(() ->
+                RaptorTransferIndex.create(cacheKey.transfersByStopIndex, cacheKey.request)
+              )
+              .get();
+          } catch (InterruptedException | ExecutionException e) {
+            throw new RuntimeException("Failed to calculate RaptorTransferIndex for request", e);
+          }
+        } else {
+          return RaptorTransferIndex.create(cacheKey.transfersByStopIndex, cacheKey.request);
+        }
       }
     };
   }

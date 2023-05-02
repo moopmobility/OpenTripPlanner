@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import org.opentripplanner.framework.application.OTPFeature;
-import org.opentripplanner.framework.concurrent.InterruptibleExecutor;
+import org.opentripplanner.framework.application.OTPRequestTimeoutException;
 import org.opentripplanner.model.plan.Itinerary;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor.api.path.RaptorPath;
@@ -184,9 +183,9 @@ public class TransitRouter {
         Executors.callable(egressCalculator)
       );
       try {
-        InterruptibleExecutor.execute(tasks);
-      } catch (ExecutionException e) {
-        RoutingValidationException.unwrapAndRethrowExecutionException(e);
+        serverContext.raptorConfig().threadPool().invokeAll(tasks);
+      } catch (InterruptedException e) {
+        throw new OTPRequestTimeoutException();
       }
     } else {
       accessCalculator.run();

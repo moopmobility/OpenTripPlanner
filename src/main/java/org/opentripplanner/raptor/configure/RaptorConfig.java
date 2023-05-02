@@ -1,18 +1,14 @@
 package org.opentripplanner.raptor.configure;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import javax.annotation.Nullable;
 import org.opentripplanner.raptor.api.model.RaptorTripSchedule;
 import org.opentripplanner.raptor.api.request.RaptorRequest;
 import org.opentripplanner.raptor.api.request.RaptorTuningParameters;
 import org.opentripplanner.raptor.rangeraptor.DefaultRangeRaptorWorker;
 import org.opentripplanner.raptor.rangeraptor.context.SearchContext;
-import org.opentripplanner.raptor.rangeraptor.internalapi.Heuristics;
-import org.opentripplanner.raptor.rangeraptor.internalapi.RaptorWorker;
-import org.opentripplanner.raptor.rangeraptor.internalapi.RaptorWorkerResult;
-import org.opentripplanner.raptor.rangeraptor.internalapi.RaptorWorkerState;
-import org.opentripplanner.raptor.rangeraptor.internalapi.RoutingStrategy;
+import org.opentripplanner.raptor.rangeraptor.internalapi.*;
 import org.opentripplanner.raptor.rangeraptor.multicriteria.configure.McRangeRaptorConfig;
 import org.opentripplanner.raptor.rangeraptor.standard.configure.StdRangeRaptorConfig;
 import org.opentripplanner.raptor.rangeraptor.transit.RaptorSearchWindowCalculator;
@@ -125,6 +121,6 @@ public class RaptorConfig<T extends RaptorTripSchedule> {
 
   @Nullable
   private ExecutorService createNewThreadPool(int size) {
-    return size > 0 ? Executors.newFixedThreadPool(size) : null;
+    return size > 0 ? new ForkJoinPool(size) : null;
   }
 }

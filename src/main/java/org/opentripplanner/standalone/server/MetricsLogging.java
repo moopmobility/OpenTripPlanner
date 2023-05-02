@@ -3,14 +3,7 @@ package org.opentripplanner.standalone.server;
 import io.micrometer.core.instrument.Metrics;
 import io.micrometer.core.instrument.Tag;
 import io.micrometer.core.instrument.binder.cache.GuavaCacheMetrics;
-import io.micrometer.core.instrument.binder.jvm.ClassLoaderMetrics;
-import io.micrometer.core.instrument.binder.jvm.ExecutorServiceMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmCompilationMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmGcMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmHeapPressureMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmInfoMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmMemoryMetrics;
-import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics;
+import io.micrometer.core.instrument.binder.jvm.*;
 import io.micrometer.core.instrument.binder.logging.LogbackMetrics;
 import io.micrometer.core.instrument.binder.system.FileDescriptorMetrics;
 import io.micrometer.core.instrument.binder.system.ProcessorMetrics;
@@ -19,8 +12,6 @@ import jakarta.inject.Inject;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
-import org.opentripplanner.framework.application.OTPFeature;
-import org.opentripplanner.framework.concurrent.InterruptibleExecutor;
 import org.opentripplanner.graph_builder.issue.api.DataImportIssueSummary;
 import org.opentripplanner.raptor.configure.RaptorConfig;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TripSchedule;
@@ -86,15 +77,6 @@ public class MetricsLogging {
         raptorConfig.threadPool(),
         "raptorHeuristics",
         List.of(Tag.of("pool", "raptorHeuristics"))
-      )
-        .bindTo(Metrics.globalRegistry);
-    }
-
-    if (OTPFeature.ParallelRouting.isOn()) {
-      new ExecutorServiceMetrics(
-        InterruptibleExecutor.threadPool(),
-        "interruptibleExecutor",
-        List.of(Tag.of("pool", "interruptibleExecutor"))
       )
         .bindTo(Metrics.globalRegistry);
     }

@@ -22,7 +22,7 @@ public interface RaptorTuningParameters {
 
   /** see {@link org.opentripplanner.standalone.config.routerconfig.TransitRoutingConfig} **/
   default int searchThreadPoolSize() {
-    return 0;
+    return Runtime.getRuntime().availableProcessors();
   }
 
   /**

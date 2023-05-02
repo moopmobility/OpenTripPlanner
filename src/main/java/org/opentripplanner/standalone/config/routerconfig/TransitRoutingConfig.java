@@ -1,10 +1,6 @@
 package org.opentripplanner.standalone.config.routerconfig;
 
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.NA;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_0;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_2;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.*;
 
 import java.time.Duration;
 import java.util.List;
@@ -27,6 +23,7 @@ public final class TransitRoutingConfig implements RaptorTuningParameters, Trans
   private final int iterationDepartureStepInSeconds;
   private final int searchThreadPoolSize;
   private final int transferCacheMaxSize;
+  private final int transferCacheMaxThreads;
   private final List<RouteRequest> transferCacheRequests;
   private final List<Duration> pagingSearchWindowAdjustments;
 
@@ -150,6 +147,13 @@ Use values in a range from `0` to `100 000`. **All key/value pairs are required 
           " If too low, requests may be slower. If too high, more memory may be used then required."
         )
         .asInt(25);
+    this.transferCacheMaxThreads =
+      c
+        .of("transferCacheMaxThreads")
+        .since(V_TV)
+        .summary("The maximum number of threads to use for transferCache calculations.")
+        .asInt(Runtime.getRuntime().availableProcessors()) -
+      1;
 
     this.transferCacheRequests =
       c
@@ -241,6 +245,11 @@ for more info."
   @Override
   public int transferCacheMaxSize() {
     return transferCacheMaxSize;
+  }
+
+  @Override
+  public int transferCacheMaxThreads() {
+    return transferCacheMaxThreads;
   }
 
   @Override
