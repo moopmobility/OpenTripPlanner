@@ -1,6 +1,6 @@
 package org.opentripplanner.api.model;
 
-import java.util.Calendar;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -42,12 +42,12 @@ public class ApiPlace {
   /**
    * The time the rider will arrive at the place.
    */
-  public Calendar arrival = null;
+  public ZonedDateTime arrival = null;
 
   /**
    * The time the rider will depart the place.
    */
-  public Calendar departure = null;
+  public ZonedDateTime departure = null;
 
   public String zoneId;
 

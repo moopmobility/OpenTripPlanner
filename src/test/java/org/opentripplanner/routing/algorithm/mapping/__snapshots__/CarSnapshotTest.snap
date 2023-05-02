@@ -5,7 +5,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
       "duration": 253,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:14:13.000+00:00",
+      "endTime": "2009-10-21T16:14:13-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -17,9 +17,9 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 181.36,
-          "endTime": "2009-10-21T23:10:44.000+00:00",
+          "endTime": "2009-10-21T16:10:44-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.53261,
             "lon": -122.70075,
             "name": "NW Pettygrove Ave. & NW 24th Ave. (P1)",
@@ -36,7 +36,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -92,8 +92,8 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:10:44.000+00:00",
-            "departure": "2009-10-21T23:10:44.000+00:00",
+            "arrival": "2009-10-21T16:10:44-07:00",
+            "departure": "2009-10-21T16:10:44-07:00",
             "lat": 45.5316391,
             "lon": -122.7016859,
             "name": "P+R (#2)",
@@ -121,10 +121,10 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 184.06,
-          "endTime": "2009-10-21T23:14:13.000+00:00",
+          "endTime": "2009-10-21T16:14:13-07:00",
           "from": {
-            "arrival": "2009-10-21T23:10:44.000+00:00",
-            "departure": "2009-10-21T23:10:44.000+00:00",
+            "arrival": "2009-10-21T16:10:44-07:00",
+            "departure": "2009-10-21T16:10:44-07:00",
             "lat": 45.5314019,
             "lon": -122.7016931,
             "name": "P+R (#1)",
@@ -155,7 +155,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:44.000+00:00",
+          "startTime": "2009-10-21T16:10:44-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -198,7 +198,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:14:13.000+00:00",
+            "arrival": "2009-10-21T16:14:13-07:00",
             "lat": 45.53046,
             "lon": -122.70067,
             "name": "NW Marshall St. & NW 24th Ave. (P2)",
@@ -208,7 +208,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPark=[
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -228,7 +228,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
       "duration": 414,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:16:54.000+00:00",
+      "endTime": "2009-10-21T16:16:54-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -240,9 +240,9 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 108.24,
-          "endTime": "2009-10-21T23:11:30.000+00:00",
+          "endTime": "2009-10-21T16:11:30-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.53335,
             "lon": -122.70517,
             "name": "Chapman Elementary School (P3)",
@@ -259,7 +259,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -276,8 +276,8 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:11:30.000+00:00",
-            "departure": "2009-10-21T23:11:30.000+00:00",
+            "arrival": "2009-10-21T16:11:30-07:00",
+            "departure": "2009-10-21T16:11:30-07:00",
             "lat": 45.5325089,
             "lon": -122.7048383,
             "name": "corner of path and Northwest Pettygrove Street",
@@ -291,10 +291,10 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 864.7,
-          "endTime": "2009-10-21T23:14:43.000+00:00",
+          "endTime": "2009-10-21T16:14:43-07:00",
           "from": {
-            "arrival": "2009-10-21T23:11:30.000+00:00",
-            "departure": "2009-10-21T23:11:30.000+00:00",
+            "arrival": "2009-10-21T16:11:30-07:00",
+            "departure": "2009-10-21T16:11:30-07:00",
             "lat": 45.5325089,
             "lon": -122.7048383,
             "name": "corner of path and Northwest Pettygrove Street",
@@ -311,7 +311,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:11:30.000+00:00",
+          "startTime": "2009-10-21T16:11:30-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -341,8 +341,8 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:14:43.000+00:00",
-            "departure": "2009-10-21T23:14:43.000+00:00",
+            "arrival": "2009-10-21T16:14:43-07:00",
+            "departure": "2009-10-21T16:14:43-07:00",
             "lat": 45.5306177,
             "lon": -122.6966188,
             "name": "corner of Northwest 22nd Avenue and path",
@@ -356,10 +356,10 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 85.65,
-          "endTime": "2009-10-21T23:16:54.000+00:00",
+          "endTime": "2009-10-21T16:16:54-07:00",
           "from": {
-            "arrival": "2009-10-21T23:14:43.000+00:00",
-            "departure": "2009-10-21T23:14:43.000+00:00",
+            "arrival": "2009-10-21T16:14:43-07:00",
+            "departure": "2009-10-21T16:14:43-07:00",
             "lat": 45.5306177,
             "lon": -122.6966188,
             "name": "corner of Northwest 22nd Avenue and path",
@@ -376,7 +376,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:14:43.000+00:00",
+          "startTime": "2009-10-21T16:14:43-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -393,7 +393,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:16:54.000+00:00",
+            "arrival": "2009-10-21T16:16:54-07:00",
             "lat": 45.5306,
             "lon": -122.69771,
             "name": "Legacy Good Samaritan Medical Center (P4)",
@@ -403,7 +403,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -423,7 +423,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
       "duration": 414,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:16:54.000+00:00",
+      "endTime": "2009-10-21T16:16:54-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -435,9 +435,9 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 108.24,
-          "endTime": "2009-10-21T23:12:38.000+00:00",
+          "endTime": "2009-10-21T16:12:38-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.53335,
             "lon": -122.70517,
             "name": "Chapman Elementary School (P3)",
@@ -454,7 +454,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -471,8 +471,8 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:12:38.000+00:00",
-            "departure": "2009-10-21T23:12:38.000+00:00",
+            "arrival": "2009-10-21T16:12:38-07:00",
+            "departure": "2009-10-21T16:12:38-07:00",
             "lat": 45.5325089,
             "lon": -122.7048383,
             "name": "corner of path and Northwest Pettygrove Street",
@@ -486,10 +486,10 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 864.7,
-          "endTime": "2009-10-21T23:15:47.000+00:00",
+          "endTime": "2009-10-21T16:15:47-07:00",
           "from": {
-            "arrival": "2009-10-21T23:12:38.000+00:00",
-            "departure": "2009-10-21T23:12:38.000+00:00",
+            "arrival": "2009-10-21T16:12:38-07:00",
+            "departure": "2009-10-21T16:12:38-07:00",
             "lat": 45.5325089,
             "lon": -122.7048383,
             "name": "corner of path and Northwest Pettygrove Street",
@@ -506,7 +506,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:12:38.000+00:00",
+          "startTime": "2009-10-21T16:12:38-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -536,8 +536,8 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:15:47.000+00:00",
-            "departure": "2009-10-21T23:15:47.000+00:00",
+            "arrival": "2009-10-21T16:15:47-07:00",
+            "departure": "2009-10-21T16:15:47-07:00",
             "lat": 45.5306177,
             "lon": -122.6966188,
             "name": "corner of Northwest 22nd Avenue and path",
@@ -551,10 +551,10 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 85.65,
-          "endTime": "2009-10-21T23:16:54.000+00:00",
+          "endTime": "2009-10-21T16:16:54-07:00",
           "from": {
-            "arrival": "2009-10-21T23:15:47.000+00:00",
-            "departure": "2009-10-21T23:15:47.000+00:00",
+            "arrival": "2009-10-21T16:15:47-07:00",
+            "departure": "2009-10-21T16:15:47-07:00",
             "lat": 45.5306177,
             "lon": -122.6966188,
             "name": "corner of Northwest 22nd Avenue and path",
@@ -571,7 +571,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:15:47.000+00:00",
+          "startTime": "2009-10-21T16:15:47-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -588,7 +588,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:16:54.000+00:00",
+            "arrival": "2009-10-21T16:16:54-07:00",
             "lat": 45.5306,
             "lon": -122.69771,
             "name": "Legacy Good Samaritan Medical Center (P4)",
@@ -598,7 +598,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -618,7 +618,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
       "duration": 49,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:10:49.000+00:00",
+      "endTime": "2009-10-21T16:10:49-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -630,9 +630,9 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 240.19,
-          "endTime": "2009-10-21T23:10:49.000+00:00",
+          "endTime": "2009-10-21T16:10:49-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.53261,
             "lon": -122.70075,
             "name": "NW Pettygrove Ave. & NW 24th Ave. (P1)",
@@ -649,7 +649,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -679,7 +679,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:10:49.000+00:00",
+            "arrival": "2009-10-21T16:10:49-07:00",
             "lat": 45.53046,
             "lon": -122.70067,
             "name": "NW Marshall St. & NW 24th Ave. (P2)",
@@ -689,7 +689,7 @@ org.opentripplanner.routing.algorithm.mapping.CarSnapshotTest.directCarPickupWit
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,

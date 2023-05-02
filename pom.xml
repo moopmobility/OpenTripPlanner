@@ -848,11 +848,6 @@
             <artifactId>jackson-datatype-jdk8</artifactId>
             <version>${jackson.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
         <!--
             jersey pulls in older versions of this dependency which are binary-incompatible
             with the latest jackson version, so we need to explicitly define them here

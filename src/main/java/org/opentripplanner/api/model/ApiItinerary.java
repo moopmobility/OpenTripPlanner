@@ -1,7 +1,7 @@
 package org.opentripplanner.api.model;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import org.opentripplanner.routing.api.request.RouteRequest;
@@ -20,11 +20,11 @@ public class ApiItinerary {
   /**
    * Time that the trip departs.
    */
-  public Calendar startTime = null;
+  public ZonedDateTime startTime = null;
   /**
    * Time that the trip arrives.
    */
-  public Calendar endTime = null;
+  public ZonedDateTime endTime = null;
 
   /**
    * How much time is spent walking, in seconds.

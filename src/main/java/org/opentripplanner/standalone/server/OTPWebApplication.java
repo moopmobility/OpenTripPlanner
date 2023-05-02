@@ -20,6 +20,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.opentripplanner.api.common.OTPExceptionMapper;
 import org.opentripplanner.api.configuration.APIEndpoints;
 import org.opentripplanner.api.json.JSONObjectMapperProvider;
+import org.opentripplanner.api.parameter.InstantParamConverterProvider;
 import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -86,6 +87,8 @@ public class OTPWebApplication extends Application {
         new JacksonJsonProvider(),
         // Serialize POJOs (unannotated) JSON using Jackson
         new JSONObjectMapperProvider(),
+        // Supports converting ISO8601 timestamps to Instants
+        new InstantParamConverterProvider(),
         // Allow injecting the OTP server object into Jersey resource classes
         makeBinder(contextProvider),
         // Add performance instrumentation of Jersey requests to micrometer

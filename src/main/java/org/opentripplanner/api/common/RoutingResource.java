@@ -8,6 +8,7 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MultivaluedMap;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -88,6 +89,10 @@ public abstract class RoutingResource {
   /** The time that the trip should depart (or arrive, for requests where arriveBy is true). */
   @QueryParam("time")
   protected String time;
+
+  /** The time that the trip should depart (or arrive, for requests where arriveBy is true). */
+  @QueryParam("datetime")
+  protected Instant datetime;
 
   /**
    * The length of the search-window in seconds. This parameter is optional.
@@ -714,7 +719,9 @@ public abstract class RoutingResource {
     setIfNotNull(fromPlace, it -> request.setFrom(fromOldStyleString(it)));
     setIfNotNull(toPlace, it -> request.setTo(fromOldStyleString(it)));
 
-    {
+    if (datetime != null) {
+      request.setDateTime(datetime);
+    } else {
       //FIXME: move into setter method on routing request
       ZoneId tz = serverContext.transitService().getTimeZone();
       if (date == null && time != null) { // Time was provided but not date

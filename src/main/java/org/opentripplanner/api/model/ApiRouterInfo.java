@@ -1,7 +1,7 @@
 package org.opentripplanner.api.model;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.Polygon;
@@ -22,7 +22,7 @@ public class ApiRouterInfo {
   public final boolean hasVehicleParking;
   public String routerId;
   public ApiPolygon polygon;
-  public Date buildTime;
+  public Instant buildTime;
   public long transitServiceStarts;
   public long transitServiceEnds;
   public List<String> transitModes;
@@ -42,7 +42,7 @@ public class ApiRouterInfo {
 
     this.routerId = routerId;
     this.polygon = mapToApi((Polygon) graph.getConvexHull());
-    this.buildTime = Date.from(graph.buildTime);
+    this.buildTime = graph.buildTime;
     this.transitServiceStarts = transitService.getTransitServiceStarts().toEpochSecond();
     this.transitServiceEnds = transitService.getTransitServiceEnds().toEpochSecond();
     this.transitModes = ModeMapper.mapToApi(transitService.getTransitModes());

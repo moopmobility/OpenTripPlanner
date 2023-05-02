@@ -1,5 +1,7 @@
 package org.opentripplanner.api.mapping;
 
+import static org.opentripplanner.api.mapping.DateTimeMapper.ofNullableDate;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -39,8 +41,8 @@ public class StreetNoteMaperMapper {
       api.alertUrl = domain.url;
     }
 
-    api.effectiveStartDate = domain.effectiveStartDate;
-    api.effectiveEndDate = domain.effectiveEndDate;
+    api.effectiveStartDate = ofNullableDate(domain.effectiveStartDate);
+    api.effectiveEndDate = ofNullableDate(domain.effectiveEndDate);
 
     return api;
   }

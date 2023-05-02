@@ -75,6 +75,7 @@ public enum OTPFeature {
   FaresV2(false, true, "Enable import of GTFS-Fares v2 data."),
   FlexRouting(false, true, "Enable FLEX routing."),
   GoogleCloudStorage(false, true, "Enable Google Cloud Storage integration."),
+  ISO8601DateTimeFormat(false, false, "Use ISO8601 date strings in the REST API."),
   RealtimeResolver(
     false,
     true,

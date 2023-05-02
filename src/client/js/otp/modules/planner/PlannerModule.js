@@ -17,8 +17,8 @@ otp.namespace("otp.modules.planner");
 otp.modules.planner.defaultQueryParams = {
     startPlace                      : null,
     endPlace                        : null,
-    time                            : moment().format(otp.config.locale.time.time_format),
-    date                            : moment().format(otp.config.locale.time.date_format),
+    time                            : moment().format(otp.config.apiTimeFormat),
+    date                            : moment().format(otp.config.apiDateFormat),
     arriveBy                        : false,
     wheelchair                      : false,
     mode                            : "TRANSIT,WALK",
@@ -330,9 +330,9 @@ otp.modules.planner.PlannerModule =
        	    queryParams = {
                 fromPlace: this.getStartOTPString(),
                 toPlace: this.getEndOTPString(),
-                time : (this.time) ? otp.util.Time.correctAmPmTimeString(this.time) : moment().format(otp.config.apiTimeFormat),
+                time : this.time || moment().format(otp.config.apiTimeFormat),
                 //time : (this.time) ? moment(this.time).add("s", addToStart).format("h:mma") : moment().add("s", addToStart).format("h:mma"),
-                date : (this.date) ? moment(this.date, otp.config.locale.time.date_format).format(otp.config.apiDateFormat) : moment().format(otp.config.apiDateFormat),
+                date : this.date || moment().format(otp.config.apiDateFormat),
                 mode: this.mode
             };
             if(this.arriveBy !== null) _.extend(queryParams, { arriveBy : this.arriveBy } );
@@ -423,7 +423,9 @@ otp.modules.planner.PlannerModule =
         // compare returned plan.date to sent date/time to determine timezone offset (unless set explicitly in config.js)
         otp.config.timeOffset = (otp.config.timeOffset !== undefined)
             ? otp.config.timeOffset
-            : (moment(queryParams.date+" "+queryParams.time, "MM-DD-YYYY h:mma") - moment(plan.date))/3600000;
+            : (queryParams.datetime
+                ? (moment(queryParams.datetime) - moment(plan.date)) / 3600000
+                : (moment(queryParams.date+" "+queryParams.time, otp.config.apiDateFormat + " " + otp.config.apiTimeFormat) - moment(plan.date))/3600000);
 
         var tripPlan = new otp.modules.planner.TripPlan(plan, queryParams);
 

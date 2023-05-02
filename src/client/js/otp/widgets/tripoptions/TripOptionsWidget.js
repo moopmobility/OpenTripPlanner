@@ -100,8 +100,8 @@ otp.widgets.tripoptions.TripOptionsWidget =
     restoreDefaults : function(useCurrentTime) {
         var params = _.clone(this.module.defaultQueryParams);
         if(useCurrentTime) {
-            params['date'] = moment().format(otp.config.locale.time.date_format);
-            params['time'] = moment().format(otp.config.locale.time.time_format);
+            params['date'] = moment().format(otp.config.apiDateFormat);
+            params['time'] = moment().format(otp.config.apiTimeFormat);
         }
         this.applyQueryParams(params);
     },
@@ -338,7 +338,7 @@ otp.widgets.tripoptions.TimeSelector =
             timeFormat: otp.config.locale.time.time_format_picker,
             onSelect: function(date) {
                 this_.tripWidget.inputChanged({
-                    date : date,
+                    date : moment(date, otp.config.locale.time.date_format).format(otp.config.apiDateFormat),
                 });
             }
         });
@@ -365,35 +365,35 @@ otp.widgets.tripoptions.TimeSelector =
                 }
             }
             this_.tripWidget.inputChanged({
-                time : $(this).val(),
+                time : moment($(this).val(), otp.config.locale.time.time_format).format(otp.config.apiTimeFormat),
             });
 
         });
 
         $("#"+this.id+'-nowButton').click(function() {
-            $('#'+this_.id+'-date').datepicker("setDate", new Date());
-            $('#'+this_.id+'-time').val(moment().format(otp.config.locale.time.time_format))
+            var now = moment();
+            $('#'+this_.id+'-date').datepicker("setDate", now.toDate());
+            $('#'+this_.id+'-time').val(now.format(otp.config.locale.time.time_format))
             this_.tripWidget.inputChanged({
-                time : $('#'+this_.id+'-time').val(),
-                date : $('#'+this_.id+'-date').val()
+                date : now.format(otp.config.apiDateFormat),
+                time : now.format(otp.config.apiTimeFormat),
             });
         });
 
     },
 
-    getDate : function() {
-        return $('#'+this.id+'-date').val();
-    },
-
-    getTime : function() {
-        return $('#'+this.id+'-time').val();
-    },
-
     restorePlan : function(data) {
         //var m = moment(data.queryParams.date+" "+data.queryParams.time, "MM-DD-YYYY h:mma");
         //$('#'+this.id+'-picker').datepicker("setDate", new Date(m));
+        if(data.queryParams.datetime) {
+            var datetime = moment(data.queryParams.datetime).local();
+            $('#'+this.id+'-date').datepicker("setDate", datetime.toDate());
+            this.tripWidget.module.date = moment(datetime).format(otp.config.apiDateFormat);
+            $('#'+this.id+'-time').val(moment(datetime).format(otp.config.locale.time.time_format));
+            this.tripWidget.module.time = moment(datetime).format(otp.config.apiTimeFormat);
+        }
         if(data.queryParams.date) {
-            $('#'+this.id+'-date').datepicker("setDate", new Date(moment(data.queryParams.date, otp.config.apiDateFormat)));
+            $('#'+this.id+'-date').datepicker("setDate", moment(data.queryParams.date, otp.config.apiDateFormat).toDate());
             this.tripWidget.module.date = data.queryParams.date;
         }
         if(data.queryParams.time) {

@@ -5,7 +5,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1049,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:32:24.000+00:00",
+      "endTime": "2009-10-21T16:32:24-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -73,9 +73,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:17:26.000+00:00",
+          "endTime": "2009-10-21T16:17:26-07:00",
           "from": {
-            "departure": "2009-10-21T23:14:55.000+00:00",
+            "departure": "2009-10-21T16:14:55-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -92,7 +92,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:14:55.000+00:00",
+          "startTime": "2009-10-21T16:14:55-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -135,9 +135,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:17:26.000+00:00",
+            "arrival": "2009-10-21T16:17:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:17:26.000+00:00",
+            "departure": "2009-10-21T16:17:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -154,11 +154,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:19:58.000+00:00",
+          "endTime": "2009-10-21T16:19:58-07:00",
           "from": {
-            "arrival": "2009-10-21T23:17:26.000+00:00",
+            "arrival": "2009-10-21T16:17:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:17:26.000+00:00",
+            "departure": "2009-10-21T16:17:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -178,7 +178,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:17:26.000+00:00",
+          "startTime": "2009-10-21T16:17:26-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -208,9 +208,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:19:58.000+00:00",
+            "arrival": "2009-10-21T16:19:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:19:58.000+00:00",
+            "departure": "2009-10-21T16:19:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -227,11 +227,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 29.46,
-          "endTime": "2009-10-21T23:20:25.000+00:00",
+          "endTime": "2009-10-21T16:20:25-07:00",
           "from": {
-            "arrival": "2009-10-21T23:19:58.000+00:00",
+            "arrival": "2009-10-21T16:19:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:19:58.000+00:00",
+            "departure": "2009-10-21T16:19:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -251,7 +251,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:19:58.000+00:00",
+          "startTime": "2009-10-21T16:19:58-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -281,8 +281,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:20:25.000+00:00",
-            "departure": "2009-10-21T23:20:25.000+00:00",
+            "arrival": "2009-10-21T16:20:25-07:00",
+            "departure": "2009-10-21T16:20:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -302,10 +302,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1629.43,
-          "endTime": "2009-10-21T23:30:00.000+00:00",
+          "endTime": "2009-10-21T16:30:00-07:00",
           "from": {
-            "arrival": "2009-10-21T23:20:25.000+00:00",
-            "departure": "2009-10-21T23:20:25.000+00:00",
+            "arrival": "2009-10-21T16:20:25-07:00",
+            "departure": "2009-10-21T16:20:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -321,8 +321,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:21:20.000+00:00",
-              "departure": "2009-10-21T23:21:20.000+00:00",
+              "arrival": "2009-10-21T16:21:20-07:00",
+              "departure": "2009-10-21T16:21:20-07:00",
               "lat": 45.526408,
               "lon": -122.694503,
               "name": "NW 21st & Glisan",
@@ -334,8 +334,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:22:31.000+00:00",
-              "departure": "2009-10-21T23:22:31.000+00:00",
+              "arrival": "2009-10-21T16:22:31-07:00",
+              "departure": "2009-10-21T16:22:31-07:00",
               "lat": 45.524833,
               "lon": -122.69398,
               "name": "NW Everett & 21st",
@@ -347,8 +347,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:24:07.000+00:00",
-              "departure": "2009-10-21T23:24:07.000+00:00",
+              "arrival": "2009-10-21T16:24:07-07:00",
+              "departure": "2009-10-21T16:24:07-07:00",
               "lat": 45.524935,
               "lon": -122.690502,
               "name": "NW Everett & 19th",
@@ -360,8 +360,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:28.000+00:00",
-              "departure": "2009-10-21T23:26:28.000+00:00",
+              "arrival": "2009-10-21T16:26:28-07:00",
+              "departure": "2009-10-21T16:26:28-07:00",
               "lat": 45.524981,
               "lon": -122.68537,
               "name": "NW Everett & 14th",
@@ -373,8 +373,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:28:04.000+00:00",
-              "departure": "2009-10-21T23:28:04.000+00:00",
+              "arrival": "2009-10-21T16:28:04-07:00",
+              "departure": "2009-10-21T16:28:04-07:00",
               "lat": 45.525061,
               "lon": -122.68187,
               "name": "NW Everett & 11th",
@@ -386,8 +386,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:29:15.000+00:00",
-              "departure": "2009-10-21T23:29:15.000+00:00",
+              "arrival": "2009-10-21T16:29:15-07:00",
+              "departure": "2009-10-21T16:29:15-07:00",
               "lat": 45.525096,
               "lon": -122.67929,
               "name": "NW Everett & Park",
@@ -412,11 +412,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "17",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:20:25.000+00:00",
+          "startTime": "2009-10-21T16:20:25-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:30:00.000+00:00",
-            "departure": "2009-10-21T23:30:00.000+00:00",
+            "arrival": "2009-10-21T16:30:00-07:00",
+            "departure": "2009-10-21T16:30:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -436,10 +436,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 188.35,
-          "endTime": "2009-10-21T23:32:24.000+00:00",
+          "endTime": "2009-10-21T16:32:24-07:00",
           "from": {
-            "arrival": "2009-10-21T23:30:00.000+00:00",
-            "departure": "2009-10-21T23:30:00.000+00:00",
+            "arrival": "2009-10-21T16:30:00-07:00",
+            "departure": "2009-10-21T16:30:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -459,7 +459,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:30:00.000+00:00",
+          "startTime": "2009-10-21T16:30:00-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -476,7 +476,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:32:24.000+00:00",
+            "arrival": "2009-10-21T16:32:24-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -486,7 +486,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:14:55.000+00:00",
+      "startTime": "2009-10-21T16:14:55-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 575,
@@ -500,7 +500,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1296,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:38:09.000+00:00",
+      "endTime": "2009-10-21T16:38:09-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -568,9 +568,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 565.96,
-          "endTime": "2009-10-21T23:23:59.000+00:00",
+          "endTime": "2009-10-21T16:23:59-07:00",
           "from": {
-            "departure": "2009-10-21T23:16:33.000+00:00",
+            "departure": "2009-10-21T16:16:33-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -587,7 +587,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:16:33.000+00:00",
+          "startTime": "2009-10-21T16:16:33-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -656,8 +656,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:23:59.000+00:00",
-            "departure": "2009-10-21T23:23:59.000+00:00",
+            "arrival": "2009-10-21T16:23:59-07:00",
+            "departure": "2009-10-21T16:23:59-07:00",
             "lat": 45.523773,
             "lon": -122.700988,
             "name": "W Burnside & SW Osage",
@@ -677,10 +677,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2044.41,
-          "endTime": "2009-10-21T23:34:00.000+00:00",
+          "endTime": "2009-10-21T16:34:00-07:00",
           "from": {
-            "arrival": "2009-10-21T23:23:59.000+00:00",
-            "departure": "2009-10-21T23:23:59.000+00:00",
+            "arrival": "2009-10-21T16:23:59-07:00",
+            "departure": "2009-10-21T16:23:59-07:00",
             "lat": 45.523773,
             "lon": -122.700988,
             "name": "W Burnside & SW Osage",
@@ -696,8 +696,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:24:42.000+00:00",
-              "departure": "2009-10-21T23:24:42.000+00:00",
+              "arrival": "2009-10-21T16:24:42-07:00",
+              "departure": "2009-10-21T16:24:42-07:00",
               "lat": 45.523287,
               "lon": -122.696995,
               "name": "W Burnside & SW St Clair",
@@ -709,8 +709,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:25:10.000+00:00",
-              "departure": "2009-10-21T23:25:10.000+00:00",
+              "arrival": "2009-10-21T16:25:10-07:00",
+              "departure": "2009-10-21T16:25:10-07:00",
               "lat": 45.523106,
               "lon": -122.69445,
               "name": "W Burnside & SW 21st",
@@ -722,8 +722,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:25:30.000+00:00",
-              "departure": "2009-10-21T23:25:30.000+00:00",
+              "arrival": "2009-10-21T16:25:30-07:00",
+              "departure": "2009-10-21T16:25:30-07:00",
               "lat": 45.523089,
               "lon": -122.692567,
               "name": "W Burnside & SW 20th",
@@ -735,8 +735,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:00.000+00:00",
-              "departure": "2009-10-21T23:26:00.000+00:00",
+              "arrival": "2009-10-21T16:26:00-07:00",
+              "departure": "2009-10-21T16:26:00-07:00",
               "lat": 45.522942,
               "lon": -122.689797,
               "name": "W Burnside & SW 18th",
@@ -748,8 +748,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:27:40.000+00:00",
-              "departure": "2009-10-21T23:27:40.000+00:00",
+              "arrival": "2009-10-21T16:27:40-07:00",
+              "departure": "2009-10-21T16:27:40-07:00",
               "lat": 45.522786,
               "lon": -122.686682,
               "name": "W Burnside & SW 15th",
@@ -761,8 +761,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:28:53.000+00:00",
-              "departure": "2009-10-21T23:28:53.000+00:00",
+              "arrival": "2009-10-21T16:28:53-07:00",
+              "departure": "2009-10-21T16:28:53-07:00",
               "lat": 45.522829,
               "lon": -122.68439,
               "name": "W Burnside & SW 13th",
@@ -774,8 +774,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:30:31.000+00:00",
-              "departure": "2009-10-21T23:30:31.000+00:00",
+              "arrival": "2009-10-21T16:30:31-07:00",
+              "departure": "2009-10-21T16:30:31-07:00",
               "lat": 45.522919,
               "lon": -122.681327,
               "name": "W Burnside & SW 10th",
@@ -787,8 +787,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:32:01.000+00:00",
-              "departure": "2009-10-21T23:32:01.000+00:00",
+              "arrival": "2009-10-21T16:32:01-07:00",
+              "departure": "2009-10-21T16:32:01-07:00",
               "lat": 45.522977,
               "lon": -122.678526,
               "name": "W Burnside & SW 8th",
@@ -800,8 +800,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:32:52.000+00:00",
-              "departure": "2009-10-21T23:32:52.000+00:00",
+              "arrival": "2009-10-21T16:32:52-07:00",
+              "departure": "2009-10-21T16:32:52-07:00",
               "lat": 45.522961,
               "lon": -122.676924,
               "name": "W Burnside & SW 6th",
@@ -826,11 +826,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:23:59.000+00:00",
+          "startTime": "2009-10-21T16:23:59-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:34:00.000+00:00",
-            "departure": "2009-10-21T23:34:00.000+00:00",
+            "arrival": "2009-10-21T16:34:00-07:00",
+            "departure": "2009-10-21T16:34:00-07:00",
             "lat": 45.522974,
             "lon": -122.674799,
             "name": "W Burnside & SW 4th",
@@ -850,10 +850,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 308.24,
-          "endTime": "2009-10-21T23:38:09.000+00:00",
+          "endTime": "2009-10-21T16:38:09-07:00",
           "from": {
-            "arrival": "2009-10-21T23:34:00.000+00:00",
-            "departure": "2009-10-21T23:34:00.000+00:00",
+            "arrival": "2009-10-21T16:34:00-07:00",
+            "departure": "2009-10-21T16:34:00-07:00",
             "lat": 45.522974,
             "lon": -122.674799,
             "name": "W Burnside & SW 4th",
@@ -873,7 +873,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:34:00.000+00:00",
+          "startTime": "2009-10-21T16:34:00-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -929,7 +929,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:38:09.000+00:00",
+            "arrival": "2009-10-21T16:38:09-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -939,7 +939,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:16:33.000+00:00",
+      "startTime": "2009-10-21T16:16:33-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 601,
@@ -953,7 +953,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1001,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:40:10.000+00:00",
+      "endTime": "2009-10-21T16:40:10-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -1021,9 +1021,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 220.15,
-          "endTime": "2009-10-21T23:26:21.000+00:00",
+          "endTime": "2009-10-21T16:26:21-07:00",
           "from": {
-            "departure": "2009-10-21T23:23:29.000+00:00",
+            "departure": "2009-10-21T16:23:29-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -1040,7 +1040,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:23:29.000+00:00",
+          "startTime": "2009-10-21T16:23:29-07:00",
           "steps": [
             {
               "absoluteDirection": "NORTH",
@@ -1070,8 +1070,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:26:21.000+00:00",
-            "departure": "2009-10-21T23:26:21.000+00:00",
+            "arrival": "2009-10-21T16:26:21-07:00",
+            "departure": "2009-10-21T16:26:21-07:00",
             "lat": 45.529662,
             "lon": -122.701423,
             "name": "2400 Block NW Lovejoy",
@@ -1091,10 +1091,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2804.13,
-          "endTime": "2009-10-21T23:39:32.000+00:00",
+          "endTime": "2009-10-21T16:39:32-07:00",
           "from": {
-            "arrival": "2009-10-21T23:26:21.000+00:00",
-            "departure": "2009-10-21T23:26:21.000+00:00",
+            "arrival": "2009-10-21T16:26:21-07:00",
+            "departure": "2009-10-21T16:26:21-07:00",
             "lat": 45.529662,
             "lon": -122.701423,
             "name": "2400 Block NW Lovejoy",
@@ -1110,8 +1110,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:27:54.000+00:00",
-              "departure": "2009-10-21T23:27:54.000+00:00",
+              "arrival": "2009-10-21T16:27:54-07:00",
+              "departure": "2009-10-21T16:27:54-07:00",
               "lat": 45.529746,
               "lon": -122.69688,
               "name": "NW Lovejoy & 22nd",
@@ -1123,8 +1123,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:28:39.000+00:00",
-              "departure": "2009-10-21T23:28:39.000+00:00",
+              "arrival": "2009-10-21T16:28:39-07:00",
+              "departure": "2009-10-21T16:28:39-07:00",
               "lat": 45.529833,
               "lon": -122.694676,
               "name": "NW Lovejoy & 21st",
@@ -1136,8 +1136,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:30:23.000+00:00",
-              "departure": "2009-10-21T23:30:23.000+00:00",
+              "arrival": "2009-10-21T16:30:23-07:00",
+              "departure": "2009-10-21T16:30:23-07:00",
               "lat": 45.529925,
               "lon": -122.689587,
               "name": "NW Lovejoy & 18th",
@@ -1149,8 +1149,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:32:05.000+00:00",
-              "departure": "2009-10-21T23:32:05.000+00:00",
+              "arrival": "2009-10-21T16:32:05-07:00",
+              "departure": "2009-10-21T16:32:05-07:00",
               "lat": 45.529997,
               "lon": -122.684611,
               "name": "NW Lovejoy & 13th",
@@ -1162,8 +1162,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:33:07.000+00:00",
-              "departure": "2009-10-21T23:33:07.000+00:00",
+              "arrival": "2009-10-21T16:33:07-07:00",
+              "departure": "2009-10-21T16:33:07-07:00",
               "lat": 45.530034,
               "lon": -122.68155,
               "name": "NW Lovejoy & 10th",
@@ -1175,8 +1175,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:34:00.000+00:00",
-              "departure": "2009-10-21T23:34:00.000+00:00",
+              "arrival": "2009-10-21T16:34:00-07:00",
+              "departure": "2009-10-21T16:34:00-07:00",
               "lat": 45.531086,
               "lon": -122.680302,
               "name": "NW 9th & Marshall",
@@ -1188,8 +1188,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:36:50.000+00:00",
-              "departure": "2009-10-21T23:36:50.000+00:00",
+              "arrival": "2009-10-21T16:36:50-07:00",
+              "departure": "2009-10-21T16:36:50-07:00",
               "lat": 45.528405,
               "lon": -122.676979,
               "name": "NW Station Way & Union Station",
@@ -1214,11 +1214,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:26:21.000+00:00",
+          "startTime": "2009-10-21T16:26:21-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:39:32.000+00:00",
-            "departure": "2009-10-21T23:39:32.000+00:00",
+            "arrival": "2009-10-21T16:39:32-07:00",
+            "departure": "2009-10-21T16:39:32-07:00",
             "lat": 45.525183,
             "lon": -122.674607,
             "name": "NW Everett & 4th",
@@ -1238,10 +1238,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 49.94,
-          "endTime": "2009-10-21T23:40:10.000+00:00",
+          "endTime": "2009-10-21T16:40:10-07:00",
           "from": {
-            "arrival": "2009-10-21T23:39:32.000+00:00",
-            "departure": "2009-10-21T23:39:32.000+00:00",
+            "arrival": "2009-10-21T16:39:32-07:00",
+            "departure": "2009-10-21T16:39:32-07:00",
             "lat": 45.525183,
             "lon": -122.674607,
             "name": "NW Everett & 4th",
@@ -1261,7 +1261,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:39:32.000+00:00",
+          "startTime": "2009-10-21T16:39:32-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -1278,7 +1278,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:40:10.000+00:00",
+            "arrival": "2009-10-21T16:40:10-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -1288,7 +1288,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:23:29.000+00:00",
+      "startTime": "2009-10-21T16:23:29-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 791,
@@ -1302,7 +1302,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1049,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:45:24.000+00:00",
+      "endTime": "2009-10-21T16:45:24-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -1370,9 +1370,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:30:26.000+00:00",
+          "endTime": "2009-10-21T16:30:26-07:00",
           "from": {
-            "departure": "2009-10-21T23:27:55.000+00:00",
+            "departure": "2009-10-21T16:27:55-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -1389,7 +1389,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:27:55.000+00:00",
+          "startTime": "2009-10-21T16:27:55-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -1432,9 +1432,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:30:26.000+00:00",
+            "arrival": "2009-10-21T16:30:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:30:26.000+00:00",
+            "departure": "2009-10-21T16:30:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -1451,11 +1451,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:32:58.000+00:00",
+          "endTime": "2009-10-21T16:32:58-07:00",
           "from": {
-            "arrival": "2009-10-21T23:30:26.000+00:00",
+            "arrival": "2009-10-21T16:30:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:30:26.000+00:00",
+            "departure": "2009-10-21T16:30:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -1475,7 +1475,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:30:26.000+00:00",
+          "startTime": "2009-10-21T16:30:26-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -1505,9 +1505,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:32:58.000+00:00",
+            "arrival": "2009-10-21T16:32:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:32:58.000+00:00",
+            "departure": "2009-10-21T16:32:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -1524,11 +1524,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 29.46,
-          "endTime": "2009-10-21T23:33:25.000+00:00",
+          "endTime": "2009-10-21T16:33:25-07:00",
           "from": {
-            "arrival": "2009-10-21T23:32:58.000+00:00",
+            "arrival": "2009-10-21T16:32:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:32:58.000+00:00",
+            "departure": "2009-10-21T16:32:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -1548,7 +1548,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:32:58.000+00:00",
+          "startTime": "2009-10-21T16:32:58-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -1578,8 +1578,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:33:25.000+00:00",
-            "departure": "2009-10-21T23:33:25.000+00:00",
+            "arrival": "2009-10-21T16:33:25-07:00",
+            "departure": "2009-10-21T16:33:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -1599,10 +1599,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1629.43,
-          "endTime": "2009-10-21T23:43:00.000+00:00",
+          "endTime": "2009-10-21T16:43:00-07:00",
           "from": {
-            "arrival": "2009-10-21T23:33:25.000+00:00",
-            "departure": "2009-10-21T23:33:25.000+00:00",
+            "arrival": "2009-10-21T16:33:25-07:00",
+            "departure": "2009-10-21T16:33:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -1618,8 +1618,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:34:20.000+00:00",
-              "departure": "2009-10-21T23:34:20.000+00:00",
+              "arrival": "2009-10-21T16:34:20-07:00",
+              "departure": "2009-10-21T16:34:20-07:00",
               "lat": 45.526408,
               "lon": -122.694503,
               "name": "NW 21st & Glisan",
@@ -1631,8 +1631,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:35:31.000+00:00",
-              "departure": "2009-10-21T23:35:31.000+00:00",
+              "arrival": "2009-10-21T16:35:31-07:00",
+              "departure": "2009-10-21T16:35:31-07:00",
               "lat": 45.524833,
               "lon": -122.69398,
               "name": "NW Everett & 21st",
@@ -1644,8 +1644,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:37:07.000+00:00",
-              "departure": "2009-10-21T23:37:07.000+00:00",
+              "arrival": "2009-10-21T16:37:07-07:00",
+              "departure": "2009-10-21T16:37:07-07:00",
               "lat": 45.524935,
               "lon": -122.690502,
               "name": "NW Everett & 19th",
@@ -1657,8 +1657,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:39:28.000+00:00",
-              "departure": "2009-10-21T23:39:28.000+00:00",
+              "arrival": "2009-10-21T16:39:28-07:00",
+              "departure": "2009-10-21T16:39:28-07:00",
               "lat": 45.524981,
               "lon": -122.68537,
               "name": "NW Everett & 14th",
@@ -1670,8 +1670,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:41:04.000+00:00",
-              "departure": "2009-10-21T23:41:04.000+00:00",
+              "arrival": "2009-10-21T16:41:04-07:00",
+              "departure": "2009-10-21T16:41:04-07:00",
               "lat": 45.525061,
               "lon": -122.68187,
               "name": "NW Everett & 11th",
@@ -1683,8 +1683,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:42:15.000+00:00",
-              "departure": "2009-10-21T23:42:15.000+00:00",
+              "arrival": "2009-10-21T16:42:15-07:00",
+              "departure": "2009-10-21T16:42:15-07:00",
               "lat": 45.525096,
               "lon": -122.67929,
               "name": "NW Everett & Park",
@@ -1709,11 +1709,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "17",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:33:25.000+00:00",
+          "startTime": "2009-10-21T16:33:25-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:43:00.000+00:00",
-            "departure": "2009-10-21T23:43:00.000+00:00",
+            "arrival": "2009-10-21T16:43:00-07:00",
+            "departure": "2009-10-21T16:43:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -1733,10 +1733,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 188.35,
-          "endTime": "2009-10-21T23:45:24.000+00:00",
+          "endTime": "2009-10-21T16:45:24-07:00",
           "from": {
-            "arrival": "2009-10-21T23:43:00.000+00:00",
-            "departure": "2009-10-21T23:43:00.000+00:00",
+            "arrival": "2009-10-21T16:43:00-07:00",
+            "departure": "2009-10-21T16:43:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -1756,7 +1756,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:43:00.000+00:00",
+          "startTime": "2009-10-21T16:43:00-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -1773,7 +1773,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:45:24.000+00:00",
+            "arrival": "2009-10-21T16:45:24-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -1783,7 +1783,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:27:55.000+00:00",
+      "startTime": "2009-10-21T16:27:55-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 575,
@@ -1797,7 +1797,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1049,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:54:24.000+00:00",
+      "endTime": "2009-10-21T16:54:24-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -1865,9 +1865,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:39:26.000+00:00",
+          "endTime": "2009-10-21T16:39:26-07:00",
           "from": {
-            "departure": "2009-10-21T23:36:55.000+00:00",
+            "departure": "2009-10-21T16:36:55-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -1884,7 +1884,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:36:55.000+00:00",
+          "startTime": "2009-10-21T16:36:55-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -1927,9 +1927,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:39:26.000+00:00",
+            "arrival": "2009-10-21T16:39:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:39:26.000+00:00",
+            "departure": "2009-10-21T16:39:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -1946,11 +1946,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:41:58.000+00:00",
+          "endTime": "2009-10-21T16:41:58-07:00",
           "from": {
-            "arrival": "2009-10-21T23:39:26.000+00:00",
+            "arrival": "2009-10-21T16:39:26-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:39:26.000+00:00",
+            "departure": "2009-10-21T16:39:26-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -1970,7 +1970,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:39:26.000+00:00",
+          "startTime": "2009-10-21T16:39:26-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2000,9 +2000,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:41:58.000+00:00",
+            "arrival": "2009-10-21T16:41:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:41:58.000+00:00",
+            "departure": "2009-10-21T16:41:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -2019,11 +2019,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 29.46,
-          "endTime": "2009-10-21T23:42:25.000+00:00",
+          "endTime": "2009-10-21T16:42:25-07:00",
           "from": {
-            "arrival": "2009-10-21T23:41:58.000+00:00",
+            "arrival": "2009-10-21T16:41:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:41:58.000+00:00",
+            "departure": "2009-10-21T16:41:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -2043,7 +2043,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:41:58.000+00:00",
+          "startTime": "2009-10-21T16:41:58-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -2073,8 +2073,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:42:25.000+00:00",
-            "departure": "2009-10-21T23:42:25.000+00:00",
+            "arrival": "2009-10-21T16:42:25-07:00",
+            "departure": "2009-10-21T16:42:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -2094,10 +2094,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1629.43,
-          "endTime": "2009-10-21T23:52:00.000+00:00",
+          "endTime": "2009-10-21T16:52:00-07:00",
           "from": {
-            "arrival": "2009-10-21T23:42:25.000+00:00",
-            "departure": "2009-10-21T23:42:25.000+00:00",
+            "arrival": "2009-10-21T16:42:25-07:00",
+            "departure": "2009-10-21T16:42:25-07:00",
             "lat": 45.527818,
             "lon": -122.694539,
             "name": "NW 21st & Irving",
@@ -2113,8 +2113,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:43:20.000+00:00",
-              "departure": "2009-10-21T23:43:20.000+00:00",
+              "arrival": "2009-10-21T16:43:20-07:00",
+              "departure": "2009-10-21T16:43:20-07:00",
               "lat": 45.526408,
               "lon": -122.694503,
               "name": "NW 21st & Glisan",
@@ -2126,8 +2126,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:44:31.000+00:00",
-              "departure": "2009-10-21T23:44:31.000+00:00",
+              "arrival": "2009-10-21T16:44:31-07:00",
+              "departure": "2009-10-21T16:44:31-07:00",
               "lat": 45.524833,
               "lon": -122.69398,
               "name": "NW Everett & 21st",
@@ -2139,8 +2139,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:46:07.000+00:00",
-              "departure": "2009-10-21T23:46:07.000+00:00",
+              "arrival": "2009-10-21T16:46:07-07:00",
+              "departure": "2009-10-21T16:46:07-07:00",
               "lat": 45.524935,
               "lon": -122.690502,
               "name": "NW Everett & 19th",
@@ -2152,8 +2152,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:48:28.000+00:00",
-              "departure": "2009-10-21T23:48:28.000+00:00",
+              "arrival": "2009-10-21T16:48:28-07:00",
+              "departure": "2009-10-21T16:48:28-07:00",
               "lat": 45.524981,
               "lon": -122.68537,
               "name": "NW Everett & 14th",
@@ -2165,8 +2165,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:50:04.000+00:00",
-              "departure": "2009-10-21T23:50:04.000+00:00",
+              "arrival": "2009-10-21T16:50:04-07:00",
+              "departure": "2009-10-21T16:50:04-07:00",
               "lat": 45.525061,
               "lon": -122.68187,
               "name": "NW Everett & 11th",
@@ -2178,8 +2178,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:51:15.000+00:00",
-              "departure": "2009-10-21T23:51:15.000+00:00",
+              "arrival": "2009-10-21T16:51:15-07:00",
+              "departure": "2009-10-21T16:51:15-07:00",
               "lat": 45.525096,
               "lon": -122.67929,
               "name": "NW Everett & Park",
@@ -2204,11 +2204,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "17",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:42:25.000+00:00",
+          "startTime": "2009-10-21T16:42:25-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:52:00.000+00:00",
-            "departure": "2009-10-21T23:52:00.000+00:00",
+            "arrival": "2009-10-21T16:52:00-07:00",
+            "departure": "2009-10-21T16:52:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -2228,10 +2228,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 188.35,
-          "endTime": "2009-10-21T23:54:24.000+00:00",
+          "endTime": "2009-10-21T16:54:24-07:00",
           "from": {
-            "arrival": "2009-10-21T23:52:00.000+00:00",
-            "departure": "2009-10-21T23:52:00.000+00:00",
+            "arrival": "2009-10-21T16:52:00-07:00",
+            "departure": "2009-10-21T16:52:00-07:00",
             "lat": 45.525112,
             "lon": -122.677664,
             "name": "NW Everett & Broadway",
@@ -2251,7 +2251,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:52:00.000+00:00",
+          "startTime": "2009-10-21T16:52:00-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -2268,7 +2268,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:54:24.000+00:00",
+            "arrival": "2009-10-21T16:54:24-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -2278,7 +2278,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:36:55.000+00:00",
+      "startTime": "2009-10-21T16:36:55-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 575,
@@ -2292,7 +2292,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
       "duration": 1001,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:56:10.000+00:00",
+      "endTime": "2009-10-21T16:56:10-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -2360,9 +2360,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 220.15,
-          "endTime": "2009-10-21T23:42:21.000+00:00",
+          "endTime": "2009-10-21T16:42:21-07:00",
           "from": {
-            "departure": "2009-10-21T23:39:29.000+00:00",
+            "departure": "2009-10-21T16:39:29-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -2379,7 +2379,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:39:29.000+00:00",
+          "startTime": "2009-10-21T16:39:29-07:00",
           "steps": [
             {
               "absoluteDirection": "NORTH",
@@ -2409,8 +2409,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:42:21.000+00:00",
-            "departure": "2009-10-21T23:42:21.000+00:00",
+            "arrival": "2009-10-21T16:42:21-07:00",
+            "departure": "2009-10-21T16:42:21-07:00",
             "lat": 45.529662,
             "lon": -122.701423,
             "name": "2400 Block NW Lovejoy",
@@ -2430,10 +2430,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2804.13,
-          "endTime": "2009-10-21T23:55:32.000+00:00",
+          "endTime": "2009-10-21T16:55:32-07:00",
           "from": {
-            "arrival": "2009-10-21T23:42:21.000+00:00",
-            "departure": "2009-10-21T23:42:21.000+00:00",
+            "arrival": "2009-10-21T16:42:21-07:00",
+            "departure": "2009-10-21T16:42:21-07:00",
             "lat": 45.529662,
             "lon": -122.701423,
             "name": "2400 Block NW Lovejoy",
@@ -2449,8 +2449,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:43:54.000+00:00",
-              "departure": "2009-10-21T23:43:54.000+00:00",
+              "arrival": "2009-10-21T16:43:54-07:00",
+              "departure": "2009-10-21T16:43:54-07:00",
               "lat": 45.529746,
               "lon": -122.69688,
               "name": "NW Lovejoy & 22nd",
@@ -2462,8 +2462,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:44:39.000+00:00",
-              "departure": "2009-10-21T23:44:39.000+00:00",
+              "arrival": "2009-10-21T16:44:39-07:00",
+              "departure": "2009-10-21T16:44:39-07:00",
               "lat": 45.529833,
               "lon": -122.694676,
               "name": "NW Lovejoy & 21st",
@@ -2475,8 +2475,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:46:23.000+00:00",
-              "departure": "2009-10-21T23:46:23.000+00:00",
+              "arrival": "2009-10-21T16:46:23-07:00",
+              "departure": "2009-10-21T16:46:23-07:00",
               "lat": 45.529925,
               "lon": -122.689587,
               "name": "NW Lovejoy & 18th",
@@ -2488,8 +2488,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:48:05.000+00:00",
-              "departure": "2009-10-21T23:48:05.000+00:00",
+              "arrival": "2009-10-21T16:48:05-07:00",
+              "departure": "2009-10-21T16:48:05-07:00",
               "lat": 45.529997,
               "lon": -122.684611,
               "name": "NW Lovejoy & 13th",
@@ -2501,8 +2501,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:49:07.000+00:00",
-              "departure": "2009-10-21T23:49:07.000+00:00",
+              "arrival": "2009-10-21T16:49:07-07:00",
+              "departure": "2009-10-21T16:49:07-07:00",
               "lat": 45.530034,
               "lon": -122.68155,
               "name": "NW Lovejoy & 10th",
@@ -2514,8 +2514,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:50:00.000+00:00",
-              "departure": "2009-10-21T23:50:00.000+00:00",
+              "arrival": "2009-10-21T16:50:00-07:00",
+              "departure": "2009-10-21T16:50:00-07:00",
               "lat": 45.531086,
               "lon": -122.680302,
               "name": "NW 9th & Marshall",
@@ -2527,8 +2527,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:52:50.000+00:00",
-              "departure": "2009-10-21T23:52:50.000+00:00",
+              "arrival": "2009-10-21T16:52:50-07:00",
+              "departure": "2009-10-21T16:52:50-07:00",
               "lat": 45.528405,
               "lon": -122.676979,
               "name": "NW Station Way & Union Station",
@@ -2553,11 +2553,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:42:21.000+00:00",
+          "startTime": "2009-10-21T16:42:21-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:55:32.000+00:00",
-            "departure": "2009-10-21T23:55:32.000+00:00",
+            "arrival": "2009-10-21T16:55:32-07:00",
+            "departure": "2009-10-21T16:55:32-07:00",
             "lat": 45.525183,
             "lon": -122.674607,
             "name": "NW Everett & 4th",
@@ -2577,10 +2577,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 49.94,
-          "endTime": "2009-10-21T23:56:10.000+00:00",
+          "endTime": "2009-10-21T16:56:10-07:00",
           "from": {
-            "arrival": "2009-10-21T23:55:32.000+00:00",
-            "departure": "2009-10-21T23:55:32.000+00:00",
+            "arrival": "2009-10-21T16:55:32-07:00",
+            "departure": "2009-10-21T16:55:32-07:00",
             "lat": 45.525183,
             "lon": -122.674607,
             "name": "NW Everett & 4th",
@@ -2600,7 +2600,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:55:32.000+00:00",
+          "startTime": "2009-10-21T16:55:32-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -2617,7 +2617,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:56:10.000+00:00",
+            "arrival": "2009-10-21T16:56:10-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -2627,7 +2627,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.accessBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:39:29.000+00:00",
+      "startTime": "2009-10-21T16:39:29-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 791,
@@ -2647,7 +2647,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
       "duration": 477,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:17:57.000+00:00",
+      "endTime": "2009-10-21T16:17:57-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -2659,9 +2659,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:12:31.000+00:00",
+          "endTime": "2009-10-21T16:12:31-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -2678,7 +2678,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2721,9 +2721,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:12:31.000+00:00",
+            "arrival": "2009-10-21T16:12:31-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:12:31.000+00:00",
+            "departure": "2009-10-21T16:12:31-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -2740,11 +2740,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:15:03.000+00:00",
+          "endTime": "2009-10-21T16:15:03-07:00",
           "from": {
-            "arrival": "2009-10-21T23:12:31.000+00:00",
+            "arrival": "2009-10-21T16:12:31-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:12:31.000+00:00",
+            "departure": "2009-10-21T16:12:31-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -2764,7 +2764,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:12:31.000+00:00",
+          "startTime": "2009-10-21T16:12:31-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2794,9 +2794,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:15:03.000+00:00",
+            "arrival": "2009-10-21T16:15:03-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:15:03.000+00:00",
+            "departure": "2009-10-21T16:15:03-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -2813,11 +2813,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 219.06,
-          "endTime": "2009-10-21T23:17:57.000+00:00",
+          "endTime": "2009-10-21T16:17:57-07:00",
           "from": {
-            "arrival": "2009-10-21T23:15:03.000+00:00",
+            "arrival": "2009-10-21T16:15:03-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:15:03.000+00:00",
+            "departure": "2009-10-21T16:15:03-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -2837,7 +2837,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:15:03.000+00:00",
+          "startTime": "2009-10-21T16:15:03-07:00",
           "steps": [
             {
               "absoluteDirection": "EAST",
@@ -2880,7 +2880,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:17:57.000+00:00",
+            "arrival": "2009-10-21T16:17:57-07:00",
             "lat": 45.52704,
             "lon": -122.6924,
             "name": "NW Hoyt St. & NW 20th Ave. (P2)",
@@ -2890,7 +2890,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -2910,7 +2910,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
       "duration": 337,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:10:00.000+00:00",
+      "endTime": "2009-10-21T16:10:00-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -2922,9 +2922,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:06:54.000+00:00",
+          "endTime": "2009-10-21T16:06:54-07:00",
           "from": {
-            "departure": "2009-10-21T23:04:23.000+00:00",
+            "departure": "2009-10-21T16:04:23-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -2941,7 +2941,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:04:23.000+00:00",
+          "startTime": "2009-10-21T16:04:23-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -2984,9 +2984,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:06:54.000+00:00",
+            "arrival": "2009-10-21T16:06:54-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:06:54.000+00:00",
+            "departure": "2009-10-21T16:06:54-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3003,11 +3003,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 712.45,
-          "endTime": "2009-10-21T23:10:00.000+00:00",
+          "endTime": "2009-10-21T16:10:00-07:00",
           "from": {
-            "arrival": "2009-10-21T23:06:54.000+00:00",
+            "arrival": "2009-10-21T16:06:54-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:06:54.000+00:00",
+            "departure": "2009-10-21T16:06:54-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3027,7 +3027,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:06:54.000+00:00",
+          "startTime": "2009-10-21T16:06:54-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3083,7 +3083,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:10:00.000+00:00",
+            "arrival": "2009-10-21T16:10:00-07:00",
             "lat": 45.52704,
             "lon": -122.6924,
             "name": "NW Hoyt St. & NW 20th Ave. (P2)",
@@ -3093,7 +3093,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:04:23.000+00:00",
+      "startTime": "2009-10-21T16:04:23-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -3113,7 +3113,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
       "duration": 337,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:15:37.000+00:00",
+      "endTime": "2009-10-21T16:15:37-07:00",
       "fare": {
         "details": { },
         "fare": { }
@@ -3125,9 +3125,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:12:31.000+00:00",
+          "endTime": "2009-10-21T16:12:31-07:00",
           "from": {
-            "departure": "2009-10-21T23:10:00.000+00:00",
+            "departure": "2009-10-21T16:10:00-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -3144,7 +3144,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:10:00.000+00:00",
+          "startTime": "2009-10-21T16:10:00-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3187,9 +3187,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:12:31.000+00:00",
+            "arrival": "2009-10-21T16:12:31-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:12:31.000+00:00",
+            "departure": "2009-10-21T16:12:31-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3206,11 +3206,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 712.45,
-          "endTime": "2009-10-21T23:15:37.000+00:00",
+          "endTime": "2009-10-21T16:15:37-07:00",
           "from": {
-            "arrival": "2009-10-21T23:12:31.000+00:00",
+            "arrival": "2009-10-21T16:12:31-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:12:31.000+00:00",
+            "departure": "2009-10-21T16:12:31-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3230,7 +3230,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:12:31.000+00:00",
+          "startTime": "2009-10-21T16:12:31-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3286,7 +3286,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:15:37.000+00:00",
+            "arrival": "2009-10-21T16:15:37-07:00",
             "lat": 45.52704,
             "lon": -122.6924,
             "name": "NW Hoyt St. & NW 20th Ave. (P2)",
@@ -3296,7 +3296,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.directBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:10:00.000+00:00",
+      "startTime": "2009-10-21T16:10:00-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 0,
@@ -3316,7 +3316,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 977,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:28:51.000+00:00",
+      "endTime": "2009-10-21T16:28:51-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -3384,9 +3384,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 167.87,
-          "endTime": "2009-10-21T23:14:50.000+00:00",
+          "endTime": "2009-10-21T16:14:50-07:00",
           "from": {
-            "departure": "2009-10-21T23:12:34.000+00:00",
+            "departure": "2009-10-21T16:12:34-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -3403,7 +3403,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:12:34.000+00:00",
+          "startTime": "2009-10-21T16:12:34-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -3446,8 +3446,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:14:50.000+00:00",
-            "departure": "2009-10-21T23:14:50.000+00:00",
+            "arrival": "2009-10-21T16:14:50-07:00",
+            "departure": "2009-10-21T16:14:50-07:00",
             "lat": 45.52583,
             "lon": -122.676422,
             "name": "NW 6th & Flanders",
@@ -3467,10 +3467,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1631.03,
-          "endTime": "2009-10-21T23:23:32.000+00:00",
+          "endTime": "2009-10-21T16:23:32-07:00",
           "from": {
-            "arrival": "2009-10-21T23:14:50.000+00:00",
-            "departure": "2009-10-21T23:14:50.000+00:00",
+            "arrival": "2009-10-21T16:14:50-07:00",
+            "departure": "2009-10-21T16:14:50-07:00",
             "lat": 45.52583,
             "lon": -122.676422,
             "name": "NW 6th & Flanders",
@@ -3486,8 +3486,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:15:41.000+00:00",
-              "departure": "2009-10-21T23:15:41.000+00:00",
+              "arrival": "2009-10-21T16:15:41-07:00",
+              "departure": "2009-10-21T16:15:41-07:00",
               "lat": 45.526678,
               "lon": -122.677476,
               "name": "NW Glisan & Broadway",
@@ -3499,8 +3499,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:16:21.000+00:00",
-              "departure": "2009-10-21T23:16:21.000+00:00",
+              "arrival": "2009-10-21T16:16:21-07:00",
+              "departure": "2009-10-21T16:16:21-07:00",
               "lat": 45.526643,
               "lon": -122.679075,
               "name": "NW Glisan & Park",
@@ -3512,8 +3512,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:17:11.000+00:00",
-              "departure": "2009-10-21T23:17:11.000+00:00",
+              "arrival": "2009-10-21T16:17:11-07:00",
+              "departure": "2009-10-21T16:17:11-07:00",
               "lat": 45.526601,
               "lon": -122.681091,
               "name": "NW Glisan & 10th",
@@ -3525,8 +3525,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:18:03.000+00:00",
-              "departure": "2009-10-21T23:18:03.000+00:00",
+              "arrival": "2009-10-21T16:18:03-07:00",
+              "departure": "2009-10-21T16:18:03-07:00",
               "lat": 45.526578,
               "lon": -122.683142,
               "name": "NW Glisan & 12th",
@@ -3538,8 +3538,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:18:53.000+00:00",
-              "departure": "2009-10-21T23:18:53.000+00:00",
+              "arrival": "2009-10-21T16:18:53-07:00",
+              "departure": "2009-10-21T16:18:53-07:00",
               "lat": 45.526532,
               "lon": -122.685164,
               "name": "NW Glisan & 14th",
@@ -3551,8 +3551,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:19:43.000+00:00",
-              "departure": "2009-10-21T23:19:43.000+00:00",
+              "arrival": "2009-10-21T16:19:43-07:00",
+              "departure": "2009-10-21T16:19:43-07:00",
               "lat": 45.526503,
               "lon": -122.687165,
               "name": "NW Glisan & 16th",
@@ -3564,8 +3564,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:20:59.000+00:00",
-              "departure": "2009-10-21T23:20:59.000+00:00",
+              "arrival": "2009-10-21T16:20:59-07:00",
+              "departure": "2009-10-21T16:20:59-07:00",
               "lat": 45.526412,
               "lon": -122.690196,
               "name": "NW Glisan & 19th",
@@ -3577,8 +3577,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:22:31.000+00:00",
-              "departure": "2009-10-21T23:22:31.000+00:00",
+              "arrival": "2009-10-21T16:22:31-07:00",
+              "departure": "2009-10-21T16:22:31-07:00",
               "lat": 45.526387,
               "lon": -122.693889,
               "name": "NW Glisan & 21st",
@@ -3603,11 +3603,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "17",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:14:50.000+00:00",
+          "startTime": "2009-10-21T16:14:50-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:23:32.000+00:00",
-            "departure": "2009-10-21T23:23:32.000+00:00",
+            "arrival": "2009-10-21T16:23:32-07:00",
+            "departure": "2009-10-21T16:23:32-07:00",
             "lat": 45.527648,
             "lon": -122.694407,
             "name": "NW 21st & Irving",
@@ -3627,10 +3627,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 28.26,
-          "endTime": "2009-10-21T23:24:58.000+00:00",
+          "endTime": "2009-10-21T16:24:58-07:00",
           "from": {
-            "arrival": "2009-10-21T23:23:32.000+00:00",
-            "departure": "2009-10-21T23:23:32.000+00:00",
+            "arrival": "2009-10-21T16:23:32-07:00",
+            "departure": "2009-10-21T16:23:32-07:00",
             "lat": 45.527648,
             "lon": -122.694407,
             "name": "NW 21st & Irving",
@@ -3650,7 +3650,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:23:32.000+00:00",
+          "startTime": "2009-10-21T16:23:32-07:00",
           "steps": [
             {
               "absoluteDirection": "NORTH",
@@ -3680,9 +3680,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:24:58.000+00:00",
+            "arrival": "2009-10-21T16:24:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:24:58.000+00:00",
+            "departure": "2009-10-21T16:24:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -3699,11 +3699,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:27:20.000+00:00",
+          "endTime": "2009-10-21T16:27:20-07:00",
           "from": {
-            "arrival": "2009-10-21T23:24:58.000+00:00",
+            "arrival": "2009-10-21T16:24:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:24:58.000+00:00",
+            "departure": "2009-10-21T16:24:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -3723,7 +3723,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:24:58.000+00:00",
+          "startTime": "2009-10-21T16:24:58-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -3753,9 +3753,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:27:20.000+00:00",
+            "arrival": "2009-10-21T16:27:20-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:27:20.000+00:00",
+            "departure": "2009-10-21T16:27:20-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3772,11 +3772,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:28:51.000+00:00",
+          "endTime": "2009-10-21T16:28:51-07:00",
           "from": {
-            "arrival": "2009-10-21T23:27:20.000+00:00",
+            "arrival": "2009-10-21T16:27:20-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:27:20.000+00:00",
+            "departure": "2009-10-21T16:27:20-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -3796,7 +3796,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:27:20.000+00:00",
+          "startTime": "2009-10-21T16:27:20-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -3839,7 +3839,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:28:51.000+00:00",
+            "arrival": "2009-10-21T16:28:51-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -3849,7 +3849,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:12:34.000+00:00",
+      "startTime": "2009-10-21T16:12:34-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 522,
@@ -3863,7 +3863,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 1276,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:35:24.000+00:00",
+      "endTime": "2009-10-21T16:35:24-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -3931,9 +3931,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 287.82,
-          "endTime": "2009-10-21T23:18:00.000+00:00",
+          "endTime": "2009-10-21T16:18:00-07:00",
           "from": {
-            "departure": "2009-10-21T23:14:08.000+00:00",
+            "departure": "2009-10-21T16:14:08-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -3950,7 +3950,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:14:08.000+00:00",
+          "startTime": "2009-10-21T16:14:08-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -3993,8 +3993,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:18:00.000+00:00",
-            "departure": "2009-10-21T23:18:00.000+00:00",
+            "arrival": "2009-10-21T16:18:00-07:00",
+            "departure": "2009-10-21T16:18:00-07:00",
             "lat": 45.523169,
             "lon": -122.675893,
             "name": "W Burnside & NW 5th",
@@ -4014,10 +4014,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1942.25,
-          "endTime": "2009-10-21T23:28:03.000+00:00",
+          "endTime": "2009-10-21T16:28:03-07:00",
           "from": {
-            "arrival": "2009-10-21T23:18:00.000+00:00",
-            "departure": "2009-10-21T23:18:00.000+00:00",
+            "arrival": "2009-10-21T16:18:00-07:00",
+            "departure": "2009-10-21T16:18:00-07:00",
             "lat": 45.523169,
             "lon": -122.675893,
             "name": "W Burnside & NW 5th",
@@ -4033,8 +4033,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:19:43.000+00:00",
-              "departure": "2009-10-21T23:19:43.000+00:00",
+              "arrival": "2009-10-21T16:19:43-07:00",
+              "departure": "2009-10-21T16:19:43-07:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -4046,8 +4046,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:21:13.000+00:00",
-              "departure": "2009-10-21T23:21:13.000+00:00",
+              "arrival": "2009-10-21T16:21:13-07:00",
+              "departure": "2009-10-21T16:21:13-07:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -4059,8 +4059,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:22:18.000+00:00",
-              "departure": "2009-10-21T23:22:18.000+00:00",
+              "arrival": "2009-10-21T16:22:18-07:00",
+              "departure": "2009-10-21T16:22:18-07:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -4072,8 +4072,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:24:52.000+00:00",
-              "departure": "2009-10-21T23:24:52.000+00:00",
+              "arrival": "2009-10-21T16:24:52-07:00",
+              "departure": "2009-10-21T16:24:52-07:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -4085,8 +4085,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:00.000+00:00",
-              "departure": "2009-10-21T23:26:00.000+00:00",
+              "arrival": "2009-10-21T16:26:00-07:00",
+              "departure": "2009-10-21T16:26:00-07:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -4098,8 +4098,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:24.000+00:00",
-              "departure": "2009-10-21T23:26:24.000+00:00",
+              "arrival": "2009-10-21T16:26:24-07:00",
+              "departure": "2009-10-21T16:26:24-07:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -4111,8 +4111,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:35.000+00:00",
-              "departure": "2009-10-21T23:26:35.000+00:00",
+              "arrival": "2009-10-21T16:26:35-07:00",
+              "departure": "2009-10-21T16:26:35-07:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -4124,8 +4124,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:55.000+00:00",
-              "departure": "2009-10-21T23:26:55.000+00:00",
+              "arrival": "2009-10-21T16:26:55-07:00",
+              "departure": "2009-10-21T16:26:55-07:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -4137,8 +4137,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:27:32.000+00:00",
-              "departure": "2009-10-21T23:27:32.000+00:00",
+              "arrival": "2009-10-21T16:27:32-07:00",
+              "departure": "2009-10-21T16:27:32-07:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -4163,11 +4163,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:18:00.000+00:00",
+          "startTime": "2009-10-21T16:18:00-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:28:03.000+00:00",
-            "departure": "2009-10-21T23:28:03.000+00:00",
+            "arrival": "2009-10-21T16:28:03-07:00",
+            "departure": "2009-10-21T16:28:03-07:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -4187,10 +4187,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 563.7,
-          "endTime": "2009-10-21T23:35:24.000+00:00",
+          "endTime": "2009-10-21T16:35:24-07:00",
           "from": {
-            "arrival": "2009-10-21T23:28:03.000+00:00",
-            "departure": "2009-10-21T23:28:03.000+00:00",
+            "arrival": "2009-10-21T16:28:03-07:00",
+            "departure": "2009-10-21T16:28:03-07:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -4210,7 +4210,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:28:03.000+00:00",
+          "startTime": "2009-10-21T16:28:03-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -4266,7 +4266,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:35:24.000+00:00",
+            "arrival": "2009-10-21T16:35:24-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -4276,7 +4276,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:14:08.000+00:00",
+      "startTime": "2009-10-21T16:14:08-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 603,
@@ -4290,7 +4290,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 1134,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:37:21.000+00:00",
+      "endTime": "2009-10-21T16:37:21-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -4358,9 +4358,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 252.88,
-          "endTime": "2009-10-21T23:21:53.000+00:00",
+          "endTime": "2009-10-21T16:21:53-07:00",
           "from": {
-            "departure": "2009-10-21T23:18:27.000+00:00",
+            "departure": "2009-10-21T16:18:27-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -4377,7 +4377,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:18:27.000+00:00",
+          "startTime": "2009-10-21T16:18:27-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -4433,8 +4433,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:21:53.000+00:00",
-            "departure": "2009-10-21T23:21:53.000+00:00",
+            "arrival": "2009-10-21T16:21:53-07:00",
+            "departure": "2009-10-21T16:21:53-07:00",
             "lat": 45.526655,
             "lon": -122.676462,
             "name": "NW Glisan & 6th",
@@ -4454,10 +4454,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2232.31,
-          "endTime": "2009-10-21T23:29:50.000+00:00",
+          "endTime": "2009-10-21T16:29:50-07:00",
           "from": {
-            "arrival": "2009-10-21T23:21:53.000+00:00",
-            "departure": "2009-10-21T23:21:53.000+00:00",
+            "arrival": "2009-10-21T16:21:53-07:00",
+            "departure": "2009-10-21T16:21:53-07:00",
             "lat": 45.526655,
             "lon": -122.676462,
             "name": "NW Glisan & 6th",
@@ -4473,8 +4473,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:22:57.000+00:00",
-              "departure": "2009-10-21T23:22:57.000+00:00",
+              "arrival": "2009-10-21T16:22:57-07:00",
+              "departure": "2009-10-21T16:22:57-07:00",
               "lat": 45.528799,
               "lon": -122.677238,
               "name": "NW Station Way & Union Station",
@@ -4486,8 +4486,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:25:00.000+00:00",
-              "departure": "2009-10-21T23:25:00.000+00:00",
+              "arrival": "2009-10-21T16:25:00-07:00",
+              "departure": "2009-10-21T16:25:00-07:00",
               "lat": 45.531582,
               "lon": -122.681193,
               "name": "NW Northrup & 10th",
@@ -4499,8 +4499,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:25:33.000+00:00",
-              "departure": "2009-10-21T23:25:33.000+00:00",
+              "arrival": "2009-10-21T16:25:33-07:00",
+              "departure": "2009-10-21T16:25:33-07:00",
               "lat": 45.531534,
               "lon": -122.683319,
               "name": "NW 12th & Northrup",
@@ -4512,8 +4512,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:26:04.000+00:00",
-              "departure": "2009-10-21T23:26:04.000+00:00",
+              "arrival": "2009-10-21T16:26:04-07:00",
+              "departure": "2009-10-21T16:26:04-07:00",
               "lat": 45.531503,
               "lon": -122.685357,
               "name": "NW Northrup & 14th",
@@ -4525,8 +4525,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:27:07.000+00:00",
-              "departure": "2009-10-21T23:27:07.000+00:00",
+              "arrival": "2009-10-21T16:27:07-07:00",
+              "departure": "2009-10-21T16:27:07-07:00",
               "lat": 45.531434,
               "lon": -122.689417,
               "name": "NW Northrup & 18th",
@@ -4538,8 +4538,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:28:24.000+00:00",
-              "departure": "2009-10-21T23:28:24.000+00:00",
+              "arrival": "2009-10-21T16:28:24-07:00",
+              "departure": "2009-10-21T16:28:24-07:00",
               "lat": 45.531346,
               "lon": -122.694455,
               "name": "NW Northrup & 21st",
@@ -4551,8 +4551,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:28:55.000+00:00",
-              "departure": "2009-10-21T23:28:55.000+00:00",
+              "arrival": "2009-10-21T16:28:55-07:00",
+              "departure": "2009-10-21T16:28:55-07:00",
               "lat": 45.531308,
               "lon": -122.696445,
               "name": "NW Northrup & 22nd",
@@ -4577,11 +4577,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:21:53.000+00:00",
+          "startTime": "2009-10-21T16:21:53-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:29:50.000+00:00",
-            "departure": "2009-10-21T23:29:50.000+00:00",
+            "arrival": "2009-10-21T16:29:50-07:00",
+            "departure": "2009-10-21T16:29:50-07:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -4601,10 +4601,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 580.63,
-          "endTime": "2009-10-21T23:37:21.000+00:00",
+          "endTime": "2009-10-21T16:37:21-07:00",
           "from": {
-            "arrival": "2009-10-21T23:29:50.000+00:00",
-            "departure": "2009-10-21T23:29:50.000+00:00",
+            "arrival": "2009-10-21T16:29:50-07:00",
+            "departure": "2009-10-21T16:29:50-07:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -4624,7 +4624,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:29:50.000+00:00",
+          "startTime": "2009-10-21T16:29:50-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -4667,7 +4667,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:37:21.000+00:00",
+            "arrival": "2009-10-21T16:37:21-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -4677,7 +4677,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:18:27.000+00:00",
+      "startTime": "2009-10-21T16:18:27-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 477,
@@ -4691,7 +4691,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 977,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:43:51.000+00:00",
+      "endTime": "2009-10-21T16:43:51-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -4759,9 +4759,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 167.87,
-          "endTime": "2009-10-21T23:29:50.000+00:00",
+          "endTime": "2009-10-21T16:29:50-07:00",
           "from": {
-            "departure": "2009-10-21T23:27:34.000+00:00",
+            "departure": "2009-10-21T16:27:34-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -4778,7 +4778,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:27:34.000+00:00",
+          "startTime": "2009-10-21T16:27:34-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -4821,8 +4821,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:29:50.000+00:00",
-            "departure": "2009-10-21T23:29:50.000+00:00",
+            "arrival": "2009-10-21T16:29:50-07:00",
+            "departure": "2009-10-21T16:29:50-07:00",
             "lat": 45.52583,
             "lon": -122.676422,
             "name": "NW 6th & Flanders",
@@ -4842,10 +4842,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1631.03,
-          "endTime": "2009-10-21T23:38:32.000+00:00",
+          "endTime": "2009-10-21T16:38:32-07:00",
           "from": {
-            "arrival": "2009-10-21T23:29:50.000+00:00",
-            "departure": "2009-10-21T23:29:50.000+00:00",
+            "arrival": "2009-10-21T16:29:50-07:00",
+            "departure": "2009-10-21T16:29:50-07:00",
             "lat": 45.52583,
             "lon": -122.676422,
             "name": "NW 6th & Flanders",
@@ -4861,8 +4861,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:30:41.000+00:00",
-              "departure": "2009-10-21T23:30:41.000+00:00",
+              "arrival": "2009-10-21T16:30:41-07:00",
+              "departure": "2009-10-21T16:30:41-07:00",
               "lat": 45.526678,
               "lon": -122.677476,
               "name": "NW Glisan & Broadway",
@@ -4874,8 +4874,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:31:21.000+00:00",
-              "departure": "2009-10-21T23:31:21.000+00:00",
+              "arrival": "2009-10-21T16:31:21-07:00",
+              "departure": "2009-10-21T16:31:21-07:00",
               "lat": 45.526643,
               "lon": -122.679075,
               "name": "NW Glisan & Park",
@@ -4887,8 +4887,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:32:11.000+00:00",
-              "departure": "2009-10-21T23:32:11.000+00:00",
+              "arrival": "2009-10-21T16:32:11-07:00",
+              "departure": "2009-10-21T16:32:11-07:00",
               "lat": 45.526601,
               "lon": -122.681091,
               "name": "NW Glisan & 10th",
@@ -4900,8 +4900,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:33:03.000+00:00",
-              "departure": "2009-10-21T23:33:03.000+00:00",
+              "arrival": "2009-10-21T16:33:03-07:00",
+              "departure": "2009-10-21T16:33:03-07:00",
               "lat": 45.526578,
               "lon": -122.683142,
               "name": "NW Glisan & 12th",
@@ -4913,8 +4913,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:33:53.000+00:00",
-              "departure": "2009-10-21T23:33:53.000+00:00",
+              "arrival": "2009-10-21T16:33:53-07:00",
+              "departure": "2009-10-21T16:33:53-07:00",
               "lat": 45.526532,
               "lon": -122.685164,
               "name": "NW Glisan & 14th",
@@ -4926,8 +4926,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:34:43.000+00:00",
-              "departure": "2009-10-21T23:34:43.000+00:00",
+              "arrival": "2009-10-21T16:34:43-07:00",
+              "departure": "2009-10-21T16:34:43-07:00",
               "lat": 45.526503,
               "lon": -122.687165,
               "name": "NW Glisan & 16th",
@@ -4939,8 +4939,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:35:59.000+00:00",
-              "departure": "2009-10-21T23:35:59.000+00:00",
+              "arrival": "2009-10-21T16:35:59-07:00",
+              "departure": "2009-10-21T16:35:59-07:00",
               "lat": 45.526412,
               "lon": -122.690196,
               "name": "NW Glisan & 19th",
@@ -4952,8 +4952,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:37:31.000+00:00",
-              "departure": "2009-10-21T23:37:31.000+00:00",
+              "arrival": "2009-10-21T16:37:31-07:00",
+              "departure": "2009-10-21T16:37:31-07:00",
               "lat": 45.526387,
               "lon": -122.693889,
               "name": "NW Glisan & 21st",
@@ -4978,11 +4978,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "17",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:29:50.000+00:00",
+          "startTime": "2009-10-21T16:29:50-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:38:32.000+00:00",
-            "departure": "2009-10-21T23:38:32.000+00:00",
+            "arrival": "2009-10-21T16:38:32-07:00",
+            "departure": "2009-10-21T16:38:32-07:00",
             "lat": 45.527648,
             "lon": -122.694407,
             "name": "NW 21st & Irving",
@@ -5002,10 +5002,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 28.26,
-          "endTime": "2009-10-21T23:39:58.000+00:00",
+          "endTime": "2009-10-21T16:39:58-07:00",
           "from": {
-            "arrival": "2009-10-21T23:38:32.000+00:00",
-            "departure": "2009-10-21T23:38:32.000+00:00",
+            "arrival": "2009-10-21T16:38:32-07:00",
+            "departure": "2009-10-21T16:38:32-07:00",
             "lat": 45.527648,
             "lon": -122.694407,
             "name": "NW 21st & Irving",
@@ -5025,7 +5025,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:38:32.000+00:00",
+          "startTime": "2009-10-21T16:38:32-07:00",
           "steps": [
             {
               "absoluteDirection": "NORTH",
@@ -5055,9 +5055,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:39:58.000+00:00",
+            "arrival": "2009-10-21T16:39:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:39:58.000+00:00",
+            "departure": "2009-10-21T16:39:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -5074,11 +5074,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 493.43,
-          "endTime": "2009-10-21T23:42:20.000+00:00",
+          "endTime": "2009-10-21T16:42:20-07:00",
           "from": {
-            "arrival": "2009-10-21T23:39:58.000+00:00",
+            "arrival": "2009-10-21T16:39:58-07:00",
             "bikeShareId": "-102323",
-            "departure": "2009-10-21T23:39:58.000+00:00",
+            "departure": "2009-10-21T16:39:58-07:00",
             "lat": 45.5278491,
             "lon": -122.6942362,
             "name": "-102323",
@@ -5098,7 +5098,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": true,
           "route": "",
-          "startTime": "2009-10-21T23:39:58.000+00:00",
+          "startTime": "2009-10-21T16:39:58-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -5128,9 +5128,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:42:20.000+00:00",
+            "arrival": "2009-10-21T16:42:20-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:42:20.000+00:00",
+            "departure": "2009-10-21T16:42:20-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -5147,11 +5147,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 106.59,
-          "endTime": "2009-10-21T23:43:51.000+00:00",
+          "endTime": "2009-10-21T16:43:51-07:00",
           "from": {
-            "arrival": "2009-10-21T23:42:20.000+00:00",
+            "arrival": "2009-10-21T16:42:20-07:00",
             "bikeShareId": "-102309",
-            "departure": "2009-10-21T23:42:20.000+00:00",
+            "departure": "2009-10-21T16:42:20-07:00",
             "lat": 45.5277374,
             "lon": -122.7003879,
             "name": "-102309",
@@ -5171,7 +5171,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:42:20.000+00:00",
+          "startTime": "2009-10-21T16:42:20-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -5214,7 +5214,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:43:51.000+00:00",
+            "arrival": "2009-10-21T16:43:51-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -5224,7 +5224,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:27:34.000+00:00",
+      "startTime": "2009-10-21T16:27:34-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 522,
@@ -5238,7 +5238,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 1336,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:51:24.000+00:00",
+      "endTime": "2009-10-21T16:51:24-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -5306,9 +5306,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 287.82,
-          "endTime": "2009-10-21T23:33:00.000+00:00",
+          "endTime": "2009-10-21T16:33:00-07:00",
           "from": {
-            "departure": "2009-10-21T23:29:08.000+00:00",
+            "departure": "2009-10-21T16:29:08-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -5325,7 +5325,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:29:08.000+00:00",
+          "startTime": "2009-10-21T16:29:08-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -5368,8 +5368,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:33:00.000+00:00",
-            "departure": "2009-10-21T23:33:00.000+00:00",
+            "arrival": "2009-10-21T16:33:00-07:00",
+            "departure": "2009-10-21T16:33:00-07:00",
             "lat": 45.523169,
             "lon": -122.675893,
             "name": "W Burnside & NW 5th",
@@ -5389,10 +5389,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 1942.25,
-          "endTime": "2009-10-21T23:44:03.000+00:00",
+          "endTime": "2009-10-21T16:44:03-07:00",
           "from": {
-            "arrival": "2009-10-21T23:33:00.000+00:00",
-            "departure": "2009-10-21T23:33:00.000+00:00",
+            "arrival": "2009-10-21T16:33:00-07:00",
+            "departure": "2009-10-21T16:33:00-07:00",
             "lat": 45.523169,
             "lon": -122.675893,
             "name": "W Burnside & NW 5th",
@@ -5408,8 +5408,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:34:56.000+00:00",
-              "departure": "2009-10-21T23:34:56.000+00:00",
+              "arrival": "2009-10-21T16:34:56-07:00",
+              "departure": "2009-10-21T16:34:56-07:00",
               "lat": 45.523115,
               "lon": -122.678939,
               "name": "W Burnside & NW Park",
@@ -5421,8 +5421,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:36:37.000+00:00",
-              "departure": "2009-10-21T23:36:37.000+00:00",
+              "arrival": "2009-10-21T16:36:37-07:00",
+              "departure": "2009-10-21T16:36:37-07:00",
               "lat": 45.523048,
               "lon": -122.681606,
               "name": "W Burnside & NW 10th",
@@ -5434,8 +5434,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:37:50.000+00:00",
-              "departure": "2009-10-21T23:37:50.000+00:00",
+              "arrival": "2009-10-21T16:37:50-07:00",
+              "departure": "2009-10-21T16:37:50-07:00",
               "lat": 45.523,
               "lon": -122.683535,
               "name": "W Burnside & NW 12th",
@@ -5447,8 +5447,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:40:44.000+00:00",
-              "departure": "2009-10-21T23:40:44.000+00:00",
+              "arrival": "2009-10-21T16:40:44-07:00",
+              "departure": "2009-10-21T16:40:44-07:00",
               "lat": 45.522985,
               "lon": -122.688091,
               "name": "W Burnside & NW 17th",
@@ -5460,8 +5460,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:42:00.000+00:00",
-              "departure": "2009-10-21T23:42:00.000+00:00",
+              "arrival": "2009-10-21T16:42:00-07:00",
+              "departure": "2009-10-21T16:42:00-07:00",
               "lat": 45.523097,
               "lon": -122.690083,
               "name": "W Burnside & NW 19th",
@@ -5473,8 +5473,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:42:24.000+00:00",
-              "departure": "2009-10-21T23:42:24.000+00:00",
+              "arrival": "2009-10-21T16:42:24-07:00",
+              "departure": "2009-10-21T16:42:24-07:00",
               "lat": 45.523176,
               "lon": -122.692139,
               "name": "W Burnside & NW 20th",
@@ -5486,8 +5486,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:42:35.000+00:00",
-              "departure": "2009-10-21T23:42:35.000+00:00",
+              "arrival": "2009-10-21T16:42:35-07:00",
+              "departure": "2009-10-21T16:42:35-07:00",
               "lat": 45.52322,
               "lon": -122.69313,
               "name": "W Burnside & NW 20th Pl",
@@ -5499,8 +5499,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:42:55.000+00:00",
-              "departure": "2009-10-21T23:42:55.000+00:00",
+              "arrival": "2009-10-21T16:42:55-07:00",
+              "departure": "2009-10-21T16:42:55-07:00",
               "lat": 45.523312,
               "lon": -122.694901,
               "name": "W Burnside & NW King",
@@ -5512,8 +5512,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:43:32.000+00:00",
-              "departure": "2009-10-21T23:43:32.000+00:00",
+              "arrival": "2009-10-21T16:43:32-07:00",
+              "departure": "2009-10-21T16:43:32-07:00",
               "lat": 45.523512,
               "lon": -122.698081,
               "name": "W Burnside & NW 23rd",
@@ -5538,11 +5538,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "20",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:33:00.000+00:00",
+          "startTime": "2009-10-21T16:33:00-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:44:03.000+00:00",
-            "departure": "2009-10-21T23:44:03.000+00:00",
+            "arrival": "2009-10-21T16:44:03-07:00",
+            "departure": "2009-10-21T16:44:03-07:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -5562,10 +5562,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 563.7,
-          "endTime": "2009-10-21T23:51:24.000+00:00",
+          "endTime": "2009-10-21T16:51:24-07:00",
           "from": {
-            "arrival": "2009-10-21T23:44:03.000+00:00",
-            "departure": "2009-10-21T23:44:03.000+00:00",
+            "arrival": "2009-10-21T16:44:03-07:00",
+            "departure": "2009-10-21T16:44:03-07:00",
             "lat": 45.523897,
             "lon": -122.700681,
             "name": "W Burnside & NW 23rd Pl",
@@ -5585,7 +5585,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:44:03.000+00:00",
+          "startTime": "2009-10-21T16:44:03-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -5641,7 +5641,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:51:24.000+00:00",
+            "arrival": "2009-10-21T16:51:24-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -5651,7 +5651,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:29:08.000+00:00",
+      "startTime": "2009-10-21T16:29:08-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 663,
@@ -5665,7 +5665,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
       "duration": 1134,
       "elevationGained": 0.0,
       "elevationLost": 0.0,
-      "endTime": "2009-10-21T23:56:21.000+00:00",
+      "endTime": "2009-10-21T16:56:21-07:00",
       "fare": {
         "details": {
           "regular": [
@@ -5733,9 +5733,9 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 252.88,
-          "endTime": "2009-10-21T23:40:53.000+00:00",
+          "endTime": "2009-10-21T16:40:53-07:00",
           "from": {
-            "departure": "2009-10-21T23:37:27.000+00:00",
+            "departure": "2009-10-21T16:37:27-07:00",
             "lat": 45.52523,
             "lon": -122.67525,
             "name": "NW Everett St. & NW 5th Ave. (P3)",
@@ -5752,7 +5752,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:37:27.000+00:00",
+          "startTime": "2009-10-21T16:37:27-07:00",
           "steps": [
             {
               "absoluteDirection": "WEST",
@@ -5808,8 +5808,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:40:53.000+00:00",
-            "departure": "2009-10-21T23:40:53.000+00:00",
+            "arrival": "2009-10-21T16:40:53-07:00",
+            "departure": "2009-10-21T16:40:53-07:00",
             "lat": 45.526655,
             "lon": -122.676462,
             "name": "NW Glisan & 6th",
@@ -5829,10 +5829,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 2232.31,
-          "endTime": "2009-10-21T23:48:50.000+00:00",
+          "endTime": "2009-10-21T16:48:50-07:00",
           "from": {
-            "arrival": "2009-10-21T23:40:53.000+00:00",
-            "departure": "2009-10-21T23:40:53.000+00:00",
+            "arrival": "2009-10-21T16:40:53-07:00",
+            "departure": "2009-10-21T16:40:53-07:00",
             "lat": 45.526655,
             "lon": -122.676462,
             "name": "NW Glisan & 6th",
@@ -5848,8 +5848,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "interlineWithPreviousLeg": false,
           "intermediateStops": [
             {
-              "arrival": "2009-10-21T23:41:57.000+00:00",
-              "departure": "2009-10-21T23:41:57.000+00:00",
+              "arrival": "2009-10-21T16:41:57-07:00",
+              "departure": "2009-10-21T16:41:57-07:00",
               "lat": 45.528799,
               "lon": -122.677238,
               "name": "NW Station Way & Union Station",
@@ -5861,8 +5861,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "0"
             },
             {
-              "arrival": "2009-10-21T23:44:00.000+00:00",
-              "departure": "2009-10-21T23:44:00.000+00:00",
+              "arrival": "2009-10-21T16:44:00-07:00",
+              "departure": "2009-10-21T16:44:00-07:00",
               "lat": 45.531582,
               "lon": -122.681193,
               "name": "NW Northrup & 10th",
@@ -5874,8 +5874,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:44:33.000+00:00",
-              "departure": "2009-10-21T23:44:33.000+00:00",
+              "arrival": "2009-10-21T16:44:33-07:00",
+              "departure": "2009-10-21T16:44:33-07:00",
               "lat": 45.531534,
               "lon": -122.683319,
               "name": "NW 12th & Northrup",
@@ -5887,8 +5887,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:45:04.000+00:00",
-              "departure": "2009-10-21T23:45:04.000+00:00",
+              "arrival": "2009-10-21T16:45:04-07:00",
+              "departure": "2009-10-21T16:45:04-07:00",
               "lat": 45.531503,
               "lon": -122.685357,
               "name": "NW Northrup & 14th",
@@ -5900,8 +5900,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:46:07.000+00:00",
-              "departure": "2009-10-21T23:46:07.000+00:00",
+              "arrival": "2009-10-21T16:46:07-07:00",
+              "departure": "2009-10-21T16:46:07-07:00",
               "lat": 45.531434,
               "lon": -122.689417,
               "name": "NW Northrup & 18th",
@@ -5913,8 +5913,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:47:24.000+00:00",
-              "departure": "2009-10-21T23:47:24.000+00:00",
+              "arrival": "2009-10-21T16:47:24-07:00",
+              "departure": "2009-10-21T16:47:24-07:00",
               "lat": 45.531346,
               "lon": -122.694455,
               "name": "NW Northrup & 21st",
@@ -5926,8 +5926,8 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
               "zoneId": "1"
             },
             {
-              "arrival": "2009-10-21T23:47:55.000+00:00",
-              "departure": "2009-10-21T23:47:55.000+00:00",
+              "arrival": "2009-10-21T16:47:55-07:00",
+              "departure": "2009-10-21T16:47:55-07:00",
               "lat": 45.531308,
               "lon": -122.696445,
               "name": "NW Northrup & 22nd",
@@ -5952,11 +5952,11 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "routeShortName": "77",
           "routeType": 3,
           "serviceDate": "2009-10-21",
-          "startTime": "2009-10-21T23:40:53.000+00:00",
+          "startTime": "2009-10-21T16:40:53-07:00",
           "steps": [ ],
           "to": {
-            "arrival": "2009-10-21T23:48:50.000+00:00",
-            "departure": "2009-10-21T23:48:50.000+00:00",
+            "arrival": "2009-10-21T16:48:50-07:00",
+            "departure": "2009-10-21T16:48:50-07:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -5976,10 +5976,10 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "arrivalDelay": 0,
           "departureDelay": 0,
           "distance": 580.63,
-          "endTime": "2009-10-21T23:56:21.000+00:00",
+          "endTime": "2009-10-21T16:56:21-07:00",
           "from": {
-            "arrival": "2009-10-21T23:48:50.000+00:00",
-            "departure": "2009-10-21T23:48:50.000+00:00",
+            "arrival": "2009-10-21T16:48:50-07:00",
+            "departure": "2009-10-21T16:48:50-07:00",
             "lat": 45.532159,
             "lon": -122.698634,
             "name": "NW 23rd & Overton",
@@ -5999,7 +5999,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "realTime": false,
           "rentedBike": false,
           "route": "",
-          "startTime": "2009-10-21T23:48:50.000+00:00",
+          "startTime": "2009-10-21T16:48:50-07:00",
           "steps": [
             {
               "absoluteDirection": "SOUTH",
@@ -6042,7 +6042,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
             }
           ],
           "to": {
-            "arrival": "2009-10-21T23:56:21.000+00:00",
+            "arrival": "2009-10-21T16:56:21-07:00",
             "lat": 45.52832,
             "lon": -122.70059,
             "name": "SW Johnson St. & NW 24th Ave. (P1)",
@@ -6052,7 +6052,7 @@ org.opentripplanner.routing.algorithm.mapping.BikeRentalSnapshotTest.egressBikeR
           "walkingBike": false
         }
       ],
-      "startTime": "2009-10-21T23:37:27.000+00:00",
+      "startTime": "2009-10-21T16:37:27-07:00",
       "tooSloped": false,
       "transfers": 0,
       "transitTime": 477,
