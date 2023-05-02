@@ -208,6 +208,7 @@ public class FlexIntegrationTest {
       transitModel,
       DataImportIssueStore.NOOP,
       Duration.ofMinutes(10),
+      false,
       List.of(req)
     )
       .buildGraph();

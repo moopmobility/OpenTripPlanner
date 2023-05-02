@@ -1,10 +1,7 @@
 package org.opentripplanner.standalone.config;
 
 import static org.opentripplanner.framework.application.OtpFileNames.BUILD_CONFIG_FILENAME;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V1_5;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_0;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_2;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.MissingNode;
@@ -31,15 +28,7 @@ import org.opentripplanner.model.calendar.ServiceDateInterval;
 import org.opentripplanner.netex.config.NetexFeedParameters;
 import org.opentripplanner.routing.api.request.RouteRequest;
 import org.opentripplanner.routing.fares.FareServiceFactory;
-import org.opentripplanner.standalone.config.buildconfig.DemConfig;
-import org.opentripplanner.standalone.config.buildconfig.GtfsConfig;
-import org.opentripplanner.standalone.config.buildconfig.IslandPruningConfig;
-import org.opentripplanner.standalone.config.buildconfig.NetexConfig;
-import org.opentripplanner.standalone.config.buildconfig.OsmConfig;
-import org.opentripplanner.standalone.config.buildconfig.S3BucketConfig;
-import org.opentripplanner.standalone.config.buildconfig.TransferRequestConfig;
-import org.opentripplanner.standalone.config.buildconfig.TransitFeedConfig;
-import org.opentripplanner.standalone.config.buildconfig.TransitFeeds;
+import org.opentripplanner.standalone.config.buildconfig.*;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
 import org.opentripplanner.standalone.config.sandbox.DataOverlayConfigMapper;
 import org.slf4j.Logger;
@@ -167,6 +156,7 @@ public class BuildConfig implements OtpDataStoreConfig {
   public final DemExtractParametersList dem;
   public final OsmExtractParametersList osm;
   public final TransitFeeds transitFeeds;
+  public boolean limitTransfersToWithinStations;
   public boolean staticParkAndRide;
   public boolean staticBikeParkAndRide;
   public double distanceBetweenElevationSamples;
@@ -620,6 +610,13 @@ Netex data is also often supplied in a ZIP file.
       """
         )
         .asUri(null);
+
+    limitTransfersToWithinStations =
+      root
+        .of("limitTransfersToWithinStations")
+        .since(V_TV)
+        .summary("Only allow transferring between stops within a station")
+        .asBoolean(false);
 
     osmDefaults = OsmConfig.mapOsmDefaults(root, "osmDefaults");
     osm = OsmConfig.mapOsmConfig(root, "osm", osmDefaults);

@@ -213,6 +213,7 @@ public class GraphBuilderModules {
       transitModel,
       issueStore,
       config.maxTransferDuration,
+      config.limitTransfersToWithinStations,
       config.transferRequests
     );
   }

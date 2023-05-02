@@ -65,6 +65,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -87,6 +88,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -119,6 +121,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -155,6 +158,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -178,6 +182,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -210,6 +215,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -237,6 +243,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
@@ -266,6 +273,7 @@ class DirectTransferGeneratorTest extends GraphRoutingTest {
       transitModel,
       DataImportIssueStore.NOOP,
       MAX_TRANSFER_DURATION,
+      false,
       transferRequests
     )
       .buildGraph();
