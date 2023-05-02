@@ -1,11 +1,11 @@
 package org.opentripplanner.routing.algorithm.raptoradapter.router;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.framework.application.OTPRequestTimeoutException;
 import org.opentripplanner.model.plan.Itinerary;
@@ -32,6 +32,7 @@ import org.opentripplanner.routing.error.RoutingValidationException;
 import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.opentripplanner.street.search.TemporaryVerticesContainer;
+import org.opentripplanner.transit.model.site.StopLocation;
 
 public class TransitRouter {
 
@@ -102,7 +103,7 @@ public class TransitRouter {
 
     debugTimingAggregator.finishedPatternFiltering();
 
-    var accessEgresses = getAccessEgresses(temporaryVertices);
+    var accessEgresses = getAccessEgresses(transitLayer, temporaryVertices);
 
     debugTimingAggregator.finishedAccessEgress(
       accessEgresses.getAccesses().size(),
@@ -160,20 +161,27 @@ public class TransitRouter {
     return new TransitRouterResult(itineraries, transitResponse.requestUsed().searchParams());
   }
 
-  private AccessEgresses getAccessEgresses(TemporaryVerticesContainer temporaryVertices) {
+  private AccessEgresses getAccessEgresses(
+    TransitLayer transitLayer,
+    TemporaryVerticesContainer temporaryVertices
+  ) {
     var accessEgressMapper = new AccessEgressMapper();
     var accessList = new ArrayList<DefaultAccessEgress>();
     var egressList = new ArrayList<DefaultAccessEgress>();
 
     var accessCalculator = (Runnable) () -> {
       debugTimingAggregator.startedAccessCalculating();
-      accessList.addAll(getAccessEgresses(accessEgressMapper, temporaryVertices, false));
+      accessList.addAll(
+        getAccessEgresses(transitLayer, accessEgressMapper, temporaryVertices, false)
+      );
       debugTimingAggregator.finishedAccessCalculating();
     };
 
     var egressCalculator = (Runnable) () -> {
       debugTimingAggregator.startedEgressCalculating();
-      egressList.addAll(getAccessEgresses(accessEgressMapper, temporaryVertices, true));
+      egressList.addAll(
+        getAccessEgresses(transitLayer, accessEgressMapper, temporaryVertices, true)
+      );
       debugTimingAggregator.finishedEgressCalculating();
     };
 
@@ -198,6 +206,7 @@ public class TransitRouter {
   }
 
   private Collection<DefaultAccessEgress> getAccessEgresses(
+    TransitLayer transitLayer,
     AccessEgressMapper accessEgressMapper,
     TemporaryVerticesContainer temporaryVertices,
     boolean isEgress
@@ -236,6 +245,69 @@ public class TransitRouter {
       );
 
       results.addAll(accessEgressMapper.mapFlexAccessEgresses(flexAccessList, isEgress));
+
+      var flexConfig = serverContext.flexConfig();
+      if (flexConfig.allowOnlyStopReachedOnBoard()) {
+        // Remove any flex trips where the stop was not reached on-board
+        results.removeIf(item -> item.hasRides() && !item.stopReachedOnBoard());
+      }
+
+      if (flexConfig.minimumStreetDistanceForFlex() > 0) {
+        var stopsWithShortWalk = results
+          .stream()
+          .filter(item ->
+            !item.hasRides() &&
+            item.getLastState().getWalkDistance() <= flexConfig.minimumStreetDistanceForFlex()
+          )
+          .map(DefaultAccessEgress::stop)
+          .map(transitLayer::getStopByIndex)
+          .filter(Objects::nonNull)
+          .flatMap(stop ->
+            stop.getParentStation() != null
+              ? stop.getParentStation().getChildStops().stream()
+              : Stream.of(stop)
+          )
+          .map(StopLocation::getIndex)
+          .collect(Collectors.toSet());
+
+        // Remove all flex items, which are reachable on-street with a short walk (or have stations which are reachable)
+        results.removeIf(item -> item.hasRides() && stopsWithShortWalk.contains(item.stop()));
+      }
+
+      if (flexConfig.removeWalkingIfFlexIsFaster()) {
+        var minFlexTimeForStop = results
+          .stream()
+          .filter(DefaultAccessEgress::hasRides)
+          .collect(
+            Collectors.toMap(
+              DefaultAccessEgress::stop,
+              item -> item.getLastState().getElapsedTimeSeconds(),
+              Math::min
+            )
+          )
+          .entrySet()
+          .stream()
+          .flatMap(entry -> {
+            var stop = transitLayer.getStopByIndex(entry.getKey());
+            if (stop != null && stop.getParentStation() != null) {
+              return stop
+                .getParentStation()
+                .getChildStops()
+                .stream()
+                .map(childStop -> Map.entry(childStop.getIndex(), entry.getValue()));
+            } else {
+              return Stream.of(entry);
+            }
+          })
+          .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, Math::min));
+
+        // Remove all walk items, which have a faster flex option
+        results.removeIf(item ->
+          !item.hasRides() &&
+          minFlexTimeForStop.getOrDefault(item.stop(), Long.MAX_VALUE) <
+          item.getLastState().getElapsedTimeSeconds()
+        );
+      }
     }
 
     return results;

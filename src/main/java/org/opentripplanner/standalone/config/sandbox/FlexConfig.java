@@ -1,8 +1,6 @@
 package org.opentripplanner.standalone.config.sandbox;
 
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
-import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V_TV;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.*;
 
 import java.time.Duration;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
@@ -29,6 +27,9 @@ public class FlexConfig {
 
   private final double maxVehicleSpeed;
   private final double streetTimeFactor;
+  private final boolean allowOnlyStopReachedOnBoard;
+  private final int minimumStreetDistanceForFlex;
+  private final boolean removeWalkingIfFlexIsFaster;
 
   private FlexConfig() {
     maxTransferDuration = Duration.ofMinutes(5);
@@ -37,6 +38,9 @@ public class FlexConfig {
     maxEgressWalkDuration = Duration.ofMinutes(45);
     maxVehicleSpeed = 29.; // 104 km/h
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
+    allowOnlyStopReachedOnBoard = false;
+    minimumStreetDistanceForFlex = 0;
+    removeWalkingIfFlexIsFaster = false;
   }
 
   public FlexConfig(NodeAdapter root, String parameterName) {
@@ -111,6 +115,27 @@ public class FlexConfig {
         .since(V_TV)
         .summary("The maximum vehicle speed (car speed)")
         .asDouble(DEFAULT.maxVehicleSpeed);
+
+    allowOnlyStopReachedOnBoard =
+      json
+        .of("allowOnlyStopReachedOnBoard")
+        .since(V_TV)
+        .summary("Require flex trips terminate at a _normal_ stop, without walking.")
+        .asBoolean(DEFAULT.allowOnlyStopReachedOnBoard);
+
+    minimumStreetDistanceForFlex =
+      json
+        .of("minimumStreetDistanceForFlex")
+        .since(V_TV)
+        .summary("Minimum distance to travel on a flex vehicle.")
+        .asInt(DEFAULT.minimumStreetDistanceForFlex);
+
+    removeWalkingIfFlexIsFaster =
+      json
+        .of("removeWalkingIfFlexIsFaster")
+        .since(V_TV)
+        .summary("Removing walking access/egress options to a stop if flex is faster.")
+        .asBoolean(DEFAULT.allowOnlyStopReachedOnBoard);
   }
 
   public Duration maxFlexTripDuration() {
@@ -135,5 +160,17 @@ public class FlexConfig {
 
   public double maxVehicleSpeed() {
     return maxVehicleSpeed;
+  }
+
+  public boolean allowOnlyStopReachedOnBoard() {
+    return allowOnlyStopReachedOnBoard;
+  }
+
+  public int minimumStreetDistanceForFlex() {
+    return minimumStreetDistanceForFlex;
+  }
+
+  public boolean removeWalkingIfFlexIsFaster() {
+    return removeWalkingIfFlexIsFaster;
   }
 }
