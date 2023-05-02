@@ -4,6 +4,7 @@ import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_1;
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_2;
 import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V2_3;
+import static org.opentripplanner.standalone.config.framework.json.OtpVersion.V_TV;
 
 import org.opentripplanner.routing.algorithm.filterchain.api.TransitGeneralizedCostFilterParams;
 import org.opentripplanner.routing.api.request.framework.RequestFunctions;
@@ -187,6 +188,20 @@ result to be included. However, if there is only a single result, it is never fi
             """
           )
           .asDouble(dft.parkAndRideDurationRatio())
+      )
+      .withFlexToScheduledTransitDistanceRatio(
+        c
+          .of("flexToScheduledTransitDistanceRatio")
+          .since(V_TV)
+          .summary("Ration of walking / flex distance")
+          .asDouble(dft.flexToScheduledTransitDistanceRatio())
+      )
+      .withFlexToScheduledTransitDurationRatio(
+        c
+          .of("flexToScheduledTransitDurationRatio")
+          .since(V_TV)
+          .summary("Ration of walking / flex duration")
+          .asDouble(dft.flexToScheduledTransitDurationRatio())
       )
       .withFilterItinerariesWithSameFirstOrLastTrip(
         c

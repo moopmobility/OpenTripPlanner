@@ -28,6 +28,8 @@ public final class ItineraryFilterPreferences {
   private final double minBikeParkingDistance;
   private final DoubleAlgorithmFunction nonTransitGeneralizedCostLimit;
   private final double parkAndRideDurationRatio;
+  private final double flexToScheduledTransitDistanceRatio;
+  private final double flexToScheduledTransitDurationRatio;
   private final boolean removeItinerariesWithSameRoutesAndStops;
   private final TransitGeneralizedCostFilterParams transitGeneralizedCostLimit;
 
@@ -42,6 +44,8 @@ public final class ItineraryFilterPreferences {
     this.minBikeParkingDistance = 0;
     this.nonTransitGeneralizedCostLimit = RequestFunctions.createLinearFunction(3600, 2);
     this.parkAndRideDurationRatio = 0.0;
+    this.flexToScheduledTransitDistanceRatio = 0.0;
+    this.flexToScheduledTransitDurationRatio = 0.0;
     this.removeItinerariesWithSameRoutesAndStops = false;
     this.transitGeneralizedCostLimit =
       new TransitGeneralizedCostFilterParams(RequestFunctions.createLinearFunction(900, 1.5), 0.4);
@@ -61,6 +65,10 @@ public final class ItineraryFilterPreferences {
     this.nonTransitGeneralizedCostLimit =
       Objects.requireNonNull(builder.nonTransitGeneralizedCostLimit);
     this.parkAndRideDurationRatio = Units.ratio(builder.parkAndRideDurationRatio);
+    this.flexToScheduledTransitDistanceRatio =
+      Units.reluctance(builder.flexToScheduledTransitDistanceRatio);
+    this.flexToScheduledTransitDurationRatio =
+      Units.reluctance(builder.flexToScheduledTransitDurationRatio);
     this.removeItinerariesWithSameRoutesAndStops = builder.removeItinerariesWithSameRoutesAndStops;
     this.transitGeneralizedCostLimit = Objects.requireNonNull(builder.transitGeneralizedCostLimit);
   }
@@ -113,6 +121,14 @@ public final class ItineraryFilterPreferences {
     return parkAndRideDurationRatio;
   }
 
+  public double flexToScheduledTransitDistanceRatio() {
+    return flexToScheduledTransitDistanceRatio;
+  }
+
+  public double flexToScheduledTransitDurationRatio() {
+    return flexToScheduledTransitDurationRatio;
+  }
+
   public boolean removeItinerariesWithSameRoutesAndStops() {
     return removeItinerariesWithSameRoutesAndStops;
   }
@@ -154,6 +170,11 @@ public final class ItineraryFilterPreferences {
         parkAndRideDurationRatio,
         DEFAULT.parkAndRideDurationRatio
       )
+      .addNum(
+        "flexToScheduledTransitDurationRatio",
+        flexToScheduledTransitDurationRatio,
+        DEFAULT.flexToScheduledTransitDurationRatio
+      )
       .addObj(
         "transitGeneralizedCostLimit",
         transitGeneralizedCostLimit,
@@ -185,6 +206,11 @@ public final class ItineraryFilterPreferences {
       Double.compare(that.groupSimilarityKeepThree, groupSimilarityKeepThree) == 0 &&
       Double.compare(that.minBikeParkingDistance, minBikeParkingDistance) == 0 &&
       Double.compare(that.parkAndRideDurationRatio, parkAndRideDurationRatio) == 0 &&
+      Double.compare(
+        that.flexToScheduledTransitDurationRatio,
+        flexToScheduledTransitDurationRatio
+      ) ==
+      0 &&
       removeItinerariesWithSameRoutesAndStops == that.removeItinerariesWithSameRoutesAndStops &&
       Objects.equals(nonTransitGeneralizedCostLimit, that.nonTransitGeneralizedCostLimit) &&
       Objects.equals(transitGeneralizedCostLimit, that.transitGeneralizedCostLimit)
@@ -204,6 +230,7 @@ public final class ItineraryFilterPreferences {
       minBikeParkingDistance,
       nonTransitGeneralizedCostLimit,
       parkAndRideDurationRatio,
+      flexToScheduledTransitDurationRatio,
       removeItinerariesWithSameRoutesAndStops,
       transitGeneralizedCostLimit
     );
@@ -222,6 +249,8 @@ public final class ItineraryFilterPreferences {
     public double minBikeParkingDistance;
     private DoubleAlgorithmFunction nonTransitGeneralizedCostLimit;
     private double parkAndRideDurationRatio;
+    private double flexToScheduledTransitDistanceRatio;
+    private double flexToScheduledTransitDurationRatio;
     private boolean removeItinerariesWithSameRoutesAndStops;
     private TransitGeneralizedCostFilterParams transitGeneralizedCostLimit;
 
@@ -285,6 +314,20 @@ public final class ItineraryFilterPreferences {
       return this;
     }
 
+    public Builder withFlexToScheduledTransitDistanceRatio(
+      double flexToScheduledTransitDistanceRatio
+    ) {
+      this.flexToScheduledTransitDistanceRatio = flexToScheduledTransitDistanceRatio;
+      return this;
+    }
+
+    public Builder withFlexToScheduledTransitDurationRatio(
+      double flexToScheduledTransitDurationRatio
+    ) {
+      this.flexToScheduledTransitDurationRatio = flexToScheduledTransitDurationRatio;
+      return this;
+    }
+
     public Builder withRemoveItinerariesWithSameRoutesAndStops(
       boolean removeItinerariesWithSameRoutesAndStops
     ) {
@@ -313,6 +356,8 @@ public final class ItineraryFilterPreferences {
       this.minBikeParkingDistance = original.minBikeParkingDistance;
       this.nonTransitGeneralizedCostLimit = original.nonTransitGeneralizedCostLimit;
       this.parkAndRideDurationRatio = original.parkAndRideDurationRatio;
+      this.flexToScheduledTransitDistanceRatio = original.flexToScheduledTransitDistanceRatio;
+      this.flexToScheduledTransitDurationRatio = original.flexToScheduledTransitDurationRatio;
       this.removeItinerariesWithSameRoutesAndStops =
         original.removeItinerariesWithSameRoutesAndStops;
       this.transitGeneralizedCostLimit = original.transitGeneralizedCostLimit;

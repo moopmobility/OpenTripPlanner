@@ -21,6 +21,7 @@ import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.NonTran
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.OtherThanSameLegsMaxGeneralizedCostFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveBikerentalWithMostlyWalkingFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveItinerariesWithShortStreetLeg;
+import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveMostlyFlexFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveParkAndRideWithMostlyWalkingFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveTransitIfStreetOnlyIsBetterFilter;
 import org.opentripplanner.routing.algorithm.filterchain.deletionflagger.RemoveWalkOnlyFilter;
@@ -61,6 +62,8 @@ public class ItineraryListFilterChainBuilder {
   private double bikeRentalDistanceRatio;
   private double parkAndRideDurationRatio;
   private DoubleAlgorithmFunction nonTransitGeneralizedCostLimit;
+  private double flexToScheduledTransitDistanceRatio;
+  private double flexToScheduledTransitDurationRatio;
   private Instant latestDepartureTimeLimit = null;
   private Consumer<Itinerary> maxLimitReachedSubscriber;
   private boolean accessibilityScore;
@@ -176,6 +179,26 @@ public class ItineraryListFilterChainBuilder {
    */
   public ItineraryListFilterChainBuilder withParkAndRideDurationRatio(double value) {
     this.parkAndRideDurationRatio = value;
+    return this;
+  }
+
+  /**
+   * This is used to filter out flex itineraries that contain long flex trips with only little
+   * scheduled transit. The value describes the minimum ratio of the distance of flex legs to
+   * scheduled transit to allow the itinerary.
+   */
+  public ItineraryListFilterChainBuilder withFlexToScheduledTransitDistanceRatio(double value) {
+    this.flexToScheduledTransitDistanceRatio = value;
+    return this;
+  }
+
+  /**
+   * This is used to filter out flex itineraries that contain long flex trips with only little
+   * scheduled transit. The value describes the minimum ratio of the duration of flex legs to
+   * scheduled transit to allow the itinerary.
+   */
+  public ItineraryListFilterChainBuilder withFlexToScheduledTransitDurationRatio(double value) {
+    this.flexToScheduledTransitDurationRatio = value;
     return this;
   }
 
@@ -371,6 +394,22 @@ public class ItineraryListFilterChainBuilder {
         filters.add(
           new DeletionFlaggingFilter(
             new RemoveParkAndRideWithMostlyWalkingFilter(parkAndRideDurationRatio)
+          )
+        );
+      }
+
+      if (flexToScheduledTransitDistanceRatio > 0) {
+        filters.add(
+          new DeletionFlaggingFilter(
+            RemoveMostlyFlexFilter.ofDistance(flexToScheduledTransitDistanceRatio)
+          )
+        );
+      }
+
+      if (flexToScheduledTransitDurationRatio > 0) {
+        filters.add(
+          new DeletionFlaggingFilter(
+            RemoveMostlyFlexFilter.ofDuration(flexToScheduledTransitDurationRatio)
           )
         );
       }
