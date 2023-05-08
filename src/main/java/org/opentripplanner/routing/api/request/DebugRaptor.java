@@ -64,6 +64,11 @@ public class DebugRaptor implements Serializable {
     return stops;
   }
 
+  public DebugRaptor withStops(List<Integer> stops) {
+    this.stops = stops;
+    return this;
+  }
+
   public DebugRaptor withStops(String stops) {
     if (stops == null) {
       return this;
@@ -74,6 +79,11 @@ public class DebugRaptor implements Serializable {
 
   public List<Integer> path() {
     return path;
+  }
+
+  public DebugRaptor withPath(List<Integer> path) {
+    this.path = path;
+    return this;
   }
 
   public DebugRaptor withPath(String path) {
@@ -88,6 +98,11 @@ public class DebugRaptor implements Serializable {
 
   public int debugPathFromStopIndex() {
     return debugPathFromStopIndex;
+  }
+
+  public DebugRaptor withDebugPathFromStopIndex(int debugPathFromStopIndex) {
+    this.debugPathFromStopIndex = debugPathFromStopIndex;
+    return this;
   }
 
   @Override

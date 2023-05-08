@@ -53,7 +53,7 @@ abstract class AbstractDebugHandlerAdapter<T> implements DebugHandler<T> {
   @Override
   public void reject(T element, T rejectedByElement, String reason) {
     // The "if" is needed because this is the first time we are able to check trip paths
-    if (isDebugStopOrTripPath(element)) {
+    if (isDebugStopOrTripPath(element) || isDebugStopOrTripPath(rejectedByElement)) {
       eventListener.accept(
         DebugEvent.reject(iterationDepartureTime, element, rejectedByElement, reason)
       );
@@ -63,7 +63,7 @@ abstract class AbstractDebugHandlerAdapter<T> implements DebugHandler<T> {
   @Override
   public void drop(T element, T droppedByElement, String reason) {
     // The "if" is needed because this is the first time we are able to check trip paths
-    if (isDebugStopOrTripPath(element)) {
+    if (isDebugStopOrTripPath(element) || isDebugStopOrTripPath(droppedByElement)) {
       eventListener.accept(
         DebugEvent.drop(iterationDepartureTime, element, droppedByElement, reason)
       );
@@ -91,6 +91,10 @@ abstract class AbstractDebugHandlerAdapter<T> implements DebugHandler<T> {
   }
 
   private boolean isDebugStopOrTripPath(T arrival) {
+    if (arrival == null) {
+      return false;
+    }
+
     return stops.contains(stop(arrival)) || isDebugTripPath(arrival);
   }
 

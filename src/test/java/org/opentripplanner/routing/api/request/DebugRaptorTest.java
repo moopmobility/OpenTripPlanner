@@ -9,7 +9,7 @@ class DebugRaptorTest {
 
   @Test
   void withStops() {
-    assertEquals(List.of(), subject().withStops(null).stops());
+    assertEquals(List.of(), subject().withStops((String) null).stops());
     assertEquals(List.of(1), subject().withStops("1").stops());
     assertEquals(List.of(1, 2), subject().withStops("1 2").stops());
     assertEquals(List.of(6, 2, 55, 6, 7), subject().withStops("6,2;55 6_7").stops());
@@ -17,7 +17,7 @@ class DebugRaptorTest {
 
   @Test
   void withPath() {
-    assertEquals(List.of(), subject().withPath(null).path());
+    assertEquals(List.of(), subject().withPath((String) null).path());
     assertEquals(List.of(1), subject().withPath("1").path());
     assertEquals(List.of(1, 2), subject().withPath("1 2").path());
     assertEquals(List.of(1, 2, 55, 55, 6, 7), subject().withPath("1,2;55 55 6_7").path());

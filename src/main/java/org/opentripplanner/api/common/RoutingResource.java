@@ -34,6 +34,8 @@ import org.opentripplanner.standalone.config.framework.file.ConfigFileLoader;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
 import org.opentripplanner.standalone.config.routerequest.RouteRequestConfig;
 import org.opentripplanner.transit.model.basic.MainAndSubMode;
+import org.opentripplanner.transit.model.framework.FeedScopedId;
+import org.opentripplanner.transit.model.site.StopLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -675,6 +677,9 @@ public abstract class RoutingResource {
   @QueryParam("debugRaptorPath")
   private String debugRaptorPath;
 
+  @QueryParam("debugRaptorPathFromStopIndex")
+  private Integer debugRaptorPathFromStopIndex;
+
   /**
    * This takes a RouteRequest as JSON and uses it as the default before applying other
    * parameters. This is intended for debugging only! The RouteRequest is an internal OTP
@@ -834,8 +839,9 @@ public abstract class RoutingResource {
       }
       {
         var debugRaptor = journey.transit().raptorDebugging();
-        setIfNotNull(debugRaptorStops, debugRaptor::withStops);
-        setIfNotNull(debugRaptorPath, debugRaptor::withPath);
+        setIfNotNull(debugRaptorStops, stops -> debugRaptor.withStops(stringToStopIndex(stops)));
+        setIfNotNull(debugRaptorPath, stops -> debugRaptor.withPath(stringToStopIndex(stops)));
+        setIfNotNull(debugRaptorPathFromStopIndex, debugRaptor::withDebugPathFromStopIndex);
       }
     }
 
@@ -855,6 +861,15 @@ public abstract class RoutingResource {
       }
     });
     return request;
+  }
+
+  private List<Integer> stringToStopIndex(String stops) {
+    return FeedScopedId
+      .parseListOfIds(stops)
+      .stream()
+      .map(feedScopedId -> serverContext.transitService().getStopLocation(feedScopedId))
+      .map(StopLocation::getIndex)
+      .toList();
   }
 
   /**
