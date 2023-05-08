@@ -124,8 +124,11 @@ public class VehicleParkingEdge extends Edge {
 
   private State traversePark(State s0) {
     StreetMode streetMode = s0.getRequest().mode();
-    RoutingPreferences preferences = s0.getPreferences();
+    if (!streetMode.includesParking()) {
+      return null;
+    }
 
+    RoutingPreferences preferences = s0.getPreferences();
     if (!streetMode.includesWalking() || s0.isVehicleParked()) {
       return null;
     }
