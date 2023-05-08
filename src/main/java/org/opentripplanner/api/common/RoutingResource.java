@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
@@ -24,7 +25,9 @@ import org.opentripplanner.ext.dataoverlay.api.DataOverlayParameters;
 import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.framework.lang.StringUtils;
 import org.opentripplanner.raptor.api.request.SearchParams;
+import org.opentripplanner.routing.api.request.RequestModes;
 import org.opentripplanner.routing.api.request.RouteRequest;
+import org.opentripplanner.routing.api.request.StreetMode;
 import org.opentripplanner.routing.api.request.request.filter.SelectRequest;
 import org.opentripplanner.routing.api.request.request.filter.TransitFilterRequest;
 import org.opentripplanner.routing.api.request.request.filter.VehicleParkingFilter.TagsFilter;
@@ -35,6 +38,8 @@ import org.opentripplanner.standalone.config.framework.file.ConfigFileLoader;
 import org.opentripplanner.standalone.config.framework.json.NodeAdapter;
 import org.opentripplanner.standalone.config.routerequest.RouteRequestConfig;
 import org.opentripplanner.transit.model.basic.MainAndSubMode;
+import org.opentripplanner.transit.model.basic.SubMode;
+import org.opentripplanner.transit.model.basic.TransitMode;
 import org.opentripplanner.transit.model.framework.FeedScopedId;
 import org.opentripplanner.transit.model.site.StopLocation;
 import org.slf4j.Logger;
@@ -288,6 +293,29 @@ public abstract class RoutingResource {
    */
   @QueryParam("mode")
   protected String modes;
+
+  @QueryParam("directMode")
+  @DefaultValue("WALK")
+  protected StreetMode directMode = RequestModes.defaultRequestModes().directMode;
+
+  @QueryParam("accessMode")
+  @DefaultValue("WALK")
+  protected StreetMode accessMode = RequestModes.defaultRequestModes().accessMode;
+
+  @QueryParam("egressMode")
+  @DefaultValue("WALK")
+  protected StreetMode egressMode = RequestModes.defaultRequestModes().egressMode;
+
+  @QueryParam("transferMode")
+  @DefaultValue("WALK")
+  protected StreetMode transferMode = RequestModes.defaultRequestModes().transferMode;
+
+  @QueryParam("transitModes")
+  protected List<String> transitModes = List.of();
+
+  @QueryParam("noTransitModes")
+  @DefaultValue("false")
+  protected boolean noTransitModes;
 
   /**
    * The minimum time, in seconds, between successive trips on different vehicles. This is designed
@@ -714,9 +742,31 @@ public abstract class RoutingResource {
     final RouteRequest request = defaultRouteRequest();
 
     /* Temporary code to get bike/car parking and renting working. */
-    QualifiedModeSet modeSet = null;
-    if (modes != null) {
-      modeSet = new QualifiedModeSet(modes);
+    RequestModes requestModes;
+    List<MainAndSubMode> mainAndSubModes;
+
+    if (modes != null && !modes.isBlank()) {
+      var modeSet = new QualifiedModeSet(modes);
+      requestModes = modeSet.getRequestModes();
+      mainAndSubModes = modeSet.getTransitModes().stream().map(MainAndSubMode::new).toList();
+    } else {
+      var builder = RequestModes.of();
+      builder.withDirectMode(directMode);
+      builder.withAccessMode(accessMode);
+      builder.withEgressMode(egressMode);
+      builder.withTransferMode(transferMode);
+      requestModes = builder.build();
+
+      if (!noTransitModes) {
+        if (transitModes == null || transitModes.isEmpty()) {
+          mainAndSubModes = MainAndSubMode.all();
+        } else {
+          mainAndSubModes =
+            transitModes.stream().map(this::parseMainAndSubMode).collect(Collectors.toList());
+        }
+      } else {
+        mainAndSubModes = List.of();
+      }
     }
 
     // The routing request should already contain defaults, which are set when it is initialized or
@@ -758,8 +808,8 @@ public abstract class RoutingResource {
     {
       var journey = request.journey();
       /* Temporary code to get bike/car parking and renting working. */
-      if (modeSet != null && !modeSet.qModes.isEmpty()) {
-        journey.setModes(modeSet.getRequestModes());
+      if (requestModes != null) {
+        journey.setModes(requestModes);
       }
 
       {
@@ -826,25 +876,17 @@ public abstract class RoutingResource {
           s -> selectors.add(SelectRequest.of().withRoutesFromString(s))
         );
 
-        List<MainAndSubMode> tModes;
-        if (modeSet == null) {
-          tModes = MainAndSubMode.all();
-        } else {
-          // Create modes
-          tModes = modeSet.getTransitModes().stream().map(MainAndSubMode::new).toList();
-        }
-
         // Add modes filter to all existing selectors
         // If no selectors specified, create new one
         if (!selectors.isEmpty()) {
           for (var selector : selectors) {
-            filterBuilder.addSelect(selector.withTransportModes(tModes).build());
+            filterBuilder.addSelect(selector.withTransportModes(mainAndSubModes).build());
           }
         } else {
-          filterBuilder.addSelect(SelectRequest.of().withTransportModes(tModes).build());
+          filterBuilder.addSelect(SelectRequest.of().withTransportModes(mainAndSubModes).build());
         }
 
-        if (tModes.isEmpty()) {
+        if (mainAndSubModes.isEmpty()) {
           transit.disable();
         } else {
           transit.setFilters(List.of(filterBuilder.build()));
@@ -898,6 +940,18 @@ public abstract class RoutingResource {
       return RouteRequestConfig.mapRouteRequest(new NodeAdapter(root, source), request);
     } else {
       return request;
+    }
+  }
+
+  private MainAndSubMode parseMainAndSubMode(String mode) {
+    var mainMode = mode;
+    var subMode = (String) null;
+    if (mode.indexOf(":") > 0) {
+      mainMode = mode.substring(0, mode.indexOf(":"));
+      subMode = mode.substring(mode.indexOf(":"));
+      return new MainAndSubMode(TransitMode.valueOf(mainMode), SubMode.of(subMode));
+    } else {
+      return new MainAndSubMode(TransitMode.valueOf(mainMode));
     }
   }
 }
