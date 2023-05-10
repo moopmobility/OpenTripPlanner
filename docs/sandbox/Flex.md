@@ -30,7 +30,8 @@ following to `router-config.json`.
     "maxTransferDuration" : "5m",
     "maxFlexTripDuration" : "45m",
     "maxAccessWalkDuration" : "15m",
-    "maxEgressWalkDuration" : "15m"
+    "maxEgressWalkDuration" : "15m",
+    "streetPathCalculatorTimeout" : "4s"
   }
 }
 ```

@@ -33,6 +33,10 @@ public class LocationStringParser {
     "[\\D&&[^-+.]]*(" + DOUBLE_PATTERN + ")(\\s*,\\s*|\\s+)(" + DOUBLE_PATTERN + ")\\D*"
   );
 
+  private static final Pattern LAT_LON_PLACE_PATTERN = Pattern.compile(
+    "[\\D&&[^-+.]]*(" + DOUBLE_PATTERN + ")(\\s*,\\s*|\\s+)(" + DOUBLE_PATTERN + ")\\D*\\*(.*?)"
+  );
+
   /**
    * Creates the GenericLocation by parsing a "name::place" string, where "place" is a geographic
    * coordinate string (latitude,longitude) or a feed scoped ID (feedId:stopId).
@@ -61,14 +65,20 @@ public class LocationStringParser {
     Double lat = null;
     Double lon = null;
     FeedScopedId placeId = null;
+    FeedScopedId forcedPlaceId = null;
 
-    Matcher matcher = LAT_LON_PATTERN.matcher(place);
-    if (matcher.find()) {
-      lat = Double.parseDouble(matcher.group(1));
-      lon = Double.parseDouble(matcher.group(4));
+    Matcher latLonPlaceMatcher = LAT_LON_PLACE_PATTERN.matcher(place);
+    Matcher latLonMatcher = LAT_LON_PATTERN.matcher(place);
+    if (latLonPlaceMatcher.matches()) {
+      lat = Double.parseDouble(latLonPlaceMatcher.group(1));
+      lon = Double.parseDouble(latLonPlaceMatcher.group(4));
+      forcedPlaceId = FeedScopedId.parseId(latLonPlaceMatcher.group(6));
+    } else if (latLonMatcher.find()) {
+      lat = Double.parseDouble(latLonMatcher.group(1));
+      lon = Double.parseDouble(latLonMatcher.group(4));
     } else if (FeedScopedId.isValidString(place)) {
       placeId = FeedScopedId.parseId(place);
     }
-    return new GenericLocation(label, placeId, lat, lon);
+    return new GenericLocation(label, placeId, lat, lon, forcedPlaceId);
   }
 }

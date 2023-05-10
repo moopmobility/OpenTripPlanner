@@ -34,9 +34,9 @@ import org.opentripplanner.routing.framework.DebugTimingAggregator;
 import org.opentripplanner.standalone.api.OtpServerRequestContext;
 import org.opentripplanner.street.model.vertex.TransitStopVertex;
 import org.opentripplanner.street.search.TemporaryVerticesContainer;
-import org.opentripplanner.street.search.request.StreetSearchRequest;
 import org.opentripplanner.street.search.request.StreetSearchRequestMapper;
 import org.opentripplanner.street.search.state.State;
+import org.opentripplanner.transit.model.site.RegularStop;
 import org.opentripplanner.transit.model.site.StopLocation;
 
 public class TransitRouter {
@@ -258,6 +258,19 @@ public class TransitRouter {
       );
 
       results.addAll(accessEgressMapper.mapFlexAccessEgresses(flexAccessList, isEgress));
+
+      if (place.forcedStopId != null) {
+        var stopIds = serverContext
+          .transitService()
+          .findStopOrChildStops(place.forcedStopId)
+          .stream()
+          .filter(RegularStop.class::isInstance)
+          .map(RegularStop.class::cast)
+          .map(StopLocation::getIndex)
+          .collect(Collectors.toSet());
+
+        results.removeIf(item -> !stopIds.contains(item.stop()));
+      }
 
       var flexConfig = serverContext.flexConfig();
       if (flexConfig.allowOnlyStopReachedOnBoard()) {

@@ -564,6 +564,11 @@ public class DefaultTransitService implements TransitEditorService {
   }
 
   @Override
+  public Collection<StopLocation> findStopOrChildStops(FeedScopedId stopId) {
+    return transitModel.getStopModel().findStopOrChildStops(stopId);
+  }
+
+  @Override
   public GraphUpdaterStatus getUpdaterStatus() {
     return transitModel.getUpdaterManager();
   }

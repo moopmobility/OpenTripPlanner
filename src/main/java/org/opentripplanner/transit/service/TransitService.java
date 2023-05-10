@@ -189,5 +189,7 @@ public interface TransitService {
 
   Collection<AreaStop> findAreaStops(Envelope envelope);
 
+  Collection<StopLocation> findStopOrChildStops(FeedScopedId forcedStopId);
+
   GraphUpdaterStatus getUpdaterStatus();
 }
