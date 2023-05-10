@@ -26,6 +26,7 @@ public class StreetSearchBuilder extends AStarBuilder<State, Edge, Vertex, Stree
   private StreetRequest streetRequest = new StreetRequest();
   private IntersectionTraversalCalculator intersectionTraversalCalculator;
   private DataOverlayContext dataOverlayContext;
+  private Duration streetRoutingTimeout;
 
   public static StreetSearchBuilder of() {
     return new StreetSearchBuilder();
@@ -65,10 +66,17 @@ public class StreetSearchBuilder extends AStarBuilder<State, Edge, Vertex, Stree
     return this;
   }
 
+  public StreetSearchBuilder setStreetRoutingTimeout(Duration streetRoutingTimeout) {
+    this.streetRoutingTimeout = streetRoutingTimeout;
+    return this;
+  }
+
   @Nonnull
   @Override
   protected Duration streetRoutingTimeout() {
-    return routeRequest.preferences().street().routingTimeout();
+    return streetRoutingTimeout == null
+      ? routeRequest.preferences().street().routingTimeout()
+      : streetRoutingTimeout;
   }
 
   @Override

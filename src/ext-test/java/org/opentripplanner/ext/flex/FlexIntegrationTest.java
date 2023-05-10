@@ -97,10 +97,7 @@ public class FlexIntegrationTest {
     assertEquals(BUS, flex.getMode());
     assertEquals("Zone 2", flex.getRoute().getShortName());
     assertTrue(flex.isFlexibleTrip());
-    assertEquals(
-      "service road (part of Flex Zone 2)",
-      flex.getFrom().name.toString()
-    );
+    assertEquals("service road (part of Flex Zone 2)", flex.getFrom().name.toString());
     assertEquals("Destination (part of Flex Zone 2)", flex.getTo().name.toString());
   }
 

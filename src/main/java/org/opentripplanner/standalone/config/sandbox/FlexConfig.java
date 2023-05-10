@@ -26,6 +26,7 @@ public class FlexConfig {
   private final Duration maxEgressWalkDuration;
 
   private final double maxVehicleSpeed;
+  private final Duration streetPathCalculatorTimeout;
   private final double streetTimeFactor;
   private final boolean allowOnlyStopReachedOnBoard;
   private final int minimumStreetDistanceForFlex;
@@ -37,6 +38,7 @@ public class FlexConfig {
     maxAccessWalkDuration = Duration.ofMinutes(45);
     maxEgressWalkDuration = Duration.ofMinutes(45);
     maxVehicleSpeed = 29.; // 104 km/h
+    streetPathCalculatorTimeout = Duration.ofSeconds(2);
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
     allowOnlyStopReachedOnBoard = false;
     minimumStreetDistanceForFlex = 0;
@@ -102,6 +104,13 @@ public class FlexConfig {
         .description(ACCESS_EGRESS_DESCRIPTION)
         .asDuration(DEFAULT.maxEgressWalkDuration);
 
+    streetPathCalculatorTimeout =
+      json
+        .of("streetPathCalculatorTimeout")
+        .since(V_TV)
+        .summary("Timeout for street path calculator searches.")
+        .asDuration(DEFAULT.streetPathCalculatorTimeout);
+
     streetTimeFactor =
       json
         .of("streetTimeFactor")
@@ -152,6 +161,10 @@ public class FlexConfig {
 
   public Duration maxEgressWalkDuration() {
     return maxEgressWalkDuration;
+  }
+
+  public Duration streetPathCalculatorTimeout() {
+    return streetPathCalculatorTimeout;
   }
 
   public double streetTimeFactor() {

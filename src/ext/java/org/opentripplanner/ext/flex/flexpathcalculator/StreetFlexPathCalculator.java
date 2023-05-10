@@ -84,6 +84,7 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
     return StreetSearchBuilder
       .of()
       .setSkipEdgeStrategy(new DurationSkipEdgeStrategy<>(config.maxFlexTripDuration()))
+      .setStreetRoutingTimeout(config.streetPathCalculatorTimeout())
       .setDominanceFunction(new DominanceFunctions.EarliestArrival())
       .setRequest(routingRequest)
       .setStreetRequest(new StreetRequest(StreetMode.CAR))

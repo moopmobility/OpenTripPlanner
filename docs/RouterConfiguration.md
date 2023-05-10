@@ -497,7 +497,8 @@ HTTP headers to add to the request. Any header key, value can be inserted.
     "maxTransferDuration" : "5m",
     "maxFlexTripDuration" : "45m",
     "maxAccessWalkDuration" : "15m",
-    "maxEgressWalkDuration" : "15m"
+    "maxEgressWalkDuration" : "15m",
+    "streetPathCalculatorTimeout" : "4s"
   },
   "transit" : {
     "maxNumberOfTransfers" : 12,

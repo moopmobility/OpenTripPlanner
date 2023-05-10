@@ -46,6 +46,7 @@ following to `router-config.json`.
 | maxVehicleSpeed                                      |  `double`  | The maximum vehicle speed (car speed)                                                                                         | *Optional* | `29.0`        | Transvision |
 | minimumStreetDistanceForFlex                         |  `integer` | Minimum distance to travel on a flex vehicle.                                                                                 | *Optional* | `0`           | Transvision |
 | removeWalkingIfFlexIsFaster                          |  `boolean` | Removing walking access/egress options to a stop if flex is faster.                                                           | *Optional* | `false`       | Transvision |
+| streetPathCalculatorTimeout                          | `duration` | Timeout for street path calculator searches.                                                                                  | *Optional* | `"PT2S"`      | Transvision |
 | streetTimeFactor                                     |  `double`  | Multiplier for how much slower the bus travels compared to cars.                                                              | *Optional* | `1.25`        | Transvision |
 
 
