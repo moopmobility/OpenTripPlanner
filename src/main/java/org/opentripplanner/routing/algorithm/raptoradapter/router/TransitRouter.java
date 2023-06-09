@@ -10,6 +10,7 @@ import org.opentripplanner.framework.application.OTPFeature;
 import org.opentripplanner.framework.application.OTPRequestTimeoutException;
 import org.opentripplanner.model.plan.Itinerary;
 import org.opentripplanner.raptor.RaptorService;
+import org.opentripplanner.raptor.api.model.RaptorAccessEgress;
 import org.opentripplanner.raptor.api.path.RaptorPath;
 import org.opentripplanner.raptor.api.response.RaptorResponse;
 import org.opentripplanner.routing.algorithm.mapping.RaptorPathToItineraryMapper;
@@ -298,6 +299,47 @@ public class TransitRouter {
 
         // Remove all flex items, which are reachable on-street with a short walk (or have stations which are reachable)
         results.removeIf(item -> item.hasRides() && stopsWithShortWalk.contains(item.stop()));
+      }
+
+      if (flexConfig.maximumStreetDistanceForWalkingIfFlexAvailable() > 0) {
+        var stopsWithLongWalk = results
+          .stream()
+          .filter(item ->
+            !item.hasRides() &&
+            item.getLastState().getWalkDistance() >=
+            flexConfig.maximumStreetDistanceForWalkingIfFlexAvailable()
+          )
+          .map(DefaultAccessEgress::stop)
+          .map(transitLayer::getStopByIndex)
+          .filter(Objects::nonNull)
+          .flatMap(stop ->
+            stop.getHighestParentStation() != null
+              ? stop.getHighestParentStation().getChildStops().stream()
+              : Stream.of(stop)
+          )
+          .map(StopLocation::getIndex)
+          .collect(Collectors.toSet());
+
+        var stopsWithFlex = results
+          .stream()
+          .filter(RaptorAccessEgress::hasRides)
+          .map(DefaultAccessEgress::stop)
+          .map(transitLayer::getStopByIndex)
+          .filter(Objects::nonNull)
+          .flatMap(stop ->
+            stop.getHighestParentStation() != null
+              ? stop.getHighestParentStation().getChildStops().stream()
+              : Stream.of(stop)
+          )
+          .map(StopLocation::getIndex)
+          .collect(Collectors.toSet());
+
+        // Remove walking to stations that have long walks and are accessible by flex
+        results.removeIf(item ->
+          !item.hasRides() &&
+          stopsWithLongWalk.contains(item.stop()) &&
+          stopsWithFlex.contains(item.stop())
+        );
       }
 
       if (flexConfig.removeWalkingIfFlexIsFaster()) {

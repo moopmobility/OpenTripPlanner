@@ -29,6 +29,7 @@ public class FlexConfig {
   private final Duration streetPathCalculatorTimeout;
   private final double streetTimeFactor;
   private final boolean allowOnlyStopReachedOnBoard;
+  private final int maximumStreetDistanceForWalkingIfFlexAvailable;
   private final int minimumStreetDistanceForFlex;
   private final boolean removeWalkingIfFlexIsFaster;
 
@@ -41,6 +42,7 @@ public class FlexConfig {
     streetPathCalculatorTimeout = Duration.ofSeconds(2);
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
     allowOnlyStopReachedOnBoard = false;
+    maximumStreetDistanceForWalkingIfFlexAvailable = 0;
     minimumStreetDistanceForFlex = 0;
     removeWalkingIfFlexIsFaster = false;
   }
@@ -132,6 +134,13 @@ public class FlexConfig {
         .summary("Require flex trips terminate at a _normal_ stop, without walking.")
         .asBoolean(DEFAULT.allowOnlyStopReachedOnBoard);
 
+    maximumStreetDistanceForWalkingIfFlexAvailable =
+      json
+        .of("maximumStreetDistanceForWalkingIfFlexAvailable")
+        .since(V_TV)
+        .summary("Maximum distance for walking if taking a flex vehicle is an option.")
+        .asInt(DEFAULT.maximumStreetDistanceForWalkingIfFlexAvailable);
+
     minimumStreetDistanceForFlex =
       json
         .of("minimumStreetDistanceForFlex")
@@ -177,6 +186,10 @@ public class FlexConfig {
 
   public boolean allowOnlyStopReachedOnBoard() {
     return allowOnlyStopReachedOnBoard;
+  }
+
+  public int maximumStreetDistanceForWalkingIfFlexAvailable() {
+    return maximumStreetDistanceForWalkingIfFlexAvailable;
   }
 
   public int minimumStreetDistanceForFlex() {
