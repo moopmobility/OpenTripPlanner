@@ -40,11 +40,14 @@ following to `router-config.json`.
 | Config Parameter                                     |    Type    | Summary                                                                                                                       |  Req./Opt. | Default Value |    Since    |
 |------------------------------------------------------|:----------:|-------------------------------------------------------------------------------------------------------------------------------|:----------:|---------------|:-----------:|
 | allowOnlyStopReachedOnBoard                          |  `boolean` | Require flex trips terminate at a _normal_ stop, without walking.                                                             | *Optional* | `false`       | Transvision |
+| [calculatorType](#flex_calculatorType)               |   `enum`   | Type of calculator to use for flex paths ()                                                                                   | *Optional* | `"street"`    | Transvision |
+| directFlexPathSpeed                                  |  `double`  | Vehicle speed when using the direct (straight-line) flex path calculator.                                                     | *Optional* | `8.0`         | Transvision |
 | [maxAccessWalkDuration](#flex_maxAccessWalkDuration) | `duration` | The maximum duration the passenger will be allowed to walk to reach a flex stop or zone.                                      | *Optional* | `"PT45M"`     |     2.3     |
 | [maxEgressWalkDuration](#flex_maxEgressWalkDuration) | `duration` | The maximum duration the passenger will be allowed to walk after leaving the flex vehicle at the final destination.           | *Optional* | `"PT45M"`     |     2.3     |
 | [maxFlexTripDuration](#flex_maxFlexTripDuration)     | `duration` | How long can a non-scheduled flex trip at maximum be.                                                                         | *Optional* | `"PT45M"`     |     2.3     |
 | [maxTransferDuration](#flex_maxTransferDuration)     | `duration` | How long should a passenger be allowed to walk after getting out of a flex vehicle and transferring to a flex or transit one. | *Optional* | `"PT5M"`      |     2.3     |
 | maxVehicleSpeed                                      |  `double`  | The maximum vehicle speed (car speed)                                                                                         | *Optional* | `29.0`        | Transvision |
+| maximumStreetDistanceForWalkingIfFlexAvailable       |  `integer` | Maximum distance for walking if taking a flex vehicle is an option.                                                           | *Optional* | `0`           | Transvision |
 | minimumStreetDistanceForFlex                         |  `integer` | Minimum distance to travel on a flex vehicle.                                                                                 | *Optional* | `0`           | Transvision |
 | removeWalkingIfFlexIsFaster                          |  `boolean` | Removing walking access/egress options to a stop if flex is faster.                                                           | *Optional* | `false`       | Transvision |
 | streetPathCalculatorTimeout                          | `duration` | Timeout for street path calculator searches.                                                                                  | *Optional* | `"PT2S"`      | Transvision |
@@ -52,6 +55,14 @@ following to `router-config.json`.
 
 
 ### Details
+
+<h4 id="flex_calculatorType">calculatorType</h4>
+
+**Since version:** `Transvision` ∙ **Type:** `enum` ∙ **Cardinality:** `Optional` ∙ **Default value:** `"street"`   
+**Path:** /flex   
+**Enum values:** `street-with-direct-fallback` | `street` | `direct`
+
+Type of calculator to use for flex paths ()
 
 <h4 id="flex_maxAccessWalkDuration">maxAccessWalkDuration</h4>
 

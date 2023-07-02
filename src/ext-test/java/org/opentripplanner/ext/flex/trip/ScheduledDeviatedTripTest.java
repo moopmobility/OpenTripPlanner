@@ -1,8 +1,6 @@
 package org.opentripplanner.ext.flex.trip;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opentripplanner.test.support.PolylineAssert.assertThatPolylinesAreEqual;
 
 import java.time.LocalDateTime;
@@ -134,7 +132,7 @@ public class ScheduledDeviatedTripTest extends FlexTest {
     var router = new FlexRouter(
       graph,
       new DefaultTransitService(transitModel),
-      FlexConfig.DEFAULT,
+      new FlexConfig(FlexConfig.FlexPathCalculatorType.DIRECT),
       OffsetDateTime.parse("2021-11-12T10:15:24-05:00").toInstant(),
       false,
       1,

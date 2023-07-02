@@ -4,6 +4,7 @@ import org.locationtech.jts.geom.Coordinate;
 import org.locationtech.jts.geom.LineString;
 import org.opentripplanner.framework.geometry.GeometryUtils;
 import org.opentripplanner.framework.geometry.SphericalDistanceLibrary;
+import org.opentripplanner.standalone.config.sandbox.FlexConfig;
 import org.opentripplanner.street.model.vertex.Vertex;
 
 /**
@@ -11,14 +12,12 @@ import org.opentripplanner.street.model.vertex.Vertex;
  */
 public class DirectFlexPathCalculator implements FlexPathCalculator {
 
-  public static final double FLEX_SPEED = 8.0;
-
   private static final int DIRECT_EXTRA_TIME = 5 * 60;
 
   private final double flexSpeed;
 
-  public DirectFlexPathCalculator() {
-    this.flexSpeed = FLEX_SPEED;
+  public DirectFlexPathCalculator(FlexConfig config) {
+    this.flexSpeed = config.directFlexPathSpeed();
   }
 
   @Override

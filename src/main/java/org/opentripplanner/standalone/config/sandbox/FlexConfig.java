@@ -25,6 +25,7 @@ public class FlexConfig {
   private final Duration maxAccessWalkDuration;
   private final Duration maxEgressWalkDuration;
 
+  private final double directFlexPathSpeed;
   private final double maxVehicleSpeed;
   private final Duration streetPathCalculatorTimeout;
   private final double streetTimeFactor;
@@ -32,6 +33,7 @@ public class FlexConfig {
   private final int maximumStreetDistanceForWalkingIfFlexAvailable;
   private final int minimumStreetDistanceForFlex;
   private final boolean removeWalkingIfFlexIsFaster;
+  private final FlexPathCalculatorType calculatorType;
 
   private FlexConfig() {
     maxTransferDuration = Duration.ofMinutes(5);
@@ -39,12 +41,30 @@ public class FlexConfig {
     maxAccessWalkDuration = Duration.ofMinutes(45);
     maxEgressWalkDuration = Duration.ofMinutes(45);
     maxVehicleSpeed = 29.; // 104 km/h
+    directFlexPathSpeed = 8.;
     streetPathCalculatorTimeout = Duration.ofSeconds(2);
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
     allowOnlyStopReachedOnBoard = false;
     maximumStreetDistanceForWalkingIfFlexAvailable = 0;
     minimumStreetDistanceForFlex = 0;
     removeWalkingIfFlexIsFaster = false;
+    calculatorType = FlexPathCalculatorType.STREET;
+  }
+
+  public FlexConfig(FlexPathCalculatorType flexPathCalculatorType) {
+    maxTransferDuration = Duration.ofMinutes(5);
+    maxFlexTripDuration = Duration.ofMinutes(45);
+    maxAccessWalkDuration = Duration.ofMinutes(45);
+    maxEgressWalkDuration = Duration.ofMinutes(45);
+    maxVehicleSpeed = 29.; // 104 km/h
+    directFlexPathSpeed = 8.;
+    streetPathCalculatorTimeout = Duration.ofSeconds(2);
+    streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
+    allowOnlyStopReachedOnBoard = false;
+    maximumStreetDistanceForWalkingIfFlexAvailable = 0;
+    minimumStreetDistanceForFlex = 0;
+    removeWalkingIfFlexIsFaster = false;
+    calculatorType = flexPathCalculatorType;
   }
 
   public FlexConfig(NodeAdapter root, String parameterName) {
@@ -113,6 +133,13 @@ public class FlexConfig {
         .summary("Timeout for street path calculator searches.")
         .asDuration(DEFAULT.streetPathCalculatorTimeout);
 
+    directFlexPathSpeed =
+      json
+        .of("directFlexPathSpeed")
+        .since(V_TV)
+        .summary("Vehicle speed when using the direct (straight-line) flex path calculator.")
+        .asDouble(DEFAULT.directFlexPathSpeed);
+
     streetTimeFactor =
       json
         .of("streetTimeFactor")
@@ -154,6 +181,13 @@ public class FlexConfig {
         .since(V_TV)
         .summary("Removing walking access/egress options to a stop if flex is faster.")
         .asBoolean(DEFAULT.allowOnlyStopReachedOnBoard);
+
+    calculatorType =
+      json
+        .of("calculatorType")
+        .since(V_TV)
+        .summary("Type of calculator to use for flex paths ()")
+        .asEnum(DEFAULT.calculatorType);
   }
 
   public Duration maxFlexTripDuration() {
@@ -180,6 +214,10 @@ public class FlexConfig {
     return streetTimeFactor;
   }
 
+  public double directFlexPathSpeed() {
+    return directFlexPathSpeed;
+  }
+
   public double maxVehicleSpeed() {
     return maxVehicleSpeed;
   }
@@ -198,5 +236,15 @@ public class FlexConfig {
 
   public boolean removeWalkingIfFlexIsFaster() {
     return removeWalkingIfFlexIsFaster;
+  }
+
+  public FlexPathCalculatorType calculatorType() {
+    return calculatorType;
+  }
+
+  public enum FlexPathCalculatorType {
+    STREET_WITH_DIRECT_FALLBACK,
+    STREET,
+    DIRECT,
   }
 }

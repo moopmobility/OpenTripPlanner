@@ -6,17 +6,13 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.opentripplanner.ext.flex.flexpathcalculator.DirectFlexPathCalculator;
 import org.opentripplanner.ext.flex.flexpathcalculator.FlexPathCalculator;
 import org.opentripplanner.ext.flex.flexpathcalculator.StreetFlexPathCalculator;
+import org.opentripplanner.ext.flex.flexpathcalculator.StreetWithDirectFallbackPathCalculator;
 import org.opentripplanner.ext.flex.template.FlexAccessTemplate;
 import org.opentripplanner.ext.flex.template.FlexEgressTemplate;
 import org.opentripplanner.ext.flex.trip.FlexTrip;
@@ -78,14 +74,21 @@ public class FlexRouter {
         graph.ellipsoidToGeoidDifference
       );
 
-    if (graph.hasStreets) {
-      this.accessFlexPathCalculator = new StreetFlexPathCalculator(false, config);
-      this.egressFlexPathCalculator = new StreetFlexPathCalculator(true, config);
-    } else {
-      // this is only really useful in tests. in real world scenarios you're unlikely to get useful
-      // results if you don't have streets
-      this.accessFlexPathCalculator = new DirectFlexPathCalculator();
-      this.egressFlexPathCalculator = new DirectFlexPathCalculator();
+    switch (config.calculatorType()) {
+      case STREET -> {
+        this.accessFlexPathCalculator = new StreetFlexPathCalculator(false, config);
+        this.egressFlexPathCalculator = new StreetFlexPathCalculator(true, config);
+      }
+      case STREET_WITH_DIRECT_FALLBACK -> {
+        this.accessFlexPathCalculator = new StreetWithDirectFallbackPathCalculator(false, config);
+        this.egressFlexPathCalculator = new StreetWithDirectFallbackPathCalculator(true, config);
+      }
+      default -> {
+        // this is only really useful in tests. in real world scenarios you're unlikely to get useful
+        // results if you don't have streets
+        this.accessFlexPathCalculator = new DirectFlexPathCalculator(config);
+        this.egressFlexPathCalculator = new DirectFlexPathCalculator(config);
+      }
     }
 
     ZoneId tz = transitService.getTimeZone();

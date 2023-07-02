@@ -17,6 +17,7 @@ import org.opentripplanner.gtfs.graphbuilder.GtfsBundle;
 import org.opentripplanner.gtfs.graphbuilder.GtfsModule;
 import org.opentripplanner.model.calendar.ServiceDateInterval;
 import org.opentripplanner.routing.graph.Graph;
+import org.opentripplanner.standalone.config.sandbox.FlexConfig;
 import org.opentripplanner.transit.model.framework.Deduplicator;
 import org.opentripplanner.transit.service.StopModel;
 import org.opentripplanner.transit.service.TransitModel;
@@ -30,7 +31,9 @@ public abstract class FlexTest {
   protected static final String LINCOLN_COUNTY_GBFS = "/flex/lincoln-county-flex.gtfs.zip";
   protected static final String COBB_OSM = "/flex/cobb-county.filtered.osm.pbf";
 
-  protected static final DirectFlexPathCalculator calculator = new DirectFlexPathCalculator();
+  protected static final DirectFlexPathCalculator calculator = new DirectFlexPathCalculator(
+    FlexConfig.DEFAULT
+  );
   protected static final LocalDate serviceDate = LocalDate.of(2021, 4, 11);
   protected static final int secondsSinceMidnight = LocalTime.of(10, 0).toSecondOfDay();
   protected static final FlexServiceDate flexDate = new FlexServiceDate(

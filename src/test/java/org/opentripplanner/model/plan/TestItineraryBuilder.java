@@ -208,7 +208,7 @@ public class TestItineraryBuilder implements PlanTestConstants {
       1,
       null,
       new FlexServiceDate(LocalDate.now(), 0, new TIntHashSet()),
-      new DirectFlexPathCalculator(),
+      new DirectFlexPathCalculator(FlexConfig.DEFAULT),
       FlexConfig.DEFAULT
     );
 
@@ -224,7 +224,7 @@ public class TestItineraryBuilder implements PlanTestConstants {
       to.stop,
       flexTrip,
       template,
-      new DirectFlexPathCalculator()
+      new DirectFlexPathCalculator(FlexConfig.DEFAULT)
     );
 
     FlexibleTransitLeg leg = new FlexibleTransitLeg(edge, newTime(start), newTime(end), legCost);
