@@ -17,7 +17,6 @@ public interface OsmTagMapper {
       "no".equals(tagValue) ||
       "destination".equals(tagValue) ||
       "private".equals(tagValue) ||
-      "customers".equals(tagValue) ||
       "delivery".equals(tagValue)
     );
   }
