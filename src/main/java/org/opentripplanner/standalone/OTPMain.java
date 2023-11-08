@@ -4,6 +4,7 @@ import static org.opentripplanner.model.projectinfo.OtpProjectInfo.projectInfo;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import java.time.ZoneId;
 import org.geotools.referencing.factory.DeferredAuthorityFactory;
 import org.geotools.util.WeakCollectionCleaner;
 import org.opentripplanner.framework.application.OtpAppException;
@@ -169,6 +170,10 @@ public class OTPMain {
   }
 
   private static void startOtpWebServer(CommandLineParameters params, ConstructApplication app) {
+    if (app.transitModel().getTimeZone() == null) {
+      app.transitModel().initTimeZone(ZoneId.systemDefault());
+    }
+
     // Index graph for travel search
     app.transitModel().index();
     app.graph().index(app.transitModel().getStopModel());
