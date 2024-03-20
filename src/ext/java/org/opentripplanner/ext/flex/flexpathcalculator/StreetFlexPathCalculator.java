@@ -77,7 +77,9 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
   private ShortestPathTree<State, Edge, Vertex> routeToMany(Vertex vertex) {
     RouteRequest routingRequest = new RouteRequest();
     routingRequest.withPreferences(builder ->
-      builder.withCar(car -> car.withMaxSpeed(config.maxVehicleSpeed()))
+      builder.withCar(car ->
+        car.withMaxSpeed(config.maxVehicleSpeed()).withReluctance(config.vehicleReluctance())
+      )
     );
     routingRequest.setArriveBy(reverseDirection);
 
@@ -85,7 +87,11 @@ public class StreetFlexPathCalculator implements FlexPathCalculator {
       .of()
       .setSkipEdgeStrategy(new DurationSkipEdgeStrategy<>(config.maxFlexTripDuration()))
       .setStreetRoutingTimeout(config.streetPathCalculatorTimeout())
-      .setDominanceFunction(new DominanceFunctions.EarliestArrival())
+      .setDominanceFunction(
+        config.useMinimumWeight()
+          ? new DominanceFunctions.MinimumWeight()
+          : new DominanceFunctions.EarliestArrival()
+      )
       .setRequest(routingRequest)
       .setStreetRequest(new StreetRequest(StreetMode.CAR))
       .setFrom(reverseDirection ? null : vertex)

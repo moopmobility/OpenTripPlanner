@@ -171,7 +171,7 @@ public class FlexRouter {
     // Fetch the closest flexTrips reachable from the access stops
     this.flexAccessTemplates =
       getClosestFlexTrips(streetAccesses, true)
-        .filter(it -> TransitMode.TAXI1.equals(it.flexTrip().getTrip().getMode()))
+        //.filter(it -> TransitMode.TAXI1.equals(it.flexTrip().getTrip().getMode()))
         // For each date the router has data for
         .flatMap(it ->
           Arrays
@@ -196,7 +196,9 @@ public class FlexRouter {
     // Fetch the closest flexTrips reachable from the egress stops
     this.flexEgressTemplates =
       getClosestFlexTrips(streetEgresses, false)
-        .filter(it -> TransitMode.TAXI2.equals(it.flexTrip().getTrip().getMode()))
+        .filter(it ->
+          !config.filterByMode() || TransitMode.TAXI2.equals(it.flexTrip().getTrip().getMode())
+        )
         // For each date the router has data for
         .flatMap(it ->
           Arrays

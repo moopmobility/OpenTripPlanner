@@ -178,7 +178,18 @@ public class TransitRouter {
     var accessCalculator = (Runnable) () -> {
       debugTimingAggregator.startedAccessCalculating();
       accessList.addAll(
-        getAccessEgresses(transitLayer, accessEgressMapper, temporaryVertices, false)
+        getAccessEgresses(
+          transitLayer,
+          accessEgressMapper,
+          temporaryVertices,
+          false,
+          debugTimingAggregator::startedAccessStreetCalculating,
+          debugTimingAggregator::finishedAccessStreetCalculating,
+          debugTimingAggregator::startedAccessFlexCalculating,
+          debugTimingAggregator::finishedAccessFlexCalculating,
+          debugTimingAggregator::startedAccessFilterCalculating,
+          debugTimingAggregator::finishedAccessFilterCalculating
+        )
       );
       debugTimingAggregator.finishedAccessCalculating();
     };
@@ -186,7 +197,18 @@ public class TransitRouter {
     var egressCalculator = (Runnable) () -> {
       debugTimingAggregator.startedEgressCalculating();
       egressList.addAll(
-        getAccessEgresses(transitLayer, accessEgressMapper, temporaryVertices, true)
+        getAccessEgresses(
+          transitLayer,
+          accessEgressMapper,
+          temporaryVertices,
+          true,
+          debugTimingAggregator::startedEgressStreetCalculating,
+          debugTimingAggregator::finishedEgressStreetCalculating,
+          debugTimingAggregator::startedEgressFlexCalculating,
+          debugTimingAggregator::finishedEgressFlexCalculating,
+          debugTimingAggregator::startedEgressFilterCalculating,
+          debugTimingAggregator::finishedEgressFilterCalculating
+        )
       );
       debugTimingAggregator.finishedEgressCalculating();
     };
@@ -215,7 +237,13 @@ public class TransitRouter {
     TransitLayer transitLayer,
     AccessEgressMapper accessEgressMapper,
     TemporaryVerticesContainer temporaryVertices,
-    boolean isEgress
+    boolean isEgress,
+    Runnable startedStreetCalculating,
+    Runnable finishedStreetCalculating,
+    Runnable startedFlexCalculating,
+    Runnable finishedFlexCalculating,
+    Runnable startedFilterCalculating,
+    Runnable finishedFilterCalculating
   ) {
     var streetRequest = isEgress ? request.journey().egress() : request.journey().access();
 
@@ -227,12 +255,20 @@ public class TransitRouter {
     if (
       place.stopId != null && request.preferences().system().allowOnlyScheduledTransitDirectToStop()
     ) {
-      return createDirectStopAccessEgress(isEgress, temporaryVertices, streetRequest);
+      return createDirectStopAccessEgress(
+        isEgress,
+        temporaryVertices,
+        streetRequest,
+        startedStreetCalculating,
+        finishedStreetCalculating
+      );
     }
 
     if (!isEgress) {
       accessRequest.journey().rental().setAllowArrivingInRentedVehicleAtDestination(false);
     }
+
+    startedStreetCalculating.run();
 
     var nearbyStops = AccessEgressRouter.streetSearch(
       accessRequest,
@@ -246,8 +282,12 @@ public class TransitRouter {
 
     var results = new ArrayList<>(accessEgressMapper.mapNearbyStops(nearbyStops, isEgress));
 
+    finishedStreetCalculating.run();
+
     // Special handling of flex accesses
     if (OTPFeature.FlexRouting.isOn() && streetRequest.mode() == StreetMode.FLEXIBLE) {
+      startedFlexCalculating.run();
+
       var flexAccessList = FlexAccessEgressRouter.routeAccessEgress(
         accessRequest,
         temporaryVertices,
@@ -257,6 +297,9 @@ public class TransitRouter {
         serverContext.dataOverlayContext(accessRequest),
         isEgress
       );
+
+      finishedFlexCalculating.run();
+      startedFilterCalculating.run();
 
       results.addAll(accessEgressMapper.mapFlexAccessEgresses(flexAccessList, isEgress));
 
@@ -376,6 +419,7 @@ public class TransitRouter {
           item.getLastState().getElapsedTimeSeconds()
         );
       }
+      finishedFilterCalculating.run();
     }
 
     return results;
@@ -384,8 +428,11 @@ public class TransitRouter {
   private Collection<DefaultAccessEgress> createDirectStopAccessEgress(
     boolean isEgress,
     TemporaryVerticesContainer temporaryVertices,
-    StreetRequest streetRequest
+    StreetRequest streetRequest,
+    Runnable startedStreetCalculating,
+    Runnable finishedStreetCalculating
   ) {
+    startedStreetCalculating.run();
     var vertices = isEgress != request.arriveBy()
       ? temporaryVertices.getToVertices()
       : temporaryVertices.getFromVertices();
@@ -396,7 +443,7 @@ public class TransitRouter {
       .withArriveBy(request.arriveBy())
       .build();
 
-    return vertices
+    final var list = vertices
       .stream()
       .filter(TransitStopVertex.class::isInstance)
       .map(TransitStopVertex.class::cast)
@@ -404,6 +451,8 @@ public class TransitRouter {
         new DefaultAccessEgress(vertex.getStop().getIndex(), new State(vertex, streetSearchRequest))
       )
       .toList();
+    finishedStreetCalculating.run();
+    return list;
   }
 
   private RaptorRoutingRequestTransitData createRequestTransitDataProvider(

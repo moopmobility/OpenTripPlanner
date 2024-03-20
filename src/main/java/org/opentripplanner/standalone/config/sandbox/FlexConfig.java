@@ -27,6 +27,9 @@ public class FlexConfig {
 
   private final double directFlexPathSpeed;
   private final double maxVehicleSpeed;
+  private final double vehicleReluctance;
+  private final boolean useMinimumWeight;
+  private final boolean filterByMode;
   private final Duration streetPathCalculatorTimeout;
   private final double streetTimeFactor;
   private final boolean allowOnlyStopReachedOnBoard;
@@ -41,6 +44,9 @@ public class FlexConfig {
     maxAccessWalkDuration = Duration.ofMinutes(45);
     maxEgressWalkDuration = Duration.ofMinutes(45);
     maxVehicleSpeed = 29.; // 104 km/h
+    vehicleReluctance = 2; // Only use the time factor
+    useMinimumWeight = false;
+    filterByMode = false;
     directFlexPathSpeed = 8.;
     streetPathCalculatorTimeout = Duration.ofSeconds(2);
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
@@ -57,6 +63,9 @@ public class FlexConfig {
     maxAccessWalkDuration = Duration.ofMinutes(45);
     maxEgressWalkDuration = Duration.ofMinutes(45);
     maxVehicleSpeed = 29.; // 104 km/h
+    vehicleReluctance = 2; // Only use the time factor
+    useMinimumWeight = false;
+    filterByMode = false;
     directFlexPathSpeed = 8.;
     streetPathCalculatorTimeout = Duration.ofSeconds(2);
     streetTimeFactor = 1.25; // taking the bus/taxi is 25% slower than the car
@@ -154,6 +163,27 @@ public class FlexConfig {
         .summary("The maximum vehicle speed (car speed)")
         .asDouble(DEFAULT.maxVehicleSpeed);
 
+    vehicleReluctance =
+      json
+        .of("vehicleReluctance")
+        .since(V_TV)
+        .summary("The reluctance factor to prefer account for distance in street paths.")
+        .asDouble(DEFAULT.vehicleReluctance);
+
+    useMinimumWeight =
+      json
+        .of("useMinimumWeight")
+        .since(V_TV)
+        .summary("Use MinimumWeight instead of EarliestArrival for street path calculation.")
+        .asBoolean(DEFAULT.useMinimumWeight);
+
+    filterByMode =
+      json
+        .of("filterByMode")
+        .since(V_TV)
+        .summary("Filter Flex trips by mode and access/egress.")
+        .asBoolean(DEFAULT.useMinimumWeight);
+
     allowOnlyStopReachedOnBoard =
       json
         .of("allowOnlyStopReachedOnBoard")
@@ -220,6 +250,18 @@ public class FlexConfig {
 
   public double maxVehicleSpeed() {
     return maxVehicleSpeed;
+  }
+
+  public double vehicleReluctance() {
+    return vehicleReluctance;
+  }
+
+  public boolean useMinimumWeight() {
+    return useMinimumWeight;
+  }
+
+  public boolean filterByMode() {
+    return filterByMode;
   }
 
   public boolean allowOnlyStopReachedOnBoard() {

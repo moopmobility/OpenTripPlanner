@@ -32,7 +32,13 @@ public class DebugTimingAggregator {
   private final Timer directFlexRouterTimer;
 
   private final Timer accessTimer;
+  private final Timer accessStreetTimer;
+  private final Timer accessFlexTimer;
+  private final Timer accessFilterTimer;
   private final Timer egressTimer;
+  private final Timer egressStreetTimer;
+  private final Timer egressFlexTimer;
+  private final Timer egressFilterTimer;
   private final DistributionSummary numAccessesDistribution;
   private final DistributionSummary numEgressesDistribution;
 
@@ -59,9 +65,21 @@ public class DebugTimingAggregator {
   private Timer.Sample finishedRouters;
   private Timer.Sample finishedFiltering;
   private Timer.Sample startedAccessCalculating;
+  private Timer.Sample startedAccessStreetCalculating;
+  private Timer.Sample startedAccessFlexCalculating;
+  private Timer.Sample startedAccessFilterCalculating;
   private Timer.Sample startedEgressCalculating;
+  private Timer.Sample startedEgressStreetCalculating;
+  private Timer.Sample startedEgressFlexCalculating;
+  private Timer.Sample startedEgressFilterCalculating;
   private long accessTime;
+  private long accessStreetTime;
+  private long accessFlexTime;
+  private long accessFilterTime;
   private long egressTime;
+  private long egressStreetTime;
+  private long egressFlexTime;
+  private long egressFilterTime;
   private int numAccesses;
   private int numEgresses;
   private long precalculationTime;
@@ -103,7 +121,13 @@ public class DebugTimingAggregator {
       DistributionSummary.builder("routing.numAccess").tags(tags).register(registry);
 
     egressTimer = Timer.builder("routing.egress").tags(tags).register(registry);
+    egressStreetTimer = Timer.builder("routing.egressStreet").tags(tags).register(registry);
+    egressFlexTimer = Timer.builder("routing.egressFlex").tags(tags).register(registry);
+    egressFilterTimer = Timer.builder("routing.egressFilter").tags(tags).register(registry);
     accessTimer = Timer.builder("routing.access").tags(tags).register(registry);
+    accessStreetTimer = Timer.builder("routing.accessStreet").tags(tags).register(registry);
+    accessFlexTimer = Timer.builder("routing.accessFlex").tags(tags).register(registry);
+    accessFilterTimer = Timer.builder("routing.accessFilter").tags(tags).register(registry);
     directFlexRouterTimer = Timer.builder("routing.directFlex").tags(tags).register(registry);
     directStreetRouterTimer = Timer.builder("routing.directStreet").tags(tags).register(registry);
   }
@@ -169,6 +193,39 @@ public class DebugTimingAggregator {
     startedAccessCalculating = Timer.start(clock);
   }
 
+  public void startedAccessStreetCalculating() {
+    startedAccessStreetCalculating = Timer.start(clock);
+  }
+
+  public void finishedAccessStreetCalculating() {
+    if (startedAccessStreetCalculating == null) {
+      return;
+    }
+    accessStreetTime = startedAccessStreetCalculating.stop(accessStreetTimer);
+  }
+
+  public void startedAccessFlexCalculating() {
+    startedAccessFlexCalculating = Timer.start(clock);
+  }
+
+  public void finishedAccessFlexCalculating() {
+    if (startedAccessFlexCalculating == null) {
+      return;
+    }
+    accessFlexTime = startedAccessFlexCalculating.stop(accessFlexTimer);
+  }
+
+  public void startedAccessFilterCalculating() {
+    startedAccessFilterCalculating = Timer.start(clock);
+  }
+
+  public void finishedAccessFilterCalculating() {
+    if (startedAccessFilterCalculating == null) {
+      return;
+    }
+    accessFilterTime = startedAccessFilterCalculating.stop(accessFilterTimer);
+  }
+
   public void finishedAccessCalculating() {
     if (startedAccessCalculating == null) {
       return;
@@ -178,6 +235,39 @@ public class DebugTimingAggregator {
 
   public void startedEgressCalculating() {
     startedEgressCalculating = Timer.start(clock);
+  }
+
+  public void startedEgressStreetCalculating() {
+    startedEgressStreetCalculating = Timer.start(clock);
+  }
+
+  public void finishedEgressStreetCalculating() {
+    if (startedEgressStreetCalculating == null) {
+      return;
+    }
+    egressStreetTime = startedEgressStreetCalculating.stop(egressStreetTimer);
+  }
+
+  public void startedEgressFlexCalculating() {
+    startedEgressFlexCalculating = Timer.start(clock);
+  }
+
+  public void finishedEgressFlexCalculating() {
+    if (startedEgressFlexCalculating == null) {
+      return;
+    }
+    egressFlexTime = startedEgressFlexCalculating.stop(egressFlexTimer);
+  }
+
+  public void startedEgressFilterCalculating() {
+    startedEgressFilterCalculating = Timer.start(clock);
+  }
+
+  public void finishedEgressFilterCalculating() {
+    if (startedEgressFilterCalculating == null) {
+      return;
+    }
+    egressFilterTime = startedEgressFilterCalculating.stop(egressFilterTimer);
   }
 
   public void finishedEgressCalculating() {
@@ -247,8 +337,14 @@ public class DebugTimingAggregator {
 
     if (transitRouterTime > 0) {
       log("│┌ Creating raptor data model", tripPatternFilterTime);
-      log("│├ Access routing (" + numAccesses + " accesses)", accessTime);
-      log("│├ Egress routing (" + numEgresses + " egresses)", egressTime);
+      log("││┌ Access street routing", accessStreetTime);
+      log("││├ Access flex routing", accessFlexTime);
+      log("││├ Access filtering", accessFilterTime);
+      log("│├┴ Access routing (" + numAccesses + " accesses)", accessTime);
+      log("││┌ Egress street routing", egressStreetTime);
+      log("││├ Egress flex routing", egressFlexTime);
+      log("││├ Egress filtering", egressFilterTime);
+      log("│├┴ Egress routing (" + numEgresses + " egresses)", egressTime);
       log("││ Access/Egress routing", accessEgressTime);
       log("│├ Main routing", raptorSearchTime);
       log("│├ Creating itineraries", itineraryCreationTime);

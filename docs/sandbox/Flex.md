@@ -42,6 +42,7 @@ following to `router-config.json`.
 | allowOnlyStopReachedOnBoard                          |  `boolean` | Require flex trips terminate at a _normal_ stop, without walking.                                                             | *Optional* | `false`       | Transvision |
 | [calculatorType](#flex_calculatorType)               |   `enum`   | Type of calculator to use for flex paths ()                                                                                   | *Optional* | `"street"`    | Transvision |
 | directFlexPathSpeed                                  |  `double`  | Vehicle speed when using the direct (straight-line) flex path calculator.                                                     | *Optional* | `8.0`         | Transvision |
+| filterByMode                                         |  `boolean` | Filter Flex trips by mode and access/egress.                                                                                  | *Optional* | `false`       | Transvision |
 | [maxAccessWalkDuration](#flex_maxAccessWalkDuration) | `duration` | The maximum duration the passenger will be allowed to walk to reach a flex stop or zone.                                      | *Optional* | `"PT45M"`     |     2.3     |
 | [maxEgressWalkDuration](#flex_maxEgressWalkDuration) | `duration` | The maximum duration the passenger will be allowed to walk after leaving the flex vehicle at the final destination.           | *Optional* | `"PT45M"`     |     2.3     |
 | [maxFlexTripDuration](#flex_maxFlexTripDuration)     | `duration` | How long can a non-scheduled flex trip at maximum be.                                                                         | *Optional* | `"PT45M"`     |     2.3     |
@@ -52,6 +53,8 @@ following to `router-config.json`.
 | removeWalkingIfFlexIsFaster                          |  `boolean` | Removing walking access/egress options to a stop if flex is faster.                                                           | *Optional* | `false`       | Transvision |
 | streetPathCalculatorTimeout                          | `duration` | Timeout for street path calculator searches.                                                                                  | *Optional* | `"PT2S"`      | Transvision |
 | streetTimeFactor                                     |  `double`  | Multiplier for how much slower the bus travels compared to cars.                                                              | *Optional* | `1.25`        | Transvision |
+| useMinimumWeight                                     |  `boolean` | Use MinimumWeight instead of EarliestArrival for street path calculation.                                                     | *Optional* | `false`       | Transvision |
+| vehicleReluctance                                    |  `double`  | The reluctance factor to prefer account for distance in street paths.                                                         | *Optional* | `2.0`         | Transvision |
 
 
 ### Details
