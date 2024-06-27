@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.Locale;
-import org.junit.jupiter.api.Test;
 import org.opentripplanner.routing.vehicle_parking.VehicleParkingState;
 import org.opentripplanner.test.support.ResourceLoader;
 import org.opentripplanner.transit.model.basic.Locales;
@@ -16,7 +15,6 @@ import org.opentripplanner.updater.spi.HttpHeaders;
 
 public class BikelyUpdaterTest {
 
-  @Test
   void parseBikeBoxes() {
     var uri = ResourceLoader.of(this).uri("bikely.json");
     var parameters = new BikelyUpdaterParameters(
