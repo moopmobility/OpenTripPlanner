@@ -17,6 +17,14 @@ Taking a bicycle onto transit is only possible if information about the permissi
 is called `bikesAllowed`.
 
 
+<h4 id="BIKE_FROM_PARK">BIKE_FROM_PARK</h4>
+
+Walking to the arrival station and picking up the bicycle from the departure station.
+This mode needs to be combined with at least one transit mode otherwise it behaves like an ordinary bicycle journey.
+
+_Prerequisite:_ Bicycle parking stations present in the OSM file and visible to OTP by enabling the property `staticBikeParkAndRide` during graph build.
+
+
 <h4 id="BIKE_RENTAL">BIKE_RENTAL</h4>
 
 Taking a rented, shared-mobility bike for part or the entirety of the route.
@@ -38,6 +46,13 @@ _Prerequisite:_ Bicycle parking stations present in the OSM file and visible to 
 Driving your own car the entirety of the route.
 This can be combined with transit, where will return routes with a [Kiss & Ride](https://en.wikipedia.org/wiki/Park_and_ride#Kiss_and_ride_/_kiss_and_fly) component.
 This means that the car is not parked in a permanent parking area but rather the passenger is dropped off (for example, at an airport) and the driver continues driving the car away from the drop off location.
+
+
+<h4 id="CAR_FROM_PARK">CAR_FROM_PARK</h4>
+
+Walking and taking transit to the departure station and picking up a car from the park-and-ride facilities to drive to the destination.
+This mode needs to be combined with at least one transit mode otherwise, it behaves like an ordinary car journey.
+_Prerequisite:_ Park-and-ride areas near the stations need to be present in the OSM input file.
 
 
 <h4 id="CAR_HAILING">CAR_HAILING</h4>

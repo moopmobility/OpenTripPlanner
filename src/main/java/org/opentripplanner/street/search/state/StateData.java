@@ -60,7 +60,14 @@ public class StateData implements Cloneable {
     currentMode =
       switch (requestMode) {
         // when renting or using a flex vehicle, you start on foot until you have found the vehicle
-        case NOT_SET, WALK, BIKE_RENTAL, SCOOTER_RENTAL, CAR_RENTAL, FLEXIBLE -> TraverseMode.WALK;
+        case NOT_SET,
+          WALK,
+          BIKE_FROM_PARK,
+          BIKE_RENTAL,
+          SCOOTER_RENTAL,
+          CAR_FROM_PARK,
+          CAR_RENTAL,
+          FLEXIBLE -> TraverseMode.WALK;
         // when cycling all the way or to a stop, you start on your own bike
         case BIKE, BIKE_TO_PARK -> TraverseMode.BICYCLE;
         // when driving (not car rental) you start in your own car or your driver's car
@@ -112,7 +119,15 @@ public class StateData implements Cloneable {
 
     var baseCaseDatas =
       switch (request.mode()) {
-        case WALK, BIKE, BIKE_TO_PARK, CAR, CAR_TO_PARK, FLEXIBLE, NOT_SET -> stateDatas;
+        case WALK,
+          BIKE,
+          BIKE_TO_PARK,
+          BIKE_FROM_PARK,
+          CAR,
+          CAR_TO_PARK,
+          CAR_FROM_PARK,
+          FLEXIBLE,
+          NOT_SET -> stateDatas;
         case CAR_PICKUP, CAR_HAILING -> stateDatas
           .stream()
           .filter(d -> d.carPickupState == CarPickupState.IN_CAR)
@@ -200,7 +215,8 @@ public class StateData implements Cloneable {
     //   - In departAt searches, we are in CAR mode and "unparked".
     else if (requestMode.includesParking()) {
       var parkAndRideStateData = proto.clone();
-      parkAndRideStateData.vehicleParked = arriveBy;
+      parkAndRideStateData.vehicleParked =
+        arriveBy ? requestMode.includesParkingDropoff() : requestMode.includesParkingPickup();
       parkAndRideStateData.currentMode =
         parkAndRideStateData.vehicleParked
           ? TraverseMode.WALK
@@ -223,8 +239,10 @@ public class StateData implements Cloneable {
         WALK,
         BIKE,
         BIKE_TO_PARK,
+        BIKE_FROM_PARK,
         CAR,
         CAR_TO_PARK,
+        CAR_FROM_PARK,
         CAR_PICKUP,
         CAR_HAILING,
         FLEXIBLE -> throw new IllegalStateException(

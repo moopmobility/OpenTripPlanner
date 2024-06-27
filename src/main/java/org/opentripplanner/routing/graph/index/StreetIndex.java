@@ -397,8 +397,9 @@ public class StreetIndex {
     TraverseMode nonTransitMode = TraverseMode.WALK;
     // for park and ride we will start in car mode and walk to the end vertex
     boolean parkAndRideDepart = streetMode == StreetMode.CAR_TO_PARK && !endVertex;
+    boolean parkAndRideArrive = streetMode == StreetMode.CAR_FROM_PARK && endVertex;
     boolean onlyCarAvailable = streetMode == StreetMode.CAR;
-    if (onlyCarAvailable || parkAndRideDepart) {
+    if (onlyCarAvailable || parkAndRideDepart || parkAndRideArrive) {
       nonTransitMode = TraverseMode.CAR;
     }
     return nonTransitMode;

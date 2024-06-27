@@ -23,7 +23,13 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
    * <p>
    * Direct mode and access mode only.
    */
-  BIKE_TO_PARK(Feature.ACCESS, Feature.WALKING, Feature.CYCLING, Feature.PARKING),
+  BIKE_TO_PARK(Feature.ACCESS, Feature.WALKING, Feature.CYCLING, Feature.PARKING_DROPOFF),
+  /**
+   * Walk to a bike parking area, then bike the rest of the way.
+   * <p>
+   * Direct mode and egress mode only.
+   */
+  BIKE_FROM_PARK(Feature.EGRESS, Feature.CYCLING, Feature.WALKING, Feature.PARKING_PICKUP),
   /**
    * Walk to a bike rental point, bike to a bike rental drop-off point, and walk the rest of the
    * way. This can include bike rental at fixed locations or free-floating services.
@@ -45,7 +51,13 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
    * <p>
    * Direct mode and access mode only.
    */
-  CAR_TO_PARK(Feature.ACCESS, Feature.WALKING, Feature.DRIVING, Feature.PARKING),
+  CAR_TO_PARK(Feature.ACCESS, Feature.WALKING, Feature.DRIVING, Feature.PARKING_DROPOFF),
+  /**
+   * Start walking to a parking area, and drive the rest of the way.
+   * <p>
+   * Direct mode and egress mode only.
+   */
+  CAR_FROM_PARK(Feature.EGRESS, Feature.DRIVING, Feature.WALKING, Feature.PARKING_PICKUP),
   /**
    * Walk to a pickup point along the road, drive to a drop-off point along the road, and walk the
    * rest of the way. This can include various taxi-services or kiss & ride.
@@ -76,7 +88,8 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
     DRIVING,
     SCOOTER,
     RENTING,
-    PARKING,
+    PARKING_DROPOFF,
+    PARKING_PICKUP,
     PICKUP,
   }
 
@@ -119,7 +132,15 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
   }
 
   public boolean includesParking() {
-    return features.contains(Feature.PARKING);
+    return includesParkingDropoff() || includesParkingPickup();
+  }
+
+  public boolean includesParkingDropoff() {
+    return features.contains(Feature.PARKING_DROPOFF);
+  }
+
+  public boolean includesParkingPickup() {
+    return features.contains(Feature.PARKING_PICKUP);
   }
 
   public boolean includesPickup() {
@@ -155,6 +176,12 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
         
         _Prerequisite:_ Bicycle parking stations present in the OSM file and visible to OTP by enabling the property `staticBikeParkAndRide` during graph build.
         """;
+      case BIKE_FROM_PARK -> """
+        Walking to the arrival station and picking up the bicycle from the departure station.
+        This mode needs to be combined with at least one transit mode otherwise it behaves like an ordinary bicycle journey.
+        
+        _Prerequisite:_ Bicycle parking stations present in the OSM file and visible to OTP by enabling the property `staticBikeParkAndRide` during graph build.
+        """;
       case BIKE_RENTAL -> """
         Taking a rented, shared-mobility bike for part or the entirety of the route.
         """ +
@@ -176,6 +203,11 @@ public enum StreetMode implements DocumentedEnum<StreetMode> {
         """;
       case CAR_TO_PARK -> """
         Driving a car to the park-and-ride facilities near a station and taking publictransport.
+        This mode needs to be combined with at least one transit mode otherwise, it behaves like an ordinary car journey.
+        _Prerequisite:_ Park-and-ride areas near the stations need to be present in the OSM input file.
+        """;
+      case CAR_FROM_PARK -> """
+        Walking and taking transit to the departure station and picking up a car from the park-and-ride facilities to drive to the destination.
         This mode needs to be combined with at least one transit mode otherwise, it behaves like an ordinary car journey.
         _Prerequisite:_ Park-and-ride areas near the stations need to be present in the OSM input file.
         """;

@@ -86,9 +86,13 @@ public class QualifiedModeSet implements Serializable {
           if (requestMode.qualifiers.contains(Qualifier.RENT)) {
             mBuilder.withAllStreetModes(StreetMode.BIKE_RENTAL);
           } else if (requestMode.qualifiers.contains(Qualifier.PARK)) {
-            mBuilder.withAccessMode(StreetMode.BIKE_TO_PARK);
-            mBuilder.withEgressMode(StreetMode.WALK);
-            mBuilder.withDirectMode(StreetMode.BIKE_TO_PARK);
+            var hasPickup = requestMode.qualifiers.contains(Qualifier.PICKUP);
+            var hasDropoff = requestMode.qualifiers.contains(Qualifier.DROPOFF) || !hasPickup;
+            mBuilder.withAccessMode(hasDropoff ? StreetMode.BIKE_TO_PARK : StreetMode.WALK);
+            mBuilder.withEgressMode(hasPickup ? StreetMode.BIKE_FROM_PARK : StreetMode.WALK);
+            mBuilder.withDirectMode(
+              hasDropoff ? StreetMode.BIKE_TO_PARK : StreetMode.BIKE_FROM_PARK
+            );
             mBuilder.withTransferMode(StreetMode.WALK);
           } else {
             mBuilder.withAllStreetModes(StreetMode.BIKE);
@@ -106,10 +110,12 @@ public class QualifiedModeSet implements Serializable {
           if (requestMode.qualifiers.contains(Qualifier.RENT)) {
             mBuilder.withAllStreetModes(StreetMode.CAR_RENTAL);
           } else if (requestMode.qualifiers.contains(Qualifier.PARK)) {
-            mBuilder.withAccessMode(StreetMode.CAR_TO_PARK);
+            var hasPickup = requestMode.qualifiers.contains(Qualifier.PICKUP);
+            var hasDropoff = requestMode.qualifiers.contains(Qualifier.DROPOFF) || !hasPickup;
+            mBuilder.withAccessMode(hasDropoff ? StreetMode.CAR_TO_PARK : StreetMode.WALK);
+            mBuilder.withEgressMode(hasPickup ? StreetMode.CAR_FROM_PARK : StreetMode.WALK);
+            mBuilder.withDirectMode(hasDropoff ? StreetMode.CAR_TO_PARK : StreetMode.CAR_RENTAL);
             mBuilder.withTransferMode(StreetMode.WALK);
-            mBuilder.withEgressMode(StreetMode.WALK);
-            mBuilder.withDirectMode(StreetMode.CAR_TO_PARK);
           } else if (requestMode.qualifiers.contains(Qualifier.PICKUP)) {
             mBuilder.withAccessMode(StreetMode.WALK);
             mBuilder.withTransferMode(StreetMode.WALK);

@@ -111,7 +111,7 @@ class StreetPreferencesTest {
       "intersectionTraversalModel: CONSTANT, " +
       "accessEgress: AccessEgressPreferences{penalty: TimeAndCostPenaltyForEnum{CAR_TO_PARK: " +
       CAR_PENALTY +
-      ", CAR_RENTAL: (timePenalty: 20m + 2.0 t, costFactor: 1.50), CAR_HAILING: (timePenalty: 20m + 2.0 t, costFactor: 1.50), " +
+      ", CAR_FROM_PARK: (timePenalty: 20m + 2.0 t, costFactor: 1.50), CAR_RENTAL: (timePenalty: 20m + 2.0 t, costFactor: 1.50), CAR_HAILING: (timePenalty: 20m + 2.0 t, costFactor: 1.50), " +
       "FLEXIBLE: (timePenalty: 10m + 1.30 t, costFactor: 1.30)}, " +
       "maxDuration: DurationForStreetMode{default:5m}" +
       "}, " +

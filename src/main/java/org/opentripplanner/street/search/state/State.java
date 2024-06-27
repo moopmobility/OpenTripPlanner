@@ -246,12 +246,14 @@ public class State implements AStarState<State, Edge, Vertex>, Cloneable {
     boolean vehicleParkAndRideOk;
     if (request.arriveBy()) {
       vehicleRentingOk = !request.mode().includesRenting() || !isRentingVehicle();
-      vehicleParkAndRideOk = !parkAndRide || !isVehicleParked();
+      vehicleParkAndRideOk =
+        !parkAndRide || (request.mode().includesParkingPickup() == isVehicleParked());
     } else {
       vehicleRentingOk =
         !request.mode().includesRenting() ||
         (vehicleRentalNotStarted() || vehicleRentalIsFinished());
-      vehicleParkAndRideOk = !parkAndRide || isVehicleParked();
+      vehicleParkAndRideOk =
+        !parkAndRide || (request.mode().includesParkingDropoff() == isVehicleParked());
     }
     return vehicleRentingOk && vehicleParkAndRideOk;
   }

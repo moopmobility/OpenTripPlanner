@@ -378,6 +378,12 @@ public class EnumTypes {
       "then walk the rest of the way. Direct mode and access mode only."
     )
     .value(
+      "bike_unpark",
+      StreetMode.BIKE_FROM_PARK,
+      "Walk to a bike parking area, " +
+      "then bike the rest of the way. Direct mode and access mode only."
+    )
+    .value(
       "bike_rental",
       StreetMode.BIKE_RENTAL,
       "Walk to a bike rental point, " +
@@ -398,6 +404,11 @@ public class EnumTypes {
       StreetMode.CAR_TO_PARK,
       "Start in the car, drive to a " +
       "parking area, and walk the rest of the way. Direct mode and access mode only."
+    )
+    .value(
+      "car_unpark",
+      StreetMode.CAR_FROM_PARK,
+      "Walk to a parking area, and drive the rest of the way. Direct mode and access mode only."
     )
     .value(
       "car_pickup",

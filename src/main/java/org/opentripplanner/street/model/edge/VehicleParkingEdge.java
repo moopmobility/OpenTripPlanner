@@ -73,10 +73,13 @@ public class VehicleParkingEdge extends Edge {
       return State.empty();
     }
 
-    if (s0.getRequest().arriveBy()) {
-      return traverseUnPark(s0);
+    var dropoff =
+      (s0.getRequest().mode().includesParkingDropoff() && !s0.getRequest().arriveBy()) ||
+      (s0.getRequest().mode().includesParkingPickup() && s0.getRequest().arriveBy());
+    if (dropoff) {
+      return traverseDropoff(s0);
     } else {
-      return traversePark(s0);
+      return traversePickup(s0);
     }
   }
 
@@ -85,7 +88,7 @@ public class VehicleParkingEdge extends Edge {
     return getToVertex().getName();
   }
 
-  protected State[] traverseUnPark(State s0) {
+  protected State[] traversePickup(State s0) {
     if (s0.currentMode() != TraverseMode.WALK || !s0.isVehicleParked()) {
       return State.empty();
     }
@@ -94,16 +97,16 @@ public class VehicleParkingEdge extends Edge {
 
     if (streetMode.includesBiking()) {
       final BikePreferences bike = s0.getPreferences().bike();
-      return traverseUnPark(s0, bike.parking().cost(), bike.parking().time(), TraverseMode.BICYCLE);
+      return traversePickup(s0, bike.parking().cost(), bike.parking().time(), TraverseMode.BICYCLE);
     } else if (streetMode.includesDriving()) {
       final CarPreferences car = s0.getPreferences().car();
-      return traverseUnPark(s0, car.parking().cost(), car.parking().time(), TraverseMode.CAR);
+      return traversePickup(s0, car.parking().cost(), car.parking().time(), TraverseMode.CAR);
     } else {
       return State.empty();
     }
   }
 
-  private State[] traverseUnPark(
+  private State[] traversePickup(
     State s0,
     Cost parkingCost,
     Duration parkingTime,
@@ -125,7 +128,7 @@ public class VehicleParkingEdge extends Edge {
     return s0e.makeStateArray();
   }
 
-  private State[] traversePark(State s0) {
+  private State[] traverseDropoff(State s0) {
     StreetMode streetMode = s0.getRequest().mode();
     RoutingPreferences preferences = s0.getPreferences();
 
@@ -139,13 +142,13 @@ public class VehicleParkingEdge extends Edge {
         return State.empty();
       }
 
-      return traversePark(
+      return traverseDropoff(
         s0,
         preferences.bike().parking().cost(),
         preferences.bike().parking().time()
       );
     } else if (streetMode.includesDriving()) {
-      return traversePark(
+      return traverseDropoff(
         s0,
         preferences.car().parking().cost(),
         preferences.car().parking().time()
@@ -155,7 +158,7 @@ public class VehicleParkingEdge extends Edge {
     }
   }
 
-  private State[] traversePark(State s0, Cost parkingCost, Duration parkingTime) {
+  private State[] traverseDropoff(State s0, Cost parkingCost, Duration parkingTime) {
     if (!vehicleParking.hasSpacesAvailable(s0.currentMode(), s0.getRequest().wheelchair())) {
       return State.empty();
     }

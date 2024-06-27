@@ -2,7 +2,6 @@ package org.opentripplanner.routing.algorithm.mapping;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.List;
 import java.util.function.Consumer;
 import org.opentripplanner.ext.emissions.DecorateWithEmission;
 import org.opentripplanner.ext.fares.DecorateWithFare;
@@ -120,9 +119,8 @@ public class RouteRequestToFilterChainMapper {
 
   private static double minBikeParkingDistance(RouteRequest request) {
     var modes = request.journey().modes();
-    boolean hasBikePark = List
-      .of(modes.accessMode, modes.egressMode)
-      .contains(StreetMode.BIKE_TO_PARK);
+    boolean hasBikePark =
+      modes.accessMode == StreetMode.BIKE_TO_PARK || modes.egressMode == StreetMode.BIKE_FROM_PARK;
 
     double minBikeParkingDistance = 0;
     if (hasBikePark) {

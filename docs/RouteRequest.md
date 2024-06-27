@@ -401,7 +401,7 @@ Safety limit to prevent access to and egress from too many stops.
 
 **Since version:** `2.1` ∙ **Type:** `enum map of duration` ∙ **Cardinality:** `Optional`   
 **Path:** /routingDefaults/accessEgress   
-**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
+**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-from-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-from-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
 
 Limit access/egress per street mode.
 
@@ -413,7 +413,7 @@ done because some street modes searches are much more resource intensive than ot
 
 **Since version:** `2.4` ∙ **Type:** `enum map of object` ∙ **Cardinality:** `Optional`   
 **Path:** /routingDefaults/accessEgress   
-**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
+**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-from-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-from-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
 
 Penalty for access/egress by street mode.
 
@@ -426,6 +426,7 @@ performance will be better.
 The default values are
 
 - `car-to-park` = (timePenalty: 20m + 2.0 t, costFactor: 1.50)
+- `car-from-park` = (timePenalty: 20m + 2.0 t, costFactor: 1.50)
 - `car-rental` = (timePenalty: 20m + 2.0 t, costFactor: 1.50)
 - `car-hailing` = (timePenalty: 20m + 2.0 t, costFactor: 1.50)
 - `flexible` = (timePenalty: 10m + 1.30 t, costFactor: 1.30)
@@ -841,7 +842,7 @@ The unit is cost unit per second of time difference.
 
 **Since version:** `2.2` ∙ **Type:** `enum map of duration` ∙ **Cardinality:** `Optional`   
 **Path:** /routingDefaults   
-**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
+**Enum keys:** `not-set` | `walk` | `bike` | `bike-to-park` | `bike-from-park` | `bike-rental` | `scooter-rental` | `car` | `car-to-park` | `car-from-park` | `car-pickup` | `car-rental` | `car-hailing` | `flexible`
 
 Limit direct route duration per street mode.
 

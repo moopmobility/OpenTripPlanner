@@ -32,6 +32,7 @@ public final class AccessEgressPreferences implements Serializable {
   private static final TimeAndCostPenaltyForEnum<StreetMode> DEFAULT_TIME_AND_COST = TimeAndCostPenaltyForEnum
     .of(StreetMode.class)
     .with(StreetMode.CAR_TO_PARK, DEFAULT_PENALTY)
+    .with(StreetMode.CAR_FROM_PARK, DEFAULT_PENALTY)
     .with(StreetMode.CAR_HAILING, DEFAULT_PENALTY)
     .with(StreetMode.CAR_RENTAL, DEFAULT_PENALTY)
     .with(StreetMode.FLEXIBLE, FLEX_DEFAULT_PENALTY)
